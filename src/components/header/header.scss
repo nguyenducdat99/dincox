@@ -1,0 +1,82 @@
+// import library
+@import '../../App.css';
+
+// declare variable
+$color-default-white: #fff;
+
+// style for header
+.header {
+    padding: 15px 0;
+    background: transparent;
+
+    .wrapper {// style for wrapper inside header
+        max-width: 1200px;
+        margin: 0 auto;
+
+        .header-grid{
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            height: 100%;
+
+            .header-grid__logo{
+                padding-left: 30px;
+            }
+            .header-grid__navigation{
+                font-size: 14px;
+                font-weight: 700;
+                padding-left: 80px;
+
+                a{
+                    color: $color-default-white;
+                    text-transform: uppercase;
+                    cursor: pointer;
+                    position: relative;
+                }
+                a:hover::after{
+                    content: '';
+                    width: 0;
+                    animation: linkHover;
+                    animation-duration: 1.4s;
+                    animation-timing-function: ease;
+                    animation-fill-mode: forwards;
+                    background-color: $color-default-white;
+                    height: 1px;
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                }
+
+                @keyframes linkHover {
+                    from{
+                        width: 0;
+                    }
+                    to {
+                        width: 100%;
+                    }
+                }
+
+                .header-grid__navigation__link,
+                .header-grid__navigation__search,
+                .header-grid__navigation__account,
+                .header-grid__navigation__cart{
+                    display: inline-block;
+                }
+                .header-grid__navigation__search,
+                .header-grid__navigation__account,
+                .header-grid__navigation__cart{
+                    margin-right: 15px;
+                }
+                .header-grid__navigation__link ul{
+                    display: flex;
+                    flex-direction: row;
+                }
+                .header-grid__navigation__link ul>li{
+                    margin-right: 15px;
+                    height: 40px;
+                    line-height: 40px;
+                }
+
+            }
+        }
+    }
+}
