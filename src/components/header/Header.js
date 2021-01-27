@@ -14,9 +14,23 @@ function Header() {
                     <nav className="header-grid__navigation">
                         <div className="header-grid__navigation__link">
                             <ul>
-                                <li><a>Sản phẩm</a></li>
-                                <li><a>Nam</a></li>
-                                <li><a>Nữ</a></li>
+                                <li>
+                                    <a>Sản phẩm &nbsp;
+                                        <i className="fa fa-angle-down" aria-hidden="true"></i>
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>Nam &nbsp;
+                                    <i className="fa fa-angle-down" aria-hidden="true"></i>
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>Nữ &nbsp;
+                                    <i className="fa fa-angle-down" aria-hidden="true"></i>
+                                    </a>
+                                </li>
                                 <li><a>Sale Off</a></li>
                                 <li><a>Hệ thống cửa hàng</a></li>
                                 <li><a>Kiểm tra đơn hàng</a></li>

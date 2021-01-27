@@ -24,7 +24,7 @@ $color-default-white: #fff;
             .header-grid__navigation{
                 font-size: 14px;
                 font-weight: 700;
-                padding-left: 80px;
+                // padding-left: 80px;
 
                 a{
                     color: $color-default-white;
@@ -36,7 +36,7 @@ $color-default-white: #fff;
                     content: '';
                     width: 0;
                     animation: linkHover;
-                    animation-duration: 1.4s;
+                    animation-duration: 1.2s;
                     animation-timing-function: ease;
                     animation-fill-mode: forwards;
                     background-color: $color-default-white;
