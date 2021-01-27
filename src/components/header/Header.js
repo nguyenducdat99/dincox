@@ -1,7 +1,16 @@
-import './header.scss';
+import { useState } from 'react';
+import './Header.scss';
 import logo from './logo-dincox.png';
 
 function Header() {
+    // declare state component
+    const [isActiveSearch, setIsActiveSearch] = useState(false);
+
+    // excute when user click button search
+    var onToggleSearch = () => {
+        setIsActiveSearch(!isActiveSearch);
+    }
+
     return(
         <div className="header">
             <div className="wrapper">
@@ -12,24 +21,45 @@ function Header() {
                         </h1>
                     </div>
                     <nav className="header-grid__navigation">
+                        {/* navigation link  */}
                         <div className="header-grid__navigation__link">
                             <ul>
-                                <li>
-                                    <a>Sản phẩm &nbsp;
+                                <li className="header-grid__navigation__link__dropdown">
+                                    <a> Sản phẩm &nbsp;
                                         <i className="fa fa-angle-down" aria-hidden="true"></i>
-
                                     </a>
+                                    {/* menu level 2 */}
+                                    <ul className="header-grid__navigation__link__dropdown--level-2">
+                                        <li><a>Item 1</a></li>
+                                        <li><a>Item 2</a></li>
+                                        <li><a>Item 2</a></li>
+                                        <li><a className="last-child-a">Item 2</a></li>
+                                    </ul>
+                                    
                                 </li>
-                                <li>
-                                    <a>Nam &nbsp;
-                                    <i className="fa fa-angle-down" aria-hidden="true"></i>
-
+                                <li  className="header-grid__navigation__link__dropdown">
+                                    <a> Nam &nbsp;
+                                        <i className="fa fa-angle-down" aria-hidden="true"></i>
                                     </a>
+                                    {/* menu level 2  */}
+                                    <ul className="header-grid__navigation__link__dropdown--level-2">
+                                        <li><a>Item 1</a></li>
+                                        <li><a>Item 2</a></li>
+                                        <li><a>Item 2</a></li>
+                                        <li><a className="last-child-a">Item 2</a></li>
+                                    </ul>
                                 </li>
-                                <li>
-                                    <a>Nữ &nbsp;
-                                    <i className="fa fa-angle-down" aria-hidden="true"></i>
+                                <li  className="header-grid__navigation__link__dropdown">
+                                    <a> Nữ &nbsp;
+                                        <i className="fa fa-angle-down" aria-hidden="true"></i>
                                     </a>
+                                    {/* menu level 2 */}
+                                    <ul className="header-grid__navigation__link__dropdown--level-2">
+                                        <li><a>Item 1</a></li>
+                                        <li><a>Item 2</a></li>
+                                        <li><a>Item 2</a></li>
+                                        <li><a className="last-child-a">Item 2</a></li>
+                                    </ul>
                                 </li>
                                 <li><a>Sale Off</a></li>
                                 <li><a>Hệ thống cửa hàng</a></li>
@@ -37,11 +67,24 @@ function Header() {
                             </ul>
                         </div>
                         <div className="header-grid__navigation__search">
-                            <a>Tìm kiếm</a>
+                            <a onClick={onToggleSearch}>Tìm kiếm</a>
+                            {/* form search */}
+                            <div className={
+                                isActiveSearch ? 
+                                "header-grid__navigation__search__form-search" : 
+                                "header-grid__navigation__search__form-close"
+                            }>
+                                <form action="" method="">
+                                    <input type="text" placeholder="Tìm kiếm ..." />
+                                    <button type="button"><i className="fa fa-search" aria-hidden="true"></i></button>
+                                </form>
+                            </div>
                         </div>
+                        {/* block account */}
                         <div className="header-grid__navigation__account">
                             <a>Tài khoản</a>
                         </div>
+                        {/* block cart */}
                         <div className="header-grid__navigation__cart">
                             <a>Giỏ hàng</a>
                         </div>

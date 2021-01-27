@@ -1,14 +1,11 @@
 // import library
-@import '../../App.css';
-
-// declare variable
-$color-default-white: #fff;
+@import '../../scss/Variable.scss';
 
 // style for header
 .header {
-    padding: 15px 0;
+    margin: 15px 0;
     background: transparent;
-
+    height: 50px;
     .wrapper {// style for wrapper inside header
         max-width: 1200px;
         margin: 0 auto;
@@ -22,9 +19,9 @@ $color-default-white: #fff;
                 padding-left: 30px;
             }
             .header-grid__navigation{
-                font-size: 14px;
-                font-weight: 700;
-                // padding-left: 80px;
+                font-size: $font-size-14;
+                font-weight: $font-weight-700;
+                padding-left: 34px;
 
                 a{
                     color: $color-default-white;
@@ -32,6 +29,7 @@ $color-default-white: #fff;
                     cursor: pointer;
                     position: relative;
                 }
+
                 a:hover::after{
                     content: '';
                     width: 0;
@@ -45,7 +43,7 @@ $color-default-white: #fff;
                     left: 0;
                     bottom: 0;
                 }
-
+                
                 @keyframes linkHover {
                     from{
                         width: 0;
@@ -66,16 +64,91 @@ $color-default-white: #fff;
                 .header-grid__navigation__cart{
                     margin-right: 15px;
                 }
-                .header-grid__navigation__link ul{
-                    display: flex;
-                    flex-direction: row;
+                .header-grid__navigation__link{
+                    ul{
+                        display: flex;
+                        flex-direction: row;
+                        li {
+                            margin-right: 15px;
+                            height: 40px;
+                            line-height: 40px;
+                        }
+                    }
+                    .header-grid__navigation__link__dropdown{
+                        position: relative;
+                        .header-grid__navigation__link__dropdown--level-2{
+                            position: absolute;
+                            top: 100%;
+                            left: 0;
+                            width: 200px;
+                            display: none;
+                            flex-direction: column;
+                            background-color: $color-default-white;
+                            li{
+                                position: relative;
+                                margin: 0;
+                                a {
+                                    display: block;
+                                    padding: 0 15px;
+                                    color: $color-default-black;
+                                    height: 100%;
+                                    border-bottom: 1px dashed $color-default-black;
+                                    text-transform: none;
+                                    transition: 0.4s ease-out;
+                                }
+                                a:hover{
+                                    transition: 0.4s ease-in;
+                                    padding-left: 30px;
+                                }
+                                a.last-child-a{
+                                    border-bottom: none;
+                                }
+                            }
+                        }
+                    }
+                    .header-grid__navigation__link__dropdown:hover{
+                        .header-grid__navigation__link__dropdown--level-2{
+                            display: flex;
+                        }
+                    }
                 }
-                .header-grid__navigation__link ul>li{
-                    margin-right: 15px;
-                    height: 40px;
-                    line-height: 40px;
+                .header-grid__navigation__search{
+                    position: relative;
+                    .header-grid__navigation__search__form-close {
+                        display: none;
+                    }
+                    .header-grid__navigation__search__form-search {
+                        position: absolute;
+                        top: calc(100% + 10px);
+                        right: 0;
+                        padding: 15px;
+                        background-color: $color-default-white;
+                        width: 400px;
+                        border-radius: 5px;
+                        input{
+                            height: 35px;
+                            width: 90%;
+                            padding: 0 15px;
+                            background-clip: padding-box;
+                            border: 1px solid $color-default-lightgray;
+                        }
+                        input:focus{
+                            outline: none;
+                        }
+                        button{
+                            height: 35px;
+                            width: 35px;
+                            background: $color-default-lightgray;
+                            border: 1px solid $color-default-lightgray;
+                            transform: translateY(1px);
+                            margin-left: -1px;
+                            font-size: 18px;
+                        }
+                        button:focus{
+                            outline: none;
+                        }
+                    }
                 }
-
             }
         }
     }
