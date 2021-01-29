@@ -1,0 +1,122 @@
+// import style lirbrary
+@import '../../App.css';
+@import '../../scss/Variable.scss';
+
+.support {
+    .support__social-network{
+        position: fixed;
+        top: 25%;
+        right: 0;
+        color: $color-default-white;
+        font-weight: $font-weight-700;
+        right: -120px;
+        a {
+            color: $color-default-white;
+        }
+        .support__social-network__facebook,
+        .support__social-network__instagram,
+        .support__social-network__youtube,
+        .support__social-network__top{
+            width: 170px;
+            height: 40px;
+            line-height: 40px;
+            display: grid;
+            grid-template-columns: 2fr 4fr;
+            margin-bottom: 5px;
+            transition: 0.4s ease-out;
+            cursor: pointer;
+            i{
+                margin-top: 12px;
+                margin-left: 10px;
+                font-size: 18px;
+            }
+            a{
+                font-size: 18px
+            }
+        }
+        .support__social-network__facebook{
+            background-color: $color-default-facebook;
+        }
+        .support__social-network__instagram{
+            background-color: $color-default-instagram;
+        }
+        .support__social-network__youtube{
+            background-color: $color-default-youtube;
+        }
+        .support__social-network__top{
+            background-color: $color-default-top;
+        }
+        .support__social-network__facebook:hover,
+        .support__social-network__instagram:hover,
+        .support__social-network__youtube:hover,
+        .support__social-network__top:hover{
+            transform: translateX(-100px);
+            transition: 0.4s ease-in;
+        }
+    }
+    .support__mobile-phone{
+        display: grid;
+        grid-template-columns: 3fr 4fr;
+        position: fixed;
+        bottom: 10%;
+        left: 40px;
+        height: 50px;
+        border-radius: 25px;
+        background-color: #3377BB;
+        padding-right: 10px;
+        cursor: pointer;
+        .support__mobile-phone__animation{
+            width: 50px;
+            border-radius: 50%;
+            background-color: $color-default-facebook;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .support__mobile-phone__animation__icon{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 18px;
+                width: 30px;
+                height: 30px;
+                background-color: $color-default-white;
+                color: $color-default-facebook;
+                border-radius: 50%;
+                position: relative;
+                animation-name: spin;
+                animation-duration: 0.2s; 
+                animation-iteration-count: infinite;
+            }
+            @keyframes spin {
+                0%{
+                    transform: rotate(15deg);
+                }
+                50% {
+                    transform: rotate(30deg);
+                }
+                75% {
+                    transform: rotate(-15deg);
+                }
+                100% {
+                    transform: rotate(-15deg);
+                }
+            }
+            .support__mobile-phone__animation__icon::after{
+                content: "";
+                width: 0;
+                height: 0;
+                border-left: 5px solid transparent;
+                border-right: 5px solid transparent;
+                border-bottom: 10px solid $color-default-white;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                transform: rotate(-20deg);
+            }
+        }
+        p {
+            font-size: 18px;
+            line-height: 50px;
+        }
+    }
+}

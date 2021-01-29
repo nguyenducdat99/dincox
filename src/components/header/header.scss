@@ -2,13 +2,18 @@
 @import '../../scss/Variable.scss';
 
 // style for header
+.header-fix{
+    display: fix;
+    top: 0;
+    left: 0;
+    background-color: $color-default-black;
+}
 .header {
     margin: 15px 0;
     background: transparent;
     height: 50px;
+
     .wrapper {// style for wrapper inside header
-        max-width: 1200px;
-        margin: 0 auto;
 
         .header-grid{
             display: grid;
@@ -24,7 +29,7 @@
                 padding-left: 34px;
 
                 a{
-                    color: $color-default-white;
+                    color: $color-default-black;
                     text-transform: uppercase;
                     cursor: pointer;
                     position: relative;
