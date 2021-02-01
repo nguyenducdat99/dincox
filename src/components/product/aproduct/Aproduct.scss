@@ -1,0 +1,114 @@
+// import style library
+@import '../../../App.css';
+@import '../../../scss/Variable.scss';
+
+// style for Aproduct 
+.aproduct {
+    width: 263px;
+    height: 373px;
+    padding: 5px;
+    margin: 0 auto;
+    margin-top: 50px;
+    border: 1px solid transparent;
+    margin-top: 50px;
+    font-size: 14px;
+    font-weight: $font-weight-700;
+
+    .aproduct__image {
+        position: relative;
+        height: 85%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $color-default-white;
+        margin-bottom: 5px;
+        img{
+            width: 100%;
+        }
+        .aproduct__sale{
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 5px 10px;
+            background-color: $color-default-sale;
+        }
+        .aproduct__image__select-wrapper{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+
+            .aproduct__image__select{
+                width: 75%;
+                margin: 0 auto;
+                padding-bottom: 10px;
+                display: grid;
+                grid-template-columns: auto auto auto;
+                column-gap: 5px;
+                
+                button[type=button] {
+                    padding: 5px 10px;
+                    background-color: $color-default-gray;
+                    border: none;
+                    border-radius: 0;
+                    font-size: 18px;
+                    font-weight: $font-weight-700;
+                    color: $color-default-white ;
+                }
+                .aproduct__image__select__search-plus{
+                    transform: translateX(-70px);
+                    transition: 0.4s ease-in-out;
+                }
+                .aproduct__image__select__check-out{
+                    transform: translateY(50px);
+                    transition: 0.4s ease-in-out;
+                }
+                .aproduct__image__select__cart-plus{
+                    transform: translateX(70px);
+                    transition: 0.4s ease-in-out;
+                }
+            }
+        }
+    }
+    hr {
+        border: 0.5px solid $color-default-lightgray;
+    }
+    .aproduct__contents{
+        margin-top: 5px;
+        .aproduct__contents__name{
+            margin-bottom: 5px;
+        }
+        .aproduct-contents__price{
+            display: flex;
+            justify-content: space-between;
+            p:first-child{
+                color: $color-default-youtube;    
+            }
+            p:last-child{
+                color: $color-default-lightgray;
+            }
+        }
+    }
+}
+.aproduct:hover{
+    border: 1px solid $color-default-lightgray;
+    .aproduct__image{
+        .aproduct__image__select-wrapper{
+            .aproduct__image__select{
+                .aproduct__image__select__search-plus{
+                    transform: translateX(0);
+                    transition: 0.4s ease-in-out;
+                }
+                .aproduct__image__select__check-out{
+                    transform: translateY(0);
+                    transition: 0.4s ease-in-out;
+                }
+                .aproduct__image__select__cart-plus{
+                    transform: translateX(0);
+                    transition: 0.4s ease-in-out;
+                }
+            }
+        }
+    }
+}

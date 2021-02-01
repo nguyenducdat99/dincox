@@ -3,17 +3,32 @@
 
 // style for header
 .header-fix{
-    display: fix;
+    position: fixed;
     top: 0;
     left: 0;
-    background-color: $color-default-black;
+    background-color: $color-default-black !important;
+    width: 100%;
+    margin: 0 !important;
+    height: auto !important;
+    padding-top: 15px;
+    animation-name: opacityAuto;
+    animation-duration: 0.4s;
 }
+@keyframes opacityAuto {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 .header {
     margin: 15px 0;
-    background: transparent;
+    background-color: transparent;
     height: 50px;
 
-    .wrapper {// style for wrapper inside header
+        // style for wrapper inside header
 
         .header-grid{
             display: grid;
@@ -29,7 +44,7 @@
                 padding-left: 34px;
 
                 a{
-                    color: $color-default-black;
+                    color: $color-default-white;
                     text-transform: uppercase;
                     cursor: pointer;
                     position: relative;
@@ -156,5 +171,4 @@
                 }
             }
         }
-    }
 }

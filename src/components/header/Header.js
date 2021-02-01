@@ -1,18 +1,34 @@
 import { useEffect, useState } from 'react';
 import './Header.scss';
 import logo from './logo-dincox.png';
+import Support from '../support/Support';
 
 function Header() {
     // declare state component
     const [isActiveSearch, setIsActiveSearch] = useState(false);
+    const [isActiveHeader, setIsActiveHeader] = useState(false);
     
     // excute when user click button search
     var onToggleSearch = () => {
         setIsActiveSearch(!isActiveSearch);
     }
 
+    // set state when user scroll page
+    useEffect(
+        () => {
+            window.addEventListener('scroll', () => {
+                if(window.scrollY>40){
+                    setIsActiveHeader(true);
+                }else{
+                    setIsActiveHeader(false);
+                }
+            })
+        },[]
+    )
+
     return(
-            <div className="header" id="up">
+        <>
+            <div className={!isActiveHeader?"header":"header header-fix"}>
                 <div className="wrapper">
                     <div className="header-grid">
                         <div className="header-grid__logo">
@@ -92,6 +108,8 @@ function Header() {
                     </div>
                 </div>
             </div>
+            <Support isActiveScroll={isActiveHeader} />
+        </>
     );
 }
 export default Header;

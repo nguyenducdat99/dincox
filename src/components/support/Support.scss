@@ -46,6 +46,9 @@
         .support__social-network__top{
             background-color: $color-default-top;
         }
+        .support__social-network__top--disable{
+            display: none;
+        }
         .support__social-network__facebook:hover,
         .support__social-network__instagram:hover,
         .support__social-network__youtube:hover,

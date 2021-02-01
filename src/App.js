@@ -1,15 +1,15 @@
 import Header from './components/header/Header';
 import './App.css';
 import Slider from './components/slider/Slider';
-import Support from './components/support/Support';
 import Policy from './components/policy/Policy';
+import Aproduct from './components/product/aproduct/Aproduct';
 function App() {
   return (
     <div className="App">
-        <Header />
-        <Support />
+        {/* <Header />
         <Slider />
-        <Policy />
+        <Policy /> */}
+        <Aproduct />
     </div>
   );
 }

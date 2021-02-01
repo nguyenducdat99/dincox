@@ -1,5 +1,16 @@
+import { useEffect, useState } from 'react';
 import './Support.scss'
-function Support() {
+function Support(props) {
+    // declare state
+    const [isActiveHeader,setIsActiveHeader] = useState(false);
+
+    // update state when user scroll page
+    useEffect(
+        () => {
+            setIsActiveHeader(props.isActiveScroll);
+        },[props.isActiveScroll]
+    )
+
     // excute when click top
     var onFocusTop = () => {
         window.scrollTo({
@@ -28,7 +39,7 @@ function Support() {
                     <i className="fa fa-youtube-play" aria-hidden="true"></i>
                     <p> Youtube</p>
                 </a>
-                <div className="support__social-network__top" onClick={onFocusTop}>
+                <div className={isActiveHeader?"support__social-network__top":"support__social-network__top--disable"} onClick={onFocusTop}>
                     <i className="fa fa-angle-up" aria-hidden="true"></i> 
                     <p>Top</p>
                 </div>
