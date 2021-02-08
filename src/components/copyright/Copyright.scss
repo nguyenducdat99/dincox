@@ -1,0 +1,36 @@
+// import style library
+@import '../../scss/Variable.scss';
+@import '../../App.css';
+
+// style for code
+.copyright{
+    padding: 15px 0;
+    background-color: $color-default-black;
+    color: $color-default-white;
+    font-size: 16px;
+    .copyright-grid{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 30px;
+        .copyright__social-network{
+            text-align: center;
+            a,
+            a:focus,
+            a:active,
+            a:visited{
+                color: $color-default-white;
+            }
+            a{
+                margin-right: 15px;
+                i{
+                    transition: 0.2s ease-in-out;
+                }
+            }
+            a:hover{
+                i{
+                    transform: translateY(-5px);
+                }
+            }
+        }
+    }//end copyright-grid
+}//end copyright

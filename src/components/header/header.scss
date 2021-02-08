@@ -120,6 +120,9 @@
                     .header-grid__navigation__link__dropdown:hover{
                         .header-grid__navigation__link__dropdown--level-2{
                             display: flex;
+                            a:after{
+                                display: none;
+                            }
                         }
                     }
                 }
