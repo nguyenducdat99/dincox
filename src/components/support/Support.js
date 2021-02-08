@@ -21,7 +21,7 @@ function Support(props) {
     }
     // excute when click phone number
     var onCall = () => {
-        window.open("tel: +0987654321");
+        window.open("tel: +0961988840");
     }
 
     return(
@@ -50,7 +50,7 @@ function Support(props) {
                         <i className="fa fa-phone" aria-hidden="true"></i>
                     </div>
                 </div>
-                <p>0987654321</p>
+                <p>0961.988.840</p>
             </div>
         </div>
         

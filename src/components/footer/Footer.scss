@@ -1,0 +1,95 @@
+// import style library
+@import '../../scss/Variable.scss';
+@import '../../App.css';
+
+// style for code
+.footer{
+    border-top: 1px solid $color-default-lightgray;
+    padding: 30px 0;
+    a,
+    a:focus,
+    a:active,
+    a:visited{
+        color: $color-default-black;
+    }
+    a{
+        position: relative;
+    }
+    a::after{
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        background-color: $color-default-black;
+        height: 1px;
+        width: 0;
+        transition: 0.8s ease-in-out;
+    }
+    a:hover::after{
+        width: 100%;
+    }
+    .footer-grid{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 30px;
+        .footer__contact{
+            .footer__contact__address,
+            .footer__contact__tel,
+            .footer__contact__mail,
+            .footer__contact__certification{
+                margin-top: 10px;
+            }
+            .footer__contact__certification{
+                a:after{
+                    display: none;
+                }
+            }
+
+        }// end footer contact
+        .footer__middle{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 30px;
+            .footer__middle__nav{
+                nav{
+                    ul{
+                        li{
+                            margin-top: 5px;
+                        }
+                    }
+                }
+            }
+            .footer__middle__open-time{
+                p{
+                    margin-top: 10px;
+                }
+            }
+        }
+        .footer__subscribe{
+            p{
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+            .footer__subscribe__input,
+            .footer__subscribe__button{
+                height: 40px !important;
+                outline: 0px;
+                border-radius: 0px;
+                border: 1px solid $color-default-lightgray;
+                padding: 0 15px;
+            }
+            .footer__subscribe__input{
+                width: 80%;
+                font-size: 16px;
+            }
+            .footer__subscribe__button{
+                background-color: $color-default-black;
+                color: $color-default-white;
+                font-size: 18px;
+                border: 1px solid $color-default-black;
+                cursor: pointer;
+            }
+
+        }
+    }//end footer-grid
+}// end footer

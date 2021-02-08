@@ -1,7 +1,7 @@
-import './ProductDetail.scss';
+import './PopUpDetail.scss';
 import { useEffect, useState } from 'react';
 
-function ProductDetail(props){
+function PopUpDetail(props){
     // declare state
     const [dataSize,setDataSize] = useState([36, 37, 38, 39]);
     const [data,setData] = useState(['']);
@@ -51,29 +51,27 @@ function ProductDetail(props){
 
     return(
         // product detail
-        <div className="product-detail">
+        <div className="pop-up-detail">
             <div className="wrapper">
                 <div className="product-detail-grid">
-
-                    {/* open list small */}
-                    <div className="product-detail__list-image">
-                        <div className="product-detail__list-image__image">
-                            <img src='' alt="small"/>
-                        </div>
-                        <div className="product-detail__list-image__image">
-                            <img src='' alt="small"/>
-                        </div>
-                        <div className="product-detail__list-image__image">
-                            <img src='' alt="small"/>
-                        </div>
-                    </div>
-                    {/* close list small */}
-
                     {/* open main */}
                     <div className="product-detail__main-image">
                         <div className="product-detail__main-image__image">
                             <img src="" alt="main"/>
                         </div>
+                        {/* open list small */}
+                        <div className="product-detail__list-image">
+                            <div className="product-detail__list-image__image">
+                                <img src='' alt="small"/>
+                            </div>
+                            <div className="product-detail__list-image__image">
+                                <img src='' alt="small"/>
+                            </div>
+                            <div className="product-detail__list-image__image">
+                                <img src='' alt="small"/>
+                            </div>
+                        </div>
+                        {/* close list small */}
                     </div>
                     {/* close main */}
 
@@ -82,12 +80,6 @@ function ProductDetail(props){
                         {/* open product detail content header */}
                         <div className="product-detail__content__header">
                             <h2>Hello</h2>
-                            <div className="product-detail__content__header__brand">
-                                <p>Thương Hiệu: <a>Brand 1</a></p>
-                            </div><span> | </span>
-                            <div className="product-detail__content__header__type">
-                                <p>Loại: <a>Loai 1</a></p>
-                            </div><span> | </span>
                             <div className="product-detail__content__header__code">
                                 <p>Mã: 11</p>
                             </div>
@@ -157,51 +149,12 @@ function ProductDetail(props){
                             </div>
                             <div className="product-detail__content__action">
                                 <input type="button" value="Thêm vào giỏ" />
-                                <input type="button" value="Mua ngay"/>
+                                <p>Hoặc <a href="">xem chi tiết</a></p>
                             </div>
                         </form>
                         {/* close form select product */}
 
-                        {/* open product description */}
-                        <div className="product-detail__content__description">
-                            <p>Giày Chuẩn Euro Giá Ưu Việt</p>
-                            <p>Thông tin sản phẩm</p>
-                            <p>Chất Liệu: Da tổng hợp</p>
-                            <p>Phù hợp sử dụng: đi làm, đi chơi, đi tiệc.</p>
-                            <p>Chất liệu : Đế cao su thiên</p>
-                            <p>CHẾ ĐỘ BẢO HÀNH ĐẢM BẢO GIÀY CHO KHÁCH HÀNG KHI MUA.</p>
-                            <p>- Bảo hành đổi mới nếu giày bị lỗi trong vòng 6 tháng</p>
-                            <p>-Hỗ trợ đổi size trong vòng 1 tuần</p>
-                            <p>
-                                <img src="" alt="toturial select size"/>
-                            </p>
-                        </div>
-                        {/* close product description */}
-                        {/* open transport */}
-                        <div className="product-detail__content__transport">
-                            <div className="product-detail__content__transport__item">
-                                <i className="fa fa-ambulance" aria-hidden="true"></i>
-                                <p className="title">Giao Hàng Toàn Quốc</p>
-                            </div>
-                            <div className="product-detail__content__transport__item">
-                                <i className="fa fa-volume-control-phone" aria-hidden="true"></i>
-                                <div>
-                                    <p className="title">Hotline Hỗ trợ</p>
-                                    <p>0961 988 840</p>
-                                </div>
-                            </div>
-                            <div className="product-detail__content__transport__item">
-                            <i className="fa fa-check" aria-hidden="true"></i>
-                                <div>
-                                    <p className="title">Chính sách bảo hành</p>
-                                    <p>+ Bảo hành đổi mới các sản phẩm bị lỗi của nhà sản xuất trong vòng 6 tháng,
-
-                                            <br/>+ Hỗ trợ đổi trả trong vòng 7 ngày.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        {/* close transport */}
+                       
                     </div>
                     {/* close product detail content */}
                 </div>
@@ -209,4 +162,4 @@ function ProductDetail(props){
         </div>
     );
 }
-export default ProductDetail;
+export default PopUpDetail;

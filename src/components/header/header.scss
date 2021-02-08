@@ -50,27 +50,18 @@
                     position: relative;
                 }
 
-                a:hover::after{
+                a:after{
                     content: '';
                     width: 0;
-                    animation: linkHover;
-                    animation-duration: 1.2s;
-                    animation-timing-function: ease;
-                    animation-fill-mode: forwards;
                     background-color: $color-default-white;
                     height: 1px;
                     position: absolute;
                     left: 0;
-                    bottom: 0;
+                    bottom: -1px;
+                    transition: 0.8s ease-in-out;
                 }
-                
-                @keyframes linkHover {
-                    from{
-                        width: 0;
-                    }
-                    to {
-                        width: 100%;
-                    }
+                a:hover::after{
+                    width: 100%;
                 }
 
                 .header-grid__navigation__link,
