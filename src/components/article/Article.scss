@@ -1,0 +1,54 @@
+// import style library
+@import '../../scss/Variable.scss';
+@import '../../App.css';
+
+// style for code
+.article{
+    margin-top: 50px;
+    margin-bottom: 30px;
+    h2{
+        font-size: 24px;
+        font-weight: 700;
+        text-transform: uppercase;
+        text-align: center;
+        position: relative;
+        margin-bottom: 30px;
+    }
+    h2:after{
+        content: '';
+        width: 120px;
+        height: 3px;
+        background-color: $color-default-black;
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+        bottom: -7px;
+    }
+    .slick-prev{
+        background-color: $color-default-lightgray;
+        height: 30px;
+        width: 30px;
+        z-index: 9;
+        left: 0px;
+    }
+    .slick-prev:hover{
+        background-color: $color-default-gray;
+    }
+    .slick-prev:before{
+        content: '<';
+    }
+    .slick-next{
+        background-color: $color-default-lightgray;
+        height: 30px;
+        width: 30px;
+        z-index: 9;
+        right: 35px;
+    }
+    .slick-next:hover{
+        background-color: $color-default-gray;
+    }
+    .slick-next:before{
+        content: '>';
+    }
+}

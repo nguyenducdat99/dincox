@@ -3,13 +3,14 @@ import './Product.scss';
 import Slider from 'react-slick';
 import SingleProduct from './aproduct/Aproduct';
 import SmallImg from '../../img/product__banner__small.jpg';
+import SmallCollectionImg from '../../img/product__collection__list__single.jpg';
+import BigCollectionImg from '../../img/product__collection__big.jpg';
 import LargeImg from '../../img/product__banner__large.jpg';
 import { useState } from 'react';
 
 function Product() {
     // declare state
     const listIndex = [0,1,2,3,4,5,6,7,8];
-    const [isHightlight,setIsHightLight] = useState(true);
 
     // excute when click butotn;
     function removeStyle() {
@@ -23,19 +24,20 @@ function Product() {
         removeStyle();
         event.target.style.backgroundColor = "gray";
         event.target.style.color = "white";
+        
     }
 
     // setting for slider
     const settings = {
         dots: false,
-        infinite: 300,
+        infinite: true,
         speed: 500,
         slidesToShow: 4,
         slidesToScroll: 1,
         swipeToSlide: true,
         // autoplay: true,
         // autoplaySpeed: 2000,
-      };
+    };
     return(
         <div className="product">
             <div className="wrapper">
@@ -49,6 +51,7 @@ function Product() {
                         }
                     </Slider>
                 </div>
+                {/* end product sales */}
                 <div className="product__banner">
                     <div className="product__banner--small">
                         <img src={SmallImg} alt="" />
@@ -60,6 +63,7 @@ function Product() {
                         <img src={SmallImg} alt="" />
                     </div>
                 </div>
+                {/* end product banner */}
                 <div className="product__hightlights">
                     <h2>SẢN PHẨM NỔI BẬT</h2>
                     <div className="product__hightlights__action">
@@ -81,30 +85,31 @@ function Product() {
                     <div className="product__collection-grid">
                         <div className="product__collection__list-small">
                             <div className="product__collection__list-small__single">
-                                a
+                                <img src={SmallCollectionImg} alt=""/>
                             </div>
                             <div className="product__collection__list-small__single">
-                                a
+                                <img src={SmallCollectionImg} alt=""/>
                             </div>
                             <div className="product__collection__list-small__single">
-                                a
+                                <img src={SmallCollectionImg} alt=""/>
                             </div>
                             <div className="product__collection__list-small__single">
-                                a
+                                <img src={SmallCollectionImg} alt=""/>
                             </div>
                             <div className="product__collection__list-small__single">
-                                a
+                                <img src={SmallCollectionImg} alt=""/>
                             </div>
                             <div className="product__collection__list-small__single">
-                                a
+                                <img src={SmallCollectionImg} alt=""/>
                             </div>
                         </div>
                         <div className="product__collection__big">
-                            b
+                            <img src={BigCollectionImg} alt=""/>
                         </div>
                     </div>
                 </div>
             </div>
+            {/* end product hightlight */}
         </div>
     );
 }

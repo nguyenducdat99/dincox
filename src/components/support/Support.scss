@@ -9,7 +9,8 @@
         right: 0;
         color: $color-default-white;
         font-weight: $font-weight-700;
-        right: -120px;
+        right: -130px;
+        z-index: 99;
         a {
             color: $color-default-white;
         }

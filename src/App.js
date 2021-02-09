@@ -7,16 +7,19 @@ import Policy from './components/policy/Policy';
 import Footer from './components/footer/Footer';
 import Copyright from './components/copyright/Copyright';
 import Product from './components/product/Product';
+import Article from './components/article/Article';
 
 function App() {
   return (
     <div className="App">
-        {/* <Header />
+        <Header />
         <Slider />
         <Policy />
-        <Footer />
-        <Copyright /> */}
         <Product />
+        <Article />
+        <Footer />
+        <Copyright />
+        
     </div>
   );
 }
