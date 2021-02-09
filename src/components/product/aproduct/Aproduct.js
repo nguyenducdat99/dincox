@@ -18,7 +18,7 @@ function Aproduct() {
                             <p>Mua ngay</p>
                         </button>
                         <button type="button" className="aproduct__image__select__cart-plus">
-                            <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                            <i className="fa fa-cart-plus" aria-hidden="true"></i>
                         </button>
                     </div>
                 </div>

@@ -1,0 +1,121 @@
+// import style library
+@import '../../scss/Variable.scss';
+@import '../../App.css';
+
+// style for code
+.product{
+    h2{
+        font-size: 24px;
+        font-weight: 700;
+        text-transform: uppercase;
+        text-align: center;
+        position: relative;
+    }
+    h2:after{
+        content: '';
+        width: 120px;
+        height: 3px;
+        background-color: $color-default-black;
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+        bottom: -7px;
+    }
+    &__sales{
+        .slick-prev{
+            background-color: $color-default-lightgray;
+            height: 30px;
+            width: 30px;
+            z-index: 999;
+            left: 0px;
+        }
+        .slick-prev:hover{
+            background-color: $color-default-gray;
+        }
+        .slick-prev:before{
+            content: '<';
+        }
+        .slick-next{
+            background-color: $color-default-lightgray;
+            height: 30px;
+            width: 30px;
+            z-index: 999;
+            right: 0px;
+        }
+        .slick-next:hover{
+            background-color: $color-default-gray;
+        }
+        .slick-next:before{
+            content: '>';
+        }
+
+
+    }// end product__sales;
+    &__banner{
+        margin-top: 30px;
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        column-gap: 30px;
+        &--small,
+        &--large{
+            overflow: hidden;
+            img{
+                width: 100%;
+                object-fit: cover;
+                transition: 0.4s ease-in-out;
+            }
+        }
+        &--small{
+            height: 250px;
+        }
+        &--large{
+            height: 550px;
+        }
+        &--small:hover,
+        &--large:hover{
+            img{
+                transform: scale(1.1) translateZ(0);
+            }
+        }
+    }//end product__banner;
+    &__hightlights{
+        margin-top: 50px;
+        &__action{
+            margin-top: 30px;
+            text-align: center;
+            button[type=button]{
+                background-color: $color-default-lightgray;
+                padding: 10px 15px;
+                color: $color-default-black;
+                font-weight: 700;
+                border: 0;
+                text-transform: uppercase;
+            }
+            &__active{
+                background-color: $color-default-gray;
+                color: $color-default-white;
+            }
+        }
+        &__list-product{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+    }// end product__hightlights
+    &__collection{
+        margin-top: 50px;
+        &-grid{
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 30px;
+        }
+        &__list-small{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: auto auto;
+            grid-gap: 30px;
+        }
+    }// end product__collection
+}
