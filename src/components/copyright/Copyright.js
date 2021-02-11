@@ -10,13 +10,13 @@ function Copyright(){
                     <div> </div>
                     <div className="copyright__social-network">
                         <a href="">
-                            <i class="fa fa-facebook" aria-hidden="true"></i>
+                            <i className="fa fa-facebook" aria-hidden="true"></i>
                         </a>
                         <a href="">
-                            <i class="fa fa-instagram" aria-hidden="true"></i>
+                            <i className="fa fa-instagram" aria-hidden="true"></i>
                         </a>
                         <a href="">
-                            <i class="fa fa-youtube-play" aria-hidden="true"></i>
+                            <i className="fa fa-youtube-play" aria-hidden="true"></i>
                         </a>
                     </div>
                     <div className="copyright__author">

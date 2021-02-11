@@ -3,7 +3,7 @@
 
 // style for header
 .header-fix{
-    position: fixed;
+    position: fixed !important;
     top: 0;
     left: 0;
     background-color: $color-default-black !important;
@@ -13,6 +13,7 @@
     padding-top: 15px;
     animation-name: opacityAuto;
     animation-duration: 0.4s;
+    z-index: 999;
 }
 @keyframes opacityAuto {
     from {
@@ -24,6 +25,7 @@
 }
 
 .header {
+    position: relative;
     margin: 15px 0;
     background-color: transparent;
     height: 50px;

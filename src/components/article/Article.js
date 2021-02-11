@@ -12,12 +12,12 @@ function Article() {
     const settings = {
         dots: false,
         infinite: true,
-        speed: 500,
+        speed: 1000,
         slidesToShow: 3,
         slidesToScroll: 1,
         swipeToSlide: true,
-        // autoplay: true,
-        // autoplaySpeed: 5000
+        autoplay: true,
+        autoplaySpeed: 5000
     };
 
     return(
