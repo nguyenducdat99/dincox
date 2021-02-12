@@ -8,18 +8,35 @@ import Footer from './components/footer/Footer';
 import Copyright from './components/copyright/Copyright';
 import Product from './components/product/Product';
 import Article from './components/article/Article';
+import ProductDetail from './components/product/productdetail/ProductDetail';
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-        <Header />
-        <Slider />
-        <Policy />
-        <Product />
-        <Article />
-        <Footer />
-        <Copyright />
         
+        <Router>
+          <Header />
+          <Switch>
+            <Route path="/" exact>
+              <Slider />
+              <Policy />
+              <Product />
+              <Article />
+            </Route>
+            <Route path="/products/:id">
+                <ProductDetail />
+            </Route>
+          </Switch>
+          <Footer />
+          <Copyright />
+        </Router>
+
     </div>
   );
 }

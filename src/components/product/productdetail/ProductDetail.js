@@ -8,7 +8,8 @@ function ProductDetail(props){
     var indexCurrentProduct = -1;
     
 
-    
+    // scroll to top
+    window.scrollTo(0,0);
 
     // load state data from database local
     useEffect(
