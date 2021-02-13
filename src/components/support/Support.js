@@ -46,9 +46,11 @@ function Support(props) {
             </div>
             <div className="support__mobile-phone" onClick={onCall}>
                 <div className="support__mobile-phone__animation">
-                    <div className="support__mobile-phone__animation__icon">
-                        <i className="fa fa-phone" aria-hidden="true"></i>
+                    <div className="support__mobile-phone__animation__background">
                     </div>
+                    <div className="support__mobile-phone__animation__icon">
+                            <i className="fa fa-phone" aria-hidden="true"></i>
+                        </div>
                 </div>
                 <p>0961.988.840</p>
             </div>

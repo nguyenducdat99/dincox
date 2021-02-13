@@ -1,4 +1,5 @@
 // import style library
+import { Link } from 'react-router-dom';
 import './Footer.scss';
 
 // code function here
@@ -41,7 +42,7 @@ function Footer() {
                                     </li>
                                 
                                     <li>
-                                        <a href="">Giới thiệu</a>
+                                        <Link to="/pages/about-us">Giới thiệu</Link>
                                     </li>
                                 
                                     <li>

@@ -74,9 +74,30 @@
             width: 50px;
             border-radius: 50%;
             background-color: $color-default-facebook;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            position: relative;
+            .support__mobile-phone__animation__background{
+                background-color: $color-default-facebook-40;
+                height: 60px;
+                width: 60px;
+                position: absolute;
+                top: -5px;
+                left: -5px;
+                border-radius: 50%;
+                animation: scale-ball;
+                animation-duration: 0.8s;
+                animation-iteration-count: infinite;
+            }
+            @keyframes scale-ball {
+                0% {
+                    transform: scale(0) translateZ(0);
+                }
+                75% {
+                    transform: scale(1.3) translateZ(0);
+                }
+                100% {
+                    transform: scale(0) translateZ(0);
+                }
+            }
             .support__mobile-phone__animation__icon{
                 display: flex;
                 justify-content: center;
@@ -87,10 +108,12 @@
                 background-color: $color-default-white;
                 color: $color-default-facebook;
                 border-radius: 50%;
-                position: relative;
                 animation-name: spin;
                 animation-duration: 0.2s; 
                 animation-iteration-count: infinite;
+                position: absolute;
+                top: 10px;
+                left: 10px;
             }
             @keyframes spin {
                 0%{

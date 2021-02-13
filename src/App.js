@@ -9,6 +9,7 @@ import Copyright from './components/copyright/Copyright';
 import Product from './components/product/Product';
 import Article from './components/article/Article';
 import ProductDetail from './components/product/productdetail/ProductDetail';
+import SmallBanner from './components/fixcontents/smallbanner/SmallBanner';
 
 import {
   BrowserRouter as Router,
@@ -31,6 +32,9 @@ function App() {
             </Route>
             <Route path="/products/:id">
                 <ProductDetail />
+            </Route>
+            <Route path="/pages/about-us">
+                <SmallBanner/>
             </Route>
           </Switch>
           <Footer />
