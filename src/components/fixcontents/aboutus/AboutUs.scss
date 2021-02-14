@@ -1,0 +1,13 @@
+// import style lirbrary
+@import '../../../App.css';
+@import '../../../scss/Variable.scss';
+
+// style for code
+.about-us{
+    min-height: 300px;
+    background-color: $color-default-white;
+    position: relative;
+    z-index: 2;
+    margin-top: -80px;
+    padding-top: 30px;
+}

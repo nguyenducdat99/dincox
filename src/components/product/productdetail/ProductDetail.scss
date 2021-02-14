@@ -60,15 +60,15 @@
                         display: inline-block;
                         color: $color-default-youtube;
                         margin-right: 20px;
-                        font-weight: 700;
-                        font-size: 24px;
+                        font-weight: $font-weight-700;
+                        font-size: $font-size-24;
                     }
                     .product-detail__content__price__original-price{
                         display: inline-block;
                         color: $color-default-lightgray;
                         margin-right: 20px;
-                        font-weight: 700;
-                        font-size: 24px;
+                        font-weight: $font-weight-700;
+                        font-size: $font-size-24;
                     }
                     .product-detail__content__price__sale{
                         display: inline-block;
@@ -82,7 +82,7 @@
                         margin-bottom: 5px;
                     }
                     .product-detail__content__size__select{
-                        font-size: 12px;
+                        font-size: $font-size-12;
                         margin-bottom: 10px;
                     }
                     .product-detail__content__size__one-select{
@@ -106,7 +106,7 @@
                     }
                     .product-detail__content__support{
                         p{
-                            font-weight: 700;
+                            font-weight: $font-weight-700;
                             margin-bottom: 10px;
                         }
                     } 
@@ -133,7 +133,7 @@
                         border-radius: 0;
                     }
                     .product-detail__content__count__title{
-                        font-weight: 700;
+                        font-weight: $font-weight-700;
                         margin-bottom: 5px;
                     }
                 }
@@ -145,7 +145,7 @@
                         text-align: center;
                         background-color: $color-button-gray;
                         text-transform: uppercase;
-                        font-weight: 700;
+                        font-weight: $font-weight-700;
                         padding: 0 10px;
                         border: 1px solid $color-button-gray;
                         color: $color-default-white;
@@ -175,12 +175,12 @@
                         i{
                             color: $color-default-green;
                             margin-right: 15px;
-                            font-size: 36px;
+                            font-size: $font-size-36;
                         }
                         p.title{
                             text-transform: uppercase;
-                            font-weight: 700;
-                            font-size: 16px;
+                            font-weight: $font-weight-700;
+                            font-size: $font-size-16;
                             margin-bottom: 0;
                         }
                     }

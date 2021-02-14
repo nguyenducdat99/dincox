@@ -7,7 +7,7 @@
     padding: 15px 0;
     background-color: $color-default-black;
     color: $color-default-white;
-    font-size: 16px;
+    font-size: $font-size-16;
     .copyright-grid{
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
