@@ -46,11 +46,11 @@ function Footer() {
                                     </li>
                                 
                                     <li>
-                                        <a href="">Chính sách bảo mật</a>
+                                        <Link to="/pages/privacy-policy">Chính sách bảo mật</Link>
                                     </li>
                                 
                                     <li>
-                                        <a href="">Chính sách đổi trả</a>
+                                        <Link to="/pages/return-policy">Chính sách đổi trả</Link>
                                     </li>
                                 </ul>
                             </nav>

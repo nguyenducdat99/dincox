@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import BackgroundImage from './background_image.png';
 
 function SmallBanner(props){
+    // focus to header
+    window.scrollTo(0,0);
+
     return(
         <>  
             <div className="small-banner__image">
