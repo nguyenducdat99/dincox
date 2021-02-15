@@ -38,20 +38,21 @@ function Footer() {
                             <nav>
                                 <ul>
                                     <li>
-                                        <a href="">Tìm kiếm</a>
+                                        <Link to="/pages/search">Tìm kiếm</Link>
                                     </li>
                                 
                                     <li>
                                         <Link to="/pages/about-us">Giới thiệu</Link>
                                     </li>
-                                
-                                    <li>
-                                        <Link to="/pages/privacy-policy">Chính sách bảo mật</Link>
-                                    </li>
-                                
+                                                                
                                     <li>
                                         <Link to="/pages/return-policy">Chính sách đổi trả</Link>
                                     </li>
+
+                                    <li>
+                                        <Link to="/pages/privacy-policy">Chính sách bảo mật</Link>
+                                    </li>
+
                                 </ul>
                             </nav>
                         </div>

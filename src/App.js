@@ -12,6 +12,7 @@ import ProductDetail from './components/product/productdetail/ProductDetail';
 import SmallBanner from './components/fixcontents/smallbanner/SmallBanner';
 import AboutUs from './components/fixcontents/aboutus/AboutUs';
 import PrivacyPolicy from "./components/fixcontents/privacypolicy/PrivacyPolicy";
+import ReturnPolicy from "./components/fixcontents/returnpolicy/ReturnPolicy";
 import {
   BrowserRouter as Router,
   Switch,
@@ -45,6 +46,11 @@ function App() {
 				</Route>
 				<Route path="/pages/return-policy">
                     <SmallBanner title="Chính sách hoàn trả"/>
+					<ReturnPolicy/>
+				</Route>
+				<Route path="/pages/search">
+                    <SmallBanner title="Tìm kiếm"/>
+					<ReturnPolicy/>
 				</Route>
 			</Switch>
 			<Footer />
