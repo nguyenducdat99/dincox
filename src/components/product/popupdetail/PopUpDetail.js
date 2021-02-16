@@ -133,20 +133,22 @@ function PopUpDetail(props){
                                     <div className="product-detail__content__count_select">
                                         <input type="button" value="-" onClick={
                                             () => {
-                                                let count = document.getElementById("count-product").value;
+                                                let count = document.getElementById("count-product-small").value;
                                                 count = count - 1;
                                                 if(count < 1){
                                                     count = 1;
                                                 }
-                                                document.getElementById("count-product").value = count;
+                                                document.getElementById("count-product-small").value = ""+count;
+                                                console.log("click '-' return: " + count + " and type of count: " + typeof(count));
                                             }
                                         }/>
-                                        <input type="number" id="count-product" placeholder="1" min="1" disabled/>
+                                        <input type="number" id="count-product-small" value="1" min="1" disabled/>
                                         <input type="button" value="+" onClick={
                                             () =>{
-                                                let count = document.getElementById("count-product").value;
+                                                let count = document.getElementById("count-product-small").value;
                                                 count = count*1 + 1;
-                                                document.getElementById("count-product").value = count;
+                                                document.getElementById("count-product-small").value ='22';
+                                                console.log("click '+' return: "+count);
                                             }
                                         }/> 
                                     </div>

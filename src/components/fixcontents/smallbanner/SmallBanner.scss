@@ -28,8 +28,9 @@
 .small-banner{
     height: 300px;
     position: relative;
-    top: -80px;
+    top: 0;
     left: 0;
+    margin-top: -80px;
     &__background-header{
         background-color: $color-default-black-50;
         position: absolute;
