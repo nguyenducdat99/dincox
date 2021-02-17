@@ -1,5 +1,52 @@
 // import style library
-@import '../../scss/Variable.scss';
-@import '../../App.css';
+@import '../../../scss/Variable.scss';
+@import '../../../App.css';
 
 // style for code
+.product{
+    &__sales{
+        padding-top: 30px;
+        &__list{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+        &__expand{
+            text-align: center;
+            padding: 15px 0;
+            button[type=button]{
+                background-color: transparent;
+                padding: 10px 15px;
+                border: 1px solid $color-default-lightgray;
+                font-size: $font-size-16;
+            }
+        }
+    }// end product__sales;
+    &__banner{
+        padding-top: 30px;
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        column-gap: 30px;
+        &--small,
+        &--large{
+            overflow: hidden;
+            img{
+                width: 100%;
+                object-fit: cover;
+                transition: 0.4s ease-in-out;
+            }
+        }
+        &--small{
+            height: 250px;
+        }
+        &--large{
+            height: 550px;
+        }
+        &--small:hover,
+        &--large:hover{
+            img{
+                transform: scale(1.1) translateZ(0);
+            }
+        }
+    }//end product__banner;
+}

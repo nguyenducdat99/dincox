@@ -1,5 +1,31 @@
 // import style library
-@import '../../scss/Variable.scss';
-@import '../../App.css';
+@import '../../../scss/Variable.scss';
+@import '../../../App.css';
 
 // style for code
+.product{
+    &__hightlights{
+        padding-top: 60px;
+        &__action{
+            margin-top: 30px;
+            text-align: center;
+            button[type=button]{
+                background-color: $color-default-lightgray;
+                padding: 10px 15px;
+                color: $color-default-black;
+                font-weight: $font-weight-700;
+                border: 0;
+                text-transform: uppercase;
+            }
+            &__active{
+                background-color: $color-default-gray;
+                color: $color-default-white;
+            }
+        }
+        &__list-product{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+    }// end product__hightlights
+}

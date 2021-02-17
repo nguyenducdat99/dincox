@@ -36,7 +36,7 @@ function Slider(){
                     </div>
                 </div>
                 <div className="slider__slide">
-                    <img src={Img1} alt=""/>
+                    <img src={Img2} alt=""/>
                     <div className="wrapper">
                         <div className="slider__slide__contents">
                             <div className="slider__slide__contents__small-title">
@@ -53,7 +53,7 @@ function Slider(){
                     </div>
                 </div>
                 <div className="slider__slide">
-                    <img src={Img1} alt=""/>
+                    <img src={Img3} alt=""/>
                     <div className="wrapper">
                         <div className="slider__slide__contents">
                             <div className="slider__slide__contents__small-title">

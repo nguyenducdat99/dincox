@@ -9,7 +9,7 @@
     top: 0;
     left: 0;
     margin-top: -80px;
-    max-height: 768px;
+    height: 100vh;
     
     .slick-arrow{
         display: none !important;
@@ -23,6 +23,9 @@
     }
     .slick-slider{
         height: 100%;
+        .slick-list{
+            height: 100%;
+        }   
     }
     &__slide{
         img{
@@ -33,7 +36,7 @@
         }
         &__contents{
             position: absolute;
-            top: 35%;
+            top: 35vh;
             width: 40vw;
             &__small-title{
                 p{
