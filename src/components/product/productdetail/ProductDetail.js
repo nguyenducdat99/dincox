@@ -5,16 +5,18 @@ function ProductDetail(props){
     // declare state
     const [dataSize,setDataSize] = useState([36, 37, 38, 39]);
     const [data,setData] = useState(['']);
+    const [amountProduct, setAmountProduct] = useState(1);
     var indexCurrentProduct = -1;
     
 
-    // scroll to top
-    window.scrollTo(0,0);
+    
 
     // load state data from database local
     useEffect(
         () => {
             setData(props.dataSource);
+            // scroll to top
+            // window.scrollTo(0,0);
         },[props.dataSource]
     )
 
@@ -138,21 +140,12 @@ function ProductDetail(props){
                                 <div className="product-detail__content__count_select">
                                     <input type="button" value="-" onClick={
                                         () => {
-                                            let count = document.getElementById("count-product").value;
-                                            count = count - 1;
-                                            if(count < 1){
-                                                count = 1;
-                                            }
-                                            document.getElementById("count-product").value = count;
+                                            if(amountProduct > 1) setAmountProduct(amountProduct-1)
                                         }
                                     }/>
-                                    <input type="number" id="count-product" placeholder="1" min="1" disabled/>
+                                    <input type="number" id="count-product" value={amountProduct} disabled/>
                                     <input type="button" value="+" onClick={
-                                        () =>{
-                                            let count = document.getElementById("count-product").value;
-                                            count = count*1 + 1;
-                                            document.getElementById("count-product").value = count;
-                                        }
+                                        () => setAmountProduct(amountProduct+1)
                                     }/> 
                                 </div>
                             </div>

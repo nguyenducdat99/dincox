@@ -7,6 +7,7 @@ function PopUpDetail(props){
     const dataSize = [36, 37, 38, 39];
     const [data,setData] = useState(['']);
     const [isToggle,setIsToggle] = useState(false);
+    const [amountProduct, setAmountProduct] = useState(1); 
     var indexCurrentProduct = -1;
 
     // load state data from database local
@@ -133,23 +134,12 @@ function PopUpDetail(props){
                                     <div className="product-detail__content__count_select">
                                         <input type="button" value="-" onClick={
                                             () => {
-                                                let count = document.getElementById("count-product-small").value;
-                                                count = count - 1;
-                                                if(count < 1){
-                                                    count = 1;
-                                                }
-                                                document.getElementById("count-product-small").value = ""+count;
-                                                console.log("click '-' return: " + count + " and type of count: " + typeof(count));
+                                                if(amountProduct>1) setAmountProduct(amountProduct-1);
                                             }
                                         }/>
-                                        <input type="number" id="count-product-small" value="1" min="1" disabled/>
+                                        <input type="number" id="count-product-small" value={amountProduct} disabled/>
                                         <input type="button" value="+" onClick={
-                                            () =>{
-                                                let count = document.getElementById("count-product-small").value;
-                                                count = count*1 + 1;
-                                                document.getElementById("count-product-small").value ='22';
-                                                console.log("click '+' return: "+count);
-                                            }
+                                            () => setAmountProduct(amountProduct+1)
                                         }/> 
                                     </div>
                                 </div>

@@ -3,8 +3,7 @@ import './Product.scss';
 import Slider from 'react-slick';
 import SingleProduct from './aproduct/Aproduct';
 import SmallImg from '../../img/product__banner__small.jpg';
-import SmallCollectionImg from '../../img/product__collection__list__single.jpg';
-import BigCollectionImg from '../../img/product__collection__big.jpg';
+
 import LargeImg from '../../img/product__banner__large.jpg';
 import { useState } from 'react';
 
@@ -41,75 +40,11 @@ function Product() {
     return(
         <div className="product">
             <div className="wrapper">
-                <div className="product__sales">
-                    <h2>SẢN PHẨM KHUYẾN MÃI</h2>
-                    <Slider {...settings}>
-                        {
-                            listIndex.map((item, index) =>
-                                <SingleProduct key={index}/>
-                            )
-                        }
-                    </Slider>
-                </div>
-                {/* end product sales */}
-                <div className="product__banner">
-                    <div className="product__banner--small">
-                        <img src={SmallImg} alt="" />
-                    </div>
-                    <div className="product__banner--large">
-                        <img src={LargeImg} alt="" />
-                    </div>
-                    <div className="product__banner--small">
-                        <img src={SmallImg} alt="" />
-                    </div>
-                </div>
-                {/* end product banner */}
-                <div className="product__hightlights">
-                    <h2>SẢN PHẨM NỔI BẬT</h2>
-                    <div className="product__hightlights__action">
-                        <button type="button" onClick={onHightLight} name="action">Giày Nam nổi bật</button>&nbsp;
-                        <button type="button" onClick={onHightLight} name="action">Giày Nam nổi bật</button>&nbsp;
-                        <button type="button" onClick={onHightLight} name="action">Giày Nam nổi bật</button>
-                    </div>
-                    <div className="product__hightlights__list-product">
-                        {
-                            listIndex.map((item,index)=>
-                                <SingleProduct key={index}/>
-                            )
-                        }
-                    </div>
-                    
-                </div>
-                <div className="product__collection">
-                    <h2>SẢN PHẨM NỔI BẬT</h2>
-                    <div className="product__collection-grid">
-                        <div className="product__collection__list-small">
-                            <div className="product__collection__list-small__single">
-                                <img src={SmallCollectionImg} alt=""/>
-                            </div>
-                            <div className="product__collection__list-small__single">
-                                <img src={SmallCollectionImg} alt=""/>
-                            </div>
-                            <div className="product__collection__list-small__single">
-                                <img src={SmallCollectionImg} alt=""/>
-                            </div>
-                            <div className="product__collection__list-small__single">
-                                <img src={SmallCollectionImg} alt=""/>
-                            </div>
-                            <div className="product__collection__list-small__single">
-                                <img src={SmallCollectionImg} alt=""/>
-                            </div>
-                            <div className="product__collection__list-small__single">
-                                <img src={SmallCollectionImg} alt=""/>
-                            </div>
-                        </div>
-                        <div className="product__collection__big">
-                            <img src={BigCollectionImg} alt=""/>
-                        </div>
-                    </div>
-                </div>
+
+                
+                
             </div>
-            {/* end product hightlight */}
+            
         </div>
     );
 }

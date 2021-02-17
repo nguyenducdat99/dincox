@@ -6,10 +6,11 @@
 .slider{
     position: relative;
     z-index: 2;
-    top: -80px;
-    margin-bottom: -30px;
-    height: 100vh;
-    background-color: $color-default-lightgray;
+    top: 0;
+    left: 0;
+    margin-top: -80px;
+    max-height: 768px;
+    
     .slick-arrow{
         display: none !important;
     }
