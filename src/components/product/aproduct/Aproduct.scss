@@ -13,7 +13,9 @@
     margin-top: 50px;
     font-size: $font-size-14;
     font-weight: $font-weight-700;
-
+    a{
+        color: $color-default-white;
+    }
     .aproduct__image {
         position: relative;
         height: 85%;
@@ -57,7 +59,7 @@
                     color: $color-default-white ;
                 }
                 .aproduct__image__select__search-plus{
-                    transform: translateX(-70px);
+                    transform: translateX(-80px);
                     transition: 0.4s ease-in-out;
                 }
                 .aproduct__image__select__check-out{
@@ -65,7 +67,7 @@
                     transition: 0.4s ease-in-out;
                 }
                 .aproduct__image__select__cart-plus{
-                    transform: translateX(70px);
+                    transform: translateX(80px);
                     transition: 0.4s ease-in-out;
                 }
             }
@@ -78,6 +80,9 @@
         margin-top: 5px;
         .aproduct__contents__name{
             margin-bottom: 5px;
+            p{
+                color: $color-default-black;
+            }
         }
         .aproduct-contents__price{
             display: flex;
