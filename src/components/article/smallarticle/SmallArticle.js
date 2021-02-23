@@ -1,6 +1,6 @@
 // import library style
 import './SmallArticle.scss';
-import demo from '../../../img/demo.jpg';
+import demo from './demo.jpg';
 
 // code for function here
 function SmallArticle() {

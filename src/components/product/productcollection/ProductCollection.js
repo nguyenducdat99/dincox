@@ -1,7 +1,7 @@
 // import style library
 import './ProductCollection.scss';
-import SmallCollectionImg from '../../../img/product__collection__list__single.jpg';
-import BigCollectionImg from '../../../img/product__collection__big.jpg';
+import SmallCollectionImg from './product__collection__list__single.jpg';
+import BigCollectionImg from './product__collection__big.jpg';
 
 // code function here
 function ProductCollection(){

@@ -1,7 +1,7 @@
 // import style library
 import Slider from 'react-slick';
 import './Article.scss';
-import SingleArticle from './sallarticle/SmallArticle'
+import SingleArticle from './smallarticle/SmallArticle'
 
 // code function here
 function Article() {
