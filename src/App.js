@@ -13,6 +13,7 @@ import AboutUs from './components/fixcontents/aboutus/AboutUs';
 import PrivacyPolicy from "./components/fixcontents/privacypolicy/PrivacyPolicy";
 import ReturnPolicy from "./components/fixcontents/returnpolicy/ReturnPolicy";
 import StoreLocation from './components/fixcontents/storelocation/StoreLocation';
+import ArticleDetail from './components/article/articledetail/ArticleDetail';
 import {
   BrowserRouter as Router,
   Switch,
@@ -37,19 +38,22 @@ function App() {
 				<Route path="/products/:id">
 					<ProductDetail />
 				</Route>
-				<Route path="/pages/about-us">
+				<Route path="/articles/:id">
+					<ArticleDetail />
+				</Route>
+				<Route path="/about-us">
                     <AboutUs />
 				</Route>
-				<Route path="/pages/privacy-policy">
+				<Route path="/privacy-policy">
                     <PrivacyPolicy />
 				</Route>
-				<Route path="/pages/return-policy">
+				<Route path="/return-policy">
 					<ReturnPolicy/>
 				</Route>
-				<Route path="/pages/store-location">
+				<Route path="/store-location">
 					<StoreLocation/>
 				</Route>
-				<Route path="/pages/search">
+				<Route path="/search">
 				</Route>
 			</Switch>
 			<Footer />

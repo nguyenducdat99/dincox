@@ -13,7 +13,7 @@ function ProductHightlight(props){
     // load product list
     var {listProductHightLight} = props;
     var listIndex = listProductHightLight.map((item,index)=>{
-        if(!item.is_sale){
+        if(item.is_active&&!item.is_sale){
             return(
                 <SingleProduct key={index} data={item}/>
             )

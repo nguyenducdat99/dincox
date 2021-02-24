@@ -17,7 +17,7 @@ function ProductSale(props){
     var {listProductSale} = props;
     var listIndex= listProductSale.map((item,index)=>{
         
-        if(item.is_sale&&sum<amountProduct){
+        if(item.is_active&&item.is_sale&&sum<amountProduct){
             sum ++;
             return (
                 <SingleProduct key={index} data={item}/>

@@ -38,19 +38,19 @@ function Footer() {
                             <nav>
                                 <ul>
                                     <li>
-                                        <Link to="/pages/search">Tìm kiếm</Link>
+                                        <Link to="/search">Tìm kiếm</Link>
                                     </li>
                                 
                                     <li>
-                                        <Link to="/pages/about-us">Giới thiệu</Link>
+                                        <Link to="/about-us">Giới thiệu</Link>
                                     </li>
                                                                 
                                     <li>
-                                        <Link to="/pages/return-policy">Chính sách đổi trả</Link>
+                                        <Link to="/return-policy">Chính sách đổi trả</Link>
                                     </li>
 
                                     <li>
-                                        <Link to="/pages/privacy-policy">Chính sách bảo mật</Link>
+                                        <Link to="/privacy-policy">Chính sách bảo mật</Link>
                                     </li>
 
                                 </ul>

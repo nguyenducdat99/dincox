@@ -80,7 +80,7 @@ function Header() {
                                         </ul>
                                     </li>
                                     <li><a>Sale Off</a></li>
-                                    <li><Link to='/pages/store-location'>Hệ thống cửa hàng</Link></li>
+                                    <li><Link to='/store-location'>Hệ thống cửa hàng</Link></li>
                                     <li><a>Kiểm tra đơn hàng</a></li>
                                 </ul>
                             </div>

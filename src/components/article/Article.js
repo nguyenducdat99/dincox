@@ -2,11 +2,19 @@
 import Slider from 'react-slick';
 import './Article.scss';
 import SingleArticle from './smallarticle/SmallArticle'
+import {connect} from 'react-redux';
 
 // code function here
-function Article() {
-    // declare data
-    const listIndex = [1,2,3,4,5,6,7,8];
+function Article(props) {
+    // load data
+    var { listNew } = props;
+    var listIndex = listNew.map((item, index)=>{
+        if(item.is_active){
+            return (
+                <SingleArticle key={index} data={item}/>
+            )
+        }
+    })
 
     // setting for slider
     const settings = {
@@ -15,9 +23,9 @@ function Article() {
         speed: 1000,
         slidesToShow: 3,
         slidesToScroll: 1,
-        swipeToSlide: true,
         autoplay: true,
-        autoplaySpeed: 5000
+        autoplaySpeed: 5000,
+        swipe: false
     };
 
     return(
@@ -26,13 +34,18 @@ function Article() {
                 <h2>TIN TỨC NỔI BẬT</h2>
                 <Slider {...settings}>
                     {
-                        listIndex.map((item, index) =>
-                            <SingleArticle key={index}/>
-                        )
+                        listIndex
                     }
                 </Slider>
             </div>
         </div>
     );
 }
-export default Article;
+
+const mapStateToPropsArticle=(state)=>{
+    return {
+        listNew: state.ListNew
+    }
+}
+
+export default connect(mapStateToPropsArticle,null)(Article);

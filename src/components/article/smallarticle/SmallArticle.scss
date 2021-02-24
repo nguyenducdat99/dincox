@@ -25,9 +25,14 @@
         font-size: $font-size-16;
         color: $color-default-black;
         margin-top: 5px;
-        
         font-weight: $font-weight-700;
         text-transform: uppercase;
+        p{
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
     }
     .small-article__info{
         margin-top: 5px;

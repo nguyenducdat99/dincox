@@ -11,3 +11,9 @@ export const listProductSale = () => {
         type : types.LIST_PRODUCT_SALE
     }
 };
+
+export const listNew = () => {
+    return {
+        type: types.LIST_NEW
+    }
+}
