@@ -1,38 +1,26 @@
 import './ProductDetail.scss';
 import { useEffect, useState } from 'react';
+import SmallBanner from '../../fixcontents/smallbanner/SmallBanner';
+import { useParams} from 'react-router-dom';
+import {connect} from 'react-redux';
 
 function ProductDetail(props){
     // declare state
     const [dataSize,setDataSize] = useState([36, 37, 38, 39]);
-    const [data,setData] = useState(['']);
     const [amountProduct, setAmountProduct] = useState(1);
     var indexCurrentProduct = -1;
-    
+    const {id} = useParams();// get id from url
+    const {data} = props;// get datadefault;
 
-    
-
-    // load state data from database local
-    useEffect(
-        () => {
-            setData(props.dataSource);
-            // scroll to top
-            // window.scrollTo(0,0);
-        },[props.dataSource]
-    )
-
-    // scroll to up
-    // if(!isActiveEdit){
-    //     window.scrollTo(0,0);
-    // }
-    // load value for detail product
-    // var currentProduct;
-    // data.forEach((item, index)=>{
-    //     if((item.id+'')===id){
-    //         currentProduct = item;
-    //         indexCurrentProduct = index;
-    //     }
-    // })
-    
+    // get current product
+    var currentProduct;
+    data.forEach((item, index)=>{
+        if((item.id_product+'')===id){
+            currentProduct = item;
+            indexCurrentProduct = index;
+        }
+    })
+    var { id_product, product_name, price, description } = currentProduct;// get data for product detail
 
     // remove boder color of select size
     var removeColor = () => {
@@ -53,8 +41,9 @@ function ProductDetail(props){
 
 
     return(
-        // product detail
-        <div className="product-detail">
+        <>
+            <SmallBanner title="Chi tiết sản phẩm" title2={product_name}/>
+            <div className="product-detail">
             <div className="wrapper">
                 <div className="product-detail-grid">
 
@@ -84,15 +73,15 @@ function ProductDetail(props){
                     <div className="product-detail__content">
                         {/* open product detail content header */}
                         <div className="product-detail__content__header">
-                            <h2>Hello</h2>
+                            <h2>{product_name}</h2>
                             <div className="product-detail__content__header__brand">
-                                <p>Thương Hiệu: <a>Brand 1</a></p>
+                                <p>Thương Hiệu: <a>Dincox</a></p>
                             </div><span> | </span>
                             <div className="product-detail__content__header__type">
                                 <p>Loại: <a>Loai 1</a></p>
                             </div><span> | </span>
                             <div className="product-detail__content__header__code">
-                                <p>Mã: 11</p>
+                                <p>Mã: {'Dincox' + id_product}</p>
                             </div>
                         </div>
                         {/* close product detail content header */}
@@ -100,13 +89,13 @@ function ProductDetail(props){
                         {/* open product detail content price */}
                         <div className="product-detail__content__price">
                             <div className="product-detail__content__price__current-price">
-                                <p>1000000 <u>đ</u></p>
+                                <p>{price*90/100} <u>đ</u></p>
                             </div>
                             <div className="product-detail__content__price__original-price">
-                                <del>385,000<u>đ</u></del>
+                                <del>{price}<u>đ</u></del>
                             </div>
                             <div className="product-detail__content__price__sale">
-                                <p>(Bạn đã tiết kiệm được 192,000<u>đ</u>)</p>
+                                <p>(Bạn đã tiết kiệm được {price*10/100}<u>đ</u>)</p>
                             </div>
                         </div>
                         {/* close product detail content price */}
@@ -158,17 +147,7 @@ function ProductDetail(props){
 
                         {/* open product description */}
                         <div className="product-detail__content__description">
-                            <p>Giày Chuẩn Euro Giá Ưu Việt</p>
-                            <p>Thông tin sản phẩm</p>
-                            <p>Chất Liệu: Da tổng hợp</p>
-                            <p>Phù hợp sử dụng: đi làm, đi chơi, đi tiệc.</p>
-                            <p>Chất liệu : Đế cao su thiên</p>
-                            <p>CHẾ ĐỘ BẢO HÀNH ĐẢM BẢO GIÀY CHO KHÁCH HÀNG KHI MUA.</p>
-                            <p>- Bảo hành đổi mới nếu giày bị lỗi trong vòng 6 tháng</p>
-                            <p>-Hỗ trợ đổi size trong vòng 1 tuần</p>
-                            <p>
-                                <img src="" alt="toturial select size"/>
-                            </p>
+                            {description}
                         </div>
                         {/* close product description */}
                         {/* open transport */}
@@ -201,6 +180,12 @@ function ProductDetail(props){
                 </div>
             </div>
         </div>
+        </>
     );
 }
-export default ProductDetail;
+const mapStateToPropsProductDetail = (state) =>{
+    return {
+        data: state.ListProduct
+    }
+}
+export default connect(mapStateToPropsProductDetail, null)(ProductDetail);

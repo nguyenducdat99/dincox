@@ -1,10 +1,12 @@
 // import style library
 import './ReturnPolicy.scss'
-
+import SmallBanner from '../smallbanner/SmallBanner'
 // code function here
 function ReturnPolicy(){
     return(
-        <div className="return-policy">
+        <>
+            <SmallBanner title="Chính sách hoàn trả"/>
+            <div className="return-policy">
             <div className="wrapper">
                 <h1>Chính sách đổi trả</h1>
                 <div className="return-policy__contents">
@@ -69,6 +71,7 @@ function ReturnPolicy(){
                 </div>
             </div>
         </div>
+        </>
     );
 }
 export default ReturnPolicy;

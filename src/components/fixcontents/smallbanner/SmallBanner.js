@@ -2,10 +2,15 @@
 import './SmallBanner.scss';
 import { Link } from "react-router-dom";
 import BackgroundImage from './background_image.png';
+import { useEffect } from 'react';
 
 function SmallBanner(props){
     // focus to header
-    window.scrollTo(0,0);
+    useEffect(
+        ()=>{
+            window.scrollTo(0,0);
+        },[]
+    );
 
     return(
         <>  
@@ -19,7 +24,7 @@ function SmallBanner(props){
                     <div className="small-banner-grid">
                         <h2>{props.title}</h2>
                         <div className="small-banner-grid__url">
-                            <p title="Trở về trang chủ"><Link to="/">Trang chủ</Link> / {props.title}</p>
+                            <p title="Trở về trang chủ"><Link to="/">Trang chủ</Link> / {props.title+(props.title2?(" / "+props.title2):"")}</p>
                         </div>
                     </div>
                 </div>

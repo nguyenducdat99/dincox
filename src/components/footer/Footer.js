@@ -24,10 +24,10 @@ function Footer() {
                             </a>
                         </div>
                         <div className="footer__contact__certification">
-                            <a href="javascript:void(0)">
+                            <a href="https://gooogle.com" target="_blank">
                                 <img src="http://theme.hstatic.net/1000365025/1000542873/14/ft_certi_img1.png" alt="Đã thông báo bộ công thương"/>
                             </a>
-                            <a href="javascript:void(0)">
+                            <a href="https://google.com" target="_blank">
                                 <img src="http://theme.hstatic.net/1000365025/1000542873/14/ft_certi_img2.png" alt="Đã đăng ký bộ công thương"/>
                             </a>
                         </div>

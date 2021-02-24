@@ -4,9 +4,11 @@ import PopupProduct from '../popupdetail/PopUpDetail';
 import { useState } from 'react';
 import {Link} from 'react-router-dom';
 
-function Aproduct() {
+function Aproduct(props) {
     // declare state and variable
     const [toggleQuickView, setToggleQuickView] = useState(false);
+    var { id_product, product_name, is_sale, price } = props.data;// get data from props
+    
 
     // code function here
     var onToggleQuickView = () => {
@@ -22,9 +24,9 @@ function Aproduct() {
                 
                    <div className="aproduct__image">
                        
-                       <Link to="/products/1">
+                       <Link to={"/products/"+id_product}>
                             <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Fa%2Fa7%2FReact-icon.svg%2F1200px-React-icon.svg.png&f=1&nofb=1" alt="demo" />
-                            <div className="aproduct__sale">
+                            <div className={is_sale?"aproduct__sale":"aproduct__sale--none"}>
                                 <p>-50%</p>
                             </div>
                         </Link>
@@ -46,19 +48,19 @@ function Aproduct() {
                    <hr />
                    <div className="aproduct__contents">
                     <div className="aproduct__contents__name">
-                        <Link to="/products/1">
-                            <p>C18 BLK/WHT</p>
+                        <Link to={"/products/"+id_product}>
+                            <p>{product_name}</p>
                         </Link>
                     </div>
                     <div className="aproduct-contents__price">
                         
-                        <p>100000<u>đ</u></p>
+                        <p>{price}<u>đ</u></p>
                         <p><del>150000<u>đ</u></del></p>
                     </div>
                 </div>
             
             </div>
-            <PopupProduct isToggle={toggleQuickView?"true":"false"} resetToggleQuickView={resetToggleQuickView} />
+            <PopupProduct isToggle={toggleQuickView?"true":"false"} resetToggleQuickView={resetToggleQuickView} data={props.data} />
         </>
     );
 }

@@ -5,17 +5,16 @@ import {Link} from 'react-router-dom';
 function PopUpDetail(props){
     // declare state and variable
     const dataSize = [36, 37, 38, 39];
-    const [data,setData] = useState(['']);
     const [isToggle,setIsToggle] = useState(false);
     const [amountProduct, setAmountProduct] = useState(1); 
     var indexCurrentProduct = -1;
+    var { id_product, product_name, price } = props.data;// get data from props
 
     // load state data from database local
     useEffect(
         () => {
-            setData(props.dataSource);
             setIsToggle(((props.isToggle=='true')?true:false));
-        },[props.dataSource,props.isToggle]
+        },[props.isToggle]
     )
 
     // scroll to up
@@ -87,9 +86,9 @@ function PopUpDetail(props){
                         <div className="product-detail__content">
                             {/* open product detail content header */}
                             <div className="product-detail__content__header">
-                                <h2>Hello</h2>
+                                <h2>{product_name}</h2>
                                 <div className="product-detail__content__header__code">
-                                    <p>Mã sản phẩm: 11</p>
+                                    <p>Mã sản phẩm: {'dincox'+id_product}</p>
                                 </div>
                             </div>
                             {/* close product detail content header */}
@@ -97,13 +96,13 @@ function PopUpDetail(props){
                             {/* open product detail content price */}
                             <div className="product-detail__content__price">
                                 <div className="product-detail__content__price__current-price">
-                                    <p>1000000 <u>đ</u></p>
+                                    <p>{price*90/100} <u>đ</u></p>
                                 </div>
                                 <div className="product-detail__content__price__original-price">
-                                    <del>385,000<u>đ</u></del>
+                                    <del>{price}<u>đ</u></del>
                                 </div>
                                 <div className="product-detail__content__price__sale">
-                                    <p>(Bạn đã tiết kiệm được 192,000<u>đ</u>)</p>
+                                    <p>(Bạn đã tiết kiệm được {price*10/100}<u>đ</u>)</p>
                                 </div>
                             </div>
                             {/* close product detail content price */}
@@ -145,7 +144,7 @@ function PopUpDetail(props){
                                 </div>
                                 <div className="product-detail__content__action">
                                     <input type="button" value="Thêm vào giỏ" />
-                                    <p>Hoặc <Link to="/products/1">xem chi tiết</Link></p>
+                                    <p>Hoặc <Link to={"/products/"+id_product}>xem chi tiết</Link></p>
                                 </div>
                             </form>
                             {/* close form select product */}

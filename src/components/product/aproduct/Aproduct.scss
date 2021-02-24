@@ -33,6 +33,9 @@
             right: 0;
             padding: 5px 10px;
             background-color: $color-default-sale;
+            &--none{
+                display: none;
+            }
         }
         .aproduct__image__select-wrapper{
             position: absolute;

@@ -1,12 +1,24 @@
 // import style library, components
 import SingleProduct from '../aproduct/Aproduct';
 import "./ProductHightlight.scss";
+import {connect} from 'react-redux';
 
 
 // code function here
-function ProductHightlight(){
+function ProductHightlight(props){
     // declare state
-    const listIndex = [0,1,2,3,4,5,6,7,8];
+    
+
+
+    // load product list
+    var {listProductHightLight} = props;
+    var listIndex = listProductHightLight.map((item,index)=>{
+        if(!item.is_sale){
+            return(
+                <SingleProduct key={index} data={item}/>
+            )
+        }
+    })
 
     // excute when click butotn;
     function removeStyle() {
@@ -33,13 +45,17 @@ function ProductHightlight(){
             </div>
             <div className="product__hightlights__list-product">
                 {
-                    listIndex.map((item,index)=>
-                        <SingleProduct key={index}/>
-                    )
+                    listIndex
                 }
             </div>
             
         </div>         
     );
 }
-export default ProductHightlight
+
+const mapStateToPropsProductHightlight = (state) => {
+    return {
+        listProductHightLight: state.ListProduct
+    }
+};
+export default connect(mapStateToPropsProductHightlight,null)(ProductHightlight)

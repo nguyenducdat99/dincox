@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import './Header.scss';
 import logo from './logo-dincox.png';
 import Support from '../support/Support';
+import { Link } from 'react-router-dom';
+
 
 function Header() {
     // declare state component
@@ -78,7 +80,7 @@ function Header() {
                                         </ul>
                                     </li>
                                     <li><a>Sale Off</a></li>
-                                    <li><a>Hệ thống cửa hàng</a></li>
+                                    <li><Link to='/pages/store-location'>Hệ thống cửa hàng</Link></li>
                                     <li><a>Kiểm tra đơn hàng</a></li>
                                 </ul>
                             </div>
