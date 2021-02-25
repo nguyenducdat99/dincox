@@ -1,12 +1,13 @@
 // import style library, component
 import './Login.scss';
 import SmallBanner from '../../fixcontents/smallbanner/SmallBanner';
+import { Link } from 'react-router-dom';
 
 // funciton code here
 function Login(){
     return (
         <>
-            <SmallBanner title="Tài Khoản"/>
+            <SmallBanner title="Tài Khoản" title2="Đăng nhập"/>
             <div className="login">
                 <div className="wrapper">
                     <div className="login__grid">
@@ -24,9 +25,10 @@ function Login(){
                                 <button type="submit" className="login__form-group__form-control login__form-group__form-control--button" >Đăng nhập</button>
                             </div>
                             <div className="login__form-group">
-                                <a>Trở về</a>
-                                <a>Đăng ký</a>
-                                <a>Quên mật khẩu?</a>
+                                <Link to="/">Trở về</Link>
+                                <Link to="/account/register">Đăng ký</Link>
+                                <Link to="/account/recover">Quên mật khẩu?</Link>
+                                
                             </div>
                         </form>
                     </div>

@@ -15,6 +15,7 @@ import ReturnPolicy from "./components/fixcontents/returnpolicy/ReturnPolicy";
 import StoreLocation from './components/fixcontents/storelocation/StoreLocation';
 import ArticleDetail from './components/article/articledetail/ArticleDetail';
 import Login from './components/account/login/Login';
+import Register from './components/account/register/Register';
 import {
   BrowserRouter as Router,
   Switch,
@@ -58,6 +59,12 @@ function App() {
 				</Route>
 				<Route path="/account/login">
 					<Login/>
+				</Route>
+				<Route path="/account/register">
+					<Register/>
+				</Route>
+				<Route path="/account/recover">
+					
 				</Route>
 			</Switch>
 			<Footer />
