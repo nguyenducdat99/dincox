@@ -2,13 +2,24 @@
 import './Login.scss';
 import SmallBanner from '../../fixcontents/smallbanner/SmallBanner';
 import { Link } from 'react-router-dom';
+import Recover from '../recover/Recover';
+import { useState } from 'react';
 
 // funciton code here
 function Login(){
+    // declare state
+    const [showRecover, setShowRecover] = useState(false);
+    
+    // event process
+    var onShowRecover = () => {
+        setShowRecover(!showRecover);
+    }
+
+
     return (
         <>
-            <SmallBanner title="Tài Khoản" title2="Đăng nhập"/>
-            <div className="login">
+            <SmallBanner title="Tài khoản" title2={showRecover?"Cài đặt lại mật khẩu":"Đăng nhập"}/>
+            <div className={showRecover?"login--none":"login"}>
                 <div className="wrapper">
                     <div className="login__grid">
                         <div className="login__title">
@@ -27,13 +38,16 @@ function Login(){
                             <div className="login__form-group">
                                 <Link to="/">Trở về</Link>
                                 <Link to="/account/register">Đăng ký</Link>
-                                <Link to="/account/recover">Quên mật khẩu?</Link>
+                                <p onClick={onShowRecover}>Quên mật khẩu?</p>
                                 
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
+            {
+                showRecover?<Recover toggle={onShowRecover}/>:""
+            }
         </>
     )
 }

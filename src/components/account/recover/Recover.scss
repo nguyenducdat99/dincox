@@ -3,23 +3,23 @@
 @import '../../../App.css';
 
 // style for function here
-.login{
+.recover{
     min-height: 300px;
     padding: 30px 0;
     background-color: $color-default-white;
     position: relative;
     z-index: 2;
-    &--none{
-        display: none;
-    }
     &__title{
         text-align: center;
-        padding-bottom: 15px;
         border-bottom: 1px dashed $color-default-lightgray;
         margin-bottom: 15px;
         h1{
             font-size: $font-size-24;
             text-transform: uppercase;
+            padding-bottom: 8px;
+        }
+        p{
+            padding-bottom: 7px; 
         }
     }
     &__grid{
@@ -57,6 +57,5 @@
             line-height: 1.6;
             cursor: pointer;
         }
-        
     }
 }
