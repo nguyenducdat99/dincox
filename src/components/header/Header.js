@@ -100,7 +100,7 @@ function Header() {
                             </div>
                             {/* block account */}
                             <div className="header-grid__navigation__account">
-                                <a>Tài khoản</a>
+                                <Link to="/account/login">Tài Khoản</Link>
                             </div>
                             {/* block cart */}
                             <div className="header-grid__navigation__cart">

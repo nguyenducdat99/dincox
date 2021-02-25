@@ -14,6 +14,7 @@ import PrivacyPolicy from "./components/fixcontents/privacypolicy/PrivacyPolicy"
 import ReturnPolicy from "./components/fixcontents/returnpolicy/ReturnPolicy";
 import StoreLocation from './components/fixcontents/storelocation/StoreLocation';
 import ArticleDetail from './components/article/articledetail/ArticleDetail';
+import Login from './components/account/login/Login';
 import {
   BrowserRouter as Router,
   Switch,
@@ -54,6 +55,9 @@ function App() {
 					<StoreLocation/>
 				</Route>
 				<Route path="/search">
+				</Route>
+				<Route path="/account/login">
+					<Login/>
 				</Route>
 			</Switch>
 			<Footer />
