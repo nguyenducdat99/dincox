@@ -35,7 +35,9 @@ function Header() {
                     <div className="header-grid">
                         <div className="header-grid__logo">
                             <h1>
-                                <img src={logo} alt=""/>
+                                <Link to="/">
+                                    <img src={logo} alt=""/>    
+                                </Link>
                             </h1>
                         </div>
                         <nav className="header-grid__navigation">
@@ -43,9 +45,9 @@ function Header() {
                             <div className="header-grid__navigation__link">
                                 <ul>
                                     <li className="header-grid__navigation__link__dropdown">
-                                        <a> Sản phẩm &nbsp;
+                                        <Link to="/products"> Sản phẩm &nbsp;
                                             <i className="fa fa-angle-down" aria-hidden="true"></i>
-                                        </a>
+                                        </Link>
                                         {/* menu level 2 */}
                                         <ul className="header-grid__navigation__link__dropdown--level-2">
                                             <li><a>Item 1</a></li>

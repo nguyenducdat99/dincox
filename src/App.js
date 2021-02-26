@@ -9,6 +9,7 @@ import Copyright from './components/copyright/Copyright';
 import Product from './components/product/Product';
 import Article from './components/article/Article';
 import ProductDetail from './components/product/productdetail/ProductDetail';
+import ProductFilter from './components/product/productfilter/ProductFilter';
 import AboutUs from './components/fixcontents/aboutus/AboutUs';
 import PrivacyPolicy from "./components/fixcontents/privacypolicy/PrivacyPolicy";
 import ReturnPolicy from "./components/fixcontents/returnpolicy/ReturnPolicy";
@@ -29,43 +30,55 @@ function App() {
     <div className="App">
         
         <Router>
-          <Header />
-          <Switch>
+          	<Header/>
+          	<Switch>
 				<Route path="/" exact>
 					<Slider />
 					<Policy />
 					<Product />
 					<Article />
 				</Route>
+
 				<Route path="/products/:id">
 					<ProductDetail />
 				</Route>
+
+				<Route path="/products">
+					<ProductFilter />
+				</Route>
+
 				<Route path="/articles/:id">
 					<ArticleDetail />
 				</Route>
+
 				<Route path="/about-us">
                     <AboutUs />
 				</Route>
+
 				<Route path="/privacy-policy">
                     <PrivacyPolicy />
 				</Route>
+
 				<Route path="/return-policy">
 					<ReturnPolicy/>
 				</Route>
+
 				<Route path="/store-location">
 					<StoreLocation/>
 				</Route>
+
 				<Route path="/search">
+
 				</Route>
+
 				<Route path="/account/login">
 					<Login/>
 				</Route>
+
 				<Route path="/account/register">
 					<Register/>
 				</Route>
-				<Route path="/account/recover">
-					
-				</Route>
+
 			</Switch>
 			<Footer />
 			<Copyright />

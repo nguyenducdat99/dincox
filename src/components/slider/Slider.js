@@ -4,6 +4,7 @@ import Sliders from 'react-slick';
 import Img1 from './slide1.jpg';
 import Img2 from './slide2.jpg';
 import Img3 from './slide3.jpg';
+import { Link } from 'react-router-dom';
 
 // code function here
 function Slider(){
@@ -30,7 +31,7 @@ function Slider(){
                                 <p>Tự hào thương hiệu việt nam</p>
                             </div>
                             <div className="slider__slide__contents__button">
-                                <a href="">Shopping now</a>
+                                <Link to="/products"> Shopping now</Link>
                             </div>
                         </div>
                     </div>
@@ -46,8 +47,8 @@ function Slider(){
                                 <p>Basic<br/>Style</p>
                             </div>
                             <div className="slider__slide__contents__button">
-                                <a href="">More</a>
-                                <a href="" className="slider__slide__contents__button--last-child">Shopping Now</a>
+                                <Link to="/products">More</Link>
+                                <Link to="/products" className="slider__slide__contents__button--last-child">Shopping Now</Link>
                             </div>
                         </div>
                     </div>
@@ -63,8 +64,8 @@ function Slider(){
                                     <p>Black & white</p>
                                 </div>
                                 <div className="slider__slide__contents__button">
-                                    <a href="">More</a>
-                                    <a href="" className="slider__slide__contents__button--last-child">Shopping Now</a>
+                                    <Link to="/products">More</Link>
+                                    <Link to="/products" className="slider__slide__contents__button--last-child">Shopping Now</Link>
                                 </div>
                         </div>
                     </div>
