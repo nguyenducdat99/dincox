@@ -1,14 +1,24 @@
 import { Component, useState } from "react"
 // import style library, Component
 import SmallBanner from '../../fixcontents/smallbanner/SmallBanner';
+import ResultFilter from './resultfilter/ReSultFilter';
 import './ProductFilter.scss';
 
 // code function here
 function ProductFilter(){
-    const [filterPrice, setFilterPrice] = useState(true);
+    // declare state component
+    const [filterPrice, setFilterPrice] = useState(false);
+    const [filterSize, setFilterSize] = useState(false);
+
+    // function use when use click
     var onShowFilterPrice = () => {
         setFilterPrice(!filterPrice);
     }
+    var onShowFilterSize = () => {
+        setFilterSize(!filterSize);
+    }
+
+    // render component
     return(
         <>
             <SmallBanner title="Tất cả sản phẩm"/>
@@ -18,7 +28,7 @@ function ProductFilter(){
                         <div className="product-filter__filter">
                             <div className="product-filter__filter--size">
                                 <div className="product-filter__filter__title" onClick={onShowFilterPrice}>
-                                    <p>Kích cỡ</p>
+                                    <p>Giá</p>
                                     <i className={filterPrice?"fa fa-plus":"fa fa-minus"} aria-hidden="true"></i>
                                 </div>
                                 <div className={filterPrice?"product-filter__filter__contents":"product-filter__filter__contents--none"}>
@@ -46,11 +56,11 @@ function ProductFilter(){
                                 </div>
                             </div>
                             <div className="product-filter__filter--price">
-                                <div className="product-filter__filter__title" onClick={onShowFilterPrice}>
+                                <div className="product-filter__filter__title" onClick={onShowFilterSize}>
                                     <p>Kích cỡ</p>
-                                    <i className={filterPrice?"fa fa-plus":"fa fa-minus"} aria-hidden="true"></i>
+                                    <i className={filterSize?"fa fa-plus":"fa fa-minus"} aria-hidden="true"></i>
                                 </div>
-                                <div className={filterPrice?"product-filter__filter__contents":"product-filter__filter__contents--none"}>
+                                <div className={filterSize?"product-filter__filter__contents":"product-filter__filter__contents--none"}>
                                     <ul>
                                         <li>
                                             <label>
@@ -87,7 +97,7 @@ function ProductFilter(){
                             </div>
                         </div>
                         <div className="product-filter__result-filter">
-                            b
+                            <ResultFilter/>
                         </div>
                     </div>
                 </div>
