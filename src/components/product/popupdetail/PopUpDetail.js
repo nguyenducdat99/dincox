@@ -108,7 +108,7 @@ function PopUpDetail(props){
                             {/* close product detail content price */}
                         
                             {/* open form select product */}
-                            <form action="" method="" id="add-to-cart">
+                            <form action="" method="">
                                 <div className="product-detail__content__size">
                                     <div className="product-detail__content__size__title">
                                         <p>Kích thước</p>
@@ -136,7 +136,7 @@ function PopUpDetail(props){
                                                 if(amountProduct>1) setAmountProduct(amountProduct-1);
                                             }
                                         }/>
-                                        <input type="number" id="count-product-small" value={amountProduct} disabled/>
+                                        <input type="number" value={amountProduct} disabled/>
                                         <input type="button" value="+" onClick={
                                             () => setAmountProduct(amountProduct+1)
                                         }/> 

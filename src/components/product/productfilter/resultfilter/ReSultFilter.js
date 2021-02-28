@@ -2,18 +2,38 @@
 import './ResultFilter.scss';
 import {connect} from "react-redux";
 import SingleProduct from '../../aproduct/Aproduct';
+import { useState } from 'react';
 
 // cose function here
 function ResultFilter(props) {
-    
+    // declare state component
+    const [recentPage, setRecentPage] = useState(1);
 
+    // declare product count per page
+    let productCount = 3;
     // load data from store
     var { listProduct } = props;
-    var listIndex = listProduct.map((item, index) => {
+    
+    // slice item for page view
+    let indexStart = (recentPage-1)*productCount;
+    let indexEnd = recentPage*productCount;
+    var indexMax = Math.ceil(listProduct.length/productCount);
+
+    // return interface
+    var listIndex = listProduct.slice(indexStart,indexEnd).map((item, index) => {
         return (
             <SingleProduct key={index} data={item}/>
         )
     });
+    // handle page number up
+    var onPageNumberUp = () => {
+        setRecentPage(recentPage+1);
+    };
+    // handle page number down
+    var onPageNumberDown = () => {
+        setRecentPage(recentPage-1);
+    };
+
 
     return(
         <div className="result-filter">
@@ -40,6 +60,14 @@ function ResultFilter(props) {
                 {
                     listIndex
                 }
+            </div>
+            <div className="result-filter__pagination">
+                <button type='button' onClick={onPageNumberDown} className={(recentPage===1)?"result-filter__pagination__button-hidden":""}>
+                    <i className="fa fa-angle-left" aria-hidden="true"></i>
+                </button>
+                <button type='button' onClick={onPageNumberUp} className={(recentPage===indexMax)?"result-filter__pagination__button-hidden":""}>
+                    <i className="fa fa-angle-right" aria-hidden="true"></i>
+                </button>
             </div>
         </div>
     )

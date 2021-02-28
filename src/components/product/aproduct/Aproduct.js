@@ -30,20 +30,21 @@ function Aproduct(props) {
                                 <p>-50%</p>
                             </div>
                         </Link>
-                       
-                        <div className="aproduct__image__select-wrapper">
-                            <div className="aproduct__image__select">
-                                <button type="button" className="aproduct__image__select__search-plus" onClick={onToggleQuickView}>
-                                    <i className="fa fa-search-plus" aria-hidden="true"></i>
-                                </button>
-                                <button type="button" className="aproduct__image__select__check-out">
-                                    <p>Mua ngay</p>
-                                </button>
-                                <button type="button" className="aproduct__image__select__cart-plus">
-                                    <i className="fa fa-cart-plus" aria-hidden="true"></i>
-                                </button>
+                        <form action="" method="">
+                            <div className="aproduct__image__select-wrapper">
+                                <div className="aproduct__image__select">
+                                    <button type="button" className="aproduct__image__select__search-plus" onClick={onToggleQuickView}>
+                                        <i className="fa fa-search-plus" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" className="aproduct__image__select__check-out">
+                                        <p>Mua ngay</p>
+                                    </button>
+                                    <button type="button" className="aproduct__image__select__cart-plus">
+                                        <i className="fa fa-cart-plus" aria-hidden="true"></i>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                    <hr />
                    <div className="aproduct__contents">

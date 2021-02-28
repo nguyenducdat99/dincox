@@ -30,6 +30,9 @@ a{
 button[type=button]{
   font-family: 'Roboto Condensed', sans-serif !important;
 }
+button:focus{
+  outline: none !important;
+}
 
 
 /* remove arrow up/down count input */
