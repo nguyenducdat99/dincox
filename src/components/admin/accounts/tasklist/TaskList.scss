@@ -1,0 +1,28 @@
+// import style library
+@import '../../../../App.css';
+@import '../../../../scss/Variable.scss';
+
+// style for function
+.task-list {
+    margin-top: 15px;
+    &__table {
+        border: 1px solid $color-default-lightgray;
+        width: 100%;
+        border-collapse: collapse;
+
+        tr {
+            th {
+                padding: 8px;
+                border: 1px solid $color-default-lightgray;
+                text-align: center;
+            }
+            td {
+                padding: 8px;
+                border: 1px solid $color-default-lightgray;
+            }
+        }
+        &__line-odd {
+            background-color: $color-default-line-odd;
+        }
+    }
+}

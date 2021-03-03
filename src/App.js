@@ -23,7 +23,7 @@ import {
   Route,
 } from "react-router-dom";
 
-
+import AccountCtrl from './components/admin/accounts/Account';
 function App() {
 
   return (
@@ -33,19 +33,21 @@ function App() {
           	<Header/>
           	<Switch>
 				<Route path="/" exact>
-					<Slider />
+					{/* <Slider />
 					<Policy />
 					<Product />
-					<Article />
+					<Article /> */}
+					<AccountCtrl/>
 				</Route>
 
 				<Route path="/products/:id">
 					<ProductDetail />
 				</Route>
 
-				<Route path="/products">
+				<Route path="/products:page">
 					<ProductFilter />
 				</Route>
+
 
 				<Route path="/articles/:id">
 					<ArticleDetail />

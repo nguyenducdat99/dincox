@@ -3,11 +3,19 @@ import './ResultFilter.scss';
 import {connect} from "react-redux";
 import SingleProduct from '../../aproduct/Aproduct';
 import { useState } from 'react';
+import { useParams } from 'react-router';
 
 // cose function here
 function ResultFilter(props) {
     // declare state component
     const [recentPage, setRecentPage] = useState(1);
+    // const { page } = useParams();
+    	
+    // const { params } = props.match;
+
+    // console.log('page from URL props.match: ' + params.page);
+
+    // console.log('page from URL: ' + page);
 
     // declare product count per page
     let productCount = 3;

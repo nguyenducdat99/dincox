@@ -8,8 +8,8 @@ function ProductDetail(props){
     // declare state
     const [dataSize,setDataSize] = useState([36, 37, 38, 39]);
     const [amountProduct, setAmountProduct] = useState(1);
-    const {id} = useParams();// get id from url
-    const {data} = props;// get datadefault;
+    const { id } = useParams();// get id from url
+    const { data } = props;// get datadefault;
 
     // get current product
     var currentProduct;
