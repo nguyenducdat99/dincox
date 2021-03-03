@@ -34,6 +34,11 @@ button:focus{
   outline: none !important;
 }
 
+button[type=button],
+button[type=submit] {
+  cursor: pointer;
+}
+
 
 /* remove arrow up/down count input */
 /* Chrome, Safari, Edge, Opera */

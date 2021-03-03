@@ -1,31 +1,29 @@
 // import style library
 import './TaskList.scss'
+import TaskItem from './TaskItem';
 
 // code function here
-function TaskList() {
+function TaskList(props) {
     // declare list Item
-    const listItem = [0,1,2,3,4,5,6];
+    var { task } = props;
 
-    let listIndex = listItem.map((item, index) => {
+    let listIndex = task.map((item, index) => {
         if (index%2===0) {
             return (
-                <tr key={index}>
-                    <td>{index+1}</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>1</td>
-                </tr>
+                <TaskItem 
+                    key={index}
+                    index={index+1} 
+                    task={item}
+                />
             )
         }
         return (
-            <tr key={index} className="task-list__table__line-odd">
-                <td>{index+1}</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-            </tr>
+                <TaskItem 
+                    key={index}
+                    index={index+1} 
+                    task={item}
+                    class={"task-list__table__line-odd"}
+                />
         )
 
     });
@@ -40,6 +38,7 @@ function TaskList() {
                         <th>Người sử dụng</th>
                         <th>Email</th>
                         <th>Trạng thái</th>
+                        <th>Hành động</th>
                     </tr>
                 </thead>
                 <tbody>

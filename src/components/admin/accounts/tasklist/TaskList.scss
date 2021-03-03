@@ -19,6 +19,26 @@
             td {
                 padding: 8px;
                 border: 1px solid $color-default-lightgray;
+                text-align: center;
+            }
+
+            .label {
+                display: inline;
+                padding: .3em .6em;
+                font-size: 75%;
+                font-weight: $font-weight-700;
+                line-height: 1.4;
+                text-align: center;
+                border-radius: .25em;  
+                white-space: nowrap;   
+                color: $color-default-white;
+
+                &-info {
+                    background-color: $color-default-green;
+                }                                  
+                &-danger {
+                    background-color: $color-default-btn-danger;
+                }
             }
         }
         &__line-odd {

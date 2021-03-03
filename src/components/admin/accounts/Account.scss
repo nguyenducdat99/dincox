@@ -25,6 +25,36 @@
     }// end style title
 
     &__manager {
+        .btn {
+            display: inline-block;
+            padding: 6px 12px;
+            background-color: transparent;
+            border: 0;
+            color: $color-default-white;
+            line-height: 1.4;
+            border-radius: 4px;
+            font-size: $font-size-14;
+
+            span {
+                margin-right: 5px;
+            }
+
+            &-warning {
+                background-color: $color-default-btn-warning;
+
+                &:hover {
+                    background-color: $color-default-btn-warning-hover;
+                }
+            }
+            &-danger {
+                background-color: $color-default-btn-danger;
+
+                &:hover {
+                    background-color: $color-default-btn-danger-hover;
+                }
+            }
+        }
+        
         &__grid {
             display: grid;
             grid-template-columns: 4fr 8fr;
