@@ -3,6 +3,9 @@
 @import '../../scss/Variable.scss';
 
 .support {
+    &__setting{
+        background-color: $color-default-btn-warning !important;
+    }
     .support__social-network{
         position: fixed;
         top: 25%;

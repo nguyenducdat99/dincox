@@ -40,9 +40,8 @@ function TaskList(props) {
                 <thead>
                     <tr>
                         <th>STT</th>
-                        <th>Tài khoản</th>
-                        <th>Người sử dụng</th>
-                        <th>Email</th>
+                        <th>Tác giả</th>
+                        <th>Tên thể loại</th>
                         <th>Trạng thái</th>
                         <th>Hành động</th>
                     </tr>

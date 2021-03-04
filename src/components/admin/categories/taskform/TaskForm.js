@@ -8,12 +8,12 @@ function TaskForm(props) {
     // declare state component
     const [objectTask,setObjectTask] = useState(
         {
-            id_account: 9,
-            user_name: '',
-            password: '',
-            position: '0',
-            email: '',
-            status: '0'
+            id_category: 1,
+            id_account: 10,
+            category_name: "",
+            created_at: null,
+            edited_at: null,
+            status: 1
         }
     )
 
@@ -54,12 +54,12 @@ function TaskForm(props) {
         setObjectTask(
             {
                 ...objectTask,
-                id_account: 9,
-                user_name: '',
-                password: '',
-                position: '0',
-                email: '',
-                status: '0'
+                id_category: 1,
+                id_account: 10,
+                category_name: "",
+                created_at: null,
+                edited_at: null,
+                status: 1
             }
         )
     }
@@ -74,7 +74,7 @@ function TaskForm(props) {
     return (
         <div className="task-form">
             <div className="task-form__title">
-                <h3>{props.itemEdit&&props.itemEdit!==null?'Sửa Tài Khoản':'Thêm tài khoản'}
+                <h3>{props.itemEdit&&props.itemEdit!==null?'Sửa Thể Loại':'Thêm Thể Loại'}
                     <span className="fa fa-times-circle task-form__title__close" onClick={onExitForm}></span>
                 </h3>
             </div>
@@ -82,63 +82,23 @@ function TaskForm(props) {
                 <form action="" method="" onSubmit={onHandleSubmit}>
                     <div className="form-group">
                         <label>
-                            <p>Tài Khoản:</p>
+                            <p>Tên Thể Loại:</p>
                             {
                                 props.itemEdit&&props!==null?
                                 <input type='text' 
                                 className="form-control" 
                                 name="user_name"
-                                value={objectTask.user_name}
+                                value={objectTask.category_name}
                                 disabled
                                 />:                                
                                 <input type='text' 
                                 className="form-control" 
                                 onChange={onHandleChange}
-                                name="user_name"
-                                value={objectTask.user_name}
+                                name="category_name"
+                                value={objectTask.category_name}
                                 required
                                 />
                             }
-                        </label>
-                    </div>
-                    <div className="form-group">
-                        <label>
-                            <p>Mật khẩu:</p>
-                            <input type='password'
-                                className="form-control"
-                                onChange={onHandleChange}
-                                name="password"
-                                value={objectTask.password}
-                                required
-                            />
-                        </label>
-                    </div>
-                    <div className="form-group">
-                        <label>
-                            <p>Người Sử Dụng:</p>
-                            <select 
-                                className="form-control"
-                                name="position"
-                                onChange={onHandleChange}
-                                value={objectTask.position}
-                                required
-                            >
-                                <option value='0'>Khách hàng</option>
-                                <option value='1'>Nhân viên</option>
-                                <option value='2'>Chủ cửa hàng</option>
-                            </select>
-                        </label>
-                    </div>
-                    <div className="form-group">
-                        <label>
-                            <p>Email: </p>
-                            <input type='email' 
-                                className="form-control"
-                                onChange={onHandleChange}
-                                value={objectTask.email}
-                                name="email"
-                                required
-                            />
                         </label>
                     </div>
                     <div className="form-group">

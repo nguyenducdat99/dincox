@@ -1,5 +1,5 @@
 // import style library, components
-import './Account.scss';
+import './Categories.scss';
 import SmallBanner from '../../fixcontents/smallbanner/SmallBanner';
 import { useEffect, useState } from 'react';
 import TaskControl from './taskcontrol/TaskControl';
@@ -7,7 +7,7 @@ import TaskList from './tasklist/TaskList';
 import TaskForm from './taskform/TaskForm';
 
 // function code here
-function Account() {
+function Categories() {
     // declare state component
     const [isDisplayForm, setIsDisplayForm] = useState(false);
     const [tasks, setTasks] = useState([]);
@@ -20,8 +20,8 @@ function Account() {
     
     useEffect(
         () => {
-            if (localStorage&&localStorage.getItem('tasks')) {
-                let tasksCopy = JSON.parse(localStorage.getItem('tasks'));
+            if (localStorage&&localStorage.getItem('tasksCategories')) {
+                let tasksCopy = JSON.parse(localStorage.getItem('tasksCategories'));
                 setTasks(tasksCopy);
             }
         },[]
@@ -46,14 +46,14 @@ function Account() {
     var onSave = data => {
         var taskCopy = tasks;
         if (itemEdit!==null){
-            let index = findIndex(data.user_name);
+            let index = findIndex(data.category_name);
 
             taskCopy[index] = data;
         }else{
             taskCopy.push(data);
         }
         setTasks(tasks);
-        localStorage.setItem('tasks', JSON.stringify(taskCopy));
+        localStorage.setItem('tasksCategories', JSON.stringify(taskCopy));
     }
 
     // handle slect item 
@@ -65,7 +65,7 @@ function Account() {
     var findIndex = (id) => {
         var result = -1;
         tasks.forEach((task, index) => {
-            if(task.user_name === id){
+            if(task.category_name === id){
                 result = index;
             }
         });
@@ -75,19 +75,19 @@ function Account() {
     // handle update status
     var onUpdateStatus = item => {
         var taskCopy = tasks;
-        let index = findIndex(item.user_name);
+        let index = findIndex(item.category_name);
 
         taskCopy[index].status = !taskCopy[index].status;
         setTasks(tasks);
-        localStorage.setItem('tasks', JSON.stringify(taskCopy));
+        localStorage.setItem('tasksCategories', JSON.stringify(taskCopy));
     }
 
     // handle delete 
     var onDeleteTask = item => {
-        var index = findIndex(item.user_name);
+        var index = findIndex(item.category_name);
         tasks.splice(index, 1);
         setTasks(tasks);
-        localStorage.setItem('tasks', JSON.stringify(tasks));
+        localStorage.setItem('tasksCategories', JSON.stringify(tasks));
         onExitForm();
     }
 
@@ -103,14 +103,14 @@ function Account() {
     
     var tasksCopy = tasks;
     tasksCopy = tasksCopy.filter((task) => {
-        return task.user_name.toLowerCase().indexOf(keyWord.toLowerCase()) !== -1;
+        return task.category_name.toLowerCase().indexOf(keyWord.toLowerCase()) !== -1;
     });
     switch (sortType) {
         case '0':
             tasksCopy.sort(
                 (a,b) => {
-                    if (a.user_name>b.user_name) return 1;
-                    if (a.user_name<b.user_name) return -1;
+                    if (a.category_name>b.category_name) return 1;
+                    if (a.category_name<b.category_name) return -1;
                     return 0;
                 }
             )
@@ -118,8 +118,8 @@ function Account() {
         case '1':
             tasksCopy.sort(
                 (a,b) => {
-                    if (a.user_name>b.user_name) return -1;
-                    if (a.user_name<b.user_name) return 1;
+                    if (a.category_name>b.category_name) return -1;
+                    if (a.category_name<b.category_name) return 1;
                     return 0;
                 }
             )
@@ -137,8 +137,8 @@ function Account() {
         default:
             tasksCopy.sort(
                 (a,b) => {
-                    if (a.user_name>b.user_name) return 1;
-                    if (a.user_name<b.user_name) return -1;
+                    if (a.category_name>b.category_name) return 1;
+                    if (a.category_name<b.category_name) return -1;
                     return 0;
                 }
             )
@@ -148,14 +148,14 @@ function Account() {
     return (
         <>
             <SmallBanner title="Quản lý"/>
-            <div className='account'>
+            <div className='categories'>
                 <div className="wrapper">
-                    <div className="account__title">
-                        <h1>Quản lý Tài Khoản</h1>
+                    <div className="categories__title">
+                        <h1>Quản lý thể loại</h1>
                     </div>
-                    <div className="account__manager">
-                        <div className={isDisplayForm?"account__manager__grid":"account__manager__grid--hidden"}>
-                            <div className={isDisplayForm?"account__manager__add-update":"account__manager__add-update--hidden"}>
+                    <div className="categories__manager">
+                        <div className={isDisplayForm?"categories__manager__grid":"categories__manager__grid--hidden"}>
+                            <div className={isDisplayForm?"categories__manager__add-update":"categories__manager__add-update--hidden"}>
                                 {
                                     <TaskForm 
                                         onExitForm={onExitForm}
@@ -165,9 +165,9 @@ function Account() {
                                     />
                                 }
                             </div>
-                            <div className="account__manager__other-action">
+                            <div className="categories__manager__other-action">
                                 <button type="button" className="btn-primary" onClick={onToggleForm}>
-                                    <span className="fa fa-plus"></span>Thêm Tài Khoản
+                                    <span className="fa fa-plus"></span>Thêm Thể Loại
                                 </button>
                                 <TaskControl 
                                     onSearch={onSearch}
@@ -187,4 +187,4 @@ function Account() {
         </>
     )
 }
-export default Account;
+export default Categories;

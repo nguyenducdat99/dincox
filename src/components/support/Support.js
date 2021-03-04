@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Support.scss'
 function Support(props) {
     // declare state
@@ -27,6 +28,11 @@ function Support(props) {
     return(
         <div className="support">
             <div className="support__social-network">
+                
+                <Link to='/manager' className="support__social-network__facebook support__setting">
+                    <i className="fa fa-cogs" aria-hidden="true"></i>         
+                    <p> Quản lý</p>      
+                </Link>
                 <a href="https://facebook.com/" target="_blank" className="support__social-network__facebook">
                     <i className="fa fa-facebook-official" aria-hidden="true"></i>         
                     <p> Facebook</p>      

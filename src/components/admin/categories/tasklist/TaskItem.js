@@ -23,9 +23,8 @@ function TaskItem(props) {
     return (
         <tr className={style?style:""}>
             <td>{index}</td>
-            <td>{task.user_name}</td>
-            <td>{position[task.position]}</td>
-            <td>{task.email}</td>
+            <td>{task.id_account}</td>
+            <td>{task.category_name}</td>
             <td>
                 {
                     <span 
