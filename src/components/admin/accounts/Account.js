@@ -14,7 +14,6 @@ function Account() {
     const [itemEdit, setItemEdit] = useState(null);
     const [keyWord, setKeyWord] = useState('');
     const [sortType, setSortType] = useState('0');
-
     
     // load data from localstorage
     
@@ -44,16 +43,17 @@ function Account() {
 
     // handle when submit task form
     var onSave = data => {
-        var taskCopy = tasks;
+        var newTask = [...tasks];
+
         if (itemEdit!==null){
             let index = findIndex(data.user_name);
 
-            taskCopy[index] = data;
+            newTask[index] = data;
         }else{
-            taskCopy.push(data);
+            newTask.push(data);
         }
-        setTasks(tasks);
-        localStorage.setItem('tasks', JSON.stringify(taskCopy));
+        setTasks(newTask);
+        localStorage.setItem('tasks', JSON.stringify(newTask));
     }
 
     // handle slect item 
@@ -74,20 +74,22 @@ function Account() {
 
     // handle update status
     var onUpdateStatus = item => {
-        var taskCopy = tasks;
         let index = findIndex(item.user_name);
+        let newTask = [...tasks];     
 
-        taskCopy[index].status = !taskCopy[index].status;
-        setTasks(tasks);
-        localStorage.setItem('tasks', JSON.stringify(taskCopy));
+        newTask[index].status = !newTask[index].status;
+        setTasks(newTask);
+        localStorage.setItem('tasks', JSON.stringify(newTask));
     }
 
     // handle delete 
     var onDeleteTask = item => {
         var index = findIndex(item.user_name);
-        tasks.splice(index, 1);
-        setTasks(tasks);
-        localStorage.setItem('tasks', JSON.stringify(tasks));
+        let newTask = [...tasks];
+
+        newTask.splice(index, 1);
+        setTasks(newTask);
+        localStorage.setItem('tasks', JSON.stringify(newTask));
         onExitForm();
     }
 
@@ -100,8 +102,8 @@ function Account() {
     var onSort = type => {
         setSortType(type);
     }
-    
-    var tasksCopy = tasks;
+
+    var tasksCopy = [...tasks];
     tasksCopy = tasksCopy.filter((task) => {
         return task.user_name.toLowerCase().indexOf(keyWord.toLowerCase()) !== -1;
     });

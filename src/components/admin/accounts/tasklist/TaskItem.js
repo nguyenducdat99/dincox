@@ -21,7 +21,7 @@ function TaskItem(props) {
     }
 
     return (
-        <tr className={style?style:""}>
+        <tr className={index%2===0?"task-list__table__line-odd":''}>
             <td>{index}</td>
             <td>{task.user_name}</td>
             <td>{position[task.position]}</td>
@@ -29,10 +29,10 @@ function TaskItem(props) {
             <td>
                 {
                     <span 
-                        className={!(task.status*1) ? 'label label-danger' : 'label label-info' } 
+                        className={!(task.status) ? 'label label-danger' : 'label label-info' } 
                         onClick={onUpdateStatus}
                     >
-                        { (task.status*1) ? 'Kích Hoạt' : 'Ẩn' } 
+                        { (task.status) ? 'Kích Hoạt' : 'Ẩn' } 
                     </span>
                 }
             </td>

@@ -28,10 +28,10 @@ function TaskItem(props) {
             <td>
                 {
                     <span 
-                        className={!(task.status*1) ? 'label label-danger' : 'label label-info' } 
+                        className={!(task.status) ? 'label label-danger' : 'label label-info' } 
                         onClick={onUpdateStatus}
                     >
-                        { (task.status*1) ? 'Kích Hoạt' : 'Ẩn' } 
+                        { (task.status) ? 'Kích Hoạt' : 'Ẩn' } 
                     </span>
                 }
             </td>

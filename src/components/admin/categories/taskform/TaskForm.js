@@ -83,14 +83,7 @@ function TaskForm(props) {
                     <div className="form-group">
                         <label>
                             <p>Tên Thể Loại:</p>
-                            {
-                                props.itemEdit&&props!==null?
-                                <input type='text' 
-                                className="form-control" 
-                                name="user_name"
-                                value={objectTask.category_name}
-                                disabled
-                                />:                                
+                            {                              
                                 <input type='text' 
                                 className="form-control" 
                                 onChange={onHandleChange}
@@ -111,8 +104,8 @@ function TaskForm(props) {
                                 name="status"
                                 required
                             >
-                                <option value='0'>Ẩn</option>
-                                <option value='1'>Kích hoạt</option>
+                                <option value={false}>Ẩn</option>
+                                <option value={true}>Kích hoạt</option>
                             </select>
                         </label>
                     </div>

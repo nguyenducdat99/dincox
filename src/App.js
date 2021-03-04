@@ -82,8 +82,8 @@ function App() {
 				</Route>
 
 				<Route path="/manager">
-					<AccountsCtrl/>
-					{/* <CategoriesCtrl/> */}
+					{/* <AccountsCtrl/> */}
+					<CategoriesCtrl/>
 				</Route>
 
 			</Switch>

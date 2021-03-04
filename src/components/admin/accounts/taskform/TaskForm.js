@@ -151,8 +151,8 @@ function TaskForm(props) {
                                 name="status"
                                 required
                             >
-                                <option value='0'>Ẩn</option>
-                                <option value='1'>Kích hoạt</option>
+                                <option value={false}>Ẩn</option>
+                                <option value={true}>Kích hoạt</option>
                             </select>
                         </label>
                     </div>
