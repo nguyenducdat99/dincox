@@ -22,7 +22,7 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-
+import Admin from './components/admin/Admin';
 import AccountsCtrl from './components/admin/accounts/Account';
 import CategoriesCtrl from './components/admin/categories/Categories';
 function App() {
@@ -81,10 +81,18 @@ function App() {
 					<Register/>
 				</Route>
 
-				<Route path="/manager">
-					{/* <AccountsCtrl/> */}
-					<CategoriesCtrl/>
+				<Route path="/managers" exact>
+					<Admin />
 				</Route>
+
+				<Route path='/managers/accounts'>
+					<AccountsCtrl />
+				</Route>
+
+				<Route path='/managers/categories'>
+					<CategoriesCtrl />
+				</Route>
+
 
 			</Switch>
 			<Footer />

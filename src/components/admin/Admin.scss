@@ -1,0 +1,38 @@
+// import style library
+@import '../../App.css';
+@import '../../scss/Variable.scss';
+
+// style for function
+.admin {
+    position: relative;
+    z-index: 2;
+    min-height: 500px;
+    background-color: $color-default-white;
+    padding: 30px 0;
+
+    &__grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 30px;
+    }
+    &__nav {
+        text-align: center;
+        ul {
+            li {
+                padding: 0.75rem;
+
+                a {
+                    display: block;
+                    padding: 0.35rem 0.75rem;
+                    color: $color-default-warning;
+                    font-size: $font-size-24;
+                    background-color: $color-default-btn-warning;
+                    border-radius: 4px;
+                    &:hover{
+                        background-color: $color-default-btn-warning-hover;
+                    }
+                }
+            }
+        }
+    }
+}
