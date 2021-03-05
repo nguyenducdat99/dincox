@@ -1,6 +1,8 @@
 // import style library, component
 import { useEffect, useState } from 'react';
 import './TaskForm.scss';
+import { connect } from 'react-redux';
+import * as Actions from '../../../../actions/Actions'
 
 // function code here
 function TaskForm(props) {
@@ -30,7 +32,7 @@ function TaskForm(props) {
     // handle when submit
     var onHandleSubmit = event => {
         event.preventDefault();
-        props.onSave(objectTask);
+        props.onAddTask(objectTask);
         onClear();
         onExitForm();
     }
@@ -171,4 +173,16 @@ function TaskForm(props) {
         </div>
     )
 }
-export default TaskForm;
+const mapStateToProps = state => {
+    return {
+        
+    }
+}
+const mapActionToProps = (dispatch, props) => {
+    return {
+        onAddTask: task => {
+            dispatch(Actions.addAccount(task));
+        }
+    }
+}
+export default connect(mapStateToProps,mapActionToProps)(TaskForm);

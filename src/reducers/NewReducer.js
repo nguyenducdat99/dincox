@@ -91,14 +91,14 @@ const initialState = [
 		is_active: 1
 	}
 ];
-var ListNew = (state=initialState, action) => {
+var NewReducer = (state=initialState, action) => {
     switch (action.type) {
         case types.LIST_NEW:
             return state;
-    
+		
         default:
             return state;
     }
 }
 
-export default ListNew;
+export default NewReducer;

@@ -142,7 +142,7 @@ const initialState = [
 	}
 ];
 
-var ListProduct = (state=initialState, action) => {
+var ProductReducer = (state=initialState, action) => {
     switch(action.type){
         case types.LIST_PRODUCT:
             return state;
@@ -151,4 +151,4 @@ var ListProduct = (state=initialState, action) => {
     };
 };
 
-export default ListProduct;
+export default ProductReducer;

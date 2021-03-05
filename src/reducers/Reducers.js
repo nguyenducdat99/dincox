@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux';
-import ListProduct from './ListProduct';
-import ListNew from './ListNew';
-import ListAccount from './ListAccount';
+import ListProduct from './ProductReducer';
+import ListNew from './NewReducer';
+import ListAccount from './AccountReducer';
+import listCategory from './CategoriesReducer';
 
 const Reducers = combineReducers({
     ListProduct,
     ListNew,
-    ListAccount
+    ListAccount,
+    listCategory
 });
 
 export default Reducers;

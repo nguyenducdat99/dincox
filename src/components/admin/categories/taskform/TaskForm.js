@@ -2,6 +2,8 @@
 import { useEffect, useState } from 'react';
 // import TaskSort from '../taskcontrol/tasksort/TaskSort';
 import './TaskForm.scss';
+import * as Action from '../../../../actions/Actions';
+import { connect } from 'react-redux';
 
 // function code here
 function TaskForm(props) {
@@ -31,7 +33,7 @@ function TaskForm(props) {
     // handle when submit
     var onHandleSubmit = event => {
         event.preventDefault();
-        props.onSave(objectTask);
+        props.onAddCategory(objectTask);
         onClear();
         onExitForm();
     }
@@ -125,4 +127,18 @@ function TaskForm(props) {
         </div>
     )
 }
-export default TaskForm;
+
+const mapStateToProps = state => {
+    return {
+
+    }
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        onAddCategory: task => {
+            dispatch(Action.addCategory(task));
+        } 
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(TaskForm);

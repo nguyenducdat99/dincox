@@ -1,7 +1,7 @@
 // import style library, components
 import './Categories.scss';
 import SmallBanner from '../../fixcontents/smallbanner/SmallBanner';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import TaskControl from './taskcontrol/TaskControl';
 import TaskList from './tasklist/TaskList';
 import TaskForm from './taskform/TaskForm';
@@ -14,18 +14,6 @@ function Categories() {
     const [itemEdit, setItemEdit] = useState(null);
     const [keyWord, setKeyWord] = useState('');
     const [sortType, setSortType] = useState('0');
-
-    
-    // load data from localstorage
-    
-    useEffect(
-        () => {
-            if (localStorage&&localStorage.getItem('tasksCategories')) {
-                let tasksCopy = JSON.parse(localStorage.getItem('tasksCategories'));
-                setTasks(tasksCopy);
-            }
-        },[]
-    )
 
     // toggle form add/edit
     var onToggleForm = () => {
@@ -40,21 +28,6 @@ function Categories() {
     var onExitForm = () => {
         setItemEdit(null);
         setIsDisplayForm(false);
-    }
-
-    // handle when submit task form
-    var onSave = data => {
-        var newTask = [...tasks];
-
-        if (itemEdit!==null){
-            let index = findIndex(data.category_name);
-
-            newTask[index] = data;
-        }else{
-            newTask.push(data);
-        }
-        setTasks(newTask);
-        localStorage.setItem('tasksCategories', JSON.stringify(newTask));
     }
 
     // handle slect item 
@@ -163,7 +136,6 @@ function Categories() {
                                 {
                                     <TaskForm 
                                         onExitForm={onExitForm}
-                                        onSave={onSave}
                                         itemEdit={itemEdit}
 
                                     />
@@ -178,7 +150,6 @@ function Categories() {
                                     onSort={onSort}
                                 />
                                 <TaskList 
-                                    task={tasksCopy}
                                     onSelectItem={onSelectItem}
                                     onUpdateStatus={onUpdateStatus}
                                     onDeleteTask={onDeleteTask}

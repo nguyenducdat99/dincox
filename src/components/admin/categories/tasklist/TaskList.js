@@ -1,6 +1,7 @@
 // import style library
 import './TaskList.scss'
 import TaskItem from './TaskItem';
+import { connect } from 'react-redux';
 
 // code function here
 function TaskList(props) {
@@ -56,4 +57,10 @@ function TaskList(props) {
     )
 }
 
-export default TaskList;
+const mapStateToProps = state => { 
+    return {
+        task: state.listCategory
+    }
+}
+
+export default connect(mapStateToProps,null)(TaskList);
