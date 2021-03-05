@@ -1,20 +1,20 @@
 // import style library
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import './TaskSort.scss';
 
 // code function here
 function TaskSort(props) {
     // delcare type sort
-    const [sortType, setSortType] = useState('0');
+    // const [sortType, setSortType] = useState('0');
 
     var onHandleChange = (event) => {
-        setSortType(event.target.value);
+        // setSortType(event.target.value);
     }
-    useEffect(
-        () => {
-            props.onSort(sortType);
-        },[sortType]
-    )
+    // useEffect(
+    //     () => {
+    //         props.onSort(sortType);
+    //     },[sortType]
+    // )
 
     return ( 
         <div className="task-sort">

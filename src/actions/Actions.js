@@ -17,3 +17,9 @@ export const listNew = () => {
         type: types.LIST_NEW
     }
 }
+
+export  const listAccount = () => {
+    return {
+        type: types.LIST_ACCOUNT
+    }
+}

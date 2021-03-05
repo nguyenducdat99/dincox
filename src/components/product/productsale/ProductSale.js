@@ -23,6 +23,7 @@ function ProductSale(props){
                 <SingleProduct key={index} data={item}/>
             ) 
         }
+        return ''
     });
     // for(let i=0;i<amountProduct;i++) listIndex.push(i);
     // excute when user click button see more

@@ -1,19 +1,22 @@
 import './ProductDetail.scss';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import SmallBanner from '../../fixcontents/smallbanner/SmallBanner';
 import { useParams} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 function ProductDetail(props){
     // declare state
-    const [dataSize,setDataSize] = useState([36, 37, 38, 39]);
+    const [dataSize,setDataSize] = useState([]);
+    setDataSize([36, 37, 38, 39]);
     const [amountProduct, setAmountProduct] = useState(1);
     const { id } = useParams();// get id from url
     const { data } = props;// get datadefault;
 
     // get current product
+    
     var currentProduct;
     data.forEach((item, index)=>{
+
         if((item.id_product+'')===id){
             currentProduct = item;
         }
@@ -65,10 +68,10 @@ function ProductDetail(props){
                             <div className="product-detail__content__header">
                                 <h2>{product_name}</h2>
                                 <div className="product-detail__content__header__brand">
-                                    <p>Thương Hiệu: <a>Dincox</a></p>
+                                    <p>Thương Hiệu: <a href='/#'>Dincox</a></p>
                                 </div><span> | </span>
                                 <div className="product-detail__content__header__type">
-                                    <p>Loại: <a>Loai 1</a></p>
+                                    <p>Loại: <a  href='/#'>Loai 1</a></p>
                                 </div><span> | </span>
                                 <div className="product-detail__content__header__code">
                                     <p>Mã: {'Dincox' + id_product}</p>

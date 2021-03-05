@@ -3,7 +3,6 @@ import './ResultFilter.scss';
 import {connect} from "react-redux";
 import SingleProduct from '../../aproduct/Aproduct';
 import { useState } from 'react';
-import { useParams } from 'react-router';
 
 // cose function here
 function ResultFilter(props) {

@@ -1,9 +1,6 @@
-import TaskForm from "../taskform/TaskForm"
-
 function TaskItem(props) {
     //  get props, declare variable, constant
     var { index, task, style } = props;
-    const position = ['Khách hàng', 'Nhân viên', 'Chủ cửa hàng'];
 
     // handle return item for onSlectItem
     var onSelectItem = () => {

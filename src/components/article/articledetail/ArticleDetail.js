@@ -48,7 +48,7 @@ function ArticleDetail(props){
                         <div className="article-detail__contents">
                             <p>{contents}</p>
                             <iframe width="560" height="315" src="" 
-                            frameBorder="1" 
+                            frameBorder="1" title="article video"
                             allow="accelerometer; autoplay; clipboard-write; 
                             encrypted-media; gyroscope; picture-in-picture" >
 

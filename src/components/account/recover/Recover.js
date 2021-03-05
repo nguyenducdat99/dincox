@@ -1,6 +1,5 @@
 // import style library, component
 import './Recover.scss'
-import SmallBanner from '../../fixcontents/smallbanner/SmallBanner';
 
 // code function here
 function Recover(props) {

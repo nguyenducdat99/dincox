@@ -14,6 +14,7 @@ function Article(props) {
                 <SingleArticle key={index} data={item}/>
             )
         }
+        return '';
     })
 
     // setting for slider

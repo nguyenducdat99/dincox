@@ -1,6 +1,5 @@
 // import style library, component
 import { useEffect, useState } from 'react';
-import TaskSort from '../taskcontrol/tasksort/TaskSort';
 import './TaskForm.scss';
 
 // function code here
@@ -24,6 +23,7 @@ function TaskForm(props) {
             }else {
                 onClear();
             }
+            // eslint-disable-next-line 
         }, [props.itemEdit]
     )
 

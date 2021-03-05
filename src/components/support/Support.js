@@ -33,15 +33,15 @@ function Support(props) {
                     <i className="fa fa-cogs" aria-hidden="true"></i>         
                     <p> Quản lý</p>      
                 </Link>
-                <a href="https://facebook.com/" target="_blank" className="support__social-network__facebook">
+                <a href="https://facebook.com/" target="_blank" rel='noreferrer' className="support__social-network__facebook">
                     <i className="fa fa-facebook-official" aria-hidden="true"></i>         
                     <p> Facebook</p>      
                 </a>
-                <a href="https://instagram.com/" target="_blank" className="support__social-network__instagram">
+                <a href="https://instagram.com/" target="_blank"  rel='noreferrer' className="support__social-network__instagram">
                     <i className="fa fa-instagram" aria-hidden="true"></i> 
                     <p>Instagram</p>
                 </a>
-                <a href="https://youtube.com/" target="_blank" className="support__social-network__youtube">
+                <a href="https://youtube.com/" target="_blank"  rel='noreferrer' className="support__social-network__youtube">
                     <i className="fa fa-youtube-play" aria-hidden="true"></i>
                     <p> Youtube</p>
                 </a>

@@ -7,28 +7,14 @@ function PopUpDetail(props){
     const dataSize = [36, 37, 38, 39];
     const [isToggle,setIsToggle] = useState(false);
     const [amountProduct, setAmountProduct] = useState(1); 
-    var indexCurrentProduct = -1;
     var { id_product, product_name, price } = props.data;// get data from props
 
     // load state data from database local
     useEffect(
         () => {
-            setIsToggle(((props.isToggle=='true')?true:false));
+            setIsToggle(((props.isToggle==='true')?true:false));
         },[props.isToggle]
     )
-
-    // scroll to up
-    // if(!isActiveEdit){
-    //     window.scrollTo(0,0);
-    // }
-    // load value for detail product
-    // var currentProduct;
-    // data.forEach((item, index)=>{
-    //     if((item.id+'')===id){
-    //         currentProduct = item;
-    //         indexCurrentProduct = index;
-    //     }
-    // })
 
     // remove boder color of select size
     var removeColor = () => {
@@ -36,15 +22,6 @@ function PopUpDetail(props){
         for(let i=0;i<size.length;i++){
             size[i].style = "border 1px solid lightgray";
         }
-    }
-
-    // set value for state isActiveEdit
-    var onToggleEdit = () => {
-        // setIsActiveEdit(!isActiveEdit);
-    }
-    // set value for 
-    var onSubmitProductDetail = (itemEdit) => {
-        props.onSubmit(itemEdit, indexCurrentProduct);
     }
 
     // active ui

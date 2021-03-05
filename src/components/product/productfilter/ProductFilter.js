@@ -1,4 +1,4 @@
-import { Component, useState } from "react"
+import {  useState } from "react"
 // import style library, Component
 import SmallBanner from '../../fixcontents/smallbanner/SmallBanner';
 import ResultFilter from './resultfilter/ReSultFilter';

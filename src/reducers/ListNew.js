@@ -95,11 +95,9 @@ var ListNew = (state=initialState, action) => {
     switch (action.type) {
         case types.LIST_NEW:
             return state;
-            break;
     
         default:
             return state;
-            break;
     }
 }
 

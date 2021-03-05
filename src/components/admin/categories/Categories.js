@@ -14,7 +14,6 @@ function Categories() {
     const [itemEdit, setItemEdit] = useState(null);
     const [keyWord, setKeyWord] = useState('');
     const [sortType, setSortType] = useState('0');
-    const [reload, setReload] = useState(true);
 
     
     // load data from localstorage

@@ -50,44 +50,44 @@ function Header() {
                                         </Link>
                                         {/* menu level 2 */}
                                         <ul className="header-grid__navigation__link__dropdown--level-2">
-                                            <li><a>Item 1</a></li>
-                                            <li><a>Item 2</a></li>
-                                            <li><a>Item 2</a></li>
-                                            <li><a className="last-child-a">Item 2</a></li>
+                                            <li><a href='/#'>Item 1</a></li>
+                                            <li><a href='/#'>Item 2</a></li>
+                                            <li><a href='/#'>Item 2</a></li>
+                                            <li><a href='/#' className="last-child-a">Item 2</a></li>
                                         </ul>
                                         
                                     </li>
                                     <li  className="header-grid__navigation__link__dropdown">
-                                        <a> Nam &nbsp;
+                                        <a href='/#'> Nam &nbsp;
                                             <i className="fa fa-angle-down" aria-hidden="true"></i>
                                         </a>
                                         {/* menu level 2  */}
                                         <ul className="header-grid__navigation__link__dropdown--level-2">
-                                            <li><a>Item 1</a></li>
-                                            <li><a>Item 2</a></li>
-                                            <li><a>Item 2</a></li>
-                                            <li><a className="last-child-a">Item 2</a></li>
+                                            <li><a href='/#'>Item 1</a></li>
+                                            <li><a href='/#'>Item 2</a></li>
+                                            <li><a href='/#'>Item 2</a></li>
+                                            <li><a  href='/#' className="last-child-a">Item 2</a></li>
                                         </ul>
                                     </li>
                                     <li  className="header-grid__navigation__link__dropdown">
-                                        <a> Nữ &nbsp;
+                                        <a  href='/#'> Nữ &nbsp;
                                             <i className="fa fa-angle-down" aria-hidden="true"></i>
                                         </a>
                                         {/* menu level 2 */}
                                         <ul className="header-grid__navigation__link__dropdown--level-2">
-                                            <li><a>Item 1</a></li>
-                                            <li><a>Item 2</a></li>
-                                            <li><a>Item 2</a></li>
-                                            <li><a className="last-child-a">Item 2</a></li>
+                                            <li><a  href='/#'>Item 1</a></li>
+                                            <li><a  href='/#'>Item 2</a></li>
+                                            <li><a  href='/#'>Item 2</a></li>
+                                            <li><a  href='/#' className="last-child-a">Item 2</a></li>
                                         </ul>
                                     </li>
-                                    <li><a>Sale Off</a></li>
+                                    <li><a href='/#'>Sale Off</a></li>
                                     <li><Link to='/store-location'>Hệ thống cửa hàng</Link></li>
-                                    <li><a>Kiểm tra đơn hàng</a></li>
+                                    <li><a href='/#'>Kiểm tra đơn hàng</a></li>
                                 </ul>
                             </div>
                             <div className="header-grid__navigation__search">
-                                <a onClick={onToggleSearch}>Tìm kiếm</a>
+                                <a href='/#' onClick={onToggleSearch}>Tìm kiếm</a>
                                 {/* form search */}
                                 <div className={
                                     isActiveSearch ? 
@@ -106,7 +106,7 @@ function Header() {
                             </div>
                             {/* block cart */}
                             <div className="header-grid__navigation__cart">
-                                <a>Giỏ hàng</a>
+                                <a  href='/#' >Giỏ hàng</a>
                             </div>
                         </nav>
                     </div>

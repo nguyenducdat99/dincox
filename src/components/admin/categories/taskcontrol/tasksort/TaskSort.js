@@ -13,6 +13,7 @@ function TaskSort(props) {
     useEffect(
         () => {
             props.onSort(sortType);
+            // eslint-disable-next-line
         },[sortType]
     )
 

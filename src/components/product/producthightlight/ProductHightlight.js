@@ -18,6 +18,7 @@ function ProductHightlight(props){
                 <SingleProduct key={index} data={item}/>
             )
         }
+        return '';
     })
 
     // excute when click butotn;

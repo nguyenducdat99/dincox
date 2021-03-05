@@ -1,7 +1,7 @@
 // import style library, components
 import './Account.scss';
 import SmallBanner from '../../fixcontents/smallbanner/SmallBanner';
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import TaskControl from './taskcontrol/TaskControl';
 import TaskList from './tasklist/TaskList';
 import TaskForm from './taskform/TaskForm';
@@ -10,21 +10,10 @@ import TaskForm from './taskform/TaskForm';
 function Account() {
     // declare state component
     const [isDisplayForm, setIsDisplayForm] = useState(false);
-    const [tasks, setTasks] = useState([]);
     const [itemEdit, setItemEdit] = useState(null);
-    const [keyWord, setKeyWord] = useState('');
-    const [sortType, setSortType] = useState('0');
+    // const [keyWord, setKeyWord] = useState('');
+    // const [sortType, setSortType] = useState('0');
     
-    // load data from localstorage
-    
-    useEffect(
-        () => {
-            if (localStorage&&localStorage.getItem('tasks')) {
-                let tasksCopy = JSON.parse(localStorage.getItem('tasks'));
-                setTasks(tasksCopy);
-            }
-        },[]
-    )
 
     // toggle form add/edit
     var onToggleForm = () => {
@@ -42,19 +31,19 @@ function Account() {
     }
 
     // handle when submit task form
-    var onSave = data => {
-        var newTask = [...tasks];
+    // var onSave = data => {
+    //     var newTask = [...tasks];
 
-        if (itemEdit!==null){
-            let index = findIndex(data.user_name);
+    //     if (itemEdit!==null){
+    //         let index = findIndex(data.user_name);
 
-            newTask[index] = data;
-        }else{
-            newTask.push(data);
-        }
-        setTasks(newTask);
-        localStorage.setItem('tasks', JSON.stringify(newTask));
-    }
+    //         newTask[index] = data;
+    //     }else{
+    //         newTask.push(data);
+    //     }
+    //     setTasks(newTask);
+    //     localStorage.setItem('tasks', JSON.stringify(newTask));
+    // }
 
     // handle slect item 
     var onSelectItem = item => {
@@ -62,90 +51,90 @@ function Account() {
         setIsDisplayForm(true);
     }
 
-    var findIndex = (id) => {
-        var result = -1;
-        tasks.forEach((task, index) => {
-            if(task.user_name === id){
-                result = index;
-            }
-        });
-        return result;
-    }
+    // var findIndex = (id) => {
+    //     var result = -1;
+    //     tasks.forEach((task, index) => {
+    //         if(task.user_name === id){
+    //             result = index;
+    //         }
+    //     });
+    //     return result;
+    // }
 
     // handle update status
-    var onUpdateStatus = item => {
-        let index = findIndex(item.user_name);
-        let newTask = [...tasks];     
+    // var onUpdateStatus = item => {
+    //     let index = findIndex(item.user_name);
+    //     let newTask = [...tasks];     
 
-        newTask[index].status = !newTask[index].status;
-        setTasks(newTask);
-        localStorage.setItem('tasks', JSON.stringify(newTask));
-    }
+    //     newTask[index].status = !newTask[index].status;
+    //     setTasks(newTask);
+    //     localStorage.setItem('tasks', JSON.stringify(newTask));
+    // }
 
     // handle delete 
-    var onDeleteTask = item => {
-        var index = findIndex(item.user_name);
-        let newTask = [...tasks];
+    // var onDeleteTask = item => {
+    //     var index = findIndex(item.user_name);
+    //     let newTask = [...tasks];
 
-        newTask.splice(index, 1);
-        setTasks(newTask);
-        localStorage.setItem('tasks', JSON.stringify(newTask));
-        onExitForm();
-    }
+    //     newTask.splice(index, 1);
+    //     setTasks(newTask);
+    //     localStorage.setItem('tasks', JSON.stringify(newTask));
+    //     onExitForm();
+    // }
 
     // handle search
     var onSearch = text => {
-        setKeyWord(text);
+        // setKeyWord(text);
     }
 
     // handle sort
     var onSort = type => {
-        setSortType(type);
+        // setSortType(type);
     }
 
-    var tasksCopy = [...tasks];
-    tasksCopy = tasksCopy.filter((task) => {
-        return task.user_name.toLowerCase().indexOf(keyWord.toLowerCase()) !== -1;
-    });
-    switch (sortType) {
-        case '0':
-            tasksCopy.sort(
-                (a,b) => {
-                    if (a.user_name>b.user_name) return 1;
-                    if (a.user_name<b.user_name) return -1;
-                    return 0;
-                }
-            )
-            break;
-        case '1':
-            tasksCopy.sort(
-                (a,b) => {
-                    if (a.user_name>b.user_name) return -1;
-                    if (a.user_name<b.user_name) return 1;
-                    return 0;
-                }
-            )
-            break;
-        case '2':
-            tasksCopy = tasksCopy.filter((task) => {
-                return task.status === true;
-            });
-            break;
-        case '3':
-            tasksCopy = tasksCopy.filter((task) => {
-                return task.status === false;
-            });
-            break;
-        default:
-            tasksCopy.sort(
-                (a,b) => {
-                    if (a.user_name>b.user_name) return 1;
-                    if (a.user_name<b.user_name) return -1;
-                    return 0;
-                }
-            )
-            break;
-    }
+    // var tasksCopy = [...tasks];
+    // tasksCopy = tasksCopy.filter((task) => {
+    //     return task.user_name.toLowerCase().indexOf(keyWord.toLowerCase()) !== -1;
+    // });
+    // switch (sortType) {
+    //     case '0':
+    //         tasksCopy.sort(
+    //             (a,b) => {
+    //                 if (a.user_name>b.user_name) return 1;
+    //                 if (a.user_name<b.user_name) return -1;
+    //                 return 0;
+    //             }
+    //         )
+    //         break;
+    //     case '1':
+    //         tasksCopy.sort(
+    //             (a,b) => {
+    //                 if (a.user_name>b.user_name) return -1;
+    //                 if (a.user_name<b.user_name) return 1;
+    //                 return 0;
+    //             }
+    //         )
+    //         break;
+    //     case '2':
+    //         tasksCopy = tasksCopy.filter((task) => {
+    //             return task.status === true;
+    //         });
+    //         break;
+    //     case '3':
+    //         tasksCopy = tasksCopy.filter((task) => {
+    //             return task.status === false;
+    //         });
+    //         break;
+    //     default:
+    //         tasksCopy.sort(
+    //             (a,b) => {
+    //                 if (a.user_name>b.user_name) return 1;
+    //                 if (a.user_name<b.user_name) return -1;
+    //                 return 0;
+    //             }
+    //         )
+    //         break;
+    // }
 
     return (
         <>
@@ -161,7 +150,7 @@ function Account() {
                                 {
                                     <TaskForm 
                                         onExitForm={onExitForm}
-                                        onSave={onSave}
+                                        // onSave={onSave}
                                         itemEdit={itemEdit}
 
                                     />
@@ -175,11 +164,10 @@ function Account() {
                                     onSearch={onSearch}
                                     onSort={onSort}
                                 />
-                                <TaskList 
-                                    task={tasksCopy}
+                                <TaskList   
                                     onSelectItem={onSelectItem}
-                                    onUpdateStatus={onUpdateStatus}
-                                    onDeleteTask={onDeleteTask}
+                                    // onUpdateStatus={onUpdateStatus}
+                                    // onDeleteTask={onDeleteTask}
                                 />
                             </div>
                         </div>
