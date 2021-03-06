@@ -21,44 +21,11 @@ function Account(props) {
         props.onToggleForm();
     };
 
-
-
     // handle slect item 
     var onSelectItem = item => {
         setItemEdit(item);
         // setIsDisplayForm(true);
     }
-
-    // var findIndex = (id) => {
-    //     var result = -1;
-    //     tasks.forEach((task, index) => {
-    //         if(task.user_name === id){
-    //             result = index;
-    //         }
-    //     });
-    //     return result;
-    // }
-
-    // handle update status
-    // var onUpdateStatus = item => {
-    //     let index = findIndex(item.user_name);
-    //     let newTask = [...tasks];     
-
-    //     newTask[index].status = !newTask[index].status;
-    //     setTasks(newTask);
-    //     localStorage.setItem('tasks', JSON.stringify(newTask));
-    // }
-
-    // handle delete 
-    // var onDeleteTask = item => {
-    //     var index = findIndex(item.user_name);
-    //     let newTask = [...tasks];
-
-    //     newTask.splice(index, 1);
-    //     setTasks(newTask);
-    //     localStorage.setItem('tasks', JSON.stringify(newTask));
-    //     onExitForm();
-    // }
 
     // handle search
     var onSearch = text => {
@@ -142,8 +109,6 @@ function Account(props) {
                                 />
                                 <TaskList   
                                     onSelectItem={onSelectItem}
-                                    // onUpdateStatus={onUpdateStatus}
-                                    // onDeleteTask={onDeleteTask}
                                 />
                             </div>
                         </div>

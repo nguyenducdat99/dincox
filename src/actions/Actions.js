@@ -30,7 +30,19 @@ export  const listAccount = () => {
 export const addAccount = newAccount => {
     return {
         type: types.ADD_ACCOUNT,
-        newAccount
+        payload: newAccount
+    }
+}
+export const updateStatusAccount = id_account => {
+    return {
+        type: types.UPDATE_STATUS_ACCOUNT,
+        payload: id_account
+    }
+}
+export const deleteAccount = id_account => {
+    return {
+        type: types.DELETE_ACCOUNT,
+        payload: id_account
     }
 }
 
@@ -40,11 +52,16 @@ export const listCategory = () => {
         type: types.LIST_CATEGORY
     }
 }
-
 export const addCategory = newCategory => {
     return {
         type: types.ADD_CATEGORY,
         payload: newCategory
+    }
+}
+export const updateStatusCategory = id_category => {
+    return {
+        type: types.UPDATE_STATUS_CATEGORY,
+        payload: id_category
     }
 }
 

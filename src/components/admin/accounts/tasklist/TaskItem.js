@@ -1,3 +1,6 @@
+import { connect } from 'react-redux';
+import * as Actions  from '../../../../actions/Actions';
+
 function TaskItem(props) {
     //  get props, declare variable, constant
     var { index, task } = props;
@@ -10,12 +13,13 @@ function TaskItem(props) {
     
     // handle update status
     var onUpdateStatus = () => {
-        props.onUpdateStatus(task);
+        props.onUpdateStatus(task.id_account);
     }
 
     // handle delete task
     var onDeleteTask = () => {
-        props.onDeleteTask(task);
+        props.onDeleteCategory(task.id_account);
+        props.onCloseForm();
     }
 
     return (
@@ -47,4 +51,24 @@ function TaskItem(props) {
     )
 }
 
-export default TaskItem;
+const mapStateToProps = state => {
+    return {
+
+    }
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        onUpdateStatus: id_account => {
+            dispatch(Actions.updateStatusAccount(id_account));
+        },
+        onDeleteCategory: id_account => {
+            dispatch(Actions.deleteAccount(id_account));
+        },
+        onCloseForm: () => {
+            dispatch(Actions.closeForm());
+        }
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(TaskItem);

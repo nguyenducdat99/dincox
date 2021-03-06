@@ -9,30 +9,15 @@ function TaskList(props) {
     var { task } = props;
     
     let listIndex = task.map((item, index) => {
-        if (index%2===0) {
-            return (
-                <TaskItem 
-                    key={index}
-                    index={index+1} 
-                    task={item}
-                    onSelectItem={props.onSelectItem}
-                    onUpdateStatus={props.onUpdateStatus}
-                    onDeleteTask={props.onDeleteTask}
-                />
-            )
-        }
         return (
-                <TaskItem 
-                    key={index}
-                    index={index+1} 
-                    task={item}
-                    class={"task-list__table__line-odd"}
-                    onSelectItem={props.onSelectItem}
-                    onUpdateStatus={props.onUpdateStatus}
-                    onDeleteTask={props.onDeleteTask}
-                />
+            <TaskItem 
+                key={index}
+                index={index+1} 
+                task={item}
+                onSelectItem={props.onSelectItem}
+                onDeleteTask={props.onDeleteTask}
+            />
         )
-
     });
 
     return (

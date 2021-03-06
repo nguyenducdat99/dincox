@@ -1,6 +1,9 @@
+import { connect } from 'react-redux';
+import * as Actions from '../../../../actions/Actions';
+
 function TaskItem(props) {
     //  get props, declare variable, constant
-    var { index, task, style } = props;
+    var { index, task} = props;
 
     // handle return item for onSlectItem
     var onSelectItem = () => {
@@ -9,7 +12,7 @@ function TaskItem(props) {
     
     // handle update status
     var onUpdateStatus = () => {
-        props.onUpdateStatus(task);
+       props.onUpdateStatus(task.id_category);
     }
 
     // handle delete task
@@ -18,7 +21,7 @@ function TaskItem(props) {
     }
 
     return (
-        <tr className={style?style:""}>
+        <tr className={(index%2===0)?"task-list__table__line-odd":""}>
             <td>{index}</td>
             <td>{task.id_account}</td>
             <td>{task.category_name}</td>
@@ -44,5 +47,18 @@ function TaskItem(props) {
         </tr>
     )
 }
+const mapStateToProps = state => {
+    return {
 
-export default TaskItem;
+    }
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        onUpdateStatus: id_category => {
+            dispatch(Actions.updateStatusCategory(id_category));
+        }
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TaskItem);

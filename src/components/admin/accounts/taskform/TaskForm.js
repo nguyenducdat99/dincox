@@ -9,7 +9,7 @@ function TaskForm(props) {
     // declare state component
     const [objectTask,setObjectTask] = useState(
         {
-            id_account: 9,
+            id_account: '',
             user_name: '',
             password: '',
             position: '0',
@@ -56,7 +56,7 @@ function TaskForm(props) {
         setObjectTask(
             {
                 ...objectTask,
-                id_account: 9,
+                id_account: '',
                 user_name: '',
                 password: '',
                 position: '0',

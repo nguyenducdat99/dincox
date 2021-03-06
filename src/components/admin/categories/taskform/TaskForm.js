@@ -10,7 +10,7 @@ function TaskForm(props) {
     // declare state component
     const [objectTask,setObjectTask] = useState(
         {
-            id_category: 1,
+            id_category: '',
             id_account: 10,
             category_name: "",
             created_at: null,
@@ -57,7 +57,7 @@ function TaskForm(props) {
         setObjectTask(
             {
                 ...objectTask,
-                id_category: 1,
+                id_category: '',
                 id_account: 10,
                 category_name: "",
                 created_at: null,

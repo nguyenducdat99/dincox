@@ -15,8 +15,6 @@ function TaskList(props) {
                 index={index+1} 
                 task={item}
                 onSelectItem={props.onSelectItem}
-                onUpdateStatus={props.onUpdateStatus}
-                onDeleteTask={props.onDeleteTask}
             />
         )
     });

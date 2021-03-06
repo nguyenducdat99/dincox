@@ -42,17 +42,6 @@ function Categories(props) {
         return result;
     }
 
-    // handle update status
-    var onUpdateStatus = item => {
-        var newTask = [...tasks];
-
-        let index = findIndex(item.category_name);
-
-        newTask[index].status = !newTask[index].status;
-        setTasks(newTask);
-        localStorage.setItem('tasksCategories', JSON.stringify(newTask));
-    }
-
     // handle delete 
     var onDeleteTask = item => {
         var index = findIndex(item.category_name);
@@ -147,7 +136,6 @@ function Categories(props) {
                                 />
                                 <TaskList 
                                     onSelectItem={onSelectItem}
-                                    onUpdateStatus={onUpdateStatus}
                                     onDeleteTask={onDeleteTask}
                                 />
                             </div>
