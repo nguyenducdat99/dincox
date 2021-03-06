@@ -5,50 +5,28 @@ import {  useState } from 'react';
 import TaskControl from './taskcontrol/TaskControl';
 import TaskList from './tasklist/TaskList';
 import TaskForm from './taskform/TaskForm';
+import { connect } from 'react-redux';
+import * as Actions from '../../../actions/Actions';
 
 // function code here
-function Account() {
+function Account(props) {
     // declare state component
-    const [isDisplayForm, setIsDisplayForm] = useState(false);
     const [itemEdit, setItemEdit] = useState(null);
     // const [keyWord, setKeyWord] = useState('');
     // const [sortType, setSortType] = useState('0');
-    
+    var { isDisplayForm } = props;
 
     // toggle form add/edit
     var onToggleForm = () => {
-        if (itemEdit!==null) {
-            setItemEdit(null);
-        } else {
-            setIsDisplayForm(!isDisplayForm);
-        }
+        props.onToggleForm();
     };
 
-    // exit form add/edit
-    var onExitForm = () => {
-        setItemEdit(null);
-        setIsDisplayForm(false);
-    }
 
-    // handle when submit task form
-    // var onSave = data => {
-    //     var newTask = [...tasks];
-
-    //     if (itemEdit!==null){
-    //         let index = findIndex(data.user_name);
-
-    //         newTask[index] = data;
-    //     }else{
-    //         newTask.push(data);
-    //     }
-    //     setTasks(newTask);
-    //     localStorage.setItem('tasks', JSON.stringify(newTask));
-    // }
 
     // handle slect item 
     var onSelectItem = item => {
         setItemEdit(item);
-        setIsDisplayForm(true);
+        // setIsDisplayForm(true);
     }
 
     // var findIndex = (id) => {
@@ -149,8 +127,6 @@ function Account() {
                             <div className={isDisplayForm?"account__manager__add-update":"account__manager__add-update--hidden"}>
                                 {
                                     <TaskForm 
-                                        onExitForm={onExitForm}
-                                        // onSave={onSave}
                                         itemEdit={itemEdit}
 
                                     />
@@ -177,4 +153,18 @@ function Account() {
         </>
     )
 }
-export default Account;
+const mapStateToProps = state => {
+    return {
+        isDisplayForm: state.isDisplayForm
+    }
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        onToggleForm: () => {
+            dispatch(Actions.toggleForm());
+        }
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Account);

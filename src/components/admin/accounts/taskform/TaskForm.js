@@ -68,7 +68,7 @@ function TaskForm(props) {
 
     // Exit this form
     var onExitForm = () => {
-        props.onExitForm();
+        props.onCloseForm();
     }
 
     
@@ -182,6 +182,9 @@ const mapActionToProps = (dispatch, props) => {
     return {
         onAddTask: task => {
             dispatch(Actions.addAccount(task));
+        },
+        onCloseForm: () => {
+            dispatch(Actions.closeForm());
         }
     }
 }

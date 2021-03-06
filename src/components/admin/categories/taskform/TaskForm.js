@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 // import TaskSort from '../taskcontrol/tasksort/TaskSort';
 import './TaskForm.scss';
-import * as Action from '../../../../actions/Actions';
+import * as Actions from '../../../../actions/Actions';
 import { connect } from 'react-redux';
 
 // function code here
@@ -69,7 +69,7 @@ function TaskForm(props) {
 
     // Exit this form
     var onExitForm = () => {
-        props.onExitForm();
+        props.onCloseForm();
     }
 
     
@@ -137,8 +137,11 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch, props) => {
     return {
         onAddCategory: task => {
-            dispatch(Action.addCategory(task));
-        } 
+            dispatch(Actions.addCategory(task));
+        }, 
+        onCloseForm: () =>{
+            dispatch(Actions.closeForm());
+        }
     }
-}
+};
 export default connect(mapStateToProps,mapDispatchToProps)(TaskForm);

@@ -5,35 +5,31 @@ import { useState } from 'react';
 import TaskControl from './taskcontrol/TaskControl';
 import TaskList from './tasklist/TaskList';
 import TaskForm from './taskform/TaskForm';
+import { connect } from 'react-redux';
+import * as Actions from '../../../actions/Actions';
 
 // function code here
-function Categories() {
+function Categories(props) {
     // declare state component
-    const [isDisplayForm, setIsDisplayForm] = useState(false);
     const [tasks, setTasks] = useState([]);
     const [itemEdit, setItemEdit] = useState(null);
     const [keyWord, setKeyWord] = useState('');
     const [sortType, setSortType] = useState('0');
+    var { isDisplayForm } = props
 
     // toggle form add/edit
     var onToggleForm = () => {
-        if (itemEdit!==null) {
-            setItemEdit(null);
-        } else {
-            setIsDisplayForm(!isDisplayForm);
-        }
+        props.onToggleForm();
     };
 
     // exit form add/edit
     var onExitForm = () => {
-        setItemEdit(null);
-        setIsDisplayForm(false);
+
     }
 
     // handle slect item 
     var onSelectItem = item => {
         setItemEdit(item);
-        setIsDisplayForm(true);
     }
 
     var findIndex = (id) => {
@@ -162,4 +158,17 @@ function Categories() {
         </>
     )
 }
-export default Categories;
+const mapStateToProps = state => {
+    return {
+        isDisplayForm: state.isDisplayForm
+    }
+};
+const mapDispatchToProps = (dispatch, action) => {
+    return {
+        onToggleForm: () => {
+            dispatch(Actions.toggleForm());
+        }
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Categories);
