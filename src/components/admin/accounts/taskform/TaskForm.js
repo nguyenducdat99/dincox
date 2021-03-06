@@ -14,13 +14,13 @@ function TaskForm(props) {
             password: '',
             position: '0',
             email: '',
-            status: '0'
+            status: false
         }
     )
 
     useEffect(
         () => {
-            if (props.itemEdit&&props.itemEdit!==null) {
+            if (props.itemEdit.id_account!=='') {
                 setObjectTask(props.itemEdit);
             }else {
                 onClear();
@@ -32,7 +32,7 @@ function TaskForm(props) {
     // handle when submit
     var onHandleSubmit = event => {
         event.preventDefault();
-        props.onAddTask(objectTask);
+        props.onSaveItem(objectTask);
         onClear();
         onExitForm();
     }
@@ -61,13 +61,23 @@ function TaskForm(props) {
                 password: '',
                 position: '0',
                 email: '',
-                status: '0'
+                status: false
             }
         )
     }
 
     // Exit this form
     var onExitForm = () => {
+        props.onSelectItemEdit(
+            {
+                id_account: '',
+                user_name: '',
+                password: '',
+                position: '0',
+                email: '',
+                status: false
+            }
+        )
         props.onCloseForm();
     }
 
@@ -76,7 +86,7 @@ function TaskForm(props) {
     return (
         <div className="task-form">
             <div className="task-form__title">
-                <h3>{props.itemEdit&&props.itemEdit!==null?'Sửa Tài Khoản':'Thêm tài khoản'}
+                <h3>{props.itemEdit.id_account!==''?'Sửa Tài Khoản':'Thêm tài khoản'}
                     <span className="fa fa-times-circle task-form__title__close" onClick={onExitForm}></span>
                 </h3>
             </div>
@@ -85,14 +95,6 @@ function TaskForm(props) {
                     <div className="form-group">
                         <label>
                             <p>Tài Khoản:</p>
-                            {
-                                props.itemEdit&&props!==null?
-                                <input type='text' 
-                                className="form-control" 
-                                name="user_name"
-                                value={objectTask.user_name}
-                                disabled
-                                />:                                
                                 <input type='text' 
                                 className="form-control" 
                                 onChange={onHandleChange}
@@ -100,7 +102,6 @@ function TaskForm(props) {
                                 value={objectTask.user_name}
                                 required
                                 />
-                            }
                         </label>
                     </div>
                     <div className="form-group">
@@ -175,16 +176,19 @@ function TaskForm(props) {
 }
 const mapStateToProps = state => {
     return {
-        
+        itemEdit: state.accountEdit
     }
 }
 const mapActionToProps = (dispatch, props) => {
     return {
-        onAddTask: task => {
-            dispatch(Actions.addAccount(task));
+        onSaveItem: task => {
+            dispatch(Actions.saveAccount(task));
         },
         onCloseForm: () => {
             dispatch(Actions.closeForm());
+        },
+        onSelectItemEdit: item => {
+            dispatch(Actions.selectAccountEdit(item));
         }
     }
 }

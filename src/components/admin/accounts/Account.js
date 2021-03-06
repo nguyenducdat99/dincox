@@ -1,7 +1,7 @@
 // import style library, components
 import './Account.scss';
 import SmallBanner from '../../fixcontents/smallbanner/SmallBanner';
-import {  useState } from 'react';
+import {  useEffect } from 'react';
 import TaskControl from './taskcontrol/TaskControl';
 import TaskList from './tasklist/TaskList';
 import TaskForm from './taskform/TaskForm';
@@ -11,21 +11,35 @@ import * as Actions from '../../../actions/Actions';
 // function code here
 function Account(props) {
     // declare state component
-    const [itemEdit, setItemEdit] = useState(null);
     // const [keyWord, setKeyWord] = useState('');
     // const [sortType, setSortType] = useState('0');
     var { isDisplayForm } = props;
 
+    // close task form in first loading
+    useEffect(
+        () => {
+            props.onCloseForm();
+            // eslint-disable-next-line
+        },[]
+    )
+
     // toggle form add/edit
     var onToggleForm = () => {
-        props.onToggleForm();
+        props.onSelectItemEdit(
+            {
+                id_account: '',
+                user_name: '',
+                password: '',
+                position: '0',
+                email: '',
+                status: false
+            }
+        )
+        let { itemEdit } = props;
+        if (itemEdit&&itemEdit.id_account === ''){
+            props.onToggleForm();
+        }
     };
-
-    // handle slect item 
-    var onSelectItem = item => {
-        setItemEdit(item);
-        // setIsDisplayForm(true);
-    }
 
     // handle search
     var onSearch = text => {
@@ -37,49 +51,6 @@ function Account(props) {
         // setSortType(type);
     }
 
-    // var tasksCopy = [...tasks];
-    // tasksCopy = tasksCopy.filter((task) => {
-    //     return task.user_name.toLowerCase().indexOf(keyWord.toLowerCase()) !== -1;
-    // });
-    // switch (sortType) {
-    //     case '0':
-    //         tasksCopy.sort(
-    //             (a,b) => {
-    //                 if (a.user_name>b.user_name) return 1;
-    //                 if (a.user_name<b.user_name) return -1;
-    //                 return 0;
-    //             }
-    //         )
-    //         break;
-    //     case '1':
-    //         tasksCopy.sort(
-    //             (a,b) => {
-    //                 if (a.user_name>b.user_name) return -1;
-    //                 if (a.user_name<b.user_name) return 1;
-    //                 return 0;
-    //             }
-    //         )
-    //         break;
-    //     case '2':
-    //         tasksCopy = tasksCopy.filter((task) => {
-    //             return task.status === true;
-    //         });
-    //         break;
-    //     case '3':
-    //         tasksCopy = tasksCopy.filter((task) => {
-    //             return task.status === false;
-    //         });
-    //         break;
-    //     default:
-    //         tasksCopy.sort(
-    //             (a,b) => {
-    //                 if (a.user_name>b.user_name) return 1;
-    //                 if (a.user_name<b.user_name) return -1;
-    //                 return 0;
-    //             }
-    //         )
-    //         break;
-    // }
 
     return (
         <>
@@ -93,10 +64,7 @@ function Account(props) {
                         <div className={isDisplayForm?"account__manager__grid":"account__manager__grid--hidden"}>
                             <div className={isDisplayForm?"account__manager__add-update":"account__manager__add-update--hidden"}>
                                 {
-                                    <TaskForm 
-                                        itemEdit={itemEdit}
-
-                                    />
+                                    <TaskForm/>
                                 }
                             </div>
                             <div className="account__manager__other-action">
@@ -107,9 +75,7 @@ function Account(props) {
                                     onSearch={onSearch}
                                     onSort={onSort}
                                 />
-                                <TaskList   
-                                    onSelectItem={onSelectItem}
-                                />
+                                <TaskList/>
                             </div>
                         </div>
                     </div>
@@ -120,7 +86,8 @@ function Account(props) {
 }
 const mapStateToProps = state => {
     return {
-        isDisplayForm: state.isDisplayForm
+        isDisplayForm: state.isDisplayForm,
+        itemEdit: state.accountEdit
     }
 }
 
@@ -128,6 +95,12 @@ const mapDispatchToProps = (dispatch, props) => {
     return {
         onToggleForm: () => {
             dispatch(Actions.toggleForm());
+        },
+        onCloseForm: () => {
+            dispatch(Actions.closeForm())
+        },
+       onSelectItemEdit: item => {
+            dispatch(Actions.selectAccountEdit(item));
         }
     }
 }

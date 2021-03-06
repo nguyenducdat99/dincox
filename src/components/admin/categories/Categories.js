@@ -1,7 +1,7 @@
 // import style library, components
 import './Categories.scss';
 import SmallBanner from '../../fixcontents/smallbanner/SmallBanner';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import TaskControl from './taskcontrol/TaskControl';
 import TaskList from './tasklist/TaskList';
 import TaskForm from './taskform/TaskForm';
@@ -16,6 +16,14 @@ function Categories(props) {
     const [keyWord, setKeyWord] = useState('');
     const [sortType, setSortType] = useState('0');
     var { isDisplayForm } = props
+
+    // handle in first loading
+    useEffect(
+        () => {
+            props.onCloseForm();
+        // eslint-disable-next-line 
+        },[]
+    )
 
     // toggle form add/edit
     var onToggleForm = () => {
@@ -155,6 +163,9 @@ const mapDispatchToProps = (dispatch, action) => {
     return {
         onToggleForm: () => {
             dispatch(Actions.toggleForm());
+        },
+        onCloseForm: () => {
+            dispatch(Actions.closeForm());
         }
     }
 }

@@ -8,7 +8,8 @@ function TaskItem(props) {
 
     // handle return item for onSlectItem
     var onSelectItem = () => {
-        props.onSelectItem(task);
+        props.onSelectItemEdit(task);
+        props.onOpenForm();
     }
     
     // handle update status
@@ -18,7 +19,7 @@ function TaskItem(props) {
 
     // handle delete task
     var onDeleteTask = () => {
-        props.onDeleteCategory(task.id_account);
+        props.onDeleteItem(task.id_account);
         props.onCloseForm();
     }
 
@@ -62,11 +63,17 @@ const mapDispatchToProps = (dispatch, props) => {
         onUpdateStatus: id_account => {
             dispatch(Actions.updateStatusAccount(id_account));
         },
-        onDeleteCategory: id_account => {
+        onDeleteItem: id_account => {
             dispatch(Actions.deleteAccount(id_account));
+        },
+        onOpenForm: () => {
+            dispatch(Actions.openForm());
         },
         onCloseForm: () => {
             dispatch(Actions.closeForm());
+        },
+        onSelectItemEdit: item => {
+            dispatch(Actions.selectAccountEdit(item));
         }
     }
 }

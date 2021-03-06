@@ -27,9 +27,9 @@ export  const listAccount = () => {
         type: types.LIST_ACCOUNT
     }
 }
-export const addAccount = newAccount => {
+export const saveAccount = newAccount => {
     return {
-        type: types.ADD_ACCOUNT,
+        type: types.SAVE_ACCOUNT,
         payload: newAccount
     }
 }
@@ -43,6 +43,12 @@ export const deleteAccount = id_account => {
     return {
         type: types.DELETE_ACCOUNT,
         payload: id_account
+    }
+}
+export const selectAccountEdit = account => {
+    return {
+        type: types.ACCOUNT_EDIT,
+        payload: account
     }
 }
 
@@ -69,6 +75,11 @@ export const updateStatusCategory = id_category => {
 export const toggleForm = () => {
     return {
         type: types.TOGGLE_FORM
+    }
+}
+export const openForm = () => {
+    return {
+        type: types.OPEN_FORM
     }
 }
 export const closeForm = () => {

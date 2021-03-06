@@ -26,11 +26,15 @@ var AccountReducer = (state=initialState, action) =>{
         case types.LIST_ACCOUNT:
 
             return state;
-        case types.ADD_ACCOUNT:
+        case types.SAVE_ACCOUNT:
             if (action.payload.id_account==='') {
                 action.payload.id_account = s16();
+                state.push(action.payload);
+            }else{
+                index = findIndex(state, action.payload.id_account);
+                state[index] = action.payload;
             }
-            state.push(action.payload);
+            
             localStorage.setItem('accountStore',JSON.stringify(state));
 
             return [...state];
@@ -48,7 +52,7 @@ var AccountReducer = (state=initialState, action) =>{
             index = findIndex(state,action.payload);
 
             state.splice(index, 1);
-            // localStorage.setItem('accountStore', JSON.stringify(state));
+            localStorage.setItem('accountStore', JSON.stringify(state));
 
             return [...state];
         default:

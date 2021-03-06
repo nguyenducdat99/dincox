@@ -6,10 +6,12 @@ var FormReducer = (state=initialState, action) => {
         case types.TOGGLE_FORM:
 
             return !state;
-        case types.CLOSE_FORM:
-            state = false;
+        case types.OPEN_FORM:
 
-            return state;
+            return true;
+        case types.CLOSE_FORM:
+
+            return false;
         default:
             return state;
     }

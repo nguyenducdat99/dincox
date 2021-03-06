@@ -14,7 +14,6 @@ function TaskList(props) {
                 key={index}
                 index={index+1} 
                 task={item}
-                onSelectItem={props.onSelectItem}
             />
         )
     });
