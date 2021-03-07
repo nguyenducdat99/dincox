@@ -25,6 +25,8 @@ import {
 import Admin from './components/admin/Admin';
 import AccountsCtrl from './components/admin/accounts/Account';
 import CategoriesCtrl from './components/admin/categories/Categories';
+import NotFound from './components/notfound/NotFound';
+
 function App() {
 
   return (
@@ -94,6 +96,9 @@ function App() {
 				</Route>
 
 
+				<Route>
+					<NotFound/>
+				</Route>
 			</Switch>
 			<Footer />
 			<Copyright />
