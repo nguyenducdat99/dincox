@@ -1,0 +1,39 @@
+// import style library
+@import '../../App.css';
+@import '../../scss/Variable.scss';
+
+// style for function here
+.cart {
+    min-height: 300px;
+    position: relative;
+    z-index: 2;
+    background-color: $color-default-white;
+    padding: 30px 0;
+    font-size: $font-size-16;
+
+    &__head {
+        h2 {
+            text-transform: uppercase;
+            padding-bottom: 20px;
+            border-bottom: 1px solid $color-default-lightgray;
+            margin-bottom: 20px;
+            text-align: center;
+            padding-bottom: 20px;
+        }
+    }
+    &__body {
+        max-width: 700px;
+        margin: 0 auto;
+        table {
+            width: 100%;
+            tr {
+                th {
+                    padding: 30px 15px;
+                    font-weight: $font-weight-500;
+                    border-bottom: 1px solid $color-default-lightgray;
+                }
+            }
+        }
+
+    }
+}

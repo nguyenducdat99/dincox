@@ -26,6 +26,7 @@ import Admin from './components/admin/Admin';
 import AccountsCtrl from './components/admin/accounts/Account';
 import CategoriesCtrl from './components/admin/categories/Categories';
 import NotFound from './components/notfound/NotFound';
+import Cart from './components/cart/Cart';
 
 function App() {
 
@@ -92,6 +93,10 @@ function App() {
 
 				<Route path='/managers/categories'>
 					<CategoriesCtrl />
+				</Route>
+
+				<Route path='/cart'>
+					<Cart />
 				</Route>
 
 

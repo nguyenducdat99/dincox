@@ -106,7 +106,7 @@ function Header() {
                             </div>
                             {/* block cart */}
                             <div className="header-grid__navigation__cart">
-                                <a  href='/#' >Giỏ hàng</a>
+                                <Link to='/cart'>Giỏ hàng</Link>
                             </div>
                         </nav>
                     </div>

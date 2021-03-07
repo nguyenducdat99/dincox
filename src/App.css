@@ -31,7 +31,8 @@ a{
 button[type=button]{
   font-family: 'Roboto Condensed', sans-serif !important;
 }
-button:focus{
+button:focus,
+input[type=button]{
   outline: none !important;
 }
 
