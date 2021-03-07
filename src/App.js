@@ -50,7 +50,6 @@ function App() {
 					<ProductFilter />
 				</Route>
 
-
 				<Route path="/articles/:id">
 					<ArticleDetail />
 				</Route>

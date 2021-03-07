@@ -8,6 +8,13 @@
     padding-bottom: 50px;
     color: $color-default-black;
     background-color: $color-default-white;
+
+    a,
+    a:active,
+    a:focus,
+    a:visited{
+        color: $color-default-black;
+    }
     .wrapper {
         max-width: 1170px;
         margin: 0 auto;

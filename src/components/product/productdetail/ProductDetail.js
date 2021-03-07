@@ -6,14 +6,14 @@ import {connect} from 'react-redux';
 
 function ProductDetail(props){
     // declare state
-    const [dataSize,setDataSize] = useState([]);
-    setDataSize([36, 37, 38, 39]);
+    // eslint-disable-next-line
+    const [dataSize,setDataSize] = useState([36, 37, 38, 39]);
     const [amountProduct, setAmountProduct] = useState(1);
     const { id } = useParams();// get id from url
     const { data } = props;// get datadefault;
 
     // get current product
-    
+    console.log(props.ListProduct);
     var currentProduct;
     data.forEach((item, index)=>{
 
@@ -36,6 +36,7 @@ function ProductDetail(props){
     return(
         <>
             <SmallBanner title="Chi tiết sản phẩm" title2={product_name}/>
+            
             <div className="product-detail">
                 <div className="wrapper">
                     <div className="product-detail-grid">
@@ -173,6 +174,7 @@ function ProductDetail(props){
                     </div>
                 </div>
             </div>
+        
         </>
     );
 }

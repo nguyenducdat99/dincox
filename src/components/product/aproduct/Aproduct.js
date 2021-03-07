@@ -37,7 +37,10 @@ function Aproduct(props) {
                                         <i className="fa fa-search-plus" aria-hidden="true"></i>
                                     </button>
                                     <button type="button" className="aproduct__image__select__check-out">
-                                        <p>Mua ngay</p>
+                                       
+                                        <Link to={"/products/"+id_product}>
+                                            <p>Mua ngay</p>
+                                        </Link>
                                     </button>
                                     <button type="button" className="aproduct__image__select__cart-plus">
                                         <i className="fa fa-cart-plus" aria-hidden="true"></i>
