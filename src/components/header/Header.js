@@ -5,11 +5,14 @@ import Support from '../support/Support';
 import { Link } from 'react-router-dom';
 
 
-function Header() {
+function Header(props) {
     // declare state component
     const [isActiveSearch, setIsActiveSearch] = useState(false);
     const [isActiveHeader, setIsActiveHeader] = useState(false);
     
+    //get props
+    var { cart } = props;
+
     // excute when user click button search
     var onToggleSearch = () => {
         setIsActiveSearch(!isActiveSearch);
@@ -106,7 +109,7 @@ function Header() {
                             </div>
                             {/* block cart */}
                             <div className="header-grid__navigation__cart">
-                                <Link to='/cart'>Giỏ hàng</Link>
+                                <Link to='/cart'>Giỏ hàng{cart===0?'':'('+cart+')'}</Link>
                             </div>
                         </nav>
                     </div>

@@ -3,14 +3,14 @@ import {connect} from 'react-redux';
 import Cart from '../components/cart/Cart';
 import PropTypes from 'prop-types';
 import CartItem from '../components/cart/cartitem/CartItem';
+import TotalItem from '../components/cart/totalItem/TotalItem';
 
 // code function here
 function CartContainer(props){
     // declare state
     var { cart } = props;
-    var listIndex = showCart();
 
-    function showCart() {
+    var showCart = cart => {
         if (cart.length ===0) return (
             <tr>
                 <td>Không có sản phẩm nào trong giỏ</td>
@@ -25,8 +25,16 @@ function CartContainer(props){
         });
     }
 
+    var showTotalItem = cart => {
+        if (cart.length === 0) return "";
+        return <TotalItem listItem={cart}/>
+    }
+
     return(
-        <Cart cart={listIndex} />
+        <Cart 
+            item={showCart(cart)}
+            totalItem={showTotalItem(cart)}    
+        />
     );
 }
 

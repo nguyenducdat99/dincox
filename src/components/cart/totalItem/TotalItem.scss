@@ -6,7 +6,6 @@
 .total-item {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    column-gap: 50px;
     padding: 15px;
 
     &__note {
@@ -21,9 +20,9 @@
         }
     }
     &__checkout {
+        text-align: right;
         p {
-            padding: 20px;
-            padding-left: 0;
+            padding: 20px 0;
             b {
                 font-size: $font-size-24;
             }

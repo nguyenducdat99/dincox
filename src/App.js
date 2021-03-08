@@ -1,7 +1,6 @@
 import './App.css';// import style for app
 import "slick-carousel/slick/slick.css"; // import style for slick carousel
 import "slick-carousel/slick/slick-theme.css";// import style for slick carousel
-import Header from './components/header/Header';
 import Slider from './components/slider/Slider';
 import Policy from './components/policy/Policy';
 import Footer from './components/footer/Footer';
@@ -27,6 +26,7 @@ import AccountsCtrl from './components/admin/accounts/Account';
 import CategoriesCtrl from './components/admin/categories/Categories';
 import NotFound from './components/notfound/NotFound';
 import CartContainer from './containers/CartContainer';
+import HeaderContainer from './containers/HeaderContainer';
 
 function App() {
 
@@ -34,7 +34,7 @@ function App() {
     <div className="App">
         
         <Router>
-          	<Header/>
+          	<HeaderContainer/>
           	<Switch>
 				<Route path="/" exact>
 					<Slider />

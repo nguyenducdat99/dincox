@@ -1,12 +1,11 @@
 // import library style, component
 import './Cart.scss';
 import SmallBanner from '../fixcontents/smallbanner/SmallBanner';
-import TotalItem from './totalItem/TotalItem';
 
 // code function here
 function Cart(props) {
     // get props
-    var { cart } = props;
+    var { item, totalItem } = props;
 
 
     return (
@@ -28,11 +27,11 @@ function Cart(props) {
                                 </tr>
                             </thead>
                             <tbody>
-                                {cart}
+                                {item}
                             </tbody>
                         </table>
                         <div className='cart__body__total-item'>
-                            <TotalItem />
+                            {totalItem}
                         </div>
                     </div>
                 </div>   
