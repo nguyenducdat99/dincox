@@ -21,3 +21,6 @@ export const UPDATE_STATUS_CATEGORY = 'UPDATE_STATUS_CATEGORY';
 export const TOGGLE_FORM = "TOGGLE_FORM";
 export const OPEN_FORM = "OPEN_FORM";
 export const CLOSE_FORM = "CLOSE_FORM";
+
+// handler for cart
+export const ADD_TO_CART = "ADD_TO_CART";

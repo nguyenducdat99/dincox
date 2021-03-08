@@ -1,11 +1,20 @@
 // import style library, component
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './CartItem.scss';
 
 // code funciton here
-function CartItem() {
+function CartItem(props) {
     // declare state
     const [quantity,setQuantity] = useState(0);
+    var { item } = props;
+
+    // load quantity
+    useEffect(
+        () => {
+            setQuantity(item.quantity);
+            // eslint-disable-next-line
+        },[]
+    )
 
     return (
             <tr className="cart-item">
@@ -15,13 +24,13 @@ function CartItem() {
                             <img src="" alt=""/>
                         </div>
                         <div className="cart-item__item-detail__content">
-                            <h3>COX007 WHITE</h3>
-                            <p>Size: 44</p>
+                            <h3>{item.product.product_name}</h3>
+                            <p>Size: {item.size}</p>
                             <button type='button'>Xóa</button>
                         </div>
                     </div>
                 </td>
-                <td><b>100000<u>đ</u></b></td>
+                <td><b>{item.product.price}<u>đ</u></b></td>
                 <td>
                     <div className='cart-item__item-detail__action'>
                         <button type='button'
@@ -31,7 +40,9 @@ function CartItem() {
                                     setQuantity(quantity-1);
                                 }
                             }
-                        >-</button>
+                        >
+                            <span className='fa fa-minus'></span>
+                        </button>
                         <input type='text' value={quantity} readOnly/>
                         <button type='button'
                             onClick={
@@ -39,10 +50,12 @@ function CartItem() {
                                     setQuantity(quantity+1);
                                 }
                             }
-                        >+</button>
+                        >
+                            <span className='fa fa-plus'></span>
+                        </button>
                     </div>
                 </td>
-                <td><b>100000<u>đ</u></b></td>
+                <td><b>{item.product.price*quantity}<u>đ</u></b></td>
             </tr>
     )
 }

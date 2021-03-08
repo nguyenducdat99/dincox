@@ -88,3 +88,11 @@ export const closeForm = () => {
     }
 }
 
+// handle for cart 
+export const addToCart = newItem => {
+    return {
+        type: types.ADD_TO_CART,
+        payload: newItem
+    }
+}
+

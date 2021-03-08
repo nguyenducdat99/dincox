@@ -5,6 +5,7 @@ import ListAccount from './AccountReducer';
 import listCategory from './CategoriesReducer';
 import isDisplayForm from './FormReducer';
 import accountEdit from './AccountEditReducer';
+import cart from './CartReducer';
 
 const Reducers = combineReducers({
     ListProduct,
@@ -12,7 +13,8 @@ const Reducers = combineReducers({
     ListAccount,
     listCategory,
     isDisplayForm,
-    accountEdit
+    accountEdit,
+    cart
 });
 
 export default Reducers;

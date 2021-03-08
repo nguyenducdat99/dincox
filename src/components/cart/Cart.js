@@ -1,11 +1,14 @@
 // import library style, component
 import './Cart.scss';
 import SmallBanner from '../fixcontents/smallbanner/SmallBanner';
-import CartItem from './cartitem/CartItem';
 import TotalItem from './totalItem/TotalItem';
 
 // code function here
-function Cart() {
+function Cart(props) {
+    // get props
+    var { cart } = props;
+
+
     return (
         <>
             <SmallBanner title='Giỏ hàng của tôi'/>
@@ -25,10 +28,7 @@ function Cart() {
                                 </tr>
                             </thead>
                             <tbody>
-                                <CartItem />
-                                <CartItem />
-                                <CartItem />
-                                <CartItem />
+                                {cart}
                             </tbody>
                         </table>
                         <div className='cart__body__total-item'>

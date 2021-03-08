@@ -1,7 +1,5 @@
 // import style library, components
-import SingleProduct from '../aproduct/Aproduct';
 import "./ProductHightlight.scss";
-import {connect} from 'react-redux';
 
 
 // code function here
@@ -11,15 +9,7 @@ function ProductHightlight(props){
 
 
     // load product list
-    var {listProductHightLight} = props;
-    var listIndex = listProductHightLight.map((item,index)=>{
-        if(item.is_active&&!item.is_sale){
-            return(
-                <SingleProduct key={index} data={item}/>
-            )
-        }
-        return '';
-    })
+    var { listProduct } = props;
 
     // excute when click butotn;
     function removeStyle() {
@@ -46,7 +36,7 @@ function ProductHightlight(props){
             </div>
             <div className="product__hightlights__list-product">
                 {
-                    listIndex
+                    listProduct
                 }
             </div>
             
@@ -54,9 +44,4 @@ function ProductHightlight(props){
     );
 }
 
-const mapStateToPropsProductHightlight = (state) => {
-    return {
-        listProductHightLight: state.ListProduct
-    }
-};
-export default connect(mapStateToPropsProductHightlight,null)(ProductHightlight)
+export default ProductHightlight;
