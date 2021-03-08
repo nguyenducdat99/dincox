@@ -8,7 +8,7 @@ function Aproduct(props) {
     // declare state and variable
     const [toggleQuickView, setToggleQuickView] = useState(false);
     var { id_product, product_name, is_sale, price } = props.data;// get data from props
-    
+    var { data } = props;
 
     // code function here
     var onToggleQuickView = () => {
@@ -17,7 +17,10 @@ function Aproduct(props) {
     var resetToggleQuickView = () => {
         setToggleQuickView(false);
     }
-
+    var onSelectItem = () => {
+        props.onAddToCartRec(data);
+    }
+    
     return(
         <>
             <div className="aproduct">
@@ -33,7 +36,10 @@ function Aproduct(props) {
                         <form action="" method="">
                             <div className="aproduct__image__select-wrapper">
                                 <div className="aproduct__image__select">
-                                    <button type="button" className="aproduct__image__select__search-plus" onClick={onToggleQuickView}>
+                                    <button type="button" 
+                                        className="aproduct__image__select__search-plus" 
+                                        onClick={onToggleQuickView}
+                                    >
                                         <i className="fa fa-search-plus" aria-hidden="true"></i>
                                     </button>
                                     <button type="button" className="aproduct__image__select__check-out">
@@ -42,7 +48,10 @@ function Aproduct(props) {
                                             <p>Mua ngay</p>
                                         </Link>
                                     </button>
-                                    <button type="button" className="aproduct__image__select__cart-plus">
+                                    <button type="button" 
+                                        className="aproduct__image__select__cart-plus"
+                                        onClick={onSelectItem}
+                                    >
                                         <i className="fa fa-cart-plus" aria-hidden="true"></i>
                                     </button>
                                 </div>

@@ -3,8 +3,6 @@ import './ProductSale.scss';
 import SmallImg from './product__banner__small.jpg';
 import LargeImg from './product__banner__large.jpg';
 import { useState } from 'react';
-import SingleProduct from '../aproduct/Aproduct';
-import { connect } from 'react-redux';
 
 // code function here
 function ProductSale(props){
@@ -14,16 +12,13 @@ function ProductSale(props){
 
     // load product list
     var sum=0;// amount product show (condition)
-    var {listProductSale} = props;
-    var listIndex= listProductSale.map((item,index)=>{
-        
-        if(item.is_active&&item.is_sale&&sum<amountProduct){
+    var {listProduct} = props;
+    var listIndex= listProduct.map((item,index)=>{
+        if (sum<amountProduct) {
             sum ++;
-            return (
-                <SingleProduct key={index} data={item}/>
-            ) 
+            return item;
         }
-        return ''
+        return '';
     });
     // for(let i=0;i<amountProduct;i++) listIndex.push(i);
     // excute when user click button see more
@@ -62,10 +57,4 @@ function ProductSale(props){
     );
 }
 
-const mapStateToPropsProductSale = (state) => {
-    return {
-        listProductSale: state.ListProduct
-    }
-};
-
-export default connect(mapStateToPropsProductSale,null)(ProductSale);
+export default ProductSale;

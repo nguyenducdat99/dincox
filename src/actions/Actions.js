@@ -89,10 +89,12 @@ export const closeForm = () => {
 }
 
 // handle for cart 
-export const addToCart = newItem => {
+export const addToCart = (newItem,size,quantity) => {
     return {
         type: types.ADD_TO_CART,
-        payload: newItem
+        payload: newItem,
+        size,
+        quantity
     }
 }
 

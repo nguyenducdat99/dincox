@@ -1,6 +1,6 @@
 // import style library
 import './Product.scss';
-import ProductSale from './productsale/ProductSale';
+import ProductSaleContainer from '../../containers/ProductSaleContainer';
 import ProductHightlightContainer from '../../containers/ProductHightlightContainer';
 import ProductCollection from './productcollection/ProductCollection';
 
@@ -10,7 +10,7 @@ function Product() {
         <div className="product">
             <div className="wrapper">
                 {/* import component here */}
-                    <ProductSale />
+                    <ProductSaleContainer />
                     <ProductHightlightContainer />
                     <ProductCollection />
                 {/* import component here */}

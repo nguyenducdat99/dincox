@@ -19,12 +19,15 @@ function Cart(props) {
                     <div className="cart__body">
                         <table>
                             <thead>
-                                <tr>
-                                    <th>Sản phẩm</th>
-                                    <th>Đơn giá</th>
-                                    <th>Số lượng</th>
-                                    <th>Tổng tiền</th>
-                                </tr>
+                                {
+                                    totalItem===''?<tr></tr>:
+                                    <tr>
+                                        <th>Sản phẩm</th>
+                                        <th>Đơn giá</th>
+                                        <th>Số lượng</th>
+                                        <th>Tổng tiền</th>
+                                    </tr>
+                                }
                             </thead>
                             <tbody>
                                 {item}
