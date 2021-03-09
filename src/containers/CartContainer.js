@@ -4,6 +4,7 @@ import Cart from '../components/cart/Cart';
 import PropTypes from 'prop-types';
 import CartItem from '../components/cart/cartitem/CartItem';
 import TotalItem from '../components/cart/totalItem/TotalItem';
+import * as Actions from '../actions/Actions';
 
 // code function here
 function CartContainer(props){
@@ -21,6 +22,7 @@ function CartContainer(props){
                         key={index} 
                         item={item}
                         index={index+1}
+                        onDelItemInCartRec={props.onDelItemInCart}
                     />
         });
     }
@@ -55,4 +57,11 @@ const mapStateToProps = state => {
         cart: state.cart
     }
 };
-export default connect(mapStateToProps,null)(CartContainer)
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        onDelItemInCart: delProduct => {
+            dispatch(Actions.delItenInCart(delProduct));
+        }
+    }
+};
+export default connect(mapStateToProps,mapDispatchToProps)(CartContainer)

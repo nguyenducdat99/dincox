@@ -15,6 +15,10 @@ function CartItem(props) {
             // eslint-disable-next-line
         },[]
     )
+    
+    var onDelItemInCartSend = () => {
+        props.onDelItemInCartRec(item);
+    }
 
     return (
             <tr className="cart-item">
@@ -26,7 +30,9 @@ function CartItem(props) {
                         <div className="cart-item__item-detail__content">
                             <h3>{item.product.product_name}</h3>
                             <p>Size: {item.size}</p>
-                            <button type='button'>Xóa</button>
+                            <button type='button'
+                                onClick={onDelItemInCartSend}
+                            >Xóa</button>
                         </div>
                     </div>
                 </td>

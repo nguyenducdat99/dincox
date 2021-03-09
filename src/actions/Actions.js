@@ -97,4 +97,10 @@ export const addToCart = (newItem,size,quantity) => {
         quantity
     }
 }
+export const delItenInCart = delItem => {
+    return {
+        type: types.DELETE_ITEM_IN_CART,
+        payload: delItem
+    }
+}
 

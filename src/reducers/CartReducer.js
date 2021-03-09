@@ -15,11 +15,11 @@ var findIndex = (items, id_item) => {
 	return result;
 }
 
-
+var index = -1;
 var myReducer = (state=initialState, action) => {
     switch (action.type) {
         case types.ADD_TO_CART:
-			let index = findIndex(state,action.payload.id_product);
+			index = findIndex(state,action.payload.id_product);
 			if (index !== -1) {
 				state[index] = {
 					...state[index],
@@ -34,10 +34,17 @@ var myReducer = (state=initialState, action) => {
 					}
 				)
 			}
+
 			localStorage.setItem('cartStore',JSON.stringify(state));
-			
             return [...state];
-		
+		case types.DELETE_ITEM_IN_CART:
+			index = findIndex(state,action.payload.product.id_product);
+			state.splice(index,1);
+			console.log(state);
+
+		localStorage.setItem('cartStore',JSON.stringify(state));
+		return [...state];
+
         default:
             return state;
     }
