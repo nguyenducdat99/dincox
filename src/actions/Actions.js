@@ -103,4 +103,11 @@ export const delItenInCart = delItem => {
         payload: delItem
     }
 }
+export const updateQuantityItem = (updateItem,quantity) => {
+    return {
+        type: types.UPDATE_QUANTITY_ITEM,
+        payload: updateItem,
+        quantity
+    }
+}
 

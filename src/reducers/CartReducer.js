@@ -40,10 +40,19 @@ var myReducer = (state=initialState, action) => {
 		case types.DELETE_ITEM_IN_CART:
 			index = findIndex(state,action.payload.product.id_product);
 			state.splice(index,1);
-			console.log(state);
 
-		localStorage.setItem('cartStore',JSON.stringify(state));
-		return [...state];
+			localStorage.setItem('cartStore',JSON.stringify(state));
+			return [...state];
+
+		case types.UPDATE_QUANTITY_ITEM:
+			index = findIndex(state,action.payload.product.id_product);
+			state[index] = {
+				...state[index],
+				quantity: action.quantity
+			}
+			
+			localStorage.setItem('cartStore',JSON.stringify(state));
+			return [...state];
 
         default:
             return state;

@@ -25,3 +25,4 @@ export const CLOSE_FORM = "CLOSE_FORM";
 // handler for cart
 export const ADD_TO_CART = "ADD_TO_CART";
 export const DELETE_ITEM_IN_CART = "DELETE_ITEM_IN_CART";
+export const UPDATE_QUANTITY_ITEM = "UPDATE_QUANTITY_ITEM";

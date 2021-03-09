@@ -23,6 +23,7 @@ function CartContainer(props){
                         item={item}
                         index={index+1}
                         onDelItemInCartRec={props.onDelItemInCart}
+                        onUpdateQuantityRec={props.onUpdateQuantity}
                     />
         });
     }
@@ -59,8 +60,11 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        onDelItemInCart: delProduct => {
-            dispatch(Actions.delItenInCart(delProduct));
+        onDelItemInCart: delItem => {
+            dispatch(Actions.delItenInCart(delItem));
+        },
+        onUpdateQuantity: (updateItem, quantity) => {
+            dispatch(Actions.updateQuantityItem(updateItem,quantity));
         }
     }
 };

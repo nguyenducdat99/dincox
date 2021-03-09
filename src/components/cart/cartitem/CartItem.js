@@ -11,13 +11,22 @@ function CartItem(props) {
     // load quantity
     useEffect(
         () => {
+            // setQuantity(40);
             setQuantity(item.quantity);
             // eslint-disable-next-line
-        },[]
+        },[item.quantity]
     )
     
     var onDelItemInCartSend = () => {
         props.onDelItemInCartRec(item);
+    }
+
+    var onUpdateQuantitySend = (updateItem, quantity) => {
+        if (quantity===0) {
+            props.onDelItemInCartRec(updateItem);
+            return;
+        }
+        props.onUpdateQuantityRec(updateItem, quantity);
     }
 
     return (
@@ -43,7 +52,7 @@ function CartItem(props) {
                             onClick={
                                 () => {
                                     if (quantity===0) return;
-                                    setQuantity(quantity-1);
+                                    onUpdateQuantitySend(item,quantity-1);
                                 }
                             }
                         >
@@ -53,7 +62,7 @@ function CartItem(props) {
                         <button type='button'
                             onClick={
                                 () => {
-                                    setQuantity(quantity+1);
+                                    onUpdateQuantitySend(item,quantity+1);
                                 }
                             }
                         >
