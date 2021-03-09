@@ -1,4 +1,5 @@
 import * as types from '../constands/ActionTypes';
+import callApi from '../utils/ApiCaller';
 
 // handle for products
 export const listProduct = () => {
@@ -22,6 +23,21 @@ export const listNew = () => {
 
 
 // handle for accounts
+export const fetchAccountRequest = () => {
+    return dispatch => {
+        return callApi('accounts','GET',null).then(
+            res => {
+                dispatch.fetchAccount(res.data);
+            }
+        )
+    }
+}
+export const fetchAccount = items => {
+    return {
+        type: types.FECTH_ACCOUNT,
+        payload: items
+    }
+}
 export  const listAccount = () => {
     return {
         type: types.LIST_ACCOUNT

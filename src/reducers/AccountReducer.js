@@ -23,6 +23,10 @@ function findIndex(state, id) {
 var index;
 var AccountReducer = (state=initialState, action) =>{
     switch (action.type) {
+        case types.FECTH_ACCOUNT: 
+            console.log(action.payload);
+            
+            return state;
         case types.LIST_ACCOUNT:
 
             return state;

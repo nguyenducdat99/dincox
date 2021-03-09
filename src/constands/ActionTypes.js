@@ -6,6 +6,7 @@ export const LIST_PRODUCT_SALE = "LIST_PRODUCT_SALE"
 export const LIST_NEW = "LIST_NEW";
 
 // handle for account
+export const FECTH_ACCOUNT = "FETCH_ACCOUNT";
 export const LIST_ACCOUNT = "LIST_ACCOUNT";
 export const SAVE_ACCOUNT = "SAVE_ACCOUNT";
 export const UPDATE_STATUS_ACCOUNT = "UPDATE_STATUS_ACCOUNT";
