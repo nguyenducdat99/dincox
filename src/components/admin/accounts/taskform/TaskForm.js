@@ -181,8 +181,8 @@ const mapStateToProps = state => {
 }
 const mapActionToProps = (dispatch, props) => {
     return {
-        onSaveItem: task => {
-            dispatch(Actions.saveAccount(task));
+        onSaveItem: item => {
+            dispatch(Actions.saveAccountRequest(item));
         },
         onCloseForm: () => {
             dispatch(Actions.closeForm());

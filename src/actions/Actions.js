@@ -43,6 +43,20 @@ export  const listAccount = () => {
         type: types.LIST_ACCOUNT
     }
 }
+export const saveAccountRequest = (item) => {
+    item = {
+        ...item,
+        status: item.status?1:0
+    }
+    return (dispatch) => {
+        return callApi('accounts','POST', item).then(
+            res => {
+                dispatch(saveAccount(res.data));
+                console.log(res.data);
+            }
+        )
+    }
+}
 export const saveAccount = newAccount => {
     return {
         type: types.SAVE_ACCOUNT,

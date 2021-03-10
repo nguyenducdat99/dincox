@@ -31,15 +31,12 @@ var AccountReducer = (state=initialState, action) =>{
 
             return state;
         case types.SAVE_ACCOUNT:
-            if (action.payload.id_account==='') {
-                action.payload.id_account = s16();
+            index = findIndex(state,action.payload.id_account);
+            if (index===-1) {
                 state.push(action.payload);
             }else{
-                index = findIndex(state, action.payload.id_account);
                 state[index] = action.payload;
             }
-            
-            localStorage.setItem('accountStore',JSON.stringify(state));
 
             return [...state];
         case types.UPDATE_STATUS_ACCOUNT:
