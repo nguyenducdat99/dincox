@@ -136,6 +136,23 @@ export const selectAccount = account => {
     }
 }
 
+
+export const loginAccountRequest = account => {
+    return (dispatch) => {
+        return callApi('login','POST', account).then(
+            res => {
+                dispatch(loginAccount(res.data));
+            }
+        )
+    }
+}
+export const loginAccount = info => {
+    return {
+        type: types.LOGIN_ACCOUNT,
+        payload: info
+    }
+}
+
 // handle for categories
 export const listCategory = () => {
     return {

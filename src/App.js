@@ -14,7 +14,7 @@ import PrivacyPolicy from "./components/fixcontents/privacypolicy/PrivacyPolicy"
 import ReturnPolicy from "./components/fixcontents/returnpolicy/ReturnPolicy";
 import StoreLocation from './components/fixcontents/storelocation/StoreLocation';
 import ArticleDetail from './components/article/articledetail/ArticleDetail';
-import Login from './components/account/login/Login';
+import LoginContainer from './containers/AccountLoginContainer';
 import Register from './components/account/register/Register';
 import {
   BrowserRouter as Router,
@@ -76,7 +76,7 @@ function App() {
 				</Route>
 
 				<Route path="/account/login">
-					<Login/>
+					<LoginContainer/>
 				</Route>
 
 				<Route path="/account/register">

@@ -6,15 +6,37 @@ import Recover from '../recover/Recover';
 import { useState } from 'react';
 
 // funciton code here
-function Login(){
+function Login(props){
     // declare state
     const [showRecover, setShowRecover] = useState(false);
-    
+    const [loginAccount, setLoginAccount] = useState(
+        {
+            user_name: '',
+            password: ''
+        }
+    )
     // event process
     var onShowRecover = () => {
         setShowRecover(!showRecover);
     }
 
+    // hanle when submit
+    var onHandleSubmit = event => {
+        event.preventDefault();
+        props.onLoginAccountRec(loginAccount);
+    }
+
+    var onHandleChange = event => {
+        let name = event.target.name;
+        let value = event.target.value;
+
+        setLoginAccount(
+            {
+                ...loginAccount,
+                [name]: value
+            }
+        )
+    }
 
     return (
         <>
@@ -25,12 +47,26 @@ function Login(){
                         <div className="login__title">
                             <h1>Đăng nhập</h1>
                         </div>
-                        <form action="" method="">
+                        <form action="" method="" onSubmit={onHandleSubmit}>
                             <div className="login__form-group">
-                                <input type="email" className="login__form-group__form-control" placeholder="Email" required/>
+                                <input type="text" 
+                                    className="login__form-group__form-control" 
+                                    placeholder="Tài khoản" 
+                                    name='user_name'
+                                    value={loginAccount.user_name}
+                                    onChange={onHandleChange}
+                                    required
+                                />
                             </div>
                             <div className="login__form-group">
-                                <input type="password" className="login__form-group__form-control"  placeholder="Mật khẩu" required/>
+                                <input type="password" 
+                                    className="login__form-group__form-control"  
+                                    placeholder="Mật khẩu" 
+                                    name='password'
+                                    value={loginAccount.password}
+                                    onChange={onHandleChange}
+                                    required
+                                />
                             </div>
                             <div className="login__form-group">
                                 <button type="submit" className="login__form-group__form-control login__form-group__form-control--button" >Đăng nhập</button>
