@@ -4,10 +4,11 @@ const initialState =  [];
 
 
 function findIndex(state, id) {
-    let result= -1;
+    var result= -1;
     state.forEach((item, index) => {
-        if (item.id_account === id) {
-            result = index;
+
+        if (item.id_account*1 === id*1) {
+            result = index; 
         };
     });
     return result;
@@ -25,6 +26,7 @@ var AccountReducer = (state=initialState, action) =>{
             return state;
         case types.SAVE_ACCOUNT:
             index = findIndex(state,action.payload.id_account);
+
             if (index===-1) {
                 state.push(action.payload);
             }else{

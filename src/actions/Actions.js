@@ -49,15 +49,27 @@ export const saveAccountRequest = (item) => {
         ...item,
         status: item.status*1
     }
-    
-    return (dispatch) => {
-        return callApi('accounts','POST', item).then(
-            res => {
-                dispatch(saveAccount(res.data));
-                console.log(res.data);
-            }
-        )
+    let id = item.id_account;
+
+    if (id !== ''){
+        return (dispatch) => {
+            return callApi(('accounts/'+id),'PUT', item).then(
+                res => {
+                    dispatch(saveAccount(res.data));
+                    // console.log(res.data);
+                }
+            )
+        }
+    } else {
+        return (dispatch) => {
+            return callApi('accounts','POST', item).then(
+                res => {
+                    dispatch(saveAccount(res.data));
+                }
+            )
+        }
     }
+    
 }
 export const saveAccount = newAccount => {
     return {
@@ -66,6 +78,25 @@ export const saveAccount = newAccount => {
     }
 }
 
+
+export const updateStatusAccountRequest = (item) => {
+
+    item = {
+        ...item,
+        status: (item.status*1===1)?0:1
+    }
+    let id = item.id_account;
+
+    return (dispatch) => {
+        return callApi(('accounts/'+id),'PUT', item).then(
+            res => {
+                dispatch(updateStatusAccount(res.data.id_account));
+                // console.log(res.data);
+            }
+        )
+    }
+  
+}
 export const updateStatusAccount = id_account => {
     return {
         type: types.UPDATE_STATUS_ACCOUNT,

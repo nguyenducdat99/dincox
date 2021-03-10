@@ -17,7 +17,6 @@ function TaskForm(props) {
             status: 0
         }
     )
-
     useEffect(
         () => {
             if (props.itemEdit.id_account!=='') {
@@ -150,7 +149,7 @@ function TaskForm(props) {
                             <select 
                                 className="form-control"
                                 onChange={onHandleChange}
-                                value={objectTask.status===1?true:false}
+                                value={objectTask.status}
                                 name="status"
                                 required
                             >

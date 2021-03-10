@@ -15,7 +15,7 @@ function TaskItem(props) {
     
     // handle update status
     var onUpdateStatus = () => {
-        props.onUpdateStatus(task.id_account);
+        props.onUpdateStatus(task);
     }
 
     // handle delete task
@@ -63,8 +63,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        onUpdateStatus: id_account => {
-            dispatch(Actions.updateStatusAccount(id_account));
+        onUpdateStatus: item => {
+            dispatch(Actions.updateStatusAccountRequest(item));
         },
         onDeleteItem: id_account => {
             dispatch(Actions.deleteAccountRequest(id_account));

@@ -37,7 +37,6 @@ function Account(props) {
         )
         let { itemEdit } = props;
         if (itemEdit&&itemEdit.id_account === ''){
-            console.log(true);
             props.onToggleForm();
         }
     };
