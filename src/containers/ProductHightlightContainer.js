@@ -3,9 +3,21 @@ import {connect} from 'react-redux';
 import ProductHightlight from '../components/product/producthightlight/ProductHightlight';
 import SingleProduct from '../components/product/aproduct/Aproduct';
 import * as Actions from '../actions/Actions';
+import { useEffect } from 'react';
+import callApi from '../utils/ApiCaller';
 
 // code function here
 function ProductHightlightContainer(props){
+    useEffect(
+        () => {
+            callApi('products','GET',null).then(
+                res => {
+                    props.onFetchProduct(res.data);
+                }
+            )
+            // eslint-disable-next-line
+        },[]
+    )
     // declare state
     var { listProductHightLight } = props;
     var listIndex = listProductHightLight.map((item,index)=>{
@@ -36,7 +48,10 @@ const mapStateToPropsProductHightlight = (state) => {
 };
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        onAddToCart: (newItem) => {
+        onFetchProduct: products => {
+            dispatch(Actions.fetchProduct(products))
+        },
+        onAddToCart: newItem => {
             dispatch(Actions.addToCart(newItem,'38',1));
         }
     }

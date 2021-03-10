@@ -3,13 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { createStore } from 'redux';
+import { applyMiddleware, compose, createStore } from 'redux';
 import {Provider} from 'react-redux';
 import Reducers from './reducers/Reducers';
+import thunk from 'redux-thunk';
 
 const store = createStore(
         Reducers,
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+        compose(
+            applyMiddleware(thunk),
+            window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+        )
     ); // define store
 
 ReactDOM.render(

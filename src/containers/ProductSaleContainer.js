@@ -36,7 +36,7 @@ const mapDispatchToProps = (dispatch, props) => {
     return {
         onAddToCart: (newItem) => {
             dispatch(Actions.addToCart(newItem,'38',1));
-        }
+        },
     }
 };
 export default connect(mapStateToProps,mapDispatchToProps)(ProductSaleContainer)

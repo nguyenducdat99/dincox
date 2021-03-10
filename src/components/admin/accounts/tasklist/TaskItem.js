@@ -19,8 +19,10 @@ function TaskItem(props) {
 
     // handle delete task
     var onDeleteTask = () => {
-        props.onDeleteItem(task.id_account);
-        props.onCloseForm();
+        if (window.confirm('Bạn có muốn xóa không?')) {
+            props.onDeleteItem(task.id_account);
+            props.onCloseForm();
+        } 
     }
 
     return (
@@ -64,7 +66,7 @@ const mapDispatchToProps = (dispatch, props) => {
             dispatch(Actions.updateStatusAccount(id_account));
         },
         onDeleteItem: id_account => {
-            dispatch(Actions.deleteAccount(id_account));
+            dispatch(Actions.deleteAccountRequest(id_account));
         },
         onOpenForm: () => {
             dispatch(Actions.openForm());

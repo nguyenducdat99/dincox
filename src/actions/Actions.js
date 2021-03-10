@@ -2,15 +2,15 @@ import * as types from '../constands/ActionTypes';
 import callApi from '../utils/ApiCaller';
 
 // handle for products
+export const fetchProduct = products => {
+    return {
+        type: types.FECTH_ACCOUNT,
+        payload: products
+    }
+}
 export const listProduct = () => {
     return {
         type : types.LIST_PRODUCT
-    }
-};
-
-export const listProductSale = () => {
-    return {
-        type : types.LIST_PRODUCT_SALE
     }
 };
 
@@ -24,15 +24,15 @@ export const listNew = () => {
 
 // handle for accounts
 export const fetchAccountRequest = () => {
-    return dispatch => {
+    return (dispatch) => {
         return callApi('accounts','GET',null).then(
             res => {
-                dispatch.fetchAccount(res.data);
+                dispatch(fetchAccount(res.data));
             }
         )
     }
 }
-export const fetchAccount = items => {
+export const fetchAccount = (items) => {
     return {
         type: types.FECTH_ACCOUNT,
         payload: items
@@ -53,6 +53,15 @@ export const updateStatusAccount = id_account => {
     return {
         type: types.UPDATE_STATUS_ACCOUNT,
         payload: id_account
+    }
+}
+export const deleteAccountRequest = id_account => {
+    return (dispatch) => {
+        return callApi(('accounts/'+id_account),'DELETE',null).then(
+            res => {
+                dispatch(deleteAccount(id_account));
+            }
+        )
     }
 }
 export const deleteAccount = id_account => {

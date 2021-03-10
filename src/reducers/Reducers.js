@@ -7,6 +7,7 @@ import isDisplayForm from './FormReducer';
 import accountEdit from './AccountEditReducer';
 import cart from './CartReducer';
 
+
 const Reducers = combineReducers({
     ListProduct,
     ListNew,

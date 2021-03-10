@@ -24,7 +24,7 @@ var index;
 var AccountReducer = (state=initialState, action) =>{
     switch (action.type) {
         case types.FECTH_ACCOUNT: 
-            console.log(action.payload);
+            state = action.payload;
             
             return state;
         case types.LIST_ACCOUNT:
@@ -56,8 +56,6 @@ var AccountReducer = (state=initialState, action) =>{
             index = findIndex(state,action.payload);
 
             state.splice(index, 1);
-            localStorage.setItem('accountStore', JSON.stringify(state));
-
             return [...state];
         default:
             return state;
