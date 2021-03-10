@@ -44,10 +44,12 @@ export  const listAccount = () => {
     }
 }
 export const saveAccountRequest = (item) => {
+  
     item = {
         ...item,
-        status: item.status?1:0
+        status: item.status*1
     }
+    
     return (dispatch) => {
         return callApi('accounts','POST', item).then(
             res => {
@@ -63,12 +65,14 @@ export const saveAccount = newAccount => {
         payload: newAccount
     }
 }
+
 export const updateStatusAccount = id_account => {
     return {
         type: types.UPDATE_STATUS_ACCOUNT,
         payload: id_account
     }
 }
+
 export const deleteAccountRequest = id_account => {
     return (dispatch) => {
         return callApi(('accounts/'+id_account),'DELETE',null).then(
@@ -84,7 +88,17 @@ export const deleteAccount = id_account => {
         payload: id_account
     }
 }
-export const selectAccountEdit = account => {
+
+export const selectAccountRequest = id => {
+    return (dispatch) => {
+        return callApi(('accounts/'+id),'GET',id).then(
+            res => {
+                dispatch(selectAccount(res.data));
+            }
+        )
+    }
+}
+export const selectAccount = account => {
     return {
         type: types.ACCOUNT_EDIT,
         payload: account

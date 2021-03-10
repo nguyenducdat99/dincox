@@ -32,11 +32,12 @@ function Account(props) {
                 password: '',
                 position: '0',
                 email: '',
-                status: false
+                status: 0
             }
         )
         let { itemEdit } = props;
         if (itemEdit&&itemEdit.id_account === ''){
+            console.log(true);
             props.onToggleForm();
         }
     };
@@ -100,7 +101,7 @@ const mapDispatchToProps = (dispatch, props) => {
             dispatch(Actions.closeForm())
         },
        onSelectItemEdit: item => {
-            dispatch(Actions.selectAccountEdit(item));
+            dispatch(Actions.selectAccount(item));
         }
     }
 }

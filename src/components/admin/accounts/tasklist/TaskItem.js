@@ -6,9 +6,10 @@ function TaskItem(props) {
     var { index, task } = props;
     const position = ['Khách hàng', 'Nhân viên', 'Chủ cửa hàng'];
 
+    // console.log('item in task item: ' + )
     // handle return item for onSlectItem
     var onSelectItem = () => {
-        props.onSelectItemEdit(task);
+        props.onSelectItem(task.id_account);
         props.onOpenForm();
     }
     
@@ -74,8 +75,8 @@ const mapDispatchToProps = (dispatch, props) => {
         onCloseForm: () => {
             dispatch(Actions.closeForm());
         },
-        onSelectItemEdit: item => {
-            dispatch(Actions.selectAccountEdit(item));
+        onSelectItem: id => {
+            dispatch(Actions.selectAccountRequest(id));
         }
     }
 }

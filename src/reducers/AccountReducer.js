@@ -1,14 +1,7 @@
 import * as types from '../constands/ActionTypes'
 
-let tasks = JSON.parse(localStorage.getItem('accountStore'));
-const initialState = tasks ? tasks : [];
+const initialState =  [];
 
-function s4() { 
-    return Math.floor((1 + Math.random()) * 0x100000).toString(16).substring(1); 
-  } 
-function s16() { 
-    return s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() ;
-} 
 
 function findIndex(state, id) {
     let result= -1;

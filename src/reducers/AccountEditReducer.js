@@ -5,15 +5,15 @@ const initialState = {
     password: '',
     position: '0',
     email: '',
-    status: false
+    status: 0
 };
 
 var myReducer = (state=initialState, action) => {
     switch (action.type) {
         case types.ACCOUNT_EDIT:
-			state = action.payload;
+			state = action.payload
 
-            return state;
+            return {...state};
 		
         default:
             return state;

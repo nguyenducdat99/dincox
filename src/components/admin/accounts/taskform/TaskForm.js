@@ -14,7 +14,7 @@ function TaskForm(props) {
             password: '',
             position: '0',
             email: '',
-            status: false
+            status: 0
         }
     )
 
@@ -61,21 +61,21 @@ function TaskForm(props) {
                 password: '',
                 position: '0',
                 email: '',
-                status: false
+                status: 0
             }
         )
     }
 
     // Exit this form
     var onExitForm = () => {
-        props.onSelectItemEdit(
+        props.onClearItemEdit(
             {
                 id_account: '',
                 user_name: '',
                 password: '',
                 position: '0',
                 email: '',
-                status: false
+                status: 0
             }
         )
         props.onCloseForm();
@@ -150,12 +150,12 @@ function TaskForm(props) {
                             <select 
                                 className="form-control"
                                 onChange={onHandleChange}
-                                value={objectTask.status}
+                                value={objectTask.status===1?true:false}
                                 name="status"
                                 required
                             >
-                                <option value={false}>Ẩn</option>
-                                <option value={true}>Kích hoạt</option>
+                                <option value={0}>Ẩn</option>
+                                <option value={1}>Kích hoạt</option>
                             </select>
                         </label>
                     </div>
@@ -188,7 +188,10 @@ const mapActionToProps = (dispatch, props) => {
             dispatch(Actions.closeForm());
         },
         onSelectItemEdit: item => {
-            dispatch(Actions.selectAccountEdit(item));
+            dispatch(Actions.selectAccountRequest(item));
+        },
+        onClearItemEdit: item => {
+            dispatch(Actions.selectAccount(item));
         }
     }
 }
