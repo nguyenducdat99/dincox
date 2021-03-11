@@ -164,15 +164,30 @@ export const loginAccount = info => {
 }
 
 // handle for categories
+export const fetchCategoriesRequest = () => {
+    return (dispatch) => {
+        return callApi('categories','GET',null).then(
+            res => {
+                dispatch(getCategories(res.data));
+            }
+        )
+    }
+}
+export const getCategories = items => {
+    return {
+        type: types.FETCH_PRODUCT,
+        payload: items
+    }
+}
 export const listCategory = () => {
     return {
         type: types.LIST_CATEGORY
     }
 }
-export const addCategory = newCategory => {
+export const addCategory = newItem => {
     return {
         type: types.ADD_CATEGORY,
-        payload: newCategory
+        payload: newItem
     }
 }
 export const updateStatusCategory = id_category => {

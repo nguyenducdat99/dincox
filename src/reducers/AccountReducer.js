@@ -41,7 +41,6 @@ var AccountReducer = (state=initialState, action) =>{
                 ...state[index],
                 status: !state[index].status
             }
-            localStorage.setItem('accountStore', JSON.stringify(state));
 
             return [...state];
         case types.DELETE_ACCOUNT:

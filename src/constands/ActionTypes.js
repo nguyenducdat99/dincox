@@ -15,6 +15,7 @@ export const ACCOUNT_EDIT = 'ACCOUNT_EDIT';
 export const LOGIN_ACCOUNT = "LOGIN_ACCOUNT";
 
 // handle for category
+export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
 export const LIST_CATEGORY = "LIST_CATEGORY";
 export const ADD_CATEGORY = "ADD_CATEGORY";
 export const UPDATE_STATUS_CATEGORY = 'UPDATE_STATUS_CATEGORY';

@@ -23,7 +23,7 @@ import {
 } from "react-router-dom";
 import Admin from './components/admin/Admin';
 import AccountsCtrl from './components/admin/accounts/Account';
-// import CategoriesCtrl from './components/admin/categories/Categories';
+import CategoriesContainer from './containers/CategoriesContainer';
 import NotFound from './components/notfound/NotFound';
 import CartContainer from './containers/CartContainer';
 import HeaderContainer from './containers/HeaderContainer';
@@ -92,7 +92,7 @@ function App() {
 				</Route>
 
 				<Route path='/managers/categories'>
-					{/* <CategoriesCtrl /> */}
+					<CategoriesContainer />
 				</Route>
 
 				<Route path='/cart'>

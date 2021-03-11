@@ -14,44 +14,15 @@ function findIndex(state, id) {
     return result;
 }
 
-var index;
-var AccountReducer = (state=initialState, action) =>{
+var index = -1;
+var MyReducer = (state=initialState, action) =>{
     switch (action.type) {
-        case types.FECTH_ACCOUNT: 
-            state = action.payload;
-            
+        case types.FETCH_CATEGORIES:
+            console.log(action.payload);
             return state;
-        case types.LIST_ACCOUNT:
-
-            return state;
-        case types.SAVE_ACCOUNT:
-            index = findIndex(state,action.payload.id_account);
-
-            if (index===-1) {
-                state.push(action.payload);
-            }else{
-                state[index] = action.payload;
-            }
-
-            return [...state];
-        case types.UPDATE_STATUS_ACCOUNT:
-            index = findIndex(state,action.payload);
-            
-            state[index] = {
-                ...state[index],
-                status: !state[index].status
-            }
-            localStorage.setItem('accountStore', JSON.stringify(state));
-
-            return [...state];
-        case types.DELETE_ACCOUNT:
-            index = findIndex(state,action.payload);
-
-            state.splice(index, 1);
-            return [...state];
         default:
             return state;
     }
 }
 
-export default AccountReducer;
+export default MyReducer;
