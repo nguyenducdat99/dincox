@@ -17,7 +17,9 @@ export const LOGIN_ACCOUNT = "LOGIN_ACCOUNT";
 // handle for category
 export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
 export const LIST_CATEGORY = "LIST_CATEGORY";
-export const ADD_CATEGORY = "ADD_CATEGORY";
+export const SAVE_CATEGORY = "SAVE_CATEGORY";
+export const CATEGORY_EDIT = "CATEGORY_EDIT";
+export const DELETE_CATEGORY = 'DELETE_CATEGORY';
 export const UPDATE_STATUS_CATEGORY = 'UPDATE_STATUS_CATEGORY';
 
 // handle for status form

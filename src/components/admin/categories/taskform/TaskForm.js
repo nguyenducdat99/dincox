@@ -17,19 +17,19 @@ function TaskForm(props) {
     )
     useEffect(
         () => {
-            if (props.itemEditRec.id_account!=='') {
+            if (props.itemEditRec.id_category!=='') {
                 setObjectTask(props.itemEditRec);
             }else {
                 onClear();
             }
             // eslint-disable-next-line 
-        }, [props.itemEdit]
+        }, [props.itemEditRec]
     )
 
     // handle when submit
     var onHandleSubmit = event => {
         event.preventDefault();
-        props.onSaveItem(objectTask);
+        props.onSaveItemRec(objectTask);
         onClear();
         onExitForm();
     }

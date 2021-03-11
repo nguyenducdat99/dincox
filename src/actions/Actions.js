@@ -184,10 +184,54 @@ export const listCategory = () => {
         type: types.LIST_CATEGORY
     }
 }
-export const addCategory = newItem => {
+export const saveCategoryRequest = (item) => {
+  
+    item = {
+        ...item,
+        status: item.status*1
+    }
+    let id = item.id_category;
+
+    if (id !== ''){
+        return (dispatch) => {
+            return callApi(('categories/'+id),'PUT', item).then(
+                res => {
+                    dispatch(saveCategory(res.data));
+                    // console.log(res.data);
+                }
+            )
+        }
+    } else {
+        return (dispatch) => {
+            return callApi('categories','POST', item).then(
+                res => {
+                    dispatch(saveCategory(res.data));
+                }
+            )
+        }
+    }
+    
+}
+export const saveCategory = item => {
     return {
-        type: types.ADD_CATEGORY,
-        payload: newItem
+        type: types.SAVE_CATEGORY,
+        payload: item
+    }
+}
+export const selectCategoryRequest = id => {
+    return (dispatch) => {
+        return callApi(('categories/'+id),'GET',null).then(
+            res => {
+                // console.log(res.data);
+                dispatch(selectCategory(res.data));
+            }
+        )
+    }
+}
+export const selectCategory = item => {
+    return {
+        type: types.CATEGORY_EDIT,
+        payload: item
     }
 }
 export const updateStatusCategory = id_category => {
@@ -196,6 +240,24 @@ export const updateStatusCategory = id_category => {
         payload: id_category
     }
 }
+
+export const deleteCategoryRequest = id => {
+    return (dispatch) => {
+        return callApi(('categories/'+id),'DELETE',null).then(
+            res => {
+                 dispatch(deleteCategory(id));
+            }
+        )
+        
+    }
+}
+export const deleteCategory = id => {
+    return {
+        type: types.DELETE_CATEGORY,
+        payload: id
+    }
+}
+
 
 // handle for status form
 export const toggleForm = () => {

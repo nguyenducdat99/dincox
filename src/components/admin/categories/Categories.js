@@ -1,7 +1,6 @@
 // import style library, components
 import './Categories.scss';
 import SmallBanner from '../../fixcontents/smallbanner/SmallBanner';
-import {  useEffect } from 'react';
 import TaskControl from './taskcontrol/TaskControl';
 
 // function code here
@@ -11,13 +10,6 @@ function Categories(props) {
     // const [sortType, setSortType] = useState('0');
     var { isDisplayFormRec } = props;
     
-    // close task form in first loading
-    useEffect(
-        () => {
-            props.onCloseFormRec();
-            // eslint-disable-next-line
-        },[]
-    )
 
     // toggle form add/edit
     var onToggleForm = () => {

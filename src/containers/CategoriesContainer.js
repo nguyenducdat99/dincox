@@ -14,10 +14,10 @@ function CategoriesContainer(props){
     useEffect( 
         () => {
             props.onFetchApi();
+            props.onCloseForm();
             // eslint-disable-next-line
         },[]
     )
-
     // declare state,variable
     var taskForm = () =>{
         return (
@@ -25,6 +25,7 @@ function CategoriesContainer(props){
                 itemEditRec={props.itemEdit}
                 onClearItemEditRec={props.onClearItemEdit}
                 onCloseFormRec={props.onCloseForm}
+                onSaveItemRec={props.onSaveItem}
             />
         )
     };// use for categories
@@ -34,7 +35,11 @@ function CategoriesContainer(props){
             <TaskItem 
                 key={index}
                 index={index+1} 
-                task={item}
+                itemRec={item}
+                onDeleteItemRec={props.onDeleteItem}
+                onCloseFormRec={props.onCloseForm}
+                onSelectItemEditRec={props.onSelectItemEdit}
+                onOpenFormRec={props.onOpenForm}
             />
         )
     });// use for taskList
@@ -49,7 +54,6 @@ function CategoriesContainer(props){
     return(
         <Categories
             isDisplayFormRec={props.isDisplayForm}
-            onCloseFormRec={props.onCloseForm}
             onSelectItemEditRec={props.onSelectItemEdit}
             itemEditRec={props.itemEdit}
             onToggleFormRec={props.onToggleForm}
@@ -63,7 +67,7 @@ const mapStateToProps = state => {
     return {
         items: state.listCategory,
         isDisplayForm: state.isDisplayForm,
-        itemEdit: state.accountEdit
+        itemEdit: state.categoryEdit
     }
 };
 const mapDispatchToProps = (dispatch, props) => {
@@ -74,16 +78,23 @@ const mapDispatchToProps = (dispatch, props) => {
         onToggleForm: () => {
             dispatch(Actions.toggleForm());
         },
+        onOpenForm: () => {
+            dispatch(Actions.openForm());
+        },
         onCloseForm: () => {
             dispatch(Actions.closeForm())
         },
-        onSelectItemEdit: item => {
-            dispatch(Actions.selectAccount(item));
-        },        onSaveItem: item => {
-            dispatch(Actions.saveAccountRequest(item));
+        onSelectItemEdit: id => {
+            dispatch(Actions.selectCategoryRequest(id));
+        },
+        onSaveItem: item => {
+            dispatch(Actions.saveCategoryRequest(item));
         },
         onClearItemEdit: item => {
             dispatch(Actions.selectAccount(item));
+        },
+        onDeleteItem: id => {
+            dispatch(Actions.deleteCategoryRequest(id));
         }
     }
 };
