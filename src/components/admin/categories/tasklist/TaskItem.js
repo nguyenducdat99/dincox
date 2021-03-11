@@ -4,7 +4,6 @@ import * as Actions  from '../../../../actions/Actions';
 function TaskItem(props) {
     //  get props, declare variable, constant
     var { index, task } = props;
-    const position = ['Khách hàng', 'Nhân viên', 'Chủ cửa hàng'];
 
     // console.log('item in task item: ' + )
     // handle return item for onSlectItem
@@ -29,9 +28,7 @@ function TaskItem(props) {
     return (
         <tr className={index%2===0?"task-list__table__line-odd":''}>
             <td>{index}</td>
-            <td>{task.user_name}</td>
-            <td>{position[(task.position*1)]}</td>
-            <td>{task.email}</td>
+            <td>{task.category_name}</td>
             <td>
                 {
                     <span 

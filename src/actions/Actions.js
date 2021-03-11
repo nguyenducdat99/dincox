@@ -168,14 +168,14 @@ export const fetchCategoriesRequest = () => {
     return (dispatch) => {
         return callApi('categories','GET',null).then(
             res => {
-                dispatch(getCategories(res.data));
+                dispatch(fetchCategories(res.data));
             }
         )
     }
 }
-export const getCategories = items => {
+export const fetchCategories = items => {
     return {
-        type: types.FETCH_PRODUCT,
+        type: types.FETCH_CATEGORIES,
         payload: items
     }
 }

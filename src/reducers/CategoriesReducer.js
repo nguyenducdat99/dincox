@@ -18,7 +18,8 @@ var index = -1;
 var MyReducer = (state=initialState, action) =>{
     switch (action.type) {
         case types.FETCH_CATEGORIES:
-            console.log(action.payload);
+            state = action.payload;
+            
             return state;
         default:
             return state;

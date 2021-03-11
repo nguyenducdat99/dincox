@@ -3,9 +3,21 @@ import {connect} from 'react-redux';
 import * as Actions from '../actions/Actions';
 import Categories from '../components/admin/categories/Categories';
 import TaskForm from '../components/admin/categories/taskform/TaskForm';
+import TaskList from '../components/admin/categories/tasklist/TaskList';
+import TaskItem from '../components/admin/categories/tasklist/TaskItem';
+import { useEffect } from 'react';
 
 // code function here
 function CategoriesContainer(props){
+
+    // load data
+    useEffect( 
+        () => {
+            props.onFetchApi();
+            // eslint-disable-next-line
+        },[]
+    )
+
     // declare state,variable
     var taskForm = () =>{
         return (
@@ -15,7 +27,24 @@ function CategoriesContainer(props){
                 onCloseFormRec={props.onCloseForm}
             />
         )
-    };
+    };// use for categories
+
+    var listIndex = props.items.map((item, index) => {
+        return (
+            <TaskItem 
+                key={index}
+                index={index+1} 
+                task={item}
+            />
+        )
+    });// use for taskList
+    var taskList = () => {
+        return (
+            <TaskList
+                listItem={listIndex}
+            />
+        )
+    }// use for categories
 
     return(
         <Categories
@@ -25,13 +54,14 @@ function CategoriesContainer(props){
             itemEditRec={props.itemEdit}
             onToggleFormRec={props.onToggleForm}
             taskFormRec={taskForm}
+            taskListRec={taskList}
         />
     );
 }
 
 const mapStateToProps = state => {
     return {
-        task: state.listCategory,
+        items: state.listCategory,
         isDisplayForm: state.isDisplayForm,
         itemEdit: state.accountEdit
     }

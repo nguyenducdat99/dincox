@@ -70,7 +70,9 @@ function Categories(props) {
                                     onSearch={onSearch}
                                     onSort={onSort}
                                 />
-                                {/* <TaskList/> */}
+                                {
+                                    props.taskListRec()
+                                }
                             </div>
                         </div>
                     </div>
