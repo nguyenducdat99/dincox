@@ -11,6 +11,7 @@ function setCookie(cname, cvalue, exdays) {
 var myReducer = (state=initialState, action) => {
     switch (action.type) {
         case types.LOGIN_ACCOUNT:
+            console.log(action.payload);
             if (action.payload.token!=='') {
                 state = action.payload.user_name
                 setCookie('logined',action.payload.token,1);

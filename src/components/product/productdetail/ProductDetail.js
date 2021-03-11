@@ -1,22 +1,29 @@
 import './ProductDetail.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SmallBanner from '../../fixcontents/smallbanner/SmallBanner';
 import { useParams} from 'react-router-dom';
+import * as Actions from '../../../actions/Actions';
 import {connect} from 'react-redux';
 
 function ProductDetail(props){
-    // declare state
+    // load data
+    useEffect(
+        () => {
+            props.onFetchProduct();
+            // eslint-disable-next-line
+        },[]
+    )
+    
+    
     // eslint-disable-next-line
     const [dataSize,setDataSize] = useState([36, 37, 38, 39]);
     const [amountProduct, setAmountProduct] = useState(1);
     const { id } = useParams();// get id from url
     const { data } = props;// get datadefault;
-
+    
     // get current product
-    console.log(props.ListProduct);
     var currentProduct;
     data.forEach((item, index)=>{
-
         if((item.id_product+'')===id){
             currentProduct = item;
         }
@@ -183,4 +190,11 @@ const mapStateToPropsProductDetail = (state) =>{
         data: state.ListProduct
     }
 }
-export default connect(mapStateToPropsProductDetail, null)(ProductDetail);
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        onFetchProduct: () => {
+            dispatch(Actions.fetchProductRequest())
+        }
+    }
+};
+export default connect(mapStateToPropsProductDetail, mapDispatchToProps)(ProductDetail);

@@ -5,8 +5,6 @@ import "./ProductHightlight.scss";
 // code function here
 function ProductHightlight(props){
     // declare state
-    
-
 
     // load product list
     var { listProduct } = props;

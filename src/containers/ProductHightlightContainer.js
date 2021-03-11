@@ -4,24 +4,23 @@ import ProductHightlight from '../components/product/producthightlight/ProductHi
 import SingleProduct from '../components/product/aproduct/Aproduct';
 import * as Actions from '../actions/Actions';
 import { useEffect } from 'react';
-import callApi from '../utils/ApiCaller';
 
 // code function here
 function ProductHightlightContainer(props){
     useEffect(
         () => {
-            callApi('products','GET',null).then(
-                res => {
-                    props.onFetchProduct(res.data);
-                }
-            )
+            props.onFetchProduct();
             // eslint-disable-next-line
         },[]
     )
     // declare state
+
     var { listProductHightLight } = props;
+    var quantityMax = 8;
+    var quantity = 0;
     var listIndex = listProductHightLight.map((item,index)=>{
-        if(item.is_active&&!item.is_sale){
+        if(quantity < quantityMax&&item.status===1){
+            quantity = quantity + 1;
             return(
                 <SingleProduct 
                     key={index} 
@@ -33,8 +32,6 @@ function ProductHightlightContainer(props){
         return '';
     })
     
-
-
 
     return(
         <ProductHightlight listProduct={listIndex} />
@@ -48,8 +45,8 @@ const mapStateToPropsProductHightlight = (state) => {
 };
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        onFetchProduct: products => {
-            dispatch(Actions.fetchProduct(products))
+        onFetchProduct: () => {
+            dispatch(Actions.fetchProductRequest())
         },
         onAddToCart: newItem => {
             dispatch(Actions.addToCart(newItem,'38',1));

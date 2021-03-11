@@ -10,7 +10,7 @@ function ProductSaleContainer(props){
     var { listProductSale } = props;
     var listIndex = [];
     listProductSale.forEach((item,index) => {
-        if(item.is_active&&item.is_sale){
+        if(item.status===1&&item.is_sale===1){
             listIndex.push(<SingleProduct 
                 key={index} 
                 data={item}

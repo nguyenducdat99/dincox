@@ -1,49 +1,57 @@
-import * as types from '../constands/ActionTypes';
-var CategoryStore = JSON.parse(localStorage.getItem('categoryStore'));
-const initialState = CategoryStore ? CategoryStore : [];
+import * as types from '../constands/ActionTypes'
 
-function s4() { 
-    return Math.floor((1 + Math.random()) * 0x100000).toString(16).substring(1); 
-} 
-function s16() { 
-    return s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() ;
-} 
+const initialState =  [];
+
 
 function findIndex(state, id) {
-    let result= -1;
+    var result= -1;
     state.forEach((item, index) => {
-        if (item.id_category === id) {
-            result = index;
+
+        if (item.id_account*1 === id*1) {
+            result = index; 
         };
     });
     return result;
 }
 
-var CategoryReducer = (state=initialState,action) => {
+var index;
+var AccountReducer = (state=initialState, action) =>{
     switch (action.type) {
-        case types.LIST_CATEGORY:
+        case types.FECTH_ACCOUNT: 
+            state = action.payload;
+            
             return state;
-        case types.ADD_CATEGORY:
-            if (action.payload.id_category === '') {
-                action.payload.id_category = s16();
+        case types.LIST_ACCOUNT:
+
+            return state;
+        case types.SAVE_ACCOUNT:
+            index = findIndex(state,action.payload.id_account);
+
+            if (index===-1) {
+                state.push(action.payload);
+            }else{
+                state[index] = action.payload;
             }
-            state.push(action.payload);
-            localStorage.setItem('categoryStore',JSON.stringify(state));
 
             return [...state];
-        case types.UPDATE_STATUS_CATEGORY:
-            let index = findIndex(state,action.payload);
+        case types.UPDATE_STATUS_ACCOUNT:
+            index = findIndex(state,action.payload);
             
             state[index] = {
                 ...state[index],
                 status: !state[index].status
             }
-            localStorage.setItem('categoryStore',JSON.stringify(state));
+            localStorage.setItem('accountStore', JSON.stringify(state));
 
+            return [...state];
+        case types.DELETE_ACCOUNT:
+            index = findIndex(state,action.payload);
+
+            state.splice(index, 1);
             return [...state];
         default:
             return state;
     }
 }
 
-export default CategoryReducer;
+export default AccountReducer;

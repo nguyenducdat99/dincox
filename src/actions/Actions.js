@@ -2,9 +2,19 @@ import * as types from '../constands/ActionTypes';
 import callApi from '../utils/ApiCaller';
 
 // handle for products
+
+export const fetchProductRequest = () => {
+    return (dispatch) => {
+        return callApi('products','GET',null).then(
+            res => {
+                dispatch(fetchProduct(res.data));
+            }
+        )
+    }
+}
 export const fetchProduct = products => {
     return {
-        type: types.FECTH_ACCOUNT,
+        type: types.FETCH_PRODUCT,
         payload: products
     }
 }
