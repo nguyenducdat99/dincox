@@ -11,7 +11,7 @@ function Header(props) {
     const [isActiveHeader, setIsActiveHeader] = useState(false);
     
     //get props
-    var { cart } = props;
+    var { quantityRec,listCategoryRec } = props;
 
     // excute when user click button search
     var onToggleSearch = () => {
@@ -53,10 +53,7 @@ function Header(props) {
                                         </Link>
                                         {/* menu level 2 */}
                                         <ul className="header-grid__navigation__link__dropdown--level-2">
-                                            <li><a href='/#'>Item 1</a></li>
-                                            <li><a href='/#'>Item 2</a></li>
-                                            <li><a href='/#'>Item 2</a></li>
-                                            <li><a href='/#' className="last-child-a">Item 2</a></li>
+                                            {listCategoryRec(0)}
                                         </ul>
                                         
                                     </li>
@@ -66,10 +63,7 @@ function Header(props) {
                                         </a>
                                         {/* menu level 2  */}
                                         <ul className="header-grid__navigation__link__dropdown--level-2">
-                                            <li><a href='/#'>Item 1</a></li>
-                                            <li><a href='/#'>Item 2</a></li>
-                                            <li><a href='/#'>Item 2</a></li>
-                                            <li><a  href='/#' className="last-child-a">Item 2</a></li>
+                                            {listCategoryRec(1)}
                                         </ul>
                                     </li>
                                     <li  className="header-grid__navigation__link__dropdown">
@@ -78,10 +72,7 @@ function Header(props) {
                                         </a>
                                         {/* menu level 2 */}
                                         <ul className="header-grid__navigation__link__dropdown--level-2">
-                                            <li><a  href='/#'>Item 1</a></li>
-                                            <li><a  href='/#'>Item 2</a></li>
-                                            <li><a  href='/#'>Item 2</a></li>
-                                            <li><a  href='/#' className="last-child-a">Item 2</a></li>
+                                            {listCategoryRec(-1)}
                                         </ul>
                                     </li>
                                     <li><a href='/#'>Sale Off</a></li>
@@ -109,7 +100,7 @@ function Header(props) {
                             </div>
                             {/* block cart */}
                             <div className="header-grid__navigation__cart">
-                                <Link to='/cart'>Giỏ hàng{cart===0?'':'('+cart+')'}</Link>
+                                <Link to='/cart'>Giỏ hàng{quantityRec===0?'':'('+quantityRec+')'}</Link>
                             </div>
                         </nav>
                     </div>

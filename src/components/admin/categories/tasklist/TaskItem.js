@@ -15,11 +15,12 @@ function TaskItem(props) {
     }
 
     // handle delete task
+    // eslint-disable-next-line
     var onDeleteItem = () => {
-        if (window.confirm('Bạn có muốn xóa không?')) {
-            props.onDeleteItemRec(itemRec.id_category);
-            props.onCloseFormRec();
-        } 
+        // if (window.confirm('Bạn có muốn xóa không?')) {
+        //     props.onDeleteItemRec(itemRec.id_category);
+        //     props.onCloseFormRec();
+        // } 
     }
 
     return (
@@ -41,9 +42,9 @@ function TaskItem(props) {
                     <span className="fa fa-pencil"></span>Sửa
                 </button>
                 &nbsp;
-                <button type="button" className="btn btn-danger" onClick={onDeleteItem}>
+                {/* <button type="button" className="btn btn-danger" onClick={onDeleteItem}>
                     <span className="fa fa-trash"></span>Xóa
-                </button>
+                </button> */}
             </td>
         </tr>
     )
