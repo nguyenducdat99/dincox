@@ -8,16 +8,16 @@ function TaskForm(props) {
     // declare state component
     const [objectTask,setObjectTask] = useState(
         {
-            id_category: '',
-            category_name: '',
-            created_at: '',
-            edited_at: '',
+            id_size: '',
+            size_name: '',
+            created_at: null,
+            edited_at: null,
             status: 0
         }
     )
     useEffect(
         () => {
-            if (props.itemEditRec.id_category!=='') {
+            if (props.itemEditRec.id_size!=='') {
                 setObjectTask(props.itemEditRec);
             }else {
                 onClear();
@@ -53,10 +53,10 @@ function TaskForm(props) {
         setObjectTask(
             {
                 ...objectTask,
-                id_category: '',
-                category_name: '',
-                created_at: '',
-                edited_at: '',
+                id_size: '',
+                size_name: '',
+                created_at: null,
+                edited_at: null,
                 status: 0
             }
         )
@@ -66,10 +66,10 @@ function TaskForm(props) {
     var onExitForm = () => {
         props.onClearItemEditRec(
             {
-                id_category: '',
-                category_name: '',
-                created_at: '',
-                edited_at: '',
+                id_size: '',
+                size_name: '',
+                created_at: null,
+                edited_at: null,
                 status: 0
             }
         )
@@ -81,7 +81,7 @@ function TaskForm(props) {
     return (
         <div className="task-form">
             <div className="task-form__title">
-                <h3>{props.itemEditRec.id_category!==''?'Sửa Danh mục':'Thêm Danh Mục'}
+                <h3>{props.itemEditRec.id_size!==''?'Sửa Kích Thứớc':'Thêm Kích Thước'}
                     <span className="fa fa-times-circle task-form__title__close" onClick={onExitForm}></span>
                 </h3>
             </div>
@@ -89,12 +89,12 @@ function TaskForm(props) {
                 <form action="" method="" onSubmit={onHandleSubmit}>
                     <div className="form-group">
                         <label>
-                            <p>Danh Mục:</p>
+                            <p>Kích thước:</p>
                                 <input type='text' 
                                 className="form-control" 
                                 onChange={onHandleChange}
-                                name="category_name"
-                                value={objectTask.category_name}
+                                name="size_name"
+                                value={objectTask.size_name}
                                 required
                                 />
                         </label>

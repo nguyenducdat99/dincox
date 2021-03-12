@@ -179,11 +179,7 @@ export const fetchCategories = items => {
         payload: items
     }
 }
-export const listCategory = () => {
-    return {
-        type: types.LIST_CATEGORY
-    }
-}
+
 export const saveCategoryRequest = (item) => {
   
     item = {
@@ -276,6 +272,113 @@ export const deleteCategory = id => {
     }
 }
 
+// hadle for sizes
+export const fetchSizesRequest = () => {
+    return (dispatch) => {
+        return callApi('sizes','GET',null).then(
+            res => {
+                dispatch(fetchSizes(res.data));
+            }
+        )
+    }
+}
+export const fetchSizes = items => {
+    return {
+        type: types.FETCH_SIZES,
+        payload: items
+    }
+}
+
+export const saveSizeRequest = (item) => {
+  
+    item = {
+        ...item,
+        status: item.status*1
+    }
+    let id = item.id_size;
+
+    if (id !== ''){
+        return (dispatch) => {
+            return callApi(('sizes/'+id),'PUT', item).then(
+                res => {
+                    dispatch(saveSize(res.data));
+                    // console.log(res.data);
+                }
+            )
+        }
+    } else {
+        return (dispatch) => {
+            return callApi('sizes','POST', item).then(
+                res => {
+                    dispatch(saveSize(res.data));
+                }
+            )
+        }
+    }
+    
+}
+export const saveSize = item => {
+    return {
+        type: types.SAVE_SIZE,
+        payload: item
+    }
+}
+export const selectSizeRequest = id => {
+    return (dispatch) => {
+        return callApi(('sizes/'+id),'GET',null).then(
+            res => {
+                // console.log(res.data);
+                dispatch(selectSize(res.data));
+            }
+        )
+    }
+}
+export const selectSize = item => {
+    return {
+        type: types.SIZE_EDIT,
+        payload: item
+    }
+}
+export const updateStatusSizeRequest = (item) => {
+
+    item = {
+        ...item,
+        status: (item.status*1===1)?0:1
+    }
+    let id = item.id_size;
+
+    return (dispatch) => {
+        return callApi(('sizes/'+id),'PUT', item).then(
+            res => {
+                dispatch(updateStatusSize(res.data.id_size));
+                // console.log(res.data);
+            }
+        )
+    }
+  
+}
+export const updateStatusSize = id => {
+    return {
+        type: types.UPDATE_STATUS_SIZE,
+        payload: id
+    }
+}
+export const deleteSizeRequest = id => {
+    return (dispatch) => {
+        return callApi(('sizes/'+id),'DELETE',null).then(
+            res => {
+                 dispatch(deleteSize(id));
+            }
+        )
+        
+    }
+}
+export const deleteSize = id => {
+    return {
+        type: types.DELETE_SIZE,
+        payload: id
+    }
+}
 
 // handle for status form
 export const toggleForm = () => {

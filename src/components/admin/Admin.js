@@ -13,17 +13,26 @@ function Admin() {
                 <div className="wrapper">
                     <div className="admin__grid">
                         <div className="admin__nav">
-                            <ul>
-                                <li>
+                            <div className="admin__nav__head">
+                                <h3>Mời bạn lựa chọn:</h3>
+                            </div>
+                            <div className="admin__nav__body">
+                                <div className="admin__nav__body__select">
                                     <Link to="/managers/accounts">Quản lý tài khoản</Link>
-                                </li>
-                                <li>
-                                    <Link to="/managers/categories">Quản lý thể loại</Link>
-                                </li>
-                                <li>
+                                </div>
+
+                                <div className="admin__nav__body__select">
+                                    <Link to="/managers/categories">Quản lý danh mục</Link>
+                                </div>
+
+                                <div className="admin__nav__body__select">
                                     <Link to="/managers/products">Quản lý sản phẩm</Link>
-                                </li>
-                            </ul>
+                                </div>
+
+                                <div className="admin__nav__body__select">
+                                    <Link to="/managers/sizes">Quản lý kích thước</Link>
+                                </div>
+                            </div>
                         </div>
                         <div className="admin__description">
                             <img src={Maintain} alt=''/>

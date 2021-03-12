@@ -27,6 +27,7 @@ import CategoriesContainer from './containers/CategoriesContainer';
 import NotFound from './components/notfound/NotFound';
 import CartContainer from './containers/CartContainer';
 import HeaderContainer from './containers/HeaderContainer';
+import SizesContainer from './containers/SizesContainer';
 
 function App() {
 
@@ -97,6 +98,10 @@ function App() {
 
 				<Route path='/managers/categories'>
 					<CategoriesContainer />
+				</Route>
+
+				<Route path='/managers/sizes'>
+					<SizesContainer />
 				</Route>
 
 				<Route path='/cart'>
