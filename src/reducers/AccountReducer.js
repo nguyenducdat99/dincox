@@ -39,7 +39,7 @@ var AccountReducer = (state=initialState, action) =>{
             
             state[index] = {
                 ...state[index],
-                status: !state[index].status
+                status: (state[index].status*1===1)?0:1
             }
 
             return [...state];

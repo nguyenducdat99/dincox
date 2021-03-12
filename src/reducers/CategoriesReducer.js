@@ -32,6 +32,16 @@ var MyReducer = (state=initialState, action) =>{
             }
 
             return [...state] 
+        case types.UPDATE_STATUS_CATEGORY:
+            index = findIndex(state,action.payload);
+            if (index !== -1 ) {
+                state[index] = {
+                    ...state[index],
+                    status: (state[index].status*1===1)?0:1
+                }
+            }
+
+            return [...state]
         case types.DELETE_CATEGORY:
             index = findIndex(state, action.payload);
             

@@ -13,7 +13,7 @@ function Categories(props) {
 
     // toggle form add/edit
     var onToggleForm = () => {
-        props.onSelectItemEditRec(
+        props.onClearItemEditRec(
             {
                 id_category: '',
                 category_name: '',

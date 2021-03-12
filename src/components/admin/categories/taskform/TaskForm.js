@@ -81,7 +81,7 @@ function TaskForm(props) {
     return (
         <div className="task-form">
             <div className="task-form__title">
-                <h3>{props.itemEditRec.id_account!==''?'Sửa Tài Khoản':'Thêm tài khoản'}
+                <h3>{props.itemEditRec.id_category!==''?'Sửa Tài Khoản':'Thêm tài khoản'}
                     <span className="fa fa-times-circle task-form__title__close" onClick={onExitForm}></span>
                 </h3>
             </div>

@@ -234,10 +234,28 @@ export const selectCategory = item => {
         payload: item
     }
 }
-export const updateStatusCategory = id_category => {
+export const updateStatusCategoryRequest = (item) => {
+
+    item = {
+        ...item,
+        status: (item.status*1===1)?0:1
+    }
+    let id = item.id_category;
+
+    return (dispatch) => {
+        return callApi(('categories/'+id),'PUT', item).then(
+            res => {
+                dispatch(updateStatusCategory(res.data.id_category));
+                // console.log(res.data);
+            }
+        )
+    }
+  
+}
+export const updateStatusCategory = id => {
     return {
         type: types.UPDATE_STATUS_CATEGORY,
-        payload: id_category
+        payload: id
     }
 }
 

@@ -40,6 +40,7 @@ function CategoriesContainer(props){
                 onCloseFormRec={props.onCloseForm}
                 onSelectItemEditRec={props.onSelectItemEdit}
                 onOpenFormRec={props.onOpenForm}
+                onUpdateStatusRec={props.onUpdateStatus}
             />
         )
     });// use for taskList
@@ -59,6 +60,8 @@ function CategoriesContainer(props){
             onToggleFormRec={props.onToggleForm}
             taskFormRec={taskForm}
             taskListRec={taskList}
+            onClearItemEditRec={props.onClearItemEdit}
+            
         />
     );
 }
@@ -91,10 +94,13 @@ const mapDispatchToProps = (dispatch, props) => {
             dispatch(Actions.saveCategoryRequest(item));
         },
         onClearItemEdit: item => {
-            dispatch(Actions.selectAccount(item));
+            dispatch(Actions.selectCategory(item));
         },
         onDeleteItem: id => {
             dispatch(Actions.deleteCategoryRequest(id));
+        },
+        onUpdateStatus: item => {
+            dispatch(Actions.updateStatusCategoryRequest(item));
         }
     }
 };
