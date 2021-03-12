@@ -48,7 +48,7 @@ function Header(props) {
                             <div className="header-grid__navigation__link">
                                 <ul>
                                     <li className="header-grid__navigation__link__dropdown">
-                                        <Link to="/products"> Sản phẩm &nbsp;
+                                        <Link to="/collections"> Sản phẩm &nbsp;
                                             <i className="fa fa-angle-down" aria-hidden="true"></i>
                                         </Link>
                                         {/* menu level 2 */}

@@ -8,7 +8,7 @@ import Copyright from './components/copyright/Copyright';
 import Product from './components/product/Product';
 import Article from './components/article/Article';
 import ProductDetail from './components/product/productdetail/ProductDetail';
-import ProductFilter from './components/product/productfilter/ProductFilter';
+import ProductFilterContainer from './containers/ProductFilterContainer';
 import AboutUs from './components/fixcontents/aboutus/AboutUs';
 import PrivacyPolicy from "./components/fixcontents/privacypolicy/PrivacyPolicy";
 import ReturnPolicy from "./components/fixcontents/returnpolicy/ReturnPolicy";
@@ -47,8 +47,12 @@ function App() {
 					<ProductDetail />
 				</Route>
 
-				<Route path="/products">
-					<ProductFilter />
+				<Route path="/collections" exact>
+					<ProductFilterContainer />
+				</Route>
+
+				<Route path="/collections/:id">
+					<ProductFilterContainer />
 				</Route>
 
 				<Route path="/articles/:id">

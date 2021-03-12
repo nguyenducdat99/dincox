@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import Header from '../components/header/Header';
 import * as Actions from '../actions/Actions';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 // code function here
 function CartContainer(props){
@@ -21,14 +22,22 @@ function CartContainer(props){
             case 0:
                 return props.categories.map((item,index)=>{
                     return (
-                        <li key={index}><a href='/#'>{item.category_name}</a></li>
+                        <li key={index}>
+                            <Link to={'/collections/'+item.id_category}>
+                                {item.category_name}
+                            </Link>
+                        </li>
                     )
                 });
             case -1:
                 return props.categories.map((item,index)=>{
                     if (index===0) return ''
                     if (index%2!==0) return (
-                        <li key={index}><a href='/#'>{item.category_name}</a></li>
+                        <li key={index}>
+                            <Link to={'/collections/'+item.id_category}>
+                                {item.category_name}
+                            </Link>
+                        </li>
                     );
                     return '';
                 });
@@ -37,7 +46,11 @@ function CartContainer(props){
                 return props.categories.map((item,index)=>{
                     if (index===0) return ''
                     if (index%2===0) return (
-                        <li key={index}><a href='/#'>{item.category_name}</a></li>
+                        <li key={index}>
+                            <Link to={'/collections/'+item.id_category}>
+                                {item.category_name}
+                            </Link>
+                        </li>
                     );
                     return '';
                 });

@@ -2,8 +2,8 @@
 import axios from 'axios';
 import * as configs from '../constands/Config';
 
-export default function callApi(endpoint, method, body) {
-    return axios(
+export default async function callApi(endpoint, method, body) {
+    return await axios(
         {
             method: method,
             url: ''+configs.API_URL+'/'+endpoint,

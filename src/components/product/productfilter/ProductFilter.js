@@ -1,14 +1,14 @@
 import {  useState } from "react"
 // import style library, Component
 import SmallBanner from '../../fixcontents/smallbanner/SmallBanner';
-import ResultFilter from './resultfilter/ReSultFilter';
 import './ProductFilter.scss';
 
 // code function here
-function ProductFilter(){
+function ProductFilter(props){
     // declare state component
     const [filterPrice, setFilterPrice] = useState(false);
     const [filterSize, setFilterSize] = useState(false);
+    var {titleRec,onResultFilterRec} = props;
 
     // function use when use click
     var onShowFilterPrice = () => {
@@ -21,7 +21,7 @@ function ProductFilter(){
     // render component
     return(
         <>
-            <SmallBanner title="Tất cả sản phẩm"/>
+            <SmallBanner title={titleRec}/>
             <div className="product-filter">
                 <div className="wrapper">
                     <div className="product-filter__grid">
@@ -97,7 +97,9 @@ function ProductFilter(){
                             </div>
                         </div>
                         <div className="product-filter__result-filter">
-                            <ResultFilter/>
+                            {
+                                onResultFilterRec()
+                            }
                         </div>
                     </div>
                 </div>

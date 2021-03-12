@@ -1,6 +1,5 @@
 // import style library, component
 import './ResultFilter.scss';
-import {connect} from "react-redux";
 import SingleProduct from '../../aproduct/Aproduct';
 import { useState } from 'react';
 
@@ -8,26 +7,18 @@ import { useState } from 'react';
 function ResultFilter(props) {
     // declare state component
     const [recentPage, setRecentPage] = useState(1);
-    // const { page } = useParams();
-    	
-    // const { params } = props.match;
-
-    // console.log('page from URL props.match: ' + params.page);
-
-    // console.log('page from URL: ' + page);
-
     // declare product count per page
-    let productCount = 3;
+    let productCount = 6;
     // load data from store
-    var { listProduct } = props;
+    var { listProductRec,titleRec } = props;
     
     // slice item for page view
     let indexStart = (recentPage-1)*productCount;
     let indexEnd = recentPage*productCount;
-    var indexMax = Math.ceil(listProduct.length/productCount);
+    var indexMax = Math.ceil(listProductRec.length/productCount);
 
     // return interface
-    var listIndex = listProduct.slice(indexStart,indexEnd).map((item, index) => {
+    var listIndex = listProductRec.slice(indexStart,indexEnd).map((item, index) => {
         return (
             <SingleProduct key={index} data={item}/>
         )
@@ -46,7 +37,7 @@ function ResultFilter(props) {
         <div className="result-filter">
             <div className="result-filter__head">
                 <div className="result-filter__head__title">
-                    <h1>Tất cả sản phẩm</h1>
+                    <h1>{titleRec}</h1>
                 </div>
                 <div className="result-filter__head__filter">
                    <span>Sắp xếp</span>
@@ -79,9 +70,4 @@ function ResultFilter(props) {
         </div>
     )
 }
-const mapStateToPropsResultFilter = state => {
-    return {
-        listProduct: state.ListProduct
-    }
-}
-export default connect(mapStateToPropsResultFilter, null)(ResultFilter);
+export default ResultFilter;

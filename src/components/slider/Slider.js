@@ -31,7 +31,7 @@ function Slider(){
                                 <p>Tự hào thương hiệu việt nam</p>
                             </div>
                             <div className="slider__slide__contents__button">
-                                <Link to="/products"> Shopping now</Link>
+                                <Link to="/collections"> Shopping now</Link>
                             </div>
                         </div>
                     </div>
@@ -47,8 +47,8 @@ function Slider(){
                                 <p>Basic<br/>Style</p>
                             </div>
                             <div className="slider__slide__contents__button">
-                                <Link to="/products">More</Link>
-                                <Link to="/products" className="slider__slide__contents__button--last-child">Shopping Now</Link>
+                                <Link to="/collections">More</Link>
+                                <Link to="/collections" className="slider__slide__contents__button--last-child">Shopping Now</Link>
                             </div>
                         </div>
                     </div>
@@ -64,8 +64,8 @@ function Slider(){
                                     <p>Black & white</p>
                                 </div>
                                 <div className="slider__slide__contents__button">
-                                    <Link to="/products">More</Link>
-                                    <Link to="/products" className="slider__slide__contents__button--last-child">Shopping Now</Link>
+                                    <Link to="/collections">More</Link>
+                                    <Link to="/collections" className="slider__slide__contents__button--last-child">Shopping Now</Link>
                                 </div>
                         </div>
                     </div>
