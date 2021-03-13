@@ -58,7 +58,7 @@ function Header(props) {
                                         
                                     </li>
                                     <li  className="header-grid__navigation__link__dropdown">
-                                        <a href='/#'> Nam &nbsp;
+                                        <a href='/collections'> Nam &nbsp;
                                             <i className="fa fa-angle-down" aria-hidden="true"></i>
                                         </a>
                                         {/* menu level 2  */}
@@ -67,7 +67,7 @@ function Header(props) {
                                         </ul>
                                     </li>
                                     <li  className="header-grid__navigation__link__dropdown">
-                                        <a  href='/#'> Nữ &nbsp;
+                                        <a  href='/collections'> Nữ &nbsp;
                                             <i className="fa fa-angle-down" aria-hidden="true"></i>
                                         </a>
                                         {/* menu level 2 */}

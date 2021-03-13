@@ -8,7 +8,7 @@ function ProductFilter(props){
     // declare state component
     const [filterPrice, setFilterPrice] = useState(false);
     const [filterSize, setFilterSize] = useState(false);
-    var {titleRec,onResultFilterRec} = props;
+    var { titleRec,onResultFilterRec,sizesFilterRec } = props;
 
     // function use when use click
     var onShowFilterPrice = () => {
@@ -36,19 +36,26 @@ function ProductFilter(props){
                                         <li>
                                             <label>
                                                 <input type="radio" />
-                                                <span>35</span>
+                                                <span>Nhỏ hơn 100.000đ</span>
                                             </label>
                                         </li>
                                         <li>
                                             <label>
                                                 <input type="radio" />
-                                                <span>35</span>
+                                                <span>100.000đ - 500.000đ</span>
                                             </label>
                                         </li>
                                         <li>
                                             <label>
                                                 <input type="radio" />
-                                                <span>35</span>
+                                                <span>500.000đ - 1.000.000đ</span>
+                                            </label>
+                                        </li>
+                                        
+                                        <li>
+                                            <label>
+                                                <input type="radio" />
+                                                <span>Lớn hơn 1.000.000đ</span>
                                             </label>
                                         </li>
                                         
@@ -62,36 +69,7 @@ function ProductFilter(props){
                                 </div>
                                 <div className={filterSize?"product-filter__filter__contents":"product-filter__filter__contents--none"}>
                                     <ul>
-                                        <li>
-                                            <label>
-                                                <input type="checkbox" />
-                                                <span>35</span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label>
-                                                <input type="checkbox" />
-                                                <span>35</span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label>
-                                                <input type="checkbox" />
-                                                <span>35</span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label>
-                                                <input type="checkbox" />
-                                                <span>35</span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label>
-                                                <input type="checkbox" />
-                                                <span>35</span>
-                                            </label>
-                                        </li>
+                                        {sizesFilterRec}
                                     </ul>
                                 </div>
                             </div>

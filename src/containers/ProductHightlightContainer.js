@@ -10,6 +10,7 @@ function ProductHightlightContainer(props){
     useEffect(
         () => {
             props.onFetchProduct();
+            props.onFetchSize();
             // eslint-disable-next-line
         },[]
     )
@@ -48,6 +49,10 @@ const mapDispatchToProps = (dispatch, props) => {
         onFetchProduct: () => {
             dispatch(Actions.fetchProductRequest())
         },
+        onFetchSize: () => {
+            dispatch(Actions.fetchSizesRequest());
+        }
+        ,
         onAddToCart: newItem => {
             dispatch(Actions.addToCart(newItem,'38',1));
         }
