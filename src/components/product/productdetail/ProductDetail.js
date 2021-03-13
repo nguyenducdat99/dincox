@@ -42,34 +42,48 @@ function findCategoryName(items,id) {
 function ProductDetail(props){
       // eslint-disable-next-line
     const [amountProduct, setAmountProduct] = useState(1);
+    const [sizeSelected,setSizeSelected] = useState(0);
     const { id } = useParams();// get id from url
     const { productsRec,sizeDetailsRec,sizesRec,categoriesRec } = props;// get datadefault;
     
     // get current product
     var currentProduct = findCurrentProduct(productsRec,id);
 
-    var { id_product,id_category, product_name, price, description } = currentProduct;// get data for product detail
+    // get data for product detail
+    var { id_product,id_category, product_name, price, description } = currentProduct;
+    
+    // get category name for product
     var categoryName = findCategoryName(categoriesRec,id_category);
 
-    // remove boder color of select size
-    var removeColor = () => {
-        let size = document.getElementsByClassName("product-detail__content__size__one-select");
-        for(let i=0;i<size.length;i++){
-            size[i].style = "border 1px solid lightgray";
-        }
-    }
 
-    // return option size
+    // get list size of product
     var listSizeSelect = sizeDetailsRec.filter((element,index)=>{
         return element.id_product*1===id*1
     })
-    .map((element,index) =>                                
-    <div key={index} className="product-detail__content__size__one-select" onClick={(event)=>{
-        removeColor();
-        event.target.style = "border: 1px solid red";
-    }}>
+
+    // get max quantity product from selected size
+    console.log(listSizeSelect);
+    console.log(listSizeSelect[sizeSelected].quantity);
+
+    // get list size name of product
+    var listSizeSelectName = listSizeSelect.map((element, index) => {
+        return findSizeName(sizesRec,element.id_size);
+    })
+
+    // return list size name ui
+    var listSizeSelectNameUi = listSizeSelectName.map((element,index) =>                                
+    <div key={index} 
+        className={"product-detail__content__size__one-select " +
+            (index===sizeSelected?"product-detail__content__size__active-select":"")
+        }
+        onClick={
+            () => {
+                setSizeSelected(index)
+            }
+        }
+    >
         {
-            findSizeName(sizesRec,element.id_size)
+            element
         }
     </div>
 )
@@ -144,7 +158,7 @@ function ProductDetail(props){
                                     </div>
                                     <div className="product-detail__content__size__select">
                                         {
-                                            listSizeSelect
+                                            listSizeSelectNameUi
                                         }
                                     </div>
                                     <div className="product-detail__content__support">
