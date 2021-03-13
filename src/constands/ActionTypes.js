@@ -28,6 +28,9 @@ export const SIZE_EDIT = "SIZE_EDIT";
 export const UPDATE_STATUS_SIZE = "UPDATE_STATUS_SIZE";
 export const DELETE_SIZE = "DELETE_SIZE";
 
+// hanlde for size detail
+export const FETCH_SIZE_DETAILS = "FETCH_SIZE_DETAILS";
+
 // handle for status form
 export const TOGGLE_FORM = "TOGGLE_FORM";
 export const OPEN_FORM = "OPEN_FORM";

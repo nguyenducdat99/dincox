@@ -10,6 +10,7 @@ import loginedAccount from './AccountLoginReducer';
 import categoryEdit from './CategoryEditReducer';
 import sizeEdit from './SizeEditReducer';
 import listSize from './SizesReducer';
+import listSizeDetail from './SizeDetailsReducer';
 
 const Reducers = combineReducers({
     ListProduct,
@@ -22,7 +23,8 @@ const Reducers = combineReducers({
     cart,
     loginedAccount,
     categoryEdit,
-    sizeEdit
+    sizeEdit,
+    listSizeDetail
 });
 
 export default Reducers;

@@ -7,7 +7,6 @@ import Footer from './components/footer/Footer';
 import Copyright from './components/copyright/Copyright';
 import Product from './components/product/Product';
 import Article from './components/article/Article';
-import ProductDetail from './components/product/productdetail/ProductDetail';
 import ProductFilterContainer from './containers/ProductFilterContainer';
 import AboutUs from './components/fixcontents/aboutus/AboutUs';
 import PrivacyPolicy from "./components/fixcontents/privacypolicy/PrivacyPolicy";
@@ -28,6 +27,7 @@ import NotFound from './components/notfound/NotFound';
 import CartContainer from './containers/CartContainer';
 import HeaderContainer from './containers/HeaderContainer';
 import SizesContainer from './containers/SizesContainer';
+import ProductDetailContainer from './containers/ProductDetailContainer';
 
 function App() {
 
@@ -45,7 +45,7 @@ function App() {
 				</Route>
 
 				<Route path="/products/:id">
-					<ProductDetail />
+					<ProductDetailContainer />
 				</Route>
 
 				<Route path="/collections" exact>

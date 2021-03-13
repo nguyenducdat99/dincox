@@ -380,6 +380,23 @@ export const deleteSize = id => {
     }
 }
 
+// hadle for sizes
+export const fetchSizeDetailsRequest = () => {
+    return (dispatch) => {
+        return callApi('size-details','GET',null).then(
+            res => {
+                dispatch(fetchSizeDetails(res.data));
+            }
+        )
+    }
+}
+export const fetchSizeDetails = items => {
+    return {
+        type: types.FETCH_SIZE_DETAILS,
+        payload: items
+    }
+}
+
 // handle for status form
 export const toggleForm = () => {
     return {

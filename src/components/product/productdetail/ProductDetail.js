@@ -1,34 +1,55 @@
 import './ProductDetail.scss';
-import { useEffect, useState } from 'react';
 import SmallBanner from '../../fixcontents/smallbanner/SmallBanner';
 import { useParams} from 'react-router-dom';
-import * as Actions from '../../../actions/Actions';
-import {connect} from 'react-redux';
+import { useState } from 'react';
 
-function ProductDetail(props){
-    // load data
-    useEffect(
-        () => {
-            props.onFetchProduct();
-            // eslint-disable-next-line
-        },[]
-    )
-    
-    
-    // eslint-disable-next-line
-    const [dataSize,setDataSize] = useState([36, 37, 38, 39]);
-    const [amountProduct, setAmountProduct] = useState(1);
-    const { id } = useParams();// get id from url
-    const { data } = props;// get datadefault;
-    
-    // get current product
-    var currentProduct;
-    data.forEach((item, index)=>{
-        if((item.id_product+'')===id){
-            currentProduct = item;
+function findCurrentProduct(items,id) {
+    let result = {
+        id_product: 0,
+        id_category: 0, 
+        product_name: 'DinCox',
+        price: 0,
+        description: ''
+    }
+
+    items.forEach((item, index)=>{
+        if(item.id_product*1===id*1){
+            result = item;
         }
     })
-    var { id_product, product_name, price, description } = currentProduct;// get data for product detail
+
+    return result;
+}
+
+function findSizeName(items,id) {
+    let result = '';
+    items.forEach((element,index) => {
+        if (element.id_size*1===id*1) result = element.size_name
+    })
+
+    return result;
+}
+
+function findCategoryName(items,id) {
+    let result = '';
+    items.forEach((element,index) => {
+        if (element.id_category*1===id*1) result = element.category_name
+    })
+
+    return result;
+}
+
+function ProductDetail(props){
+      // eslint-disable-next-line
+    const [amountProduct, setAmountProduct] = useState(1);
+    const { id } = useParams();// get id from url
+    const { productsRec,sizeDetailsRec,sizesRec,categoriesRec } = props;// get datadefault;
+    
+    // get current product
+    var currentProduct = findCurrentProduct(productsRec,id);
+
+    var { id_product,id_category, product_name, price, description } = currentProduct;// get data for product detail
+    var categoryName = findCategoryName(categoriesRec,id_category);
 
     // remove boder color of select size
     var removeColor = () => {
@@ -38,6 +59,20 @@ function ProductDetail(props){
         }
     }
 
+    // return option size
+    var listSizeSelect = sizeDetailsRec.filter((element,index)=>{
+        return element.id_product*1===id*1
+    })
+    .map((element,index) =>                                
+    <div key={index} className="product-detail__content__size__one-select" onClick={(event)=>{
+        removeColor();
+        event.target.style = "border: 1px solid red";
+    }}>
+        {
+            findSizeName(sizesRec,element.id_size)
+        }
+    </div>
+)
 
 
     return(
@@ -79,7 +114,7 @@ function ProductDetail(props){
                                     <p>Thương Hiệu: <a href='/#'>Dincox</a></p>
                                 </div><span> | </span>
                                 <div className="product-detail__content__header__type">
-                                    <p>Loại: <a  href='/#'>Loai 1</a></p>
+                                    <p>Loại: <a  href='/#'>{ categoryName }</a></p>
                                 </div><span> | </span>
                                 <div className="product-detail__content__header__code">
                                     <p>Mã: {'Dincox' + id_product}</p>
@@ -109,14 +144,7 @@ function ProductDetail(props){
                                     </div>
                                     <div className="product-detail__content__size__select">
                                         {
-                                            dataSize.map((value,index) =>                                
-                                                <div key={index} className="product-detail__content__size__one-select" onClick={(event)=>{
-                                                    removeColor();
-                                                    event.target.style = "border: 1px solid red";
-                                                }}>
-                                                    {value}
-                                                </div>
-                                            )
+                                            listSizeSelect
                                         }
                                     </div>
                                     <div className="product-detail__content__support">
@@ -141,7 +169,7 @@ function ProductDetail(props){
                                 </div>
                                 <div className="product-detail__content__action">
                                     <input type="button" value="Thêm vào giỏ" />
-                                    <input type="button" value="Mua ngay"/>
+                                    {/* <input type="button" value="Mua ngay"/> */}
                                 </div>
                             </form>
                             {/* close form select product */}
@@ -185,16 +213,5 @@ function ProductDetail(props){
         </>
     );
 }
-const mapStateToPropsProductDetail = (state) =>{
-    return {
-        data: state.ListProduct
-    }
-}
-const mapDispatchToProps = (dispatch, props) => {
-    return {
-        onFetchProduct: () => {
-            dispatch(Actions.fetchProductRequest())
-        }
-    }
-};
-export default connect(mapStateToPropsProductDetail, mapDispatchToProps)(ProductDetail);
+
+export default ProductDetail;
