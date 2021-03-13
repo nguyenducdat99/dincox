@@ -40,9 +40,9 @@ function findCategoryName(items,id) {
 }
 
 function ProductDetail(props){
-      // eslint-disable-next-line
-    const [amountProduct, setAmountProduct] = useState(1);
+    // eslint-disable-next-line
     const [sizeSelected,setSizeSelected] = useState(0);
+    const [quantity, setQuantity] = useState(1);
     const { id } = useParams();// get id from url
     const { productsRec,sizeDetailsRec,sizesRec,categoriesRec } = props;// get datadefault;
     
@@ -58,12 +58,13 @@ function ProductDetail(props){
 
     // get list size of product
     var listSizeSelect = sizeDetailsRec.filter((element,index)=>{
-        return element.id_product*1===id*1
+        return element.id_product*1===id*1&&element.quantity!==0
     })
 
     // get max quantity product from selected size
-    console.log(listSizeSelect);
-    console.log(listSizeSelect[sizeSelected].quantity);
+    var quantityMax = listSizeSelect[sizeSelected]?listSizeSelect[sizeSelected].quantity:0;
+    if (quantity>quantityMax) setQuantity(quantityMax);
+
 
     // get list size name of product
     var listSizeSelectName = listSizeSelect.map((element, index) => {
@@ -86,7 +87,7 @@ function ProductDetail(props){
             element
         }
     </div>
-)
+    )
 
 
     return(
@@ -154,7 +155,9 @@ function ProductDetail(props){
                             <form action="" method="" id="add-to-cart">
                                 <div className="product-detail__content__size">
                                     <div className="product-detail__content__size__title">
-                                        Kích thước
+                                        {
+                                            quantityMax===0?'Hết hàng':'Kích thước'
+                                        }
                                     </div>
                                     <div className="product-detail__content__size__select">
                                         {
@@ -172,17 +175,19 @@ function ProductDetail(props){
                                     <div className="product-detail__content__count_select">
                                         <input type="button" value="-" onClick={
                                             () => {
-                                                if(amountProduct > 1) setAmountProduct(amountProduct-1)
+                                                if(quantity > 1) setQuantity(quantity-1)
                                             }
                                         }/>
-                                        <input type="number" id="count-product" value={amountProduct} disabled/>
+                                        <input type="number" id="count-product" value={quantity} disabled/>
                                         <input type="button" value="+" onClick={
-                                            () => setAmountProduct(amountProduct+1)
-                                        }/> 
+                                            () => setQuantity(quantity+1)
+                                        }
+                                            disabled={quantity<quantityMax?false:true}
+                                        /> 
                                     </div>
                                 </div>
                                 <div className="product-detail__content__action">
-                                    <input type="button" value="Thêm vào giỏ" />
+                                    <input type="button" value="Thêm vào giỏ" disabled={quantityMax===0?true:false}/>
                                     {/* <input type="button" value="Mua ngay"/> */}
                                 </div>
                             </form>

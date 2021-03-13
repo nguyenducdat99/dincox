@@ -1,6 +1,6 @@
 //import style library
 import './Aproduct.scss';
-import PopupProduct from '../popupdetail/PopUpDetail';
+import PopupProductContainer from '../../../containers/PopUpDetailContainer';
 import { useState } from 'react';
 import {Link} from 'react-router-dom';
 
@@ -68,12 +68,19 @@ function Aproduct(props) {
                     <div className="aproduct-contents__price">
                         
                         <p>{price}<u>đ</u></p>
-                        <p><del>150000<u>đ</u></del></p>
+                        {/* <p><del>150000<u>đ</u></del></p> */}
                     </div>
                 </div>
             
             </div>
-            <PopupProduct isToggle={toggleQuickView?"true":"false"} resetToggleQuickView={resetToggleQuickView} data={props.data} />
+            {toggleQuickView?
+                <PopupProductContainer 
+                    isToggle={toggleQuickView?"true":"false"} 
+                    resetToggleQuickView={resetToggleQuickView} 
+                    item={props.data} 
+                />:
+                ''
+            }
         </>
     );
 }
