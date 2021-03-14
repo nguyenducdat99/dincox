@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import ProductFilter from '../components/product/productfilter/ProductFilter';
 import ResultFilter from '../components/product/productfilter/resultfilter/ReSultFilter';
 import { useParams } from "react-router";
+import * as Actions from '../actions/Actions';
 
 // code function here
 function MyContainer(props){
@@ -23,6 +24,7 @@ function MyContainer(props){
             <ResultFilter
                 titleRec={title}   
                 listProductRec={products}
+                onAddToCart={props.onAddToCart}
             />
         )
     }// use for product filter
@@ -63,7 +65,9 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = (dispatch, props) => {
     return {
-
+        onAddToCart: newItem => {
+            dispatch(Actions.addToCart(newItem,'38',1));
+        }
     }
 };
 export default connect(mapStateToProps,mapDispatchToProps)(MyContainer)

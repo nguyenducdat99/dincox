@@ -34,9 +34,13 @@
             right: 0;
             padding: 5px 10px;
             background-color: $color-default-sale;
-            &--none{
-                display: none;
-            }
+        }
+        .aproduct__sold-out {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 5px 10px;
+            background-color: $color-default-sale;
         }
         .aproduct__image__select-wrapper{
             position: absolute;

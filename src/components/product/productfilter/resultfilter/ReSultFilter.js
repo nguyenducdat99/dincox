@@ -20,7 +20,11 @@ function ResultFilter(props) {
     // return interface
     var listIndex = listProductRec.slice(indexStart,indexEnd).map((item, index) => {
         return (
-            <SingleProduct key={index} data={item}/>
+            <SingleProduct 
+                key={index} 
+                data={item}
+                onAddToCartRec={props.onAddToCart}
+            />
         )
     });
     // handle page number up

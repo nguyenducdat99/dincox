@@ -10,13 +10,13 @@ function ProductHightlightContainer(props){
     useEffect(
         () => {
             props.onFetchProduct();
-            props.onFetchSize();
+            props.onFetchSizeDetail();
             // eslint-disable-next-line
         },[]
     )
     // declare state
 
-    var { listProductHightLight } = props;
+    var { listProductHightLight,sizeDetails } = props;
     var quantityMax = 8;
     var quantity = 0;
     var listIndex = listProductHightLight.map((item,index)=>{
@@ -27,6 +27,7 @@ function ProductHightlightContainer(props){
                     key={index} 
                     data={item}
                     onAddToCartRec={props.onAddToCart}
+                    sizeDetailsRec={sizeDetails} 
                 />
             )
         }
@@ -41,7 +42,8 @@ function ProductHightlightContainer(props){
 
 const mapStateToPropsProductHightlight = (state) => {
     return {
-        listProductHightLight: state.ListProduct
+        listProductHightLight: state.ListProduct,
+        sizeDetails: state.listSizeDetail
     }
 };
 const mapDispatchToProps = (dispatch, props) => {
@@ -49,12 +51,12 @@ const mapDispatchToProps = (dispatch, props) => {
         onFetchProduct: () => {
             dispatch(Actions.fetchProductRequest())
         },
-        onFetchSize: () => {
-            dispatch(Actions.fetchSizesRequest());
+        onFetchSizeDetail: () => {
+            dispatch(Actions.fetchSizeDetailsRequest())
         }
         ,
-        onAddToCart: newItem => {
-            dispatch(Actions.addToCart(newItem,'38',1));
+        onAddToCart: (newItem,id_size) => {
+            dispatch(Actions.addToCart(newItem,id_size,1));
         }
     }
 };
