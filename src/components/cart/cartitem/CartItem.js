@@ -50,15 +50,14 @@ function CartItem(props) {
     var onUpdateQuantitySend = (updateItem,size ,quantity) => {
         if (quantity===0) {
             props.onDelItemInCartRec(updateItem,size);
-            return;
+        }else{
+            props.onUpdateQuantityRec(updateItem, size,quantity);
         }
-        props.onUpdateQuantityRec(updateItem, size,quantity);
-
     }
 
     // limit quantity can select
     if (quantity>quantityMax) {
-        onUpdateQuantitySend(item,quantityMax);
+        onUpdateQuantitySend(item,item.size,quantityMax);
     }
 
     return (

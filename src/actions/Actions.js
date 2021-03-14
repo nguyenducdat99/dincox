@@ -2,7 +2,6 @@ import * as types from '../constands/ActionTypes';
 import callApi from '../utils/ApiCaller';
 
 // handle for products
-
 export const fetchProductRequest = () => {
     return (dispatch) => {
         return callApi('products','GET',null).then(
@@ -25,9 +24,20 @@ export const listProduct = () => {
 };
 
 // handle for news
-export const listNew = () => {
+export const fetchArticleRequest = () => {
+    return (dispatch) => {
+        return callApi('news','GET',null).then(
+            res => {
+                dispatch(fetchArticle(res.data));
+                // console.log(res.data);
+            }
+        )
+    }
+}
+export const fetchArticle = items => {
     return {
-        type: types.LIST_NEW
+        type: types.FETCH_ARTICLE,
+        payload: items
     }
 }
 

@@ -5,7 +5,13 @@ import { Link } from 'react-router-dom';
 
 // code for function here
 function SmallArticle(props) {
-    var {id_new, id_account, title, create_at, contents} = props.data;
+    // get props
+    const { data } = props;
+
+    // get value of data
+    var {id_new, author, title, created_at, contents} = data;
+    
+    // return ui
     return(
         <div className="small-article">
             <Link to={"/articles/"+id_new}>
@@ -20,13 +26,13 @@ function SmallArticle(props) {
                 <div className="small-article__info__date">
                     <p>
                         <i className="fa fa-calendar" aria-hidden="true"></i>&nbsp;
-                        {create_at}
+                        {created_at}
                     </p>
                 </div>
                 <div className="small-article__info__author">
                     <p>
                         <i className="fa fa-user" aria-hidden="true"></i>&nbsp;
-                        {id_account}
+                        {author}
                     </p>
                 </div>
                 <div className="small-article__info__comment">

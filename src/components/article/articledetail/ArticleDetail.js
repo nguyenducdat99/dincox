@@ -4,18 +4,36 @@ import SmallBanner from '../../fixcontents/smallbanner/SmallBanner';
 import { useParams } from 'react-router';
 import {connect} from 'react-redux';
 
+
+function embedYoutubeConvert(url) {
+    let embeddedUrl = '';
+    var res = url.split("=");
+    
+    embeddedUrl = "https://www.youtube.com/embed/"+res[1];
+    return embeddedUrl; 
+}
+
+
 // code function here
 function ArticleDetail(props){
     // load data for article detail
     const {id} = useParams();// get id from url
-    var {listNew} = props;// get list new from store
+    var { newsRec } = props;// get list new from store
+    
+    // get recent article
     var recentArticle;
-    listNew.forEach((item,index) => {
+    newsRec.forEach((item,index) => {
         if((item.id_new+'')===id){
             recentArticle = item;
         }
     });
-    var {id_account,title, create_at,contents} = recentArticle;//get data from recent article
+    
+    // get value from recent article
+    var { author, title, created_at, contents, reference_links } = recentArticle;
+
+    // convert youtube link into embed link
+    var embedYoutube = embedYoutubeConvert(reference_links);
+
 
     return(
         <>    
@@ -30,13 +48,13 @@ function ArticleDetail(props){
                             <div className="article-detail__info__date">
                                 <p>
                                     <i className="fa fa-calendar" aria-hidden="true"></i>&nbsp;
-                                    {create_at}
+                                    {created_at}
                                 </p>
                             </div>
                             <div className="article-detail__info__author">
                                 <p>
                                     <i className="fa fa-user" aria-hidden="true"></i>&nbsp;
-                                    {id_account}
+                                    {author}
                                 </p>
                             </div>
                             <div className="article-detail__info__comment">
@@ -47,12 +65,12 @@ function ArticleDetail(props){
                         </div>
                         <div className="article-detail__contents">
                             <p>{contents}</p>
-                            <iframe width="560" height="315" src="" 
-                            frameBorder="1" title="article video"
-                            allow="accelerometer; autoplay; clipboard-write; 
-                            encrypted-media; gyroscope; picture-in-picture" >
-
-                            </iframe>
+                            <iframe 
+                                width="560" height="500" 
+                                src={embedYoutube} 
+                                frameBorder="1" 
+                                title={title}
+                            ></iframe>
                         </div>
                     </div>
                 </div>

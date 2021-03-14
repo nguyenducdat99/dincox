@@ -2,8 +2,8 @@
 export const FETCH_PRODUCT = "FETCH_PRODUCT";
 export const LIST_PRODUCT = "LIST_PRODUCT";
 
-// handle for new
-export const LIST_NEW = "LIST_NEW";
+// handle for article
+export const FETCH_ARTICLE = "FETCH_ARTICLE";
 
 // handle for account
 export const FECTH_ACCOUNT = "FETCH_ACCOUNT";

@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import ListProduct from './ProductReducer';
-import ListNew from './NewReducer';
+import listArticle from './ArticleReducer';
 import ListAccount from './AccountReducer';
 import listCategory from './CategoriesReducer';
 import isDisplayForm from './FormReducer';
@@ -14,7 +14,7 @@ import listSizeDetail from './SizeDetailsReducer';
 
 const Reducers = combineReducers({
     ListProduct,
-    ListNew,
+    listArticle,
     ListAccount,
     listCategory,
     listSize,
