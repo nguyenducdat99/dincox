@@ -15,7 +15,7 @@ function MyContainer(props){
     )
 
     // get props 
-    var { products, sizeDetails, sizes, categories} = props;  
+    var { products, sizeDetails, sizes, categories,onAddToCart} = props;  
     
     return(
         <PopUpDetail 
@@ -26,6 +26,7 @@ function MyContainer(props){
             sizeDetailsRec={sizeDetails} 
             sizesRec={sizes}
             categoriesRec={categories}
+            onAddToCartRec={onAddToCart}
         />
     );
 }
@@ -42,6 +43,9 @@ const mapDispatchToProps = (dispatch, props) => {
     return {
         onFetchSizeDetail: () => {
             dispatch(Actions.fetchSizeDetailsRequest())
+        },
+        onAddToCart: (newItem,id_size,quantity) => {
+            dispatch(Actions.addToCart(newItem,id_size,quantity));
         }
     }
 };

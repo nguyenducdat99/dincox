@@ -41,18 +41,19 @@ function CartItem(props) {
     var quantityMax = findQuantity(sizeDetailsRec,item.product.id_product, item.size);
  
     // handle when click delete item in cart
-    var onDelItemInCartSend = () => {
-        props.onDelItemInCartRec(item);
+    var onDelItemInCartSend = (item,size) => {
+        props.onDelItemInCartRec(item,size);
     }
 
 
     // handle when change quantity of item in cart
-    var onUpdateQuantitySend = (updateItem, quantity) => {
+    var onUpdateQuantitySend = (updateItem,size ,quantity) => {
         if (quantity===0) {
-            props.onDelItemInCartRec(updateItem);
+            props.onDelItemInCartRec(updateItem,size);
             return;
         }
-        props.onUpdateQuantityRec(updateItem, quantity);
+        props.onUpdateQuantityRec(updateItem, size,quantity);
+
     }
 
     // limit quantity can select
@@ -71,7 +72,9 @@ function CartItem(props) {
                             <h3>{item.product.product_name}</h3>
                             <p>Size: {sizeName}</p>
                             <button type='button'
-                                onClick={onDelItemInCartSend}
+                                onClick={() =>{
+                                    onDelItemInCartSend(item,item.size)
+                                }}
                             >Xóa</button>
                         </div>
                     </div>
@@ -83,7 +86,7 @@ function CartItem(props) {
                             onClick={
                                 () => {
                                     if (quantity===0) return;
-                                    onUpdateQuantitySend(item,quantity-1);
+                                    onUpdateQuantitySend(item,item.size,quantity-1);
                                 }
                             }
                         >
@@ -93,7 +96,7 @@ function CartItem(props) {
                         <button type='button'
                             onClick={
                                 () => {
-                                    onUpdateQuantitySend(item,quantity+1);
+                                    onUpdateQuantitySend(item,item.size,quantity+1);
                                 }
                             }
                             disabled={quantity<quantityMax?false:true}

@@ -423,16 +423,18 @@ export const addToCart = (newItem,size,quantity) => {
         quantity
     }
 }
-export const delItenInCart = delItem => {
+export const delItenInCart = (delItem,id_size) => {
     return {
         type: types.DELETE_ITEM_IN_CART,
-        payload: delItem
+        payload: delItem,
+        size: id_size
     }
 }
-export const updateQuantityItem = (updateItem,quantity) => {
+export const updateQuantityItem = (updateItem, size,quantity) => {
     return {
         type: types.UPDATE_QUANTITY_ITEM,
         payload: updateItem,
+        size,
         quantity
     }
 }

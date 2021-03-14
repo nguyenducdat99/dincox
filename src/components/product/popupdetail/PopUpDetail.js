@@ -18,7 +18,7 @@ function PopUpDetail(props){
     const [quantity, setQuantity] = useState(1); 
 
     // get props
-    const { item, sizeDetailsRec, sizesRec } = props;
+    const { item, sizeDetailsRec, sizesRec,onAddToCartRec } = props;
 
     // get data from props
     var { id_product, product_name, price } = item;
@@ -36,37 +36,45 @@ function PopUpDetail(props){
         props.resetToggleQuickView();
     }
 
-        // get list size of product
-        var listSizeSelect = sizeDetailsRec.filter((element,index)=>{
-            return element.id_product*1===id_product*1
-        })
-    
-        // get max quantity product from selected size
-        var quantityMax = listSizeSelect[sizeSelected].quantity;
-        if (quantity>quantityMax) setQuantity(quantityMax);
+    // get list size of product
+    var listSizeSelect = sizeDetailsRec.filter((element,index)=>{
+        return element.id_product*1===id_product*1
+    })
 
-        // get list size name of product
-        var listSizeSelectName = listSizeSelect.map((element, index) => {
-            return findSizeName(sizesRec,element.id_size);
-        })
-    
-        // return list size name ui
-        var listSizeSelectNameUi = listSizeSelectName.map((element,index) =>                                
-        <div key={index} 
-            className={"product-detail__content__size__one-select " +
-                (index===sizeSelected?"product-detail__content__size__active-select":"")
+    // get max quantity product from selected size
+    var quantityMax = listSizeSelect[sizeSelected].quantity;
+    if (quantity>quantityMax) setQuantity(quantityMax);
+
+    // get list size name of product
+    var listSizeSelectName = listSizeSelect.map((element, index) => {
+        return findSizeName(sizesRec,element.id_size);
+    })
+
+    // return list size name ui
+    var listSizeSelectNameUi = listSizeSelectName.map((element,index) =>                                
+    <div key={index} 
+        className={"product-detail__content__size__one-select " +
+            (index===sizeSelected?"product-detail__content__size__active-select":"")
+        }
+        onClick={
+            () => {
+                setSizeSelected(index)
             }
-            onClick={
-                () => {
-                    setSizeSelected(index)
-                }
-            }
-        >
-            {
-                element
-            }
-        </div>
-        )
+        }
+    >
+        {
+            element
+        }
+    </div>
+    )
+        
+    // hanle when click add to cart
+    var addToCart =  () => {
+        onAddToCartRec(item,listSizeSelect[sizeSelected].id_size,quantity);
+        alert('Thêm vào giỏ thành công!');
+    }   
+
+
     return(
         // product detail
         <div  className={isToggle?"pop-up-detail__wrapper":"pop-up-detail__wrapper--hidden"}>
@@ -153,7 +161,7 @@ function PopUpDetail(props){
                                     </div>
                                 </div>
                                 <div className="product-detail__content__action">
-                                    <input type="button" value="Thêm vào giỏ" />
+                                    <input type="button" value="Thêm vào giỏ"  onClick={addToCart}/>
                                     <p>Hoặc <Link to={"/products/"+id_product}>xem chi tiết</Link></p>
                                 </div>
                             </form>

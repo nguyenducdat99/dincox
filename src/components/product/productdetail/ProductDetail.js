@@ -40,11 +40,14 @@ function findCategoryName(items,id) {
 }
 
 function ProductDetail(props){
+    // declare state component
     // eslint-disable-next-line
     const [sizeSelected,setSizeSelected] = useState(0);
     const [quantity, setQuantity] = useState(1);
-    const { id } = useParams();// get id from url
-    const { productsRec,sizeDetailsRec,sizesRec,categoriesRec } = props;// get datadefault;
+    // get id from url
+    const { id } = useParams();
+    //get props
+    const { productsRec,sizeDetailsRec,sizesRec,categoriesRec,onAddToCartRec } = props;
     
     // get current product
     var currentProduct = findCurrentProduct(productsRec,id);
@@ -88,6 +91,12 @@ function ProductDetail(props){
         }
     </div>
     )
+
+    // hanle when click add to cart
+    var addToCart =  () => {
+        onAddToCartRec(currentProduct,listSizeSelect[sizeSelected].id_size,quantity);
+        alert('Thêm vào giỏ thành công!');
+    }    
 
 
     return(
@@ -187,7 +196,11 @@ function ProductDetail(props){
                                     </div>
                                 </div>
                                 <div className="product-detail__content__action">
-                                    <input type="button" value="Thêm vào giỏ" disabled={quantityMax===0?true:false}/>
+                                    <input type="button" 
+                                        value="Thêm vào giỏ" 
+                                        disabled={quantityMax===0?true:false}
+                                        onClick={addToCart}
+                                    />
                                     {/* <input type="button" value="Mua ngay"/> */}
                                 </div>
                             </form>

@@ -66,11 +66,11 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        onDelItemInCart: delItem => {
-            dispatch(Actions.delItenInCart(delItem));
+        onDelItemInCart: (delItem,size) => {
+            dispatch(Actions.delItenInCart(delItem,size));
         },
-        onUpdateQuantity: (updateItem, quantity) => {
-            dispatch(Actions.updateQuantityItem(updateItem,quantity));
+        onUpdateQuantity: (updateItem,size ,quantity) => {
+            dispatch(Actions.updateQuantityItem(updateItem,size,quantity));
         }
     }
 };

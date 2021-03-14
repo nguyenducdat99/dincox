@@ -17,7 +17,7 @@ function ProductHightlightContainer(props){
     )
 
     // get props 
-    var { products, sizeDetails, sizes, categories} = props;  
+    var { products, sizeDetails, sizes, categories, onAddToCart } = props;  
     
     return(
         <ProductDetail 
@@ -25,6 +25,7 @@ function ProductHightlightContainer(props){
             sizeDetailsRec={sizeDetails} 
             sizesRec={sizes}
             categoriesRec={categories}
+            onAddToCartRec={onAddToCart}
         />
     );
 }
@@ -47,6 +48,9 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         onFetchSize: () => {
             dispatch(Actions.fetchSizesRequest());
+        },
+        onAddToCart: (newItem,id_size,quantity) => {
+            dispatch(Actions.addToCart(newItem,id_size,quantity));
         }
     }
 };
