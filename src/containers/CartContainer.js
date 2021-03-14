@@ -9,8 +9,9 @@ import * as Actions from '../actions/Actions';
 // code function here
 function CartContainer(props){
     // declare state
-    var { cart } = props;
+    var { cart,sizes,sizeDetails } = props;
 
+    // return item in cart ui
     var showCart = cart => {
         if (cart.length ===0) return (
             <tr>
@@ -24,10 +25,13 @@ function CartContainer(props){
                         index={index+1}
                         onDelItemInCartRec={props.onDelItemInCart}
                         onUpdateQuantityRec={props.onUpdateQuantity}
+                        sizesRec={sizes}
+                        sizeDetailsRec={sizeDetails}
                     />
         });
     }
 
+    // return total item in cart
     var showTotalItem = cart => {
         if (cart.length === 0) return "";
         return <TotalItem listItem={cart}/>
@@ -46,7 +50,7 @@ CartContainer.propTypes = {
         PropTypes.shape(
             {
                 product: PropTypes.object,
-                size: PropTypes.string,
+                size: PropTypes.number,
                 quantity: PropTypes.number
             }
         )
@@ -55,7 +59,9 @@ CartContainer.propTypes = {
 
 const mapStateToProps = state => {
     return {
-        cart: state.cart
+        cart: state.cart,        
+        sizeDetails: state.listSizeDetail,
+        sizes: state.listSize
     }
 };
 const mapDispatchToProps = (dispatch, props) => {

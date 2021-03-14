@@ -25,6 +25,7 @@ function MyContainer(props){
                 titleRec={title}   
                 listProductRec={products}
                 onAddToCart={props.onAddToCart}
+                sizeDetails={props.sizeDetails} 
             />
         )
     }// use for product filter
@@ -60,13 +61,14 @@ const mapStateToProps = state => {
     return {
         products: state.ListProduct,
         categories: state.listCategory,
-        sizes: state.listSize
+        sizes: state.listSize,
+        sizeDetails: state.listSizeDetail
     }
 };
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        onAddToCart: newItem => {
-            dispatch(Actions.addToCart(newItem,'38',1));
+        onAddToCart: (newItem,id_size) => {
+            dispatch(Actions.addToCart(newItem,id_size,1));
         }
     }
 };

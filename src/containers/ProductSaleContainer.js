@@ -7,7 +7,7 @@ import * as Actions from '../actions/Actions';
 // code function here
 function ProductSaleContainer(props){
     // declare state
-    var { listProductSale } = props;
+    var { listProductSale,sizeDetails } = props;
     var listIndex = [];
     listProductSale.forEach((item,index) => {
         if(item.status===1&&item.is_sale===1){
@@ -15,6 +15,7 @@ function ProductSaleContainer(props){
                 key={index} 
                 data={item}
                 onAddToCartRec={props.onAddToCart}
+                sizeDetailsRec={sizeDetails} 
             />);
         }
     });
@@ -28,15 +29,16 @@ function ProductSaleContainer(props){
 
 const mapStateToProps = (state) => {
     return {
-        listProductSale: state.ListProduct
+        listProductSale: state.ListProduct,
+        sizeDetails: state.listSizeDetail
     }
 };
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        onAddToCart: (newItem) => {
-            dispatch(Actions.addToCart(newItem,'38',1));
-        },
+        onAddToCart: (newItem,id_size) => {
+            dispatch(Actions.addToCart(newItem,id_size,1));
+        }
     }
 };
 export default connect(mapStateToProps,mapDispatchToProps)(ProductSaleContainer)

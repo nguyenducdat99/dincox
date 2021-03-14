@@ -11,9 +11,18 @@ function Aproduct(props) {
     var { id_product, product_name, is_sale, price } = data;// get data from props
     
     // get list size of product
-    var listSizeSelect = !sizeDetailsRec?[]:sizeDetailsRec.filter((element,index)=>{
+    var listSizeSelect = !sizeDetailsRec?[]:sizeDetailsRec.filter(element=>{
         return element.id_product*1===id_product*1
     })
+
+    // get quantity of product
+    var quantity = 0;
+    if (listSizeSelect.length!==0) {
+        listSizeSelect.forEach(element => {
+            quantity = quantity + element.quantity;
+        });
+    }
+
     // code function here
     var onToggleQuickView = () => {
         setToggleQuickView(true);
@@ -22,6 +31,9 @@ function Aproduct(props) {
         setToggleQuickView(false);
     }
     var onSelectItem = () => {
+        if (quantity===0) {
+            return alert('Sản phẩm đã hết!');
+        }
         props.onAddToCartRec(data,listSizeSelect[0].id_size);
     }
     
@@ -39,7 +51,10 @@ function Aproduct(props) {
                                     <p>-50%</p>
                                 </div>:''
                             }
-                            <div className='aproduct__sold-out'>Cháy hàng</div>
+                            {
+                                (listSizeSelect.length!==0&&quantity!==0)?'':<div className='aproduct__sold-out'>Cháy hàng</div>
+                            }
+                            
                         </Link>
                         <form action="" method="">
                             <div className="aproduct__image__select-wrapper">

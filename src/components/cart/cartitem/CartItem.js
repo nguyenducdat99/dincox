@@ -2,31 +2,62 @@
 import { useEffect, useState } from 'react';
 import './CartItem.scss';
 
+function findSizeName(items, id_size) {
+    let result = "";
+    items.forEach(element => {
+        if (element.id_size===id_size) result = element.size_name
+    });
+
+    return result;
+}
+function findQuantity(items, id_product, id_size) {
+    let result = 0;
+    items.forEach(element => {
+        if (element.id_product===id_product&&element.id_size===id_size) {
+            result = element.quantity;
+        }  
+    });
+
+    return result;
+}
 // code funciton here
 function CartItem(props) {
     // declare state
     const [quantity,setQuantity] = useState(0);
-    var { item } = props;
+    var { item,sizesRec,sizeDetailsRec } = props;
 
     // load quantity
     useEffect(
         () => {
-            // setQuantity(40);
             setQuantity(item.quantity);
             // eslint-disable-next-line
         },[item.quantity]
     )
     
+    // get size name from id_size 
+    var sizeName = findSizeName(sizesRec,item.size);
+
+    // get max quantity
+    var quantityMax = findQuantity(sizeDetailsRec,item.product.id_product, item.size);
+ 
+    // handle when click delete item in cart
     var onDelItemInCartSend = () => {
         props.onDelItemInCartRec(item);
     }
 
+
+    // handle when change quantity of item in cart
     var onUpdateQuantitySend = (updateItem, quantity) => {
         if (quantity===0) {
             props.onDelItemInCartRec(updateItem);
             return;
         }
         props.onUpdateQuantityRec(updateItem, quantity);
+    }
+
+    // limit quantity can select
+    if (quantity>quantityMax) {
+        onUpdateQuantitySend(item,quantityMax);
     }
 
     return (
@@ -38,7 +69,7 @@ function CartItem(props) {
                         </div>
                         <div className="cart-item__item-detail__content">
                             <h3>{item.product.product_name}</h3>
-                            <p>Size: {item.size}</p>
+                            <p>Size: {sizeName}</p>
                             <button type='button'
                                 onClick={onDelItemInCartSend}
                             >Xóa</button>
@@ -65,6 +96,7 @@ function CartItem(props) {
                                     onUpdateQuantitySend(item,quantity+1);
                                 }
                             }
+                            disabled={quantity<quantityMax?false:true}
                         >
                             <span className='fa fa-plus'></span>
                         </button>
