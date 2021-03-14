@@ -91,7 +91,7 @@ function Aproduct(props) {
                     <div className="aproduct-contents__price">
                         
                         <p>{price}<u>đ</u></p>
-                        {/* <p><del>150000<u>đ</u></del></p> */}
+                        <p><del></del></p>
                     </div>
                 </div>
             

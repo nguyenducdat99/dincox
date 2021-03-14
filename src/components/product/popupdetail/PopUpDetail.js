@@ -119,10 +119,10 @@ function PopUpDetail(props){
                             {/* open product detail content price */}
                             <div className="product-detail__content__price">
                                 <div className="product-detail__content__price__current-price">
-                                    <p>{price*90/100} <u>đ</u></p>
+                                    <p>{price} <u>đ</u></p>
                                 </div>
                                 <div className="product-detail__content__price__original-price">
-                                    <del>{price}<u>đ</u></del>
+                                    <del>{price*110/100}<u>đ</u></del>
                                 </div>
                                 <div className="product-detail__content__price__sale">
                                     <p>(Bạn đã tiết kiệm được {price*10/100}<u>đ</u>)</p>
