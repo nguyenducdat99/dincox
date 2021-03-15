@@ -5,17 +5,20 @@ import Login from '../components/account/login/Login';
 
 // code function here
 function AccountLoginReducer(props){
-    // declare state
+    // get props
+    const { onLoginAccount } = props;
 
+    // return login ui
     return(
         <Login 
-            onLoginAccountRec={props.onLoginAccount}
+            onLoginAccountRec={onLoginAccount}
         />
     );
 }
 
 const mapStateToProps = state => {
     return {
+        
     }
 };
 const mapDispatchToProps = (dispatch, props) => {

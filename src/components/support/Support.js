@@ -5,12 +5,19 @@ function Support(props) {
     // declare state
     const [isActiveHeader,setIsActiveHeader] = useState(false);
 
+    // get props
+    const { liveAccountRec } = props;
+
+    // get position of account
+    var position = liveAccountRec?liveAccountRec.position:-1;
+
     // update state when user scroll page
     useEffect(
         () => {
             setIsActiveHeader(props.isActiveScroll);
         },[props.isActiveScroll]
     )
+   
 
     // excute when click top
     var onFocusTop = () => {
@@ -29,10 +36,13 @@ function Support(props) {
         <div className="support">
             <div className="support__social-network">
                 
-                <Link to='/managers' className="support__social-network__facebook support__setting">
-                    <i className="fa fa-cogs" aria-hidden="true"></i>         
-                    <p> Quản lý</p>      
-                </Link>
+                {
+                    position<1?'':
+                    <Link to='/managers' className="support__social-network__facebook support__setting">
+                        <i className="fa fa-cogs" aria-hidden="true"></i>         
+                        <p> Quản lý</p>      
+                    </Link>
+                }
                 <a href="https://facebook.com/" target="_blank" rel='noreferrer' className="support__social-network__facebook">
                     <i className="fa fa-facebook-official" aria-hidden="true"></i>         
                     <p> Facebook</p>      

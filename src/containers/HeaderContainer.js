@@ -14,8 +14,10 @@ function CartContainer(props){
         },[]
     )
 
-    // declare state
-    var { cart } = props;
+    // get props
+    var { cart,liveAccount,onLogoutAccount } = props;
+
+    // get quantity item in cart
     var quantity = cart.length===0?0:cart.length;
     var listCategory = check => {
         switch (check) {
@@ -64,10 +66,21 @@ function CartContainer(props){
         }
     }
 
+    // clear info live account
+    var clearAccount = () => {
+        onLogoutAccount({
+            user_name: '',
+            position: -1,
+            message: 'Đăng Xuất thành công'
+        })
+    }
+
     return(
         <Header 
             quantityRec={quantity}
-            listCategoryRec={listCategory}    
+            listCategoryRec={listCategory} 
+            liveAccountRec={liveAccount}  
+            clearAccountRec={clearAccount} 
         />
     );
 }
@@ -76,13 +89,17 @@ function CartContainer(props){
 const mapStateToProps = state => {
     return {
         cart: state.cart,
-        categories: state.listCategory
+        categories: state.listCategory,
+        liveAccount: state.loginedAccount
     }
 };
 const mapDispatchToProps = (dispatch,props) => {
     return {
         onFetchApiCategory: () => {
             dispatch(Actions.fetchCategoriesRequest());
+        },
+        onLogoutAccount: info => {
+            dispatch(Actions.loginAccount(info));
         }
     }
 };

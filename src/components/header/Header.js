@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './Header.scss';
 import logo from './logo-dincox.png';
-import Support from '../support/Support';
+import SupportContainer from '../../containers/SupportContainer';
 import { Link } from 'react-router-dom';
 
 
@@ -11,7 +11,9 @@ function Header(props) {
     const [isActiveHeader, setIsActiveHeader] = useState(false);
     
     //get props
-    var { quantityRec,listCategoryRec } = props;
+    var { quantityRec,listCategoryRec,liveAccountRec,clearAccountRec } = props;
+
+    
 
     // excute when user click button search
     var onToggleSearch = () => {
@@ -30,6 +32,8 @@ function Header(props) {
             })
         },[]
     )
+
+   
 
     return(
         <>
@@ -96,17 +100,30 @@ function Header(props) {
                             </div>
                             {/* block account */}
                             <div className="header-grid__navigation__account">
-                                <Link to="/account/login">Tài Khoản</Link>
+                                {
+                                    liveAccountRec.user_name===''?
+                                    <Link to="/account/login">Tài Khoản</Link>:
+                                    <>
+                                        <span>Chào,{liveAccountRec.user_name}</span>
+                                        &nbsp;
+                                        <span 
+                                            className="fa fa-sign-out" 
+                                            aria-hidden="true"
+                                            onClick={clearAccountRec}
+                                        ></span>
+                                    </>
+                                }
                             </div>
                             {/* block cart */}
                             <div className="header-grid__navigation__cart">
                                 <Link to='/cart'>Giỏ hàng{quantityRec===0?'':'('+quantityRec+')'}</Link>
+                                
                             </div>
                         </nav>
                     </div>
                 </div>
             </div>
-            <Support isActiveScroll={isActiveHeader} />
+            <SupportContainer isActiveScroll={isActiveHeader} />
         </>
     );
 }
