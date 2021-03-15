@@ -28,6 +28,7 @@ import SizesContainer from './containers/SizesContainer';
 import ProductDetailContainer from './containers/ProductDetailContainer';
 import ArticleUIContainer from './containers/ArticleUIContainer';
 import ArticleDetailContainer from './containers/ArticleDetailContainer';
+import ProductManagerContaner from './containers/ProductManagerContaner';
 
 function App() {
 
@@ -106,6 +107,10 @@ function App() {
 
 				<Route path='/cart'>
 					<CartContainer />
+				</Route>
+
+				<Route path='/managers/products'>
+					<ProductManagerContaner />
 				</Route>
 
 
