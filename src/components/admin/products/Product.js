@@ -8,7 +8,7 @@ function Categories(props) {
     // declare state component
     // const [keyWord, setKeyWord] = useState('');
     // const [sortType, setSortType] = useState('0');
-    var { isDisplayFormRec } = props;
+    var { isDisplayFormRec,showQuantityRec,quantityFormRec } = props;
     
 
     // toggle form add/edit
@@ -40,10 +40,17 @@ function Categories(props) {
         // setSortType(type);
     }
 
-
     return (
         <>
             <SmallBanner title="Quản lý"/>
+            {
+                showQuantityRec?
+                <div className="background-blur">
+                {
+                    quantityFormRec()
+                }
+                </div>:''
+            }
             <div className='main'>
                 <div className="wrapper">
                     <div className="main__title">
@@ -55,6 +62,7 @@ function Categories(props) {
                                 {
                                     isDisplayFormRec?props.taskFormRec():''
                                 }
+
                             </div>
                             <div className="main__manager__other-action">
                                 <button type="button" className="btn-primary" onClick={onToggleForm}>

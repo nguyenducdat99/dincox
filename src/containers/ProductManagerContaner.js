@@ -5,10 +5,26 @@ import Product from '../components/admin/products/Product';
 import TaskForm from '../components/admin/products/taskform/TaskForm';
 import TaskList from '../components/admin/products/tasklist/TaskList';
 import TaskItem from '../components/admin/products/tasklist/TaskItem';
-import { useEffect } from 'react';
+import QuantityForm from '../components/admin/products/quantityform/QuantityForm'
+
+import { useEffect, useState } from 'react';
 
 // code function here
-function CategoriesContainer(props){
+function ProductContainer(props){
+    // declare state
+    const [showQuantity,setShowQuantity] = useState(false);
+    // const [showImage,setShowImage] = useState(false);
+    
+    // open form product quantity
+    var openFormQuantity = () => {
+        setShowQuantity(true);
+    }
+    
+    // close form product quantity
+    var closeFormQuantity = () => {
+        setShowQuantity(false);
+    }
+
 
     // load data
     useEffect( 
@@ -21,14 +37,19 @@ function CategoriesContainer(props){
     )
 
     // get props
-    const { items,categories } = props;
+    const {items, categories, sizes, onUpdateQuantity, sizeDetails} = props;
 
     // return option category ui
     var optionCategoryUI = categories.map((element,index) => {
         return <option key={index} value={element.id_category}>{element.category_name}</option>
     })
 
-   
+    // return option sizes ui
+    var optionSizeUI = sizes.map((element,index) => {
+        return <option key={index} value={element.id_size}>{element.size_name}</option>
+    })
+
+    
 
     // return task form ui
     var taskForm = () =>{
@@ -39,6 +60,20 @@ function CategoriesContainer(props){
                 onCloseFormRec={props.onCloseForm}
                 onSaveItemRec={props.onSaveItem}
                 optionCategoryUIRec={optionCategoryUI}
+            />
+        )
+    };// use for categories
+
+    // return quantity form ui
+    var quantityForm = () =>{
+        return (
+            <QuantityForm 
+                onOpenQuantityForm={openFormQuantity}
+                closeFormQuantityRec={closeFormQuantity}
+                optionSizeUIRec={optionSizeUI}
+                itemEditRec={props.itemEdit}
+                onUpdateQuantityRec={onUpdateQuantity}
+                sizeDetailsRec={sizeDetails}
             />
         )
     };// use for categories
@@ -57,6 +92,7 @@ function CategoriesContainer(props){
                 onOpenFormRec={props.onOpenForm}
                 onUpdateStatusRec={props.onUpdateStatus}
                 onUpdateSaleRec={props.onUpdateSale}
+                openFormQuantityRec={openFormQuantity}
             />
         )
     });// use for taskList
@@ -79,7 +115,8 @@ function CategoriesContainer(props){
             taskFormRec={taskForm}
             taskListRec={taskList}
             onClearItemEditRec={props.onClearItemEdit}
-            
+            showQuantityRec={showQuantity}
+            quantityFormRec={quantityForm}
         />
     );
 }
@@ -89,7 +126,9 @@ const mapStateToProps = state => {
         items: state.ListProduct,
         categories: state.listCategory,
         isDisplayForm: state.isDisplayForm,
-        itemEdit: state.productEdit
+        itemEdit: state.productEdit,
+        sizes: state.listSize,
+        sizeDetails: state.listSizeDetail
     }
 };
 const mapDispatchToProps = (dispatch, props) => {
@@ -123,7 +162,10 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         onUpdateSale: item => {
             dispatch(Actions.updateSaleProductRequest(item));
+        },
+        onUpdateQuantity: (item,type) => {
+            dispatch(Actions.saveSizeDetailsRequest(item,type))
         }
     }
 };
-export default connect(mapStateToProps,mapDispatchToProps)(CategoriesContainer)
+export default connect(mapStateToProps,mapDispatchToProps)(ProductContainer)

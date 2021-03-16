@@ -4,6 +4,7 @@ export const SAVE_PRODUCT = "SAVE_PRODUCT";
 export const PRODUCT_EDIT = 'PRODUCT_EDIT';
 export const UPDATE_STATUS_PRODUCT = "UPDATE_STATUS_PRODUCT";
 export const UPDATE_SALE_PRODUCT = "UPDATE_SALE_PRODUCT"; 
+
 // handle for article
 export const FETCH_ARTICLE = "FETCH_ARTICLE";
 
@@ -33,6 +34,7 @@ export const DELETE_SIZE = "DELETE_SIZE";
 
 // hanlde for size detail
 export const FETCH_SIZE_DETAILS = "FETCH_SIZE_DETAILS";
+export const SAVE_SIZE_DETAIL = "SAVE_SIZE_DETAIL";
 
 // handle for status form
 export const TOGGLE_FORM = "TOGGLE_FORM";

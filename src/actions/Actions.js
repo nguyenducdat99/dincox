@@ -483,8 +483,8 @@ export const deleteSize = id => {
         payload: id
     }
 }
-
-// hadle for sizes
+ 
+// hadle for sizes detail
 export const fetchSizeDetailsRequest = () => {
     return (dispatch) => {
         return callApi('size-details','GET',null).then(
@@ -498,6 +498,40 @@ export const fetchSizeDetails = items => {
     return {
         type: types.FETCH_SIZE_DETAILS,
         payload: items
+    }
+}
+
+export const saveSizeDetailsRequest = (item,type) => {
+  
+    item = {
+        ...item,
+        status: item.status*1
+    }
+
+    if (type){
+        return (dispatch) => {
+            return callApi(('size-details'),'POST', item).then(
+                res => {
+                    dispatch(saveSizeDetail(res.data));
+                    // console.log(res.data);
+                }
+            )
+        }
+    } else {
+        return (dispatch) => {
+            return callApi('size-details','PUT', item).then(
+                res => {
+                    dispatch(saveSizeDetail(res.data));
+                }
+            )
+        }
+    }
+    
+}
+export const saveSizeDetail = item => {
+    return {
+        type: types.SAVE_SIZE_DETAIL,
+        payload: item
     }
 }
 

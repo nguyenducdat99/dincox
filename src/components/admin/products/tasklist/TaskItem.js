@@ -9,7 +9,7 @@ function findCategoryName(items, id) {
 
 function TaskItem(props) {
     //  get props, declare variable, constant
-    var { index, itemRec, categoriesRec } = props;
+    var { index, itemRec, categoriesRec,openFormQuantityRec } = props;
 
     // get category name
     var productCategory = findCategoryName(categoriesRec, itemRec.id_category);
@@ -18,6 +18,12 @@ function TaskItem(props) {
     var onSelectItem = () => {
         props.onSelectItemEditRec(itemRec.id_product);
         props.onOpenFormRec();
+    }
+
+    // handle when update quantity
+    var onUpdateQantity = () => {
+        props.onSelectItemEditRec(itemRec.id_product);
+        openFormQuantityRec()
     }
     
     // handle update status
@@ -71,7 +77,9 @@ function TaskItem(props) {
                 }
             </td>
             <td>
-                <button type="button" className="btn btn-warning" onClick={onSelectItem}>
+                <button type="button" className="btn btn-warning" 
+                    onClick={onUpdateQantity}
+                >
                     <span className="fa fa-pencil"></span>Thêm số lượng
                 </button>
                 &nbsp;
