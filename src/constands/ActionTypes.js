@@ -1,9 +1,12 @@
 // handle for product
 export const FETCH_PRODUCT = "FETCH_PRODUCT";
-export const LIST_PRODUCT = "LIST_PRODUCT";
-
+export const SAVE_PRODUCT = "SAVE_PRODUCT";
+export const PRODUCT_EDIT = 'PRODUCT_EDIT';
+export const UPDATE_STATUS_PRODUCT = "UPDATE_STATUS_PRODUCT";
+export const UPDATE_SALE_PRODUCT = "UPDATE_SALE_PRODUCT"; 
 // handle for article
 export const FETCH_ARTICLE = "FETCH_ARTICLE";
+
 
 // handle for account
 export const FECTH_ACCOUNT = "FETCH_ACCOUNT";

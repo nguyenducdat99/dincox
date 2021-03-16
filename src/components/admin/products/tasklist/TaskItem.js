@@ -1,7 +1,7 @@
 function findCategoryName(items, id) {
     let result = '';
     items.forEach(element => {
-        if ( element.id_category===id) result = element.category_name;
+        if ( element.id_category*1===id*1) result = element.category_name;
     });
 
     return result;
@@ -16,13 +16,18 @@ function TaskItem(props) {
 
     // handle return item for onSlectItem
     var onSelectItem = () => {
-        props.onSelectItemEditRec(itemRec.id_category);
+        props.onSelectItemEditRec(itemRec.id_product);
         props.onOpenFormRec();
     }
     
     // handle update status
     var onUpdateStatus = () => {
         props.onUpdateStatusRec(itemRec);
+    }
+    
+    // handle update sale
+    var onUpdateSale = () => {
+        props.onUpdateSaleRec(itemRec);
     }
 
     // handle delete task
@@ -48,9 +53,10 @@ function TaskItem(props) {
             <td>
                 {
                     <span 
-                        className={!(itemRec.status) ? 'label label-danger' : 'label label-info' } 
+                        className={!(itemRec.is_sale) ? 'label label-danger' : 'label label-info' } 
+                        onClick={onUpdateSale}
                     >
-                        { (itemRec.status) ? 'Kích Hoạt' : 'Ẩn' } 
+                        { (itemRec.is_sale) ? 'Có' : 'Không' } 
                     </span>
                 }
             </td>

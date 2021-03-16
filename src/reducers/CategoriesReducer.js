@@ -15,6 +15,7 @@ function findIndex(state, id) {
 }
 
 var index = -1;
+
 var MyReducer = (state=initialState, action) =>{
     switch (action.type) {
         case types.FETCH_CATEGORIES:

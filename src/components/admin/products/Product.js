@@ -15,15 +15,17 @@ function Categories(props) {
     var onToggleForm = () => {
         props.onClearItemEditRec(
             {
+                id_product: '',
                 id_category: '',
-                category_name: '',
-                created_at: '',
-                edited_at: '',
-                status: 0
+                product_name: '',
+                is_sale: 0,
+                description: '',
+                price: 0,
+                status: 0,
             }
         )
         let { itemEditRec } = props;
-        if (itemEditRec&&itemEditRec.id_category === ''){
+        if (itemEditRec&&itemEditRec.id_product === ''){
             props.onToggleFormRec();
         }
     };
@@ -45,18 +47,18 @@ function Categories(props) {
             <div className='main'>
                 <div className="wrapper">
                     <div className="main__title">
-                        <h1>Quản lý Danh Mục</h1>
+                        <h1>Quản lý sản phẩm</h1>
                     </div>
                     <div className="main__manager">
                         <div className={isDisplayFormRec?"main__manager__grid":"main__manager__grid--hidden"}>
                             <div className={isDisplayFormRec?"main__manager__add-update":"main__manager__add-update--hidden"}>
                                 {
-                                    props.taskFormRec()
+                                    isDisplayFormRec?props.taskFormRec():''
                                 }
                             </div>
                             <div className="main__manager__other-action">
                                 <button type="button" className="btn-primary" onClick={onToggleForm}>
-                                    <span className="fa fa-plus"></span>Thêm Danh Mục
+                                    <span className="fa fa-plus"></span>Thêm Sản Phẩm
                                 </button>
                                 <TaskControl 
                                     onSearch={onSearch}

@@ -17,11 +17,105 @@ export const fetchProduct = products => {
         payload: products
     }
 }
-export const listProduct = () => {
-    return {
-        type : types.LIST_PRODUCT
+
+export const saveProductRequest = (item) => {
+  
+    item = {
+        ...item,
+        status: item.status*1
     }
-};
+    let id = item.id_product;
+
+    if (id !== ''){
+        return (dispatch) => {
+            return callApi(('products/'+id),'PUT', item).then(
+                res => {
+                    dispatch(saveProduct(res.data));
+                    // console.log(res.data);
+                }
+            )
+        }
+    } else {
+        return (dispatch) => {
+            return callApi('products','POST', item).then(
+                res => {
+                    dispatch(saveProduct(res.data));
+                }
+            )
+        }
+    }
+    
+}
+export const saveProduct = items => {
+    return {
+        type: types.SAVE_PRODUCT,
+        payload: items
+    }
+}
+
+export const selectProductRequest = id => {
+    return (dispatch) => {
+        return callApi(('products/'+id),'GET',id).then(
+            res => {
+                dispatch(selectProduct(res.data));
+            }
+        )
+    }
+}
+export const selectProduct = item => {
+    return {
+        type: types.PRODUCT_EDIT,
+        payload: item
+    }
+}
+export const updateStatusProductRequest = (item) => {
+
+    item = {
+        ...item,
+        status: (item.status*1===1)?0:1
+    }
+    let id = item.id_product;
+
+    return (dispatch) => {
+        return callApi(('products/'+id),'PUT', item).then(
+            res => {
+                dispatch(updateStatusProduct(res.data.id_product));
+                // console.log(res.data);
+            }
+        )
+    }
+  
+}
+export const updateStatusProduct = id => {
+    return {
+        type: types.UPDATE_STATUS_PRODUCT,
+        payload: id
+    }
+}
+
+export const updateSaleProductRequest = (item) => {
+
+    item = {
+        ...item,
+        is_sale: (item.is_sale*1===1)?0:1
+    }
+    let id = item.id_product;
+
+    return (dispatch) => {
+        return callApi(('products/'+id),'PUT', item).then(
+            res => {
+                dispatch(updateSaleProduct(res.data.id_product));
+            }
+        )
+    }
+  
+}
+export const updateSaleProduct = id => {
+    return {
+        type: types.UPDATE_SALE_PRODUCT,
+        payload: id
+    }
+}
 
 // handle for news
 export const fetchArticleRequest = () => {

@@ -1,8 +1,8 @@
 // import style library, components
 import {connect} from 'react-redux';
 import * as Actions from '../actions/Actions';
-import ProductManger from '../components/admin/products/Product';
-import TaskForm from '../components/admin/categories/taskform/TaskForm';
+import Product from '../components/admin/products/Product';
+import TaskForm from '../components/admin/products/taskform/TaskForm';
 import TaskList from '../components/admin/products/tasklist/TaskList';
 import TaskItem from '../components/admin/products/tasklist/TaskItem';
 import { useEffect } from 'react';
@@ -15,12 +15,20 @@ function CategoriesContainer(props){
         () => {
             props.onFetchApi();
             props.onCloseForm();
+            // props.onOpenForm();
             // eslint-disable-next-line
         },[]
     )
 
     // get props
     const { items,categories } = props;
+
+    // return option category ui
+    var optionCategoryUI = categories.map((element,index) => {
+        return <option key={index} value={element.id_category}>{element.category_name}</option>
+    })
+
+   
 
     // return task form ui
     var taskForm = () =>{
@@ -30,6 +38,7 @@ function CategoriesContainer(props){
                 onClearItemEditRec={props.onClearItemEdit}
                 onCloseFormRec={props.onCloseForm}
                 onSaveItemRec={props.onSaveItem}
+                optionCategoryUIRec={optionCategoryUI}
             />
         )
     };// use for categories
@@ -47,6 +56,7 @@ function CategoriesContainer(props){
                 onSelectItemEditRec={props.onSelectItemEdit}
                 onOpenFormRec={props.onOpenForm}
                 onUpdateStatusRec={props.onUpdateStatus}
+                onUpdateSaleRec={props.onUpdateSale}
             />
         )
     });// use for taskList
@@ -61,7 +71,7 @@ function CategoriesContainer(props){
     }// use for categories
 
     return(
-        <ProductManger
+        <Product
             isDisplayFormRec={props.isDisplayForm}
             onSelectItemEditRec={props.onSelectItemEdit}
             itemEditRec={props.itemEdit}
@@ -79,7 +89,7 @@ const mapStateToProps = state => {
         items: state.ListProduct,
         categories: state.listCategory,
         isDisplayForm: state.isDisplayForm,
-        itemEdit: state.categoryEdit
+        itemEdit: state.productEdit
     }
 };
 const mapDispatchToProps = (dispatch, props) => {
@@ -97,19 +107,22 @@ const mapDispatchToProps = (dispatch, props) => {
             dispatch(Actions.closeForm())
         },
         onSelectItemEdit: id => {
-            dispatch(Actions.selectCategoryRequest(id));
+            dispatch(Actions.selectProductRequest(id));
         },
         onSaveItem: item => {
-            dispatch(Actions.saveCategoryRequest(item));
+            dispatch(Actions.saveProductRequest(item));
         },
         onClearItemEdit: item => {
-            dispatch(Actions.selectCategory(item));
+            dispatch(Actions.selectProduct(item));
         },
         onDeleteItem: id => {
             dispatch(Actions.deleteCategoryRequest(id));
         },
         onUpdateStatus: item => {
-            dispatch(Actions.updateStatusCategoryRequest(item));
+            dispatch(Actions.updateStatusProductRequest(item));
+        },
+        onUpdateSale: item => {
+            dispatch(Actions.updateSaleProductRequest(item));
         }
     }
 };

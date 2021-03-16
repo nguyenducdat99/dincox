@@ -11,6 +11,7 @@ import categoryEdit from './CategoryEditReducer';
 import sizeEdit from './SizeEditReducer';
 import listSize from './SizesReducer';
 import listSizeDetail from './SizeDetailsReducer';
+import productEdit from './ProductEditReducer';
 
 const Reducers = combineReducers({
     ListProduct,
@@ -21,6 +22,7 @@ const Reducers = combineReducers({
     isDisplayForm,
     accountEdit,
     cart,
+    productEdit,
     loginedAccount,
     categoryEdit,
     sizeEdit,
