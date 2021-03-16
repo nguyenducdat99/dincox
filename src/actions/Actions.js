@@ -535,6 +535,50 @@ export const saveSizeDetail = item => {
     }
 }
 
+// handle for images
+export const fetchImageRequest = () => {
+    return (dispatch) => {
+        return callApi('collections','GET',null).then(
+            res => {
+                dispatch(fetchImage(res.data));
+                // console.log(res);
+            }
+        )
+    }
+}
+export const fetchImage = items => {
+    return {
+        type: types.FETCH_IMAGES,
+        payload: items
+    }
+}
+
+export const saveImageRequest = item => {
+  
+    item = {
+        ...item,
+        status: item.status*1
+    }
+
+    console.log(item);
+
+    return (dispatch) => {
+        return callApi(('collections'),'POST', item).then(
+            res => {
+                dispatch(saveImage(res.data));
+                // console.log(res.data);
+            }
+        )
+    }
+    
+}
+export const saveImage = item => {
+    return {
+        type: types.SAVE_IMAGES,
+        payload: item
+    }
+}
+
 // handle for status form
 export const toggleForm = () => {
     return {

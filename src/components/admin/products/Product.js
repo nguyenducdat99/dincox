@@ -8,7 +8,7 @@ function Categories(props) {
     // declare state component
     // const [keyWord, setKeyWord] = useState('');
     // const [sortType, setSortType] = useState('0');
-    var { isDisplayFormRec,showQuantityRec,quantityFormRec } = props;
+    var {isDisplayFormRec, showQuantityRec, quantityFormRec, showImageRec, imageFormRec} = props;
     
 
     // toggle form add/edit
@@ -50,6 +50,13 @@ function Categories(props) {
                     quantityFormRec()
                 }
                 </div>:''
+            }
+            {
+                showImageRec?<div className="background-blur">
+                {
+                       imageFormRec()
+                }
+                 </div>:''
             }
             <div className='main'>
                 <div className="wrapper">

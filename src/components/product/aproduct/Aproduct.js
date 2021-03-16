@@ -44,7 +44,8 @@ function Aproduct(props) {
                    <div className="aproduct__image">
                        
                        <Link to={"/products/"+id_product}>
-                            <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Fa%2Fa7%2FReact-icon.svg%2F1200px-React-icon.svg.png&f=1&nofb=1" alt="demo" />
+                            {/* <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Fa%2Fa7%2FReact-icon.svg%2F1200px-React-icon.svg.png&f=1&nofb=1" alt="demo" /> */}
+                            <img src="http://localhost:8080/images/c18black.jpg" alt="demo" />
                             {
                                 is_sale?
                                 <div className="aproduct__sale">

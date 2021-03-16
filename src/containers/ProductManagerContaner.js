@@ -6,14 +6,24 @@ import TaskForm from '../components/admin/products/taskform/TaskForm';
 import TaskList from '../components/admin/products/tasklist/TaskList';
 import TaskItem from '../components/admin/products/tasklist/TaskItem';
 import QuantityForm from '../components/admin/products/quantityform/QuantityForm'
-
+import ImageForm from '../components/admin/products/imagesform/ImagesForm';
 import { useEffect, useState } from 'react';
 
 // code function here
 function ProductContainer(props){
     // declare state
     const [showQuantity,setShowQuantity] = useState(false);
-    // const [showImage,setShowImage] = useState(false);
+    const [showImage,setShowImage] = useState(false);
+
+    // open Form Image 
+    var openFormImage = () => {
+        setShowImage(true);
+    }
+
+    // close Form Image
+    var closeFormImage = () => {
+        setShowImage(false);
+    }
     
     // open form product quantity
     var openFormQuantity = () => {
@@ -31,13 +41,14 @@ function ProductContainer(props){
         () => {
             props.onFetchApi();
             props.onCloseForm();
+            props.onFetchImage();
             // props.onOpenForm();
             // eslint-disable-next-line
         },[]
     )
 
     // get props
-    const {items, categories, sizes, onUpdateQuantity, sizeDetails} = props;
+    const {items, categories, sizes, onUpdateQuantity, sizeDetails, images, onUpdateImage} = props;
 
     // return option category ui
     var optionCategoryUI = categories.map((element,index) => {
@@ -62,7 +73,7 @@ function ProductContainer(props){
                 optionCategoryUIRec={optionCategoryUI}
             />
         )
-    };// use for categories
+    };
 
     // return quantity form ui
     var quantityForm = () =>{
@@ -76,7 +87,18 @@ function ProductContainer(props){
                 sizeDetailsRec={sizeDetails}
             />
         )
-    };// use for categories
+    };
+
+    // return image form ui
+    var imageForm = () =>{
+        return (
+            <ImageForm 
+                closeFormImageRec={closeFormImage}
+                itemEditRec={props.itemEdit}
+                onUpdateImageRec={onUpdateImage}
+            />
+        )
+    };
 
     // return list item in cart
     var listIndex = items.map((item, index) => {
@@ -93,6 +115,8 @@ function ProductContainer(props){
                 onUpdateStatusRec={props.onUpdateStatus}
                 onUpdateSaleRec={props.onUpdateSale}
                 openFormQuantityRec={openFormQuantity}
+                openFormImageRec={openFormImage}
+                imagesRec={images}
             />
         )
     });// use for taskList
@@ -117,6 +141,8 @@ function ProductContainer(props){
             onClearItemEditRec={props.onClearItemEdit}
             showQuantityRec={showQuantity}
             quantityFormRec={quantityForm}
+            showImageRec={showImage}
+            imageFormRec={imageForm}
         />
     );
 }
@@ -128,7 +154,8 @@ const mapStateToProps = state => {
         isDisplayForm: state.isDisplayForm,
         itemEdit: state.productEdit,
         sizes: state.listSize,
-        sizeDetails: state.listSizeDetail
+        sizeDetails: state.listSizeDetail,
+        images: state.listImages
     }
 };
 const mapDispatchToProps = (dispatch, props) => {
@@ -165,6 +192,12 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         onUpdateQuantity: (item,type) => {
             dispatch(Actions.saveSizeDetailsRequest(item,type))
+        },
+        onFetchImage: () => {
+            dispatch(Actions.fetchImageRequest());
+        },
+        onUpdateImage: item => {
+            dispatch(Actions.saveImageRequest(item));
         }
     }
 };

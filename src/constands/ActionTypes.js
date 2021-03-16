@@ -46,3 +46,7 @@ export const ADD_TO_CART = "ADD_TO_CART";
 export const DELETE_ITEM_IN_CART = "DELETE_ITEM_IN_CART";
 export const UPDATE_QUANTITY_ITEM = "UPDATE_QUANTITY_ITEM";
 
+// handler for images
+export const FETCH_IMAGES = "FETCH_IMAGES";
+export const SAVE_IMAGES = "SAVE_IMAGES";
+
