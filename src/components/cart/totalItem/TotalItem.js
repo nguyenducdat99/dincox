@@ -9,7 +9,13 @@ function TotalItem(props) {
     function totalAmount(cart){
         let result = 0;
         cart.forEach((item, index) => {
-            result += item.product.price*item.quantity;
+            const discount = 25;
+            const factor = ((100-discount)/100);
+            if (item.product.is_sale) {
+                result += item.product.price*item.quantity*factor;
+            }else{
+                result += item.product.price*item.quantity;
+            } 
         });   
         
         return result;

@@ -83,6 +83,12 @@ function CartItem(props) {
     // conver path
     path = 'http://localhost:8080' + path[0];
 
+    // get discount
+    const discount = 25;
+
+    // get factor
+    const factor = item.product.is_sale?((100-discount)/100):1
+   
     return (
             <tr className="cart-item">
                 <td>
@@ -101,7 +107,7 @@ function CartItem(props) {
                         </div>
                     </div>
                 </td>
-                <td><b>{item.product.price}<u>đ</u></b></td>
+                <td><b>{item.product.price*factor}<u>đ</u></b></td>
                 <td>
                     <div className='cart-item__item-detail__action'>
                         <button type='button'
@@ -127,7 +133,7 @@ function CartItem(props) {
                         </button>
                     </div>
                 </td>
-                <td><b>{item.product.price*quantity}<u>đ</u></b></td>
+                <td><b>{item.product.price*quantity*factor}<u>đ</u></b></td>
             </tr>
     )
 }

@@ -20,7 +20,7 @@ function Aproduct(props) {
     const [toggleQuickView, setToggleQuickView] = useState(false);
 
     // get props
-    var { data,sizeDetailsRec,imagesRec } = props;
+    var { data, sizeDetailsRec, imagesRec } = props;
 
     // get value of props data
     var { id_product, product_name, is_sale, price } = data;// get data from props
@@ -57,7 +57,10 @@ function Aproduct(props) {
         }
         props.onAddToCartRec(data,listSizeSelect[0].id_size);
     }
-    
+
+    // get discount
+    const discount = 25;
+
     return(
         <>
             <div className="aproduct">
@@ -70,7 +73,7 @@ function Aproduct(props) {
                             {
                                 is_sale?
                                 <div className="aproduct__sale">
-                                    <p>-50%</p>
+                                    <p>{'-' + discount + '%'}</p>
                                 </div>:''
                             }
                             {
@@ -110,11 +113,17 @@ function Aproduct(props) {
                             <p>{product_name}</p>
                         </Link>
                     </div>
-                    <div className="aproduct-contents__price">
-                        
-                        <p>{price}<u>đ</u></p>
-                        <p><del></del></p>
-                    </div>
+                    {
+                        is_sale?
+                        <div className="aproduct-contents__price">
+                            <p>{price/100*(100-discount)}<u>đ</u></p>
+                            <p><del>{price}<u>đ</u></del></p>
+                        </div>:
+                        <div className="aproduct-contents__price">
+                            <p>{price}<u>đ</u></p>
+                            <p><del></del></p>
+                        </div>
+                    }
                 </div>
             
             </div>

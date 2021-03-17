@@ -11,6 +11,17 @@ function findSizeName(items,id) {
     return result;
 }
 
+function findImages(items,id) {
+    let result = [];
+    items.forEach(element => {
+        if (element.id_product*1 === id*1) result.push(element.path);
+    });
+
+    result.sort(function(a, b){return a.id_image - b.id_image})
+
+    return result;
+}
+
 function PopUpDetail(props){
     // declare state and variable
     const [sizeSelected,setSizeSelected] = useState(0);
@@ -18,10 +29,10 @@ function PopUpDetail(props){
     const [quantity, setQuantity] = useState(1); 
 
     // get props
-    const { item, sizeDetailsRec, sizesRec,onAddToCartRec } = props;
+    const { item, sizeDetailsRec, sizesRec, onAddToCartRec, imagesRec } = props;
 
     // get data from props
-    var { id_product, product_name, price } = item;
+    var { id_product, product_name, price, is_sale } = item;
 
     // load state data from database local
     useEffect(
@@ -37,7 +48,7 @@ function PopUpDetail(props){
     }
 
     // get list size of product
-    var listSizeSelect = sizeDetailsRec.filter((element,index)=>{
+    var listSizeSelect = sizeDetailsRec.filter((element)=>{
         return element.id_product*1===id_product*1
     })
 
@@ -74,6 +85,25 @@ function PopUpDetail(props){
         alert('Thêm vào giỏ thành công!');
     }   
 
+    // // get images for item
+    var path = findImages(imagesRec,id_product);
+
+    // return list image 
+    var listSmallImage = path.map(
+        (element, index) => {
+            return (
+                <div key={index} className="product-detail__list-image__image">
+                    <img src={'http://localhost:8080'+element} alt="dincox small"/>
+                </div>
+            )
+        }
+    )
+    
+    // conver path
+    path = 'http://localhost:8080' + path[0];
+
+    // get discount
+    const discount = 25; 
 
     return(
         // product detail
@@ -87,19 +117,13 @@ function PopUpDetail(props){
                         {/* open main */}
                         <div className="product-detail__main-image">
                             <div className="product-detail__main-image__image">
-                                <img src="" alt="main"/>
+                                <img src={path} alt="dincox demo" />
                             </div>
                             {/* open list small */}
                             <div className="product-detail__list-image">
-                                <div className="product-detail__list-image__image">
-                                    <img src='' alt="small"/>
-                                </div>
-                                <div className="product-detail__list-image__image">
-                                    <img src='' alt="small"/>
-                                </div>
-                                <div className="product-detail__list-image__image">
-                                    <img src='' alt="small"/>
-                                </div>
+                            {
+                                listSmallImage
+                            }
                             </div>
                             {/* close list small */}
                         </div>
@@ -117,17 +141,26 @@ function PopUpDetail(props){
                             {/* close product detail content header */}
 
                             {/* open product detail content price */}
-                            <div className="product-detail__content__price">
-                                <div className="product-detail__content__price__current-price">
-                                    <p>{price} <u>đ</u></p>
+                            {
+                                is_sale?
+                                <div className="product-detail__content__price">
+                                    <div className="product-detail__content__price__current-price">
+                                        <p>{price*(100-discount)/100} <u>đ</u></p>
+                                    </div>
+                                    <div className="product-detail__content__price__original-price">
+                                        <del>{price}<u>đ</u></del>
+                                    </div>
+                                    <div className="product-detail__content__price__sale">
+                                        <p>(Bạn đã tiết kiệm được {price*discount/100}<u>đ</u>)</p>
+                                    </div>
+                                </div>:
+                                <div className="product-detail__content__price">
+                                    <div className="product-detail__content__price__current-price">
+                                        <p>{price} <u>đ</u></p>
+                                    </div>
                                 </div>
-                                <div className="product-detail__content__price__original-price">
-                                    <del>{price*110/100}<u>đ</u></del>
-                                </div>
-                                <div className="product-detail__content__price__sale">
-                                    <p>(Bạn đã tiết kiệm được {price*10/100}<u>đ</u>)</p>
-                                </div>
-                            </div>
+                            
+                            }
                             {/* close product detail content price */}
                         
                             {/* open form select product */}

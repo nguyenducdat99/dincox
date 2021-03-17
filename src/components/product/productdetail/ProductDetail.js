@@ -66,7 +66,7 @@ function ProductDetail(props){
     var currentProduct = findCurrentProduct(productsRec,id);
 
     // get data for product detail
-    var { id_product,id_category, product_name, price, description } = currentProduct;
+    var { id_product,id_category, product_name, price, description, is_sale } = currentProduct;
     
     // get category name for product
     var categoryName = findCategoryName(categoriesRec,id_category);
@@ -129,7 +129,8 @@ function ProductDetail(props){
         alert('Thêm vào giỏ thành công!');
     }    
 
-
+    // get discount
+    const discount = 25;
 
     return(
         <>
@@ -173,17 +174,25 @@ function ProductDetail(props){
                             {/* close product detail content header */}
 
                             {/* open product detail content price */}
-                            <div className="product-detail__content__price">
-                                <div className="product-detail__content__price__current-price">
-                                    <p>{price} <u>đ</u></p>
+                            {
+                                is_sale?
+                                <div className="product-detail__content__price">
+                                    <div className="product-detail__content__price__current-price">
+                                        <p>{price*(100-discount)/100} <u>đ</u></p>
+                                    </div>
+                                    <div className="product-detail__content__price__original-price">
+                                        <del>{price}<u>đ</u></del>
+                                    </div>
+                                    <div className="product-detail__content__price__sale">
+                                        <p>(Bạn đã tiết kiệm được {price*discount/100}<u>đ</u>)</p>
+                                    </div>
+                                </div>:
+                                <div className="product-detail__content__price">
+                                    <div className="product-detail__content__price__current-price">
+                                        <p>{price} <u>đ</u></p>
+                                    </div>
                                 </div>
-                                <div className="product-detail__content__price__original-price">
-                                    <del>{price*110/100}<u>đ</u></del>
-                                </div>
-                                <div className="product-detail__content__price__sale">
-                                    <p>(Bạn đã tiết kiệm được {price*10/100}<u>đ</u>)</p>
-                                </div>
-                            </div>
+                            }
                             {/* close product detail content price */}
                         
                             {/* open form select product */}
