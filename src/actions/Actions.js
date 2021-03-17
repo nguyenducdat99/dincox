@@ -1,5 +1,6 @@
 import * as types from '../constands/ActionTypes';
 import callApi from '../utils/ApiCaller';
+// import uploader from '../utils/Uploader';
 
 // handle for products
 export const fetchProductRequest = () => {
@@ -554,17 +555,10 @@ export const fetchImage = items => {
 }
 
 export const saveImageRequest = item => {
-  
-    item = {
-        ...item,
-        status: item.status*1
-    }
-
-    console.log(item);
-
     return (dispatch) => {
         return callApi(('collections'),'POST', item).then(
             res => {
+                console.log(res);
                 dispatch(saveImage(res.data));
                 // console.log(res.data);
             }
