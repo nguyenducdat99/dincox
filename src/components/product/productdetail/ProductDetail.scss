@@ -29,12 +29,20 @@
                     overflow: hidden;
                     margin-bottom: 10px;
                     border: 1px solid $color-default-lightgray;
+                    img {
+                        width: 100%;
+                        object-fit: cover;
+                    }
                 }
             } 
             .product-detail__main-image__image{
                 height: 443px;
                 border: 1px solid $color-default-lightgray;
                 margin-bottom: 10px;
+                img {
+                    width: 100%;
+                    object-fit: cover;
+                }
             }
             .product-detail__content{
                 #add-to-cart{

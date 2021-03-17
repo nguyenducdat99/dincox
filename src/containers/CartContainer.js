@@ -5,11 +5,20 @@ import PropTypes from 'prop-types';
 import CartItem from '../components/cart/cartitem/CartItem';
 import TotalItem from '../components/cart/totalItem/TotalItem';
 import * as Actions from '../actions/Actions';
+import { useEffect } from 'react';
 
 // code function here
 function CartContainer(props){
+    // LOAD DATA
+    useEffect(
+        () => {
+            props.onFetchImage();
+            // eslint-disable-next-line
+        },[]
+    )
+
     // declare state
-    var { cart,sizes,sizeDetails } = props;
+    var { cart, sizes, sizeDetails, images } = props;
 
     // return item in cart ui
     var showCart = cart => {
@@ -27,6 +36,7 @@ function CartContainer(props){
                         onUpdateQuantityRec={props.onUpdateQuantity}
                         sizesRec={sizes}
                         sizeDetailsRec={sizeDetails}
+                        imagesRec={images}
                     />
         });
     }
@@ -61,7 +71,8 @@ const mapStateToProps = state => {
     return {
         cart: state.cart,        
         sizeDetails: state.listSizeDetail,
-        sizes: state.listSize
+        sizes: state.listSize,
+        images: state.listImages
     }
 };
 const mapDispatchToProps = (dispatch, props) => {
@@ -71,6 +82,9 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         onUpdateQuantity: (updateItem,size ,quantity) => {
             dispatch(Actions.updateQuantityItem(updateItem,size,quantity));
+        },
+        onFetchImage: () => {
+            dispatch(Actions.fetchImageRequest());
         }
     }
 };

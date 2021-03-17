@@ -558,7 +558,7 @@ export const saveImageRequest = item => {
     return (dispatch) => {
         return callApi(('collections'),'POST', item).then(
             res => {
-                console.log(res);
+                
                 dispatch(saveImage(res.data));
                 // console.log(res.data);
             }

@@ -7,10 +7,28 @@ function findCategoryName(items, id) {
     return result;
 }
 
+function findImages(items,id) {
+    let result = [];
+
+    items.sort(function(a, b){return b.id_image - a.id_image})
+
+    items.forEach(element => {
+        if (element.id_product*1 === id*1) result.push(element.path);
+    });
+
+    return result;
+}
+
 function TaskItem(props) {
     //  get props, declare variable, constant
     var {index, itemRec, categoriesRec,openFormQuantityRec, openFormImageRec, imagesRec} = props;
     
+    // get images for item
+    var path = findImages(imagesRec,itemRec.id_product);
+    
+    // conver path
+    path = 'http://localhost:8080' + path[0];
+
     // get category name
     var productCategory = findCategoryName(categoriesRec, itemRec.id_category);
 
@@ -57,7 +75,7 @@ function TaskItem(props) {
             <td>{itemRec.product_name}</td>
             <td>
                 <div className="task-list__table__image-demo">
-                    
+                    <img src={path} alt={itemRec.product_name} />
                 </div>
             </td>
             <td>{productCategory}</td>

@@ -10,7 +10,7 @@ function ResultFilter(props) {
     // declare product count per page
     let productCount = 6;
     // load data from store
-    var { listProductRec,titleRec,sizeDetails } = props;
+    var { listProductRec,titleRec,sizeDetails,images } = props;
     
     // slice item for page view
     let indexStart = (recentPage-1)*productCount;
@@ -25,6 +25,7 @@ function ResultFilter(props) {
                 data={item}
                 onAddToCartRec={props.onAddToCart}
                 sizeDetailsRec={sizeDetails} 
+                imagesRec={images}
             />
         )
     });

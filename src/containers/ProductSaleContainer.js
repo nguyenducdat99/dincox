@@ -6,8 +6,10 @@ import * as Actions from '../actions/Actions';
 
 // code function here
 function ProductSaleContainer(props){
-    // declare state
-    var { listProductSale,sizeDetails } = props;
+    // get props
+    var { listProductSale,sizeDetails,images } = props;
+
+    // return product ui
     var listIndex = [];
     listProductSale.forEach((item,index) => {
         if(item.status===1&&item.is_sale===1){
@@ -16,6 +18,7 @@ function ProductSaleContainer(props){
                 data={item}
                 onAddToCartRec={props.onAddToCart}
                 sizeDetailsRec={sizeDetails} 
+                imagesRec={images}
             />);
         }
     });
@@ -30,7 +33,8 @@ function ProductSaleContainer(props){
 const mapStateToProps = (state) => {
     return {
         listProductSale: state.ListProduct,
-        sizeDetails: state.listSizeDetail
+        sizeDetails: state.listSizeDetail,
+        images: state.listImages
     }
 };
 

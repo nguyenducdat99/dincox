@@ -16,16 +16,22 @@ function MyContaner(props){
     )
     
     // get props 
-    const { news } = props
+    const { news, images } = props
     // return list article
     var listitem = news.map((item, index)=>{
         if (item.status) {
             return (
-                <SingleArticle key={index} data={item}/>
+                <SingleArticle 
+                    key={index} 
+                    data={item}
+                    imagesRec={images}
+                />
             )
         }
         return '';
     })
+
+    
 
     return(
         <Article
@@ -36,7 +42,8 @@ function MyContaner(props){
 
 const mapStateToProps = state => {
     return {
-        news: state.listArticle
+        news: state.listArticle,
+        images: state.listImages
     }
 };
 const mapDispatchToProps = (dispatch, props) => {

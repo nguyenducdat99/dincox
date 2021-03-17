@@ -10,6 +10,7 @@ function findSizeName(items, id_size) {
 
     return result;
 }
+
 function findQuantity(items, id_product, id_size) {
     let result = 0;
     items.forEach(element => {
@@ -20,11 +21,26 @@ function findQuantity(items, id_product, id_size) {
 
     return result;
 }
+
+function findImages(items,id) {
+    let result = [];
+
+    items.sort(function(a, b){return b.id_image - a.id_image})
+
+    items.forEach(element => {
+        if (element.id_product*1 === id*1) result.push(element.path);
+    });
+
+    return result;
+}
+
 // code funciton here
 function CartItem(props) {
     // declare state
     const [quantity,setQuantity] = useState(0);
-    var { item,sizesRec,sizeDetailsRec } = props;
+
+    // / get props
+    var { item, sizesRec, sizeDetailsRec, imagesRec } = props;
 
     // load quantity
     useEffect(
@@ -60,12 +76,19 @@ function CartItem(props) {
         onUpdateQuantitySend(item,item.size,quantityMax);
     }
 
+    
+    // get images for item
+    var path = findImages(imagesRec,item.product.id_product);
+    
+    // conver path
+    path = 'http://localhost:8080' + path[0];
+
     return (
             <tr className="cart-item">
                 <td>
                     <div className="cart-item__item-detail">
                         <div className="cart-item__item-detail__image">
-                            <img src="" alt=""/>
+                            <img src={path} alt="dincox cart item"/>
                         </div>
                         <div className="cart-item__item-detail__content">
                             <h3>{item.product.product_name}</h3>

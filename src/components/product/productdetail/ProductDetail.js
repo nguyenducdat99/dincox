@@ -39,6 +39,19 @@ function findCategoryName(items,id) {
     return result;
 }
 
+
+function findImages(items,id) {
+    let result = [];
+    
+    items.sort(function(a, b){return b.id_image - a.id_image})
+    items.forEach(element => {
+        if (element.id_product*1 === id*1) result.push(element.path);
+    });
+
+    return result;
+}
+
+
 function ProductDetail(props){
     // declare state component
     // eslint-disable-next-line
@@ -47,7 +60,7 @@ function ProductDetail(props){
     // get id from url
     const { id } = useParams();
     //get props
-    const { productsRec,sizeDetailsRec,sizesRec,categoriesRec,onAddToCartRec } = props;
+    const { productsRec, sizeDetailsRec, sizesRec, categoriesRec, onAddToCartRec, imagesRec } = props;
     
     // get current product
     var currentProduct = findCurrentProduct(productsRec,id);
@@ -92,11 +105,30 @@ function ProductDetail(props){
     </div>
     )
 
+    
+    // get images for item
+    var path = findImages(imagesRec,id_product);
+
+    // return list small images
+    var listSmallImage = path.map(
+        (element,index) => {
+            return (
+                <div key={index} className="product-detail__list-image__image">
+                    <img src={'http://localhost:8080' + element} alt={"demo"+index}/>
+                </div>
+            )
+        }
+    )
+    
+    // conver path
+    path = 'http://localhost:8080' + path[0];
+
     // hanle when click add to cart
     var addToCart =  () => {
         onAddToCartRec(currentProduct,listSizeSelect[sizeSelected].id_size,quantity);
         alert('Thêm vào giỏ thành công!');
     }    
+
 
 
     return(
@@ -109,22 +141,16 @@ function ProductDetail(props){
 
                         {/* open list small */}
                         <div className="product-detail__list-image">
-                            <div className="product-detail__list-image__image">
-                                <img src='' alt="small"/>
-                            </div>
-                            <div className="product-detail__list-image__image">
-                                <img src='' alt="small"/>
-                            </div>
-                            <div className="product-detail__list-image__image">
-                                <img src='' alt="small"/>
-                            </div>
+                        {
+                            listSmallImage
+                        }   
                         </div>
                         {/* close list small */}
 
                         {/* open main */}
                         <div className="product-detail__main-image">
                             <div className="product-detail__main-image__image">
-                                <img src="" alt="main"/>
+                                <img src={path} alt={product_name}/>
                             </div>
                         </div>
                         {/* close main */}

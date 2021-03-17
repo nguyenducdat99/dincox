@@ -12,12 +12,13 @@ function ProductHightlightContainer(props){
             props.onFetchProduct();
             props.onFetchSizeDetail();
             props.onFetchSize();
+            props.onFetchImage();
             // eslint-disable-next-line
         },[]
     )
 
     // get props 
-    var { products, sizeDetails, sizes, categories, onAddToCart } = props;  
+    var { products, sizeDetails, sizes, categories, onAddToCart, images } = props;  
     
     return(
         <ProductDetail 
@@ -26,6 +27,7 @@ function ProductHightlightContainer(props){
             sizesRec={sizes}
             categoriesRec={categories}
             onAddToCartRec={onAddToCart}
+            imagesRec={images}
         />
     );
 }
@@ -35,7 +37,8 @@ const mapStateToProps = (state) =>{
         products: state.ListProduct,
         sizeDetails: state.listSizeDetail,
         sizes: state.listSize,
-        categories: state.listCategory
+        categories: state.listCategory,
+        images: state.listImages
     }
 }
 const mapDispatchToProps = (dispatch, props) => {
@@ -51,6 +54,9 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         onAddToCart: (newItem,id_size,quantity) => {
             dispatch(Actions.addToCart(newItem,id_size,quantity));
+        },
+        onFetchImage: () => {
+            dispatch(Actions.fetchImageRequest());
         }
     }
 };

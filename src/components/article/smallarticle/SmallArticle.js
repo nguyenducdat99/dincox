@@ -1,22 +1,41 @@
 // import library style
 import './SmallArticle.scss';
-import demo from './demo.jpg';
 import { Link } from 'react-router-dom';
+
+function findImages(items,id) {
+    let result = [];
+
+    items.sort(function(a, b){return b.id_image - a.id_image})
+
+    items.forEach(element => {
+        if (element.id_new*1 === id*1) result.push(element.path);
+    });
+
+    return result;
+}
 
 // code for function here
 function SmallArticle(props) {
     // get props
-    const { data } = props;
+    const { data, imagesRec } = props;
 
     // get value of data
     var {id_new, author, title, created_at, contents} = data;
+
+        
+    // get images for item
+    var path = findImages(imagesRec,id_new);
+    
+    // conver path
+    path = 'http://localhost:8080' + path[0];
+
     
     // return ui
     return(
         <div className="small-article">
             <Link to={"/articles/"+id_new}>
                 <div className="small-article__image">
-                    <img src={demo} alt="demo" /> 
+                    <img src={path} alt="dincox news" /> 
                 </div>
                 <div className="small-article__title">
                     <p>{title}</p>

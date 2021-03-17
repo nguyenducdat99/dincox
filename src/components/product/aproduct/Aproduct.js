@@ -4,10 +4,25 @@ import PopupProductContainer from '../../../containers/PopUpDetailContainer';
 import { useState } from 'react';
 import {Link} from 'react-router-dom';
 
+function findImages(items,id) {
+    let result = [];
+    items.forEach(element => {
+        if (element.id_product*1 === id*1) result.push(element.path);
+    });
+
+    result.sort(function(a, b){return a.id_image - b.id_image})
+
+    return result;
+}
+
 function Aproduct(props) {
     // declare state and variable
     const [toggleQuickView, setToggleQuickView] = useState(false);
-    var { data,sizeDetailsRec } = props;
+
+    // get props
+    var { data,sizeDetailsRec,imagesRec } = props;
+
+    // get value of props data
     var { id_product, product_name, is_sale, price } = data;// get data from props
     
     // get list size of product
@@ -22,6 +37,12 @@ function Aproduct(props) {
             quantity = quantity + element.quantity;
         });
     }
+
+    // get images for item
+    var path = findImages(imagesRec,id_product);
+    
+    // conver path
+    path = 'http://localhost:8080' + path[0];
 
     // code function here
     var onToggleQuickView = () => {
@@ -45,7 +66,7 @@ function Aproduct(props) {
                        
                        <Link to={"/products/"+id_product}>
                             {/* <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Fa%2Fa7%2FReact-icon.svg%2F1200px-React-icon.svg.png&f=1&nofb=1" alt="demo" /> */}
-                            <img src="http://localhost:8080/images/c18black.jpg" alt="demo" />
+                            <img src={path} alt={product_name} />
                             {
                                 is_sale?
                                 <div className="aproduct__sale">

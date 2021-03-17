@@ -87,17 +87,18 @@ function Header(props) {
                             <div className="header-grid__navigation__search">
                                 <a href='/#' onClick={onToggleSearch}>Tìm kiếm</a>
                                 {/* form search */}
-                                <div className={
+                                
+                                {
                                     isActiveSearch ? 
-                                    "header-grid__navigation__search__form-search" : 
-                                    "header-grid__navigation__search__form-close"
-                                }>
-                                    <form action="" method="">
-                                        <input type="text" placeholder="Tìm kiếm ..." />
-                                        <button type="button"><i className="fa fa-search" aria-hidden="true"></i></button>
-                                    </form>
+                                    <div className="header-grid__navigation__search__form-search">
+                                        <form action="" method="">
+                                            <input type="text" placeholder="Tìm kiếm ..." />
+                                            <button type="button"><i className="fa fa-search" aria-hidden="true"></i></button>
+                                        </form>
+                                    </div>:''
+                                }
                                 </div>
-                            </div>
+                            
                             {/* block account */}
                             <div className="header-grid__navigation__account">
                                 {

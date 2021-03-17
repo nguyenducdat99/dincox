@@ -23,23 +23,15 @@ function TaskForm(props) {
     // handle when submit
     var onHandleSubmit = event => {
         event.preventDefault();
-        // var data = new FormData()
-        // data.append('id_product', itemEditRec.id_product);
-        // data.append('id_new', objectTask.id_new);
-        // data.append('title', itemEditRec.product_name);
-        // data.append('path', objectTask.path);
-        // data.append('status', objectTask.status);
-        
-        // onUpdateImageRec(data);
-        console.log(
-            {
-                id_product: itemEditRec.id_product,
-                id_new: objectTask.id_new,
-                title: itemEditRec.product_name,
-                path: objectTask.path,
-                status: objectTask.status
-            }
-        )
+        const data = new FormData()
+        data.append('id_product', itemEditRec.id_product);
+        data.append('id_new', objectTask.id_new);
+        data.append('title', itemEditRec.product_name);
+        data.append('path', objectTask.path);
+        data.append('status', objectTask.status);
+
+        onUpdateImageRec(data);
+
         
         onExitForm();
     }
@@ -48,8 +40,8 @@ function TaskForm(props) {
     var onHandleChange = event => {
         let target = event.target;
         let name = target.name;
-        let value = target.value;
-        
+        let value = target.files[0];
+
         setObjectTask(
             {
                 ...objectTask, 
@@ -88,12 +80,16 @@ function TaskForm(props) {
                 </h3>
             </div>
             <div className="images-form__body">
-                <form action="" method="" encType="multipart/form-data" onSubmit={onHandleSubmit}>
+                <form 
+                    action="" 
+                    method="" 
+                    encType="multipart/form-data" 
+                    onSubmit={onHandleSubmit}
+                >
                     <div className="form-group">
                         <label>
                             <p>Đường dẫn:</p>
                             <input type='file'
-                                value={objectTask.path}
                                 className="form-control"
                                 name='path'
                                 onChange={onHandleChange}
@@ -107,10 +103,10 @@ function TaskForm(props) {
                             <span className="fa fa-plus"></span>
                             Lưu Lại
                         </button>&nbsp;
-                        <button type="button" className="btn btn-danger" onClick={onClear}>
+                        {/* <button type="button" className="btn btn-danger" onClick={onClear}>
                             <span className="fa fa-close"></span>
                             Hủy bỏ
-                        </button>
+                        </button> */}
                     </div>
                 </form>
             </div>

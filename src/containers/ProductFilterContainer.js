@@ -8,7 +8,7 @@ import * as Actions from '../actions/Actions';
 // code function here
 function MyContainer(props){
     // get props value
-    var { products,categories,sizes } = props;
+    var { products,categories,sizes,images } = props;
     
     // convert id from url to category title
     const { id } = useParams();
@@ -26,6 +26,7 @@ function MyContainer(props){
                 listProductRec={products}
                 onAddToCart={props.onAddToCart}
                 sizeDetails={props.sizeDetails} 
+                images={images}
             />
         )
     }// use for product filter
@@ -62,14 +63,16 @@ const mapStateToProps = state => {
         products: state.ListProduct,
         categories: state.listCategory,
         sizes: state.listSize,
-        sizeDetails: state.listSizeDetail
+        sizeDetails: state.listSizeDetail,
+        images: state.listImages
     }
 };
 const mapDispatchToProps = (dispatch, props) => {
     return {
         onAddToCart: (newItem,id_size) => {
             dispatch(Actions.addToCart(newItem,id_size,1));
-        }
+        },
+        
     }
 };
 export default connect(mapStateToProps,mapDispatchToProps)(MyContainer)
