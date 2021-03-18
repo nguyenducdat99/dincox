@@ -615,6 +615,13 @@ export const updateQuantityItem = (updateItem, size,quantity) => {
     }
 }
 
+export const deleteCart = () => {
+    return {
+        type: types.DELETE_CART,
+        payload: []
+    }
+}
+
 // handle for checkout
 export const addCheckout = info => {
     return {
@@ -623,3 +630,12 @@ export const addCheckout = info => {
     }
 }
 
+export const deleteCheckout = () => {
+    return {
+        type: types.DELETE_CHECKOUT,
+        payload: {}
+    }
+}
+
+
+// 

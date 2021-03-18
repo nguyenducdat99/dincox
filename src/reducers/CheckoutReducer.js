@@ -12,7 +12,10 @@ var myReducer = (state=initialState, action) => {
 			state = action.payload
 
             return {...state};
-		
+		case types.DELETE_CHECKOUT:
+            state = action.payload;
+
+            return {...state}
         default:
             return state;
     }
