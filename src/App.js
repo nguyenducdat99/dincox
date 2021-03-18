@@ -5,6 +5,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  useLocation,
 } from "react-router-dom";
 import Slider from './components/slider/Slider';
 import Policy from './components/policy/Policy';
@@ -29,100 +30,110 @@ import ProductDetailContainer from './containers/ProductDetailContainer';
 import ArticleUIContainer from './containers/ArticleUIContainer';
 import ArticleDetailContainer from './containers/ArticleDetailContainer';
 import ProductManagerContaner from './containers/ProductManagerContaner';
+import CheckoutContainer from './containers/CheckoutContainer';
+
 
 function App() {
 
-  return (
-    <div className="App">
-        
-        <Router>
-          	<HeaderContainer/>
-          	<Switch>
-				<Route path="/" exact>
-					<Slider />
-					<Policy />
-					<Product />
-					<ArticleUIContainer />
-				</Route>
+	return (
+		<div className="App">
+	
+			<Router>
 
-				<Route path="/products/:id">
-					<ProductDetailContainer />
-				</Route>
+				<HeaderContainer/>
 
-				<Route path="/collections" exact>
-					<ProductFilterContainer />
-				</Route>
+				<Switch>
 
-				<Route path="/collections/:id">
-					<ProductFilterContainer />
-				</Route>
+					<Route path="/" exact>
+						<Slider />
+						<Policy />
+						<Product />
+						<ArticleUIContainer />
+					</Route>
 
-				<Route path="/articles/:id">
-					<ArticleDetailContainer />
-				</Route>
+					<Route path="/products/:id">
+						<ProductDetailContainer />
+					</Route>
 
-				<Route path="/about-us">
-                    <AboutUs />
-				</Route>
+					<Route path="/collections" exact>
+						<ProductFilterContainer />
+					</Route>
 
-				<Route path="/privacy-policy">
-                    <PrivacyPolicy />
-				</Route>
+					<Route path="/collections/:id">
+						<ProductFilterContainer />
+					</Route>
 
-				<Route path="/return-policy">
-					<ReturnPolicy/>
-				</Route>
+					<Route path="/articles/:id">
+						<ArticleDetailContainer />
+					</Route>
 
-				<Route path="/store-location">
-					<StoreLocation/>
-				</Route>
+					<Route path="/about-us">
+						<AboutUs />
+					</Route>
 
-				<Route path="/search">
+					<Route path="/privacy-policy">
+						<PrivacyPolicy />
+					</Route>
 
-				</Route>
+					<Route path="/return-policy">
+						<ReturnPolicy/>
+					</Route>
 
-				<Route path="/account/login">
-					<LoginContainer/>
-				</Route>
+					<Route path="/store-location">
+						<StoreLocation/>
+					</Route>
 
-				<Route path="/account/register">
-					<Register/>
-				</Route>
+					<Route path="/search">
 
-				<Route path="/managers" exact>
-					<Admin />
-				</Route>
+					</Route>
 
-				<Route path='/managers/accounts'>
-					<AccountsCtrl />
-				</Route>
+					<Route path="/account/login">
+						<LoginContainer/>
+					</Route>
 
-				<Route path='/managers/categories'>
-					<CategoriesContainer />
-				</Route>
+					<Route path="/account/register">
+						<Register/>
+					</Route>
 
-				<Route path='/managers/sizes'>
-					<SizesContainer />
-				</Route>
+					<Route path="/managers" exact>
+						<Admin />
+					</Route>
 
-				<Route path='/cart'>
-					<CartContainer />
-				</Route>
+					<Route path='/managers/accounts'>
+						<AccountsCtrl />
+					</Route>
 
-				<Route path='/managers/products'>
-					<ProductManagerContaner />
-				</Route>
+					<Route path='/managers/categories'>
+						<CategoriesContainer />
+					</Route>
 
+					<Route path='/managers/sizes'>
+						<SizesContainer />
+					</Route>
 
-				<Route>
-					<NotFound/>
-				</Route>
-			</Switch>
-			<Footer />
-			<Copyright />
-        </Router>
-    </div>
-  );
+					<Route path='/cart'>
+						<CartContainer />
+					</Route>
+
+					<Route path='/managers/products'>
+						<ProductManagerContaner />
+					</Route>
+
+					<Route path='/checkouts'>
+						<CheckoutContainer />
+					</Route>
+
+					<Route>
+						<NotFound/>
+					</Route>
+				</Switch>
+				
+				<Footer />
+				<Copyright />
+
+			</Router>
+		</div>
+	);
 }
 
 export default App;

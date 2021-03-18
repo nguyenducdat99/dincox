@@ -1,4 +1,5 @@
 // import style library, component
+import { Link } from 'react-router-dom';
 import './TotalItem.scss';
 
 // code funciton here
@@ -31,7 +32,12 @@ function TotalItem(props) {
             </div>
             <div className='total-item__checkout'>
                 <p>Tổng tiền: <b>{totalAmount(listItem)}<u>đ</u></b></p>
-                <button type='submit'>Thanh Toán</button>
+                <Link to='/checkouts'>
+                    <button type='submit'>
+                        Đặt hàng
+                    </button>
+                </Link>    
+
             </div>
         </div> 
     )
