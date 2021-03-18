@@ -13,6 +13,7 @@ import listSize from './SizesReducer';
 import listSizeDetail from './SizeDetailsReducer';
 import productEdit from './ProductEditReducer';
 import listImages from './ImageReducer';
+import infoCheckout from './CheckoutReducer';
 
 const Reducers = combineReducers({
     ListProduct,
@@ -28,7 +29,8 @@ const Reducers = combineReducers({
     categoryEdit,
     sizeEdit,
     listSizeDetail,
-    listImages
+    listImages,
+    infoCheckout
 });
 
 export default Reducers;

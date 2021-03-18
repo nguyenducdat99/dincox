@@ -50,4 +50,7 @@ export const UPDATE_QUANTITY_ITEM = "UPDATE_QUANTITY_ITEM";
 export const FETCH_IMAGES = "FETCH_IMAGES";
 export const SAVE_IMAGES = "SAVE_IMAGES";
 
+// checkout 
+export const ADD_CHECKOUT = 'ADD_CHECKOUT';
+
 

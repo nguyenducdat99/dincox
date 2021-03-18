@@ -20,7 +20,8 @@ const persistConfig = {
         'listSizeDetail',
         'listArticle',
         'loginedAccount',
-        'listImages'
+        'listImages',
+        'infoCheckout'
     ]
 }
 const persistedReducer = persistReducer(persistConfig, Reducers);

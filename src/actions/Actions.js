@@ -615,3 +615,11 @@ export const updateQuantityItem = (updateItem, size,quantity) => {
     }
 }
 
+// handle for checkout
+export const addCheckout = info => {
+    return {
+        type: types.ADD_CHECKOUT,
+        payload: info
+    }
+}
+

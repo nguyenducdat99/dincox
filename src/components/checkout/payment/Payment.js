@@ -4,15 +4,17 @@ import './Payment.scss';
 // code function here
 function Payment(props) {
     // get props
-    const {onCloseForm} = props;
+    const {onCloseForm, toggleFormRec} = props;
 
-    // handle when submit
-    var onHandleSubmit = event => {
-        event.preventDefault();
-    }
+        // handle when submit
+        var onHandleSubmit = event => {
+            event.preventDefault();
+        }
+    
+        
 
     return (
-        <div className="payment">
+        <div className={toggleFormRec?"payment--none":'payment'}>
             <form action='' method='' onSubmit={onHandleSubmit}>
                 <h2>Phương thức vận chuyển</h2>
                 <div className="form-group first-child">
@@ -20,6 +22,7 @@ function Payment(props) {
                         <input 
                             type="radio"
                             checked={true}
+                            readOnly
                         />&nbsp;
                         Giao hàng tại nhà
                     </label>
@@ -32,6 +35,7 @@ function Payment(props) {
                         <input 
                             type="radio"
                             checked={true}
+                            readOnly
                         />&nbsp;
                         Thanh toán tại nhà
                     </label>
@@ -41,7 +45,7 @@ function Payment(props) {
                     <u>
                         <span onClick={onCloseForm}>Thông tin nhận hàng</span>
                     </u>
-                    <button type='submit'>
+                    <button type='button'>
                         Thanh toán
                     </button>
                 </div>

@@ -7,6 +7,9 @@ import { useState } from 'react';
 
 // code function here
 function Checkout(props) {
+    // get props
+    const { onAddInfoCheckoutRec, infoRec, listItemRec, totalRec } = props;
+
     // declare state
     const [toggleForm, setToggleForm] = useState(true);
 
@@ -20,7 +23,6 @@ function Checkout(props) {
         setToggleForm(true);
     }
 
-
     return (
         <>
             <Smallbanner title="Thanh toán" />
@@ -29,55 +31,60 @@ function Checkout(props) {
                 <div className="wrapper">
                     <div className="check-out__grid">
                         <div className="check-out__info">
+                            
                             {
-                                toggleForm?
-                                <ReceiveForm 
-                                    onCloseForm={onCloseForm}
-                                />:
-                                <Payment
-                                    onCloseForm={onOpenForm}
-                                />
+                                
+                                <>
+                                    <ReceiveForm 
+                                        toggleFormRec={toggleForm}
+                                        onCloseForm={onCloseForm}
+                                        onAddInfoCheckoutRec={onAddInfoCheckoutRec}
+                                        infoRec={infoRec}
+                                    />
+                                    <Payment
+                                        toggleFormRec={toggleForm}
+                                        onCloseForm={onOpenForm}
+                                    />
+                                </>
                             }
                             
                         </div>
                         <div className="check-out__list-item">
                             <table>
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            <div className="item">
-                                                <div className="item__item-image">
-                                                    <img alt='' src=''/>
-                                                    <div className='item__quantity'>
-                                                        1
-                                                    </div>
-                                                </div>
-                                                <div className="item__item-info">
-                                                    <p>D27 DENIM</p>
-                                                    <p>size: 36</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <p> 440000 đ</p>
-                                        </td>
-                                    </tr>
+                                {
+                                    listItemRec
+                                }
                                 </tbody>
                             </table>
                             
-                            <div className='check-out__list-item__address-receiver'>
-                                <p>Nơi nhận: Hà nội</p>
-                            </div>
+                            {
+                                infoRec.name.trim()===''?'':
+                                <div className='check-out__list-item__address-receiver'>
+                                    <p>Thông tin khách hàng:&nbsp; 
+                                    {
+                                        infoRec.name + ', ' + infoRec.numberPhone + ', ' + 
+                                        infoRec.address
+                                    }.
+                                    </p>
+                                </div>
+                            }
                             <div className='check-out__list-item__caculator'>
                                 <p>
                                     <span>Tạm tính:</span>
-                                    <span>100000 đ</span>
+                                    <span>{totalRec} đ</span>
+                                </p>
+                            </div>
+                            <div className='check-out__list-item__caculator'>
+                                <p>
+                                    <span>Phí ship:</span>
+                                    <span>33.000 đ</span>
                                 </p>
                             </div>
                             <div className='check-out__list-item__caculator'>
                                 <p>
                                     <span><b>Tổng tiền:</b></span>
-                                    <span><b>10000 đ</b></span>
+                                    <span><b>{totalRec*1 + 33000} đ</b></span>
                                 </p>
                             </div>
                         </div>
