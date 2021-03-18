@@ -3,11 +3,22 @@ import './Checkout.scss';
 import Smallbanner from '../fixcontents/smallbanner/SmallBanner';
 import ReceiveForm from './receiverform/ReceiverForm';
 import Payment from './payment/Payment';
+import { useState } from 'react';
 
 // code function here
 function Checkout(props) {
-    // get props
+    // declare state
+    const [toggleForm, setToggleForm] = useState(true);
 
+    // close form receive
+    var onCloseForm = () => {
+        setToggleForm(false);
+    }
+
+    // close form payment
+    var onOpenForm = () => {
+        setToggleForm(true);
+    }
 
 
     return (
@@ -18,8 +29,16 @@ function Checkout(props) {
                 <div className="wrapper">
                     <div className="check-out__grid">
                         <div className="check-out__info">
-                            {/* <ReceiveForm /> */}
-                            <Payment/>
+                            {
+                                toggleForm?
+                                <ReceiveForm 
+                                    onCloseForm={onCloseForm}
+                                />:
+                                <Payment
+                                    onCloseForm={onOpenForm}
+                                />
+                            }
+                            
                         </div>
                         <div className="check-out__list-item">
                             <table>

@@ -4,12 +4,16 @@ import './Payment.scss';
 // code function here
 function Payment(props) {
     // get props
+    const {onCloseForm} = props;
 
-
+    // handle when submit
+    var onHandleSubmit = event => {
+        event.preventDefault();
+    }
 
     return (
         <div className="payment">
-            <form action='' method=''>
+            <form action='' method='' onSubmit={onHandleSubmit}>
                 <h2>Phương thức vận chuyển</h2>
                 <div className="form-group first-child">
                     <label>
@@ -35,7 +39,7 @@ function Payment(props) {
 
                 <div className="form-group">
                     <u>
-                        <a href='/#'>Thông tin nhận hàng</a>
+                        <span onClick={onCloseForm}>Thông tin nhận hàng</span>
                     </u>
                     <button type='submit'>
                         Thanh toán
