@@ -8,10 +8,12 @@ import { useState } from 'react';
 // code function here
 function Checkout(props) {
     // get props
-    const { onAddInfoCheckoutRec, infoRec, listItemRec, totalRec } = props;
+    const { onAddInfoCheckoutRec, infoRec, listItemRec, totalRec, cartRec, onAddCheckoutRec } = props;
 
     // declare state
     const [toggleForm, setToggleForm] = useState(true);
+    // eslint-disable-next-line
+    const [transportFee, setTransportFee] = useState(33000)
 
     // close form receive
     var onCloseForm = () => {
@@ -44,6 +46,10 @@ function Checkout(props) {
                                     <Payment
                                         toggleFormRec={toggleForm}
                                         onCloseForm={onOpenForm}
+                                        transportFeeRec={transportFee}
+                                        cartRec={cartRec}
+                                        infoRec={infoRec}
+                                        onAddCheckoutRec={onAddCheckoutRec}
                                     />
                                 </>
                             }
@@ -78,13 +84,13 @@ function Checkout(props) {
                             <div className='check-out__list-item__caculator'>
                                 <p>
                                     <span>Phí ship:</span>
-                                    <span>33.000 đ</span>
+                                    <span>{transportFee} đ</span>
                                 </p>
                             </div>
                             <div className='check-out__list-item__caculator'>
                                 <p>
                                     <span><b>Tổng tiền:</b></span>
-                                    <span><b>{totalRec*1 + 33000} đ</b></span>
+                                    <span><b>{totalRec*1 + transportFee} đ</b></span>
                                 </p>
                             </div>
                         </div>

@@ -43,13 +43,13 @@ function totalAmount(cart){
 function CheckoutContainer(props){
  
     // get props
-    var { onAddInfoCheckout, info, cart, images, sizes} = props;
+    var { onAddInfoCheckout, info, cart, images, sizes, onAddCheckout} = props;
 
     // return list item ui
     var listItem = cart.map(
         (element, index) => {
             // get size name
-            let sizeName= findSizeName(sizes, element.product.id_product);
+            let sizeName= findSizeName(sizes, element.size);
             
             // get path
             let path = findImages(images, element.product.id_product);
@@ -97,6 +97,8 @@ function CheckoutContainer(props){
             infoRec={info}
             listItemRec={listItem}
             totalRec={total}
+            cartRec={cart}
+            onAddCheckoutRec={onAddCheckout}
         />
     );
 }
@@ -115,6 +117,9 @@ const mapDispatchToProps = (dispatch,props) => {
     return {
         onAddInfoCheckout: info => {
             dispatch(Actions.addCheckout(info));
+        },
+        onAddCheckout: item => {
+            dispatch(Actions.addCheckoutRequest(item));
         }
     }
 };

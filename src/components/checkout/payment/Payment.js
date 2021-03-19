@@ -4,12 +4,19 @@ import './Payment.scss';
 // code function here
 function Payment(props) {
     // get props
-    const {onCloseForm, toggleFormRec} = props;
+    const {onCloseForm, toggleFormRec, transportFeeRec, cartRec, infoRec, onAddCheckoutRec } = props;
 
-        // handle when submit
-        var onHandleSubmit = event => {
-            event.preventDefault();
-        }
+    // handle when submit
+    var onHandleSubmit = event => {
+        event.preventDefault();
+        onAddCheckoutRec(
+            {
+                info: infoRec,
+                cart: cartRec,
+                transportFee: transportFeeRec
+            }
+        )
+    }
     
         
 
@@ -26,7 +33,7 @@ function Payment(props) {
                         />&nbsp;
                         Giao hàng tại nhà
                     </label>
-                    <p>33.000đ</p>
+                    <p>{transportFeeRec}đ</p>
                 </div>
                 
                 <h2>Phương thức thanh toán</h2>
@@ -45,7 +52,7 @@ function Payment(props) {
                     <u>
                         <span onClick={onCloseForm}>Thông tin nhận hàng</span>
                     </u>
-                    <button type='button'>
+                    <button type='submit'>
                         Thanh toán
                     </button>
                 </div>

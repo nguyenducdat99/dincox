@@ -637,5 +637,35 @@ export const deleteCheckout = () => {
     }
 }
 
+export const addCheckoutRequest = (item) => {
 
-// 
+    return (dispatch) => {
+        callApi('orders','POST', item).then(
+            res => {
+                let newCart = [];
+
+                item.cart.forEach(element => {
+                    let itemCart = [];
+                    itemCart.push(res.data.id_order);
+                    itemCart.push(element.product.id_product);
+                    if (element.product.is_sale) {
+                        itemCart.push(25);
+                    } else {
+                        itemCart.push(0);
+                    }
+                    itemCart.push(element.size);
+                    itemCart.push(element.quantity);
+                    newCart.push(itemCart);
+                });
+
+                callApi('orders-detail','POST', newCart).then(
+                    res => {
+                        
+                    }
+                )
+            }
+        )
+    }
+}
+
+
