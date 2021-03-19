@@ -47,6 +47,7 @@ export const DELETE_ITEM_IN_CART = "DELETE_ITEM_IN_CART";
 export const UPDATE_QUANTITY_ITEM = "UPDATE_QUANTITY_ITEM";
 export const DELETE_CART = "DELETE_CART";
 
+
 // handler for images
 export const FETCH_IMAGES = "FETCH_IMAGES";
 export const SAVE_IMAGES = "SAVE_IMAGES";
@@ -54,6 +55,7 @@ export const SAVE_IMAGES = "SAVE_IMAGES";
 // checkout 
 export const ADD_CHECKOUT = 'ADD_CHECKOUT';
 export const DELETE_CHECKOUT = 'DELETE_CHECKOUT';
+
 
 
 

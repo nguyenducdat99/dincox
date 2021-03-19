@@ -8,7 +8,8 @@ import { useState } from 'react';
 // code function here
 function Checkout(props) {
     // get props
-    const { onAddInfoCheckoutRec, infoRec, listItemRec, totalRec, cartRec, onAddCheckoutRec } = props;
+    const { onAddInfoCheckoutRec, infoRec, listItemRec, 
+        totalRec, cartRec, onAddCheckoutRec, sizeDetailsRec } = props;
 
     // declare state
     const [toggleForm, setToggleForm] = useState(true);
@@ -50,6 +51,7 @@ function Checkout(props) {
                                         cartRec={cartRec}
                                         infoRec={infoRec}
                                         onAddCheckoutRec={onAddCheckoutRec}
+                                        sizeDetailsRec={sizeDetailsRec}
                                     />
                                 </>
                             }

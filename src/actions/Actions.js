@@ -508,6 +508,9 @@ export const saveSizeDetailsRequest = (item,type) => {
         ...item,
         status: item.status*1
     }
+    
+    console.log(item);
+    console.log(type);
 
     if (type){
         return (dispatch) => {
@@ -520,6 +523,7 @@ export const saveSizeDetailsRequest = (item,type) => {
         }
     } else {
         return (dispatch) => {
+            
             return callApi('size-details','PUT', item).then(
                 res => {
                     dispatch(saveSizeDetail(res.data));
@@ -618,7 +622,6 @@ export const updateQuantityItem = (updateItem, size,quantity) => {
 export const deleteCart = () => {
     return {
         type: types.DELETE_CART,
-        payload: []
     }
 }
 
@@ -633,13 +636,14 @@ export const addCheckout = info => {
 export const deleteCheckout = () => {
     return {
         type: types.DELETE_CHECKOUT,
-        payload: {}
     }
 }
 
-export const addCheckoutRequest = (item) => {
+
+export const addCheckoutRequest = (item, newQuantity) => {
 
     return (dispatch) => {
+        // update for tbl orders
         callApi('orders','POST', item).then(
             res => {
                 let newCart = [];
@@ -658,11 +662,28 @@ export const addCheckoutRequest = (item) => {
                     newCart.push(itemCart);
                 });
 
+                // update for tblorder detail
                 callApi('orders-detail','POST', newCart).then(
-                    res => {
-                        
+                    () => {
+                        console.log(newQuantity);
+                        newQuantity.forEach(element => {
+                            
+                            callApi('size-details','PUT', element).then(
+                                res => {
+                                    dispatch(saveSizeDetail(res.data));
+                                }
+                            )
+                        });
                     }
                 )
+
+                // remove cart and receiver infor
+                dispatch(deleteCart());
+                dispatch(deleteCheckout());
+
+                // router cart
+                window.confirm('Thanh toán thành công!')
+                window.location = '/';
             }
         )
     }

@@ -56,10 +56,9 @@ var myReducer = (state=initialState, action) => {
 			localStorage.setItem('cartStore',JSON.stringify(state));
 			return [...state];
 		case types.DELETE_CART:
-			state = action.payload;
 
-			localStorage.setItem('cartStore',JSON.stringify(state));
-			return [...state];
+			localStorage.setItem('cartStore',JSON.stringify([]));
+			return [];
         default:
             return state;
     }
