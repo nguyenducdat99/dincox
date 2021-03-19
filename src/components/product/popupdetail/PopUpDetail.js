@@ -171,7 +171,7 @@ function PopUpDetail(props){
                                     </div>
                                     <div className="product-detail__content__size__select">
                                         {
-                                            listSizeSelectNameUi
+                                            quantityMax===0?<b>Hết Hàng</b>:listSizeSelectNameUi
                                         }
                                     </div>
                                 </div>
@@ -194,7 +194,11 @@ function PopUpDetail(props){
                                     </div>
                                 </div>
                                 <div className="product-detail__content__action">
-                                    <input type="button" value="Thêm vào giỏ"  onClick={addToCart}/>
+                                    <input type="button" 
+                                        value="Thêm vào giỏ"  
+                                        onClick={addToCart}
+                                        disabled={quantityMax!==0?false:true}
+                                    />
                                     <p>Hoặc <Link to={"/products/"+id_product}>xem chi tiết</Link></p>
                                 </div>
                             </form>

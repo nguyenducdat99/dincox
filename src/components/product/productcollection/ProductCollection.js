@@ -1,8 +1,5 @@
 // import style library
 import './ProductCollection.scss';
-import SmallCollectionImg from './product__collection__list__single.jpg';
-import BigCollectionImg from './product__collection__big.jpg';
-
 
 function makeRandomIndex(max) {
     return Math.floor((Math.random() * max))
