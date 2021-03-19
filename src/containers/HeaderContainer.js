@@ -69,6 +69,7 @@ function CartContainer(props){
     // clear info live account
     var clearAccount = () => {
         onLogoutAccount({
+            id_user: 37,
             user_name: '',
             position: -1,
             message: 'Đăng Xuất thành công'

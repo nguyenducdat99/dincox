@@ -1,5 +1,6 @@
 import * as types from "../constands/ActionTypes";
 const initialState = {
+    id_account: 37,
     name: '',
     email: '',
     numberPhone: '',
@@ -13,9 +14,8 @@ var myReducer = (state=initialState, action) => {
 
             return {...state};
 		case types.DELETE_CHECKOUT:
-
-        return initialState;
-           default:
+            return initialState;
+        default:
             return state;
     }
 }

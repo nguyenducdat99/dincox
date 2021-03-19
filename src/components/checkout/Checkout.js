@@ -9,7 +9,7 @@ import { useState } from 'react';
 function Checkout(props) {
     // get props
     const { onAddInfoCheckoutRec, infoRec, listItemRec, 
-        totalRec, cartRec, onAddCheckoutRec, sizeDetailsRec } = props;
+        totalRec, cartRec, onAddCheckoutRec, sizeDetailsRec, loginedAccountRec } = props;
 
     // declare state
     const [toggleForm, setToggleForm] = useState(true);
@@ -43,6 +43,7 @@ function Checkout(props) {
                                         onCloseForm={onCloseForm}
                                         onAddInfoCheckoutRec={onAddInfoCheckoutRec}
                                         infoRec={infoRec}
+                                        loginedAccountRec={loginedAccountRec}
                                     />
                                     <Payment
                                         toggleFormRec={toggleForm}
@@ -52,6 +53,7 @@ function Checkout(props) {
                                         infoRec={infoRec}
                                         onAddCheckoutRec={onAddCheckoutRec}
                                         sizeDetailsRec={sizeDetailsRec}
+                                        
                                     />
                                 </>
                             }

@@ -6,11 +6,12 @@ import './ReceiverForm.scss';
 // code function here
 function ReceiverForm(props) {
     // get props
-    const {toggleFormRec, onCloseForm, onAddInfoCheckoutRec, infoRec} = props;
+    const {toggleFormRec, onCloseForm, onAddInfoCheckoutRec, infoRec, loginedAccountRec} = props;
 
     // declare state
     const [info, setInfo] = useState(
         {
+            id_account: 37,
             name: '',
             email: '',
             numberPhone: '',
@@ -46,7 +47,12 @@ function ReceiverForm(props) {
     // handle when submit
     var onHandleSubmit = event => {
         event.preventDefault();
-        onAddInfoCheckoutRec(info)
+        onAddInfoCheckoutRec(
+            {
+                ...info,
+                id_account: loginedAccountRec.id_account
+            }
+        )
     }
 
 

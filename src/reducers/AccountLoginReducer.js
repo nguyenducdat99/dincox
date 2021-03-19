@@ -1,5 +1,6 @@
 import * as types from "../constands/ActionTypes";
 const initialState = {
+    id_account: 37,
     user_name: '',
     position: -1,
     message: 'Đã Đăng xuất'
@@ -16,19 +17,21 @@ function setCookie(cname, cvalue, exdays) {
 var myReducer = (state=initialState, action) => {
     switch (action.type) {
         case types.LOGIN_ACCOUNT:
+            alert(action.payload.message);
 
-        alert(action.payload.message);
-        if (action.payload.token!=='') {
-                
-                state = {
-                    user_name: action.payload.user_name,
-                    position: action.payload.position
-                }
-                setCookie('logined',action.payload.token,1);
-                window.location = '/';
-        }
+            if (action.payload.token!=='') {
+                    
+                    state = {
+                        ...state,
+                        id_account: action.payload.id_account,
+                        user_name: action.payload.user_name,
+                        position: action.payload.position
+                    }
+                    setCookie('logined',action.payload.token,1);
+                    window.location = '/';
+            }
 
-            return {...state};
+            return state;
         default:
             return state;
     }

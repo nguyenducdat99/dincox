@@ -43,7 +43,7 @@ function totalAmount(cart){
 function CheckoutContainer(props){
  
     // get props
-    var { onAddInfoCheckout, info, cart, images, sizes, onAddCheckout, sizeDetails} = props;
+    var { onAddInfoCheckout, info, cart, images, sizes, onAddCheckout, sizeDetails, loginedAccount} = props;
 
     // return list item ui
     var listItem = cart.map(
@@ -100,6 +100,7 @@ function CheckoutContainer(props){
             cartRec={cart}
             onAddCheckoutRec={onAddCheckout}
             sizeDetailsRec={sizeDetails}
+            loginedAccountRec={loginedAccount}
         />
     );
 }
@@ -112,7 +113,8 @@ const mapStateToProps = state => {
         cart: state.cart,        
         sizes: state.listSize,
         images: state.listImages,
-        sizeDetails: state.listSizeDetail
+        sizeDetails: state.listSizeDetail,
+        loginedAccount: state.loginedAccount
     }
 };
 const mapDispatchToProps = (dispatch,props) => {
