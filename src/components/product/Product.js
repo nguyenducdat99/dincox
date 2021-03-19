@@ -2,7 +2,7 @@
 import './Product.scss';
 import ProductSaleContainer from '../../containers/ProductSaleContainer';
 import ProductHightlightContainer from '../../containers/ProductHightlightContainer';
-import ProductCollection from './productcollection/ProductCollection';
+import ProductCollectionContainer from '../../containers/ProductCollectionContainer';
 
 function Product() {
 
@@ -12,7 +12,7 @@ function Product() {
                 {/* import component here */}
                     <ProductSaleContainer />
                     <ProductHightlightContainer />
-                    <ProductCollection />
+                    <ProductCollectionContainer />
                 {/* import component here */}
             </div>
             

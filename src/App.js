@@ -30,6 +30,7 @@ import ArticleUIContainer from './containers/ArticleUIContainer';
 import ArticleDetailContainer from './containers/ArticleDetailContainer';
 import ProductManagerContaner from './containers/ProductManagerContaner';
 import CheckoutContainer from './containers/CheckoutContainer';
+import Search from './components/fixcontents/search/Search';
 
 
 function App() {
@@ -83,7 +84,7 @@ function App() {
 					</Route>
 
 					<Route path="/search">
-
+						<Search/>
 					</Route>
 
 					<Route path="/account/login">

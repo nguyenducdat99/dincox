@@ -26,7 +26,10 @@ function ProductSaleContainer(props){
 
     
     return(
-        <ProductSale listProduct={listIndex} />
+        <ProductSale 
+            listProduct={listIndex} 
+            imagesRec={images}
+        />
     );
 }
 

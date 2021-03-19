@@ -1,14 +1,25 @@
 // import style library, components
 import './ProductSale.scss';
-import SmallImg from './product__banner__small.jpg';
-import LargeImg from './product__banner__large.jpg';
 import { useState } from 'react';
+
+function makeRandomIndex(max) {
+    return Math.floor((Math.random() * max))
+}
 
 // code function here
 function ProductSale(props){
     // declare state
     const [amountProduct,setAmountProduct] = useState(4);// amount product show
 
+    // get props 
+    const {imagesRec} = props;
+
+    // filet props
+    var imagesFillter = imagesRec.filter(
+        element => {
+            return element.id_new === null;
+        }
+    )
 
     // load product list
     var sum=0;// amount product show (condition)
@@ -43,13 +54,25 @@ function ProductSale(props){
             {/* end product sales */}
             <div className="product__banner">
                     <div className="product__banner--small">
-                        <img src={SmallImg} alt="" />
+                        <img 
+                            src={'http://localhost:8080'+
+                            (imagesFillter[makeRandomIndex(imagesFillter.length)].path)} 
+                            alt="dincox collection" 
+                        />
                     </div>
                     <div className="product__banner--large">
-                        <img src={LargeImg} alt="" />
+                        <img 
+                            src={'http://localhost:8080'+
+                            (imagesFillter[makeRandomIndex(imagesFillter.length)].path)} 
+                            alt="dincox collection" 
+                        />
                     </div>
                     <div className="product__banner--small">
-                        <img src={SmallImg} alt="" />
+                        <img 
+                            src={'http://localhost:8080'+
+                            (imagesFillter[makeRandomIndex(imagesFillter.length)].path)} 
+                            alt="dincox collection" 
+                        />
                     </div>
                 </div>
             {/* end product banner */}
