@@ -81,7 +81,8 @@ function Header(props) {
                                     </li>
                                     <li><a href='/#'>Sale Off</a></li>
                                     <li><Link to='/store-location'>Hệ thống cửa hàng</Link></li>
-                                    <li><a href='/#'>Kiểm tra đơn hàng</a></li>
+                                    <li>
+                                        <Link to="/orders">Kiểm tra đơn hàng</Link>                                  </li>
                                 </ul>
                             </div>
                             <div className="header-grid__navigation__search">

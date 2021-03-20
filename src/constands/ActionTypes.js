@@ -56,6 +56,7 @@ export const SAVE_IMAGES = "SAVE_IMAGES";
 export const ADD_CHECKOUT = 'ADD_CHECKOUT';
 export const DELETE_CHECKOUT = 'DELETE_CHECKOUT';
 
-
+// order
+export const FETCH_ORDER = 'FETCH_ORDER';
 
 

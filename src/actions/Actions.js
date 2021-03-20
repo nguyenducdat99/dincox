@@ -690,3 +690,20 @@ export const addCheckoutRequest = (item, newQuantity) => {
 }
 
 
+// handle for order
+export const fetchOrderRequest = id => {
+    return (dispatch) => {
+        return callApi(('orders/' + id),'GET',null).then(
+            res => {
+                dispatch(fetchOrder(res.data));
+            }
+        )
+    }
+}
+export const fetchOrder = items => {
+    return {
+        type: types.FETCH_ORDER,
+        payload: items
+    }
+}
+

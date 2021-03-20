@@ -31,6 +31,7 @@ import ArticleDetailContainer from './containers/ArticleDetailContainer';
 import ProductManagerContaner from './containers/ProductManagerContaner';
 import CheckoutContainer from './containers/CheckoutContainer';
 import Search from './components/fixcontents/search/Search';
+import OrderContainer from './containers/OrderContainer';
 
 
 function App() {
@@ -121,6 +122,10 @@ function App() {
 
 					<Route path='/checkouts'>
 						<CheckoutContainer />
+					</Route>
+
+					<Route path='/orders'>
+						<OrderContainer />
 					</Route>
 
 					<Route>
