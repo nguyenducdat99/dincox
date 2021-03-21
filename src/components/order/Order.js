@@ -1,6 +1,7 @@
 // import lstyle library
 import { useState } from 'react';
 import SmallBanner from '../fixcontents/smallbanner/SmallBanner';
+import OrderDetail from './orderdetail/OrderDetail';
 import './Order.scss';
 
 // code function here
@@ -64,6 +65,7 @@ function Order(props){
     return(
         <>
             <SmallBanner title='Kiểm tra đơn hàng'/>
+            <OrderDetail />
             <div className="order">
                 <div className="wrapper">
                     <div className="order-grid">
