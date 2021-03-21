@@ -707,3 +707,20 @@ export const fetchOrder = items => {
     }
 }
 
+
+export const fetchOrderDetailRequest = id => {
+    return (dispatch) => {
+        return callApi(('orders-detail/order/' + id),'GET',null).then(
+            res => {
+                dispatch(fetchOrderDetail(res.data));
+            }
+        )
+    }
+}
+export const fetchOrderDetail = items => {
+    return {
+        type: types.FETCH_ORDER_DETAIL,
+        payload: items
+    }
+}
+

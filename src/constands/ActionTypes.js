@@ -58,5 +58,7 @@ export const DELETE_CHECKOUT = 'DELETE_CHECKOUT';
 
 // order
 export const FETCH_ORDER = 'FETCH_ORDER';
+export const FETCH_ORDER_DETAIL = 'FETCH_ORDER_DETAIL';
+
 
 

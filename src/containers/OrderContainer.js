@@ -6,12 +6,17 @@ import Order from '../components/order/Order';
 // code function here
 function OrderContainer(props){
     // declare state
-    const {fetchOrder, orders} = props;
+    const {fetchOrder, orders, fetchOrderDetail, orderDetails, 
+        products, sizes} = props;
 
-     return(
+    return(
         <Order
             fetchOrderRec={fetchOrder}
+            fetchOrderDetailRec={fetchOrderDetail}
             ordersRec={orders}
+            orderDetailsRec={orderDetails}
+            productsRec={products}
+            sizesRec={sizes}
         />
     );
 }
@@ -19,13 +24,19 @@ function OrderContainer(props){
 
 const mapStateToProps = state => {
     return {
-        orders: state.order
+        orders: state.order,
+        orderDetails: state.orderDetail,
+        products: state.ListProduct,
+        sizes: state.listSize
     }
 };
 const mapDispatchToProps = (dispatch, props) => {
     return {
         fetchOrder: id => {
             dispatch(Actions.fetchOrderRequest(id));
+        },
+        fetchOrderDetail: id => {
+            dispatch(Actions.fetchOrderDetailRequest(id));
         }
     }
 };

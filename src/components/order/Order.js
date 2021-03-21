@@ -1,5 +1,5 @@
 // import lstyle library
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SmallBanner from '../fixcontents/smallbanner/SmallBanner';
 import OrderDetail from './orderdetail/OrderDetail';
 import './Order.scss';
@@ -7,11 +7,59 @@ import './Order.scss';
 // code function here
 function Order(props){
     // get props
-    const {fetchOrderRec, ordersRec} = props;
+    const {fetchOrderDetailRec, orderDetailsRec, productsRec, 
+        fetchOrderRec, ordersRec, sizesRec} = props;
 
     // declare state
+    const [showDetail,setShowDetail] = useState(false);
+    const [presentOrder,setPresentOrder] = useState(
+        {
+            id_order: 0,
+            id_account: 0,
+            create_at: "",
+            email: "",
+            number_phone: "0",
+            receiver: "",
+            sent_to: "",
+            transport_fee: 0,
+            status: 0
+        }
+        );
     const [numberPhone, setNumberPhone] = useState('');
-    
+            
+    // open form detail
+    var onOpenForm = order => {
+        setPresentOrder(order);
+        setShowDetail(true);
+    }
+
+    // get order detail
+    useEffect(
+        () => {
+            if (presentOrder.id_order!==0) {
+                fetchOrderDetailRec(presentOrder.id_order);
+            }
+            // eslint-disable-next-line
+        },[presentOrder.id_order]
+    )
+
+    // close form detail
+    var onCloseForm = () => {
+        setPresentOrder(
+            {
+                id_order: 0,
+                id_account: 0,
+                create_at: "",
+                email: "",
+                number_phone: "0",
+                receiver: "",
+                sent_to: "",
+                transport_fee: 0,
+                status: 0
+            }
+        );
+        setShowDetail(false);
+    }
     // handle when submit
     var onHandleSubmit = event => {
         event.preventDefault();
@@ -54,7 +102,13 @@ function Order(props){
                     }
                     </td>
                     <td>
-                        <u>Chi tiết</u>
+                        <u 
+                            onClick={
+                                () => {
+                                    onOpenForm(element);
+                                }
+                            }
+                        >Chi tiết</u>
                     </td>
                 </tr>
             )
@@ -65,7 +119,17 @@ function Order(props){
     return(
         <>
             <SmallBanner title='Kiểm tra đơn hàng'/>
-            <OrderDetail />
+            {
+                showDetail?
+                <OrderDetail
+                    onCloseFormRec={onCloseForm}  
+                    presentOrderRec={presentOrder}
+                    orderDetailsRec={orderDetailsRec}
+                    productsRec={productsRec}
+                    sizesRec={sizesRec}
+                />:
+                ''
+            }
             <div className="order">
                 <div className="wrapper">
                     <div className="order-grid">
