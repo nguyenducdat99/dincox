@@ -48,6 +48,7 @@ function ReceiverForm(props) {
     var onHandleSubmit = event => {
         event.preventDefault();
 
+        onCloseForm();
         onAddInfoCheckoutRec(
             {
                 ...info,
@@ -86,6 +87,8 @@ function ReceiverForm(props) {
                             onChange={onHandleChange} 
                         />
                     </label>
+                </div>
+                <div className="form-group">
                     <label>
                         <p>Số điện thoại</p>
                         <input 
@@ -94,10 +97,11 @@ function ReceiverForm(props) {
                             name='numberPhone'
                             className="form-control"
                             onChange={onHandleChange}
-                            required 
+                            required
                         />
                     </label>
                 </div>
+
                 <div className="form-group">
                     <label>
                         <p>Địa chỉ nhận hàng</p>
@@ -115,7 +119,7 @@ function ReceiverForm(props) {
                     <u>
                         <Link to='/cart'>Giỏ hàng</Link>
                     </u>
-                    <button type='submit' onClick={onCloseForm}>
+                    <button type='submit'>
                         Phương thức thanh toán
                     </button>
                 </div>
