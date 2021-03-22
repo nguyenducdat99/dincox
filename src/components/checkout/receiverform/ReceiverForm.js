@@ -47,6 +47,7 @@ function ReceiverForm(props) {
     // handle when submit
     var onHandleSubmit = event => {
         event.preventDefault();
+
         onAddInfoCheckoutRec(
             {
                 ...info,
@@ -93,7 +94,7 @@ function ReceiverForm(props) {
                             name='numberPhone'
                             className="form-control"
                             onChange={onHandleChange}
-                            required    
+                            required 
                         />
                     </label>
                 </div>

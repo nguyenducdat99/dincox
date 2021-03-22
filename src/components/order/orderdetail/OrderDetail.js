@@ -37,6 +37,7 @@ function OrderDetail(props){
     const {onCloseFormRec, presentOrderRec, orderDetailsRec, 
         productsRec, sizesRec} = props;
 
+    var valueOrder = 0;
 
     // return list ui
     var listItem = orderDetailsRec.length===0?
@@ -49,6 +50,8 @@ function OrderDetail(props){
             let price =  findProductPrice(productsRec,element.id_product);
             let discount = price*element.discount/100;
             let size_name = findSizeName(sizesRec,element.size);
+
+            valueOrder = valueOrder + (price-discount)*element.quantity;
 
             return (
                 <tr key={index}>
@@ -118,15 +121,15 @@ function OrderDetail(props){
                 <div className='order-detail__footer'>
                     <p>
                         <span>Tạm tính:</span>
-                        <span>100000</span>
+                        <span>{valueOrder} đ</span>
                     </p>
                     <p>
                         <span>Phí vận chuyển:</span>
-                        <span>{presentOrderRec.transport_fee}</span>
+                        <span>{presentOrderRec.transport_fee} đ</span>
                     </p>
                     <p>
                         <span>Tổng cộng:</span>
-                        <span>100000</span>
+                        <span>{valueOrder*1+presentOrderRec.transport_fee*1} đ</span>
                     </p>
                 </div>
            </div>
