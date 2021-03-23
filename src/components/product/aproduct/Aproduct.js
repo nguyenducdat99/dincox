@@ -3,6 +3,8 @@ import './Aproduct.scss';
 import PopupProductContainer from '../../../containers/PopUpDetailContainer';
 import { useState } from 'react';
 import {Link} from 'react-router-dom';
+import * as Actions from '../../../constands/ActionTypes';
+
 
 function findImages(items,id) {
     let result = [];
@@ -42,7 +44,7 @@ function Aproduct(props) {
     var path = findImages(imagesRec,id_product);
     
     // conver path
-    path = 'http://localhost:8080' + path[0];
+    path = '' + Actions.DOMAINT_SERVER + path[0];
 
     // code function here
     var onToggleQuickView = () => {

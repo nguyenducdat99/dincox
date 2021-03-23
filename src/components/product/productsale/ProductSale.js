@@ -1,9 +1,23 @@
 // import style library, components
 import './ProductSale.scss';
 import { useState } from 'react';
+import * as Actions from '../../../constands/ActionTypes';
 
 function makeRandomIndex(max) {
     return Math.floor((Math.random() * max))
+}
+
+function makeRandomPath(items) {
+    let result = '';
+
+    
+    if (items.length === 0) {
+        return result;
+    }else{
+        result = result + Actions.DOMAINT_SERVER + (items[makeRandomIndex(items.length)].path);
+    }
+
+    return result;
 }
 
 // code function here
@@ -55,22 +69,19 @@ function ProductSale(props){
             <div className="product__banner">
                     <div className="product__banner--small">
                         <img 
-                            src={'http://localhost:8080'+
-                            (imagesFillter[makeRandomIndex(imagesFillter.length)].path)} 
+                            src={makeRandomPath(imagesFillter)} 
                             alt="dincox collection" 
                         />
                     </div>
                     <div className="product__banner--large">
                         <img 
-                            src={'http://localhost:8080'+
-                            (imagesFillter[makeRandomIndex(imagesFillter.length)].path)} 
+                            src={makeRandomPath(imagesFillter)} 
                             alt="dincox collection" 
                         />
                     </div>
                     <div className="product__banner--small">
                         <img 
-                            src={'http://localhost:8080'+
-                            (imagesFillter[makeRandomIndex(imagesFillter.length)].path)} 
+                            src={makeRandomPath(imagesFillter)} 
                             alt="dincox collection" 
                         />
                     </div>

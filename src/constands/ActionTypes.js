@@ -60,5 +60,7 @@ export const DELETE_CHECKOUT = 'DELETE_CHECKOUT';
 export const FETCH_ORDER = 'FETCH_ORDER';
 export const FETCH_ORDER_DETAIL = 'FETCH_ORDER_DETAIL';
 
+// domain
+export const DOMAINT_SERVER = "http://localhost:8080";
 
 

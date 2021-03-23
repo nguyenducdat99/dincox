@@ -1,3 +1,5 @@
+import * as constands from '../../../../constands/ActionTypes';
+
 function findCategoryName(items, id) {
     let result = '';
     items.forEach(element => {
@@ -27,7 +29,7 @@ function TaskItem(props) {
     var path = findImages(imagesRec,itemRec.id_product);
     
     // conver path
-    path = 'http://localhost:8080' + path[0];
+    path = '' + constands.DOMAINT_SERVER + path[0];
 
     // get category name
     var productCategory = findCategoryName(categoriesRec, itemRec.id_category);

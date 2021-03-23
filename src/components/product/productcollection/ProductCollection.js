@@ -1,8 +1,22 @@
 // import style library
 import './ProductCollection.scss';
+import * as Actions from '../../../constands/ActionTypes';
 
 function makeRandomIndex(max) {
     return Math.floor((Math.random() * max))
+}
+
+function makeRandomPath(items) {
+    let result = '';
+
+    
+    if (items.length === 0) {
+        return result;
+    }else{
+        result = result + Actions.DOMAINT_SERVER + (items[makeRandomIndex(items.length)].path);
+    }
+
+    return result;
 }
 
 // code function here
@@ -15,8 +29,7 @@ function ProductCollection(props){
         (element, index) => {
             return <div key={index} className="product__collection__list-small__single">
                         <img 
-                            src={'http://localhost:8080'+
-                            (imagesRec[makeRandomIndex(imagesRec.length)].path)} 
+                            src={makeRandomPath(imagesRec)} 
                             alt="dincox collection" 
                         />
                     </div>
@@ -34,8 +47,7 @@ function ProductCollection(props){
                         </div>
                         <div className="product__collection__big">
                             <img 
-                                src={'http://localhost:8080'+
-                                (imagesRec[makeRandomIndex(imagesRec.length)].path)} 
+                                src={makeRandomPath(imagesRec)} 
                                 alt="dincox collection" 
                             />
                         </div>
