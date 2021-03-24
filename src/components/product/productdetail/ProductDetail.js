@@ -116,14 +116,14 @@ function ProductDetail(props){
         (element,index) => {
             return (
                 <div key={index} className="product-detail__list-image__image">
-                    <img src={'' + constands + element} alt={"demo"+index}/>
+                    <img src={'' + constands.DOMAINT_SERVER + element} alt={"demo"+index}/>
                 </div>
             )
         }
     )
     
     // conver path
-    path = '' + constands + path[0];
+    path = '' + constands.DOMAINT_SERVER + path[0];
 
     // hanle when click add to cart
     var addToCart =  () => {
