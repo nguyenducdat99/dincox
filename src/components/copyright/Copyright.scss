@@ -34,3 +34,14 @@
         }
     }//end copyright-grid
 }//end copyright
+@media only screen and (max-width: 1200px) {
+    .copyright {
+        &-grid {
+            grid-template-columns: 1fr !important;
+        }
+        &__author {
+            padding-top: 15px;
+            text-align: center;
+        }
+    }
+}

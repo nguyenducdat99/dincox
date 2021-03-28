@@ -36,7 +36,6 @@
             display: grid;
             grid-template-columns: 2fr 7fr;
             height: 100%;
-
             .header-grid__logo{
                 padding-left: 30px;
             }
@@ -178,5 +177,11 @@
                     }
                 }
             }
+        }
+        @media only screen and (max-width: 1024px) {
+            .header-grid {
+                grid-template-columns: 1fr 7fr;
+            }
+
         }
 }

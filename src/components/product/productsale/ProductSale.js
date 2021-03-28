@@ -1,7 +1,7 @@
 // import style library, components
 import './ProductSale.scss';
 import { useState } from 'react';
-import * as Actions from '../../../constands/ActionTypes';
+import * as Actions from '../../../constands/Config';
 
 function makeRandomIndex(max) {
     return Math.floor((Math.random() * max))
@@ -14,7 +14,7 @@ function makeRandomPath(items) {
     if (items.length === 0) {
         return result;
     }else{
-        result = result + Actions.DOMAINT_SERVER + (items[makeRandomIndex(items.length)].path);
+        result = result + Actions.API_URL + (items[makeRandomIndex(items.length)].path);
     }
 
     return result;

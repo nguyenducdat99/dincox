@@ -28,7 +28,7 @@ var myReducer = (state=initialState, action) => {
                         position: action.payload.position
                     }
                     setCookie('logined',action.payload.token,1);
-                    window.location = '/';
+                    // window.location = '/';
             }
 
             return state;

@@ -1,7 +1,7 @@
 // import library style
 import './SmallArticle.scss';
 import { Link } from 'react-router-dom';
-import * as constands from '../../../constands/ActionTypes';
+import * as constands from '../../../constands/Config';
 
 function findImages(items,id) {
     let result = [];
@@ -28,7 +28,7 @@ function SmallArticle(props) {
     var path = findImages(imagesRec,id_new);
     
     // conver path
-    path = '' + constands.DOMAINT_SERVER + path[0];
+    path = '' + constands.API_URL + path[0];
 
     
     // return ui

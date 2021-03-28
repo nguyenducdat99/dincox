@@ -1,7 +1,7 @@
 // import style library, component
 import { useEffect, useState } from 'react';
 import './CartItem.scss';
-import * as constands from '../../../constands/ActionTypes';
+import * as constands from '../../../constands/Config';
 
 
 function findSizeName(items, id_size) {
@@ -83,7 +83,7 @@ function CartItem(props) {
     var path = findImages(imagesRec,item.product.id_product);
     
     // conver path
-    path = '' + constands.DOMAINT_SERVER + path[0];
+    path = '' + constands.API_URL + path[0];
 
     // get discount
     const discount = 25;

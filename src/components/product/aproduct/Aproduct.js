@@ -3,7 +3,7 @@ import './Aproduct.scss';
 import PopupProductContainer from '../../../containers/PopUpDetailContainer';
 import { useState } from 'react';
 import {Link} from 'react-router-dom';
-import * as Actions from '../../../constands/ActionTypes';
+import * as Actions from '../../../constands/Config';
 
 
 function findImages(items,id) {
@@ -44,7 +44,7 @@ function Aproduct(props) {
     var path = findImages(imagesRec,id_product);
     
     // conver path
-    path = '' + Actions.DOMAINT_SERVER + path[0];
+    path = '' + Actions.API_URL + path[0];
 
     // code function here
     var onToggleQuickView = () => {
@@ -70,7 +70,6 @@ function Aproduct(props) {
                    <div className="aproduct__image">
                        
                        <Link to={"/products/"+id_product}>
-                            {/* <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Fa%2Fa7%2FReact-icon.svg%2F1200px-React-icon.svg.png&f=1&nofb=1" alt="demo" /> */}
                             <img src={path} alt={product_name} />
                             {
                                 is_sale?
