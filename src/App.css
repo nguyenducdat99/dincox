@@ -22,10 +22,6 @@ ul {
 a{
   text-decoration: none;
 }
-.wrapper{
-  max-width: 1200px;
-  margin: 0 auto;
-}
 
 
 button[type=button]{
@@ -53,4 +49,35 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+/* // style for wrapper */
+.wrapper{
+  max-width: 1200px;
+  margin: 0 auto;
+}
+@media only screen and (max-width: 1200px) {
+  .wrapper {
+    max-width: 1140px;
+  }
+}
+@media only screen and (max-width: 992px) {
+  .wrapper {
+    max-width: 920px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .wrapper {
+    max-width: 710px;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .wrapper {
+    max-width: 540px;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .wrapper {
+    max-width: 440px;
+  }
 }
