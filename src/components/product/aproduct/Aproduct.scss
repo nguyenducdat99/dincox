@@ -111,18 +111,37 @@
         .aproduct__image__select-wrapper{
             .aproduct__image__select{
                 .aproduct__image__select__search-plus{
-                    transform: translateX(0);
+                    transform: translateX(0) !important;
                     transition: 0.4s ease-in-out;
                 }
                 .aproduct__image__select__check-out{
-                    transform: translateY(0);
+                    transform: translateY(0) !important;
                     transition: 0.4s ease-in-out;
                 }
                 .aproduct__image__select__cart-plus{
-                    transform: translateX(0);
+                    transform: translateX(0) !important;
                     transition: 0.4s ease-in-out;
                 }
             }
         }
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .aproduct {
+        min-width: 250px;
+    }
+}
+
+@media only screen and (max-width: 1040px) {
+    .aproduct {
+        min-width: 315px;
+        .aproduct__image__select__search-plus{
+            transform: translateX(-94px) !important;
+        }
+        .aproduct__image__select__cart-plus{
+            transform: translateX(94px) !important;
+        }
+        
     }
 }
