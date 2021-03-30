@@ -43,6 +43,7 @@ function App() {
 
 				<HeaderContainer/>
 				<Slider />
+				
 				<Switch>
 
 					<Route path="/" exact>

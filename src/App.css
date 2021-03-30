@@ -5,6 +5,9 @@
 
 
 /* style for all tag */
+/* html, body {
+  width: 100%;
+} */
 *,
 *::before,
 *::after {
@@ -80,4 +83,7 @@ input[type=number] {
   .wrapper {
     max-width: 440px;
   }
+}
+@media only screen and (max-width: 320px) {
+
 }
