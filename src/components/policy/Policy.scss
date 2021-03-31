@@ -27,4 +27,33 @@
         }
     }
 }
-
+@media only screen and (max-width: 768px) {
+    .policy {
+        &-grid {
+            grid-template-columns: 1fr 1fr !important;
+            grid-template-rows: 1fr 1fr;
+            grid-row-gap: 30px;
+        }
+    }
+}
+@media only screen and (max-width: 600px) {
+    .policy {
+        &-grid {
+            grid-gap: 20px !important;
+        }
+    }
+}
+@media only screen and (max-width: 480px) {
+    .policy {
+        &-grid {
+            grid-gap: 10px !important;
+        }
+    }
+}
+@media only screen and (max-width: 320px) {
+    .policy {
+        &-grid {
+            display: block !important;
+        }
+    }
+}

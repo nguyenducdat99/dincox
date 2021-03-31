@@ -42,12 +42,12 @@ function App() {
 			<Router>
 
 				<HeaderContainer/>
-				<Slider />
+				
 				
 				<Switch>
 
 					<Route path="/" exact>
-						
+						<Slider />
 						<Policy />
 						<Product />
 						<ArticleUIContainer />

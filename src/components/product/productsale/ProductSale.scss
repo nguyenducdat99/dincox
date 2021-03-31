@@ -55,6 +55,12 @@
     .product {
         &__banner {
             padding: 0 15px;
+        }
+    }
+}
+@media only screen and (max-width: 480px) {
+    .product {
+        &__banner {
             grid-template-columns: 1fr 1fr !important;
             grid-template-rows: auto auto !important;
             grid-gap: 15px !important;
