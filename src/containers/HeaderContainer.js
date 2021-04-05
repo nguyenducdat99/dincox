@@ -15,7 +15,7 @@ function CartContainer(props){
     )
 
     // get props
-    var { cart,liveAccount,onLogoutAccount } = props;
+    const { cart,liveAccount,onLogoutAccount } = props;
 
     // get quantity item in cart
     var quantity = cart.length===0?0:cart.length;
@@ -66,22 +66,13 @@ function CartContainer(props){
         }
     }
 
-    // clear info live account
-    var clearAccount = () => {
-        onLogoutAccount({
-            id_user: 37,
-            user_name: '',
-            position: -1,
-            message: 'Đăng Xuất thành công'
-        })
-    }
 
     return(
         <Header 
             quantityRec={quantity}
             listCategoryRec={listCategory} 
             liveAccountRec={liveAccount}  
-            clearAccountRec={clearAccount} 
+            onLogoutAccount={onLogoutAccount}
         />
     );
 }
@@ -99,8 +90,8 @@ const mapDispatchToProps = (dispatch,props) => {
         onFetchApiCategory: () => {
             dispatch(Actions.fetchCategoriesRequest());
         },
-        onLogoutAccount: info => {
-            dispatch(Actions.loginAccount(info));
+        onLogoutAccount: () => {
+            dispatch(Actions.logoutAccount());
         }
     }
 };

@@ -18,19 +18,29 @@ var myReducer = (state=initialState, action) => {
 
             if (payload.code*1 === 200) {
                 const user = jwt(payload.data.token);
-                    
                 state = {
                     ...state,
                     id_account: user.id_account,
                     user_name: user.user_name,
-                    position: user.position
+                    position: user.position,
+                    message: payload.message
                 }
                 localStorage.setItem('token',payload.data.token);
-                
+
                 window.location = '/';
             }
 
             return state;
+        
+        case types.LOGOUT_ACCOUNT:
+            alert(initialState.message);
+            
+            state = {...initialState};
+            localStorage.setItem('token','');
+            window.location = '/';
+
+            return {...state}
+            
         default:
             return state;
     }

@@ -268,6 +268,12 @@ export const loginAccount = info => {
     }
 }
 
+export const logoutAccount = () => {
+    return {
+        type: types.LOGOUT_ACCOUNT
+    }
+}
+
 // handle for categories
 export const fetchCategoriesRequest = () => {
     return (dispatch) => {

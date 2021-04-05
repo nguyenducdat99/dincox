@@ -11,7 +11,12 @@ function Header(props) {
     const [isActiveHeader, setIsActiveHeader] = useState(false);
     
     //get props
-    const { quantityRec,listCategoryRec,liveAccountRec,clearAccountRec } = props;
+    const { 
+        quantityRec,
+        listCategoryRec,
+        liveAccountRec,
+        onLogoutAccount 
+    } = props;
 
     
 
@@ -111,7 +116,7 @@ function Header(props) {
                                         <span 
                                             className="fa fa-sign-out" 
                                             aria-hidden="true"
-                                            onClick={clearAccountRec}
+                                            onClick={onLogoutAccount}
                                         ></span>
                                     </>
                                 }

@@ -17,6 +17,7 @@ export const UPDATE_STATUS_ACCOUNT = "UPDATE_STATUS_ACCOUNT";
 export const DELETE_ACCOUNT = 'UPDATE_ACCOUNT';
 export const ACCOUNT_EDIT = 'ACCOUNT_EDIT';
 export const LOGIN_ACCOUNT = "LOGIN_ACCOUNT";
+export const LOGOUT_ACCOUNT = "LOGOUT_ACCOUNT";
 
 // handle for category
 export const FETCH_CATEGORIES = "FETCH_CATEGORIES";
