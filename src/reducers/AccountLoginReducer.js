@@ -27,7 +27,11 @@ var myReducer = (state=initialState, action) => {
                 }
                 localStorage.setItem('token',payload.data.token);
 
-                window.location = '/';
+                setTimeout(
+                    () => {
+                        window.location = '/';
+                    },1000
+                )
             }
 
             return state;
@@ -37,7 +41,11 @@ var myReducer = (state=initialState, action) => {
             
             state = {...initialState};
             localStorage.setItem('token','');
-            window.location = '/';
+            setTimeout(
+                () => {
+                    window.location = '/';
+                },1000
+            )
 
             return {...state}
             

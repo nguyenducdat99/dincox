@@ -7,6 +7,8 @@ export const fetchProductRequest = () => {
     return (dispatch) => {
         return callApi('products','GET',null).then(
             res => {
+                if (!res) return alert('Lỗi mất dữ liệu!');
+
                 dispatch(fetchProduct(res.data));
             }
         )
@@ -31,8 +33,9 @@ export const saveProductRequest = (item) => {
         return (dispatch) => {
             return callApi(('products/'+id),'PUT', item).then(
                 res => {
+                    if (!res) return alert('Phát hiện truy cập bất hợp phát!');
+
                     dispatch(saveProduct(res.data));
-                    // console.log(res.data);
                 }
             )
         }
@@ -40,6 +43,8 @@ export const saveProductRequest = (item) => {
         return (dispatch) => {
             return callApi('products','POST', item).then(
                 res => {
+                    if (!res) return alert('Phát hiện truy cập bất hợp phát!');
+
                     dispatch(saveProduct(res.data));
                 }
             )
@@ -58,6 +63,8 @@ export const selectProductRequest = id => {
     return (dispatch) => {
         return callApi(('products/'+id),'GET',id).then(
             res => {
+                if (!res) return alert('Phát hiện truy cập bất hợp phát!');
+
                 dispatch(selectProduct(res.data));
             }
         )
@@ -80,8 +87,9 @@ export const updateStatusProductRequest = (item) => {
     return (dispatch) => {
         return callApi(('products/'+id),'PUT', item).then(
             res => {
+                if (!res) return alert('Phát hiện truy cập bất hợp phát!');
+
                 dispatch(updateStatusProduct(res.data.id_product));
-                // console.log(res.data);
             }
         )
     }
@@ -105,6 +113,8 @@ export const updateSaleProductRequest = (item) => {
     return (dispatch) => {
         return callApi(('products/'+id),'PUT', item).then(
             res => {
+                if (!res) return alert('Phát hiện truy cập bất hợp phát!');
+
                 dispatch(updateSaleProduct(res.data.id_product));
             }
         )
@@ -142,11 +152,13 @@ export const fetchAccountRequest = () => {
     return (dispatch) => {
         return callApi('accounts','GET',null).then(
             res => {
+                if (!res) return alert('Phát hiện truy cập bất hợp phát!');
                 dispatch(fetchAccount(res.data));
             }
         )
     }
 }
+
 export const fetchAccount = (items) => {
     return {
         type: types.FECTH_ACCOUNT,
@@ -170,8 +182,9 @@ export const saveAccountRequest = (item) => {
         return (dispatch) => {
             return callApi(('accounts/'+id),'PUT', item).then(
                 res => {
+                    if (!res) return alert('Phát hiện truy cập bất hợp phát!');
+
                     dispatch(saveAccount(res.data));
-                    // console.log(res.data);
                 }
             )
         }
@@ -179,6 +192,8 @@ export const saveAccountRequest = (item) => {
         return (dispatch) => {
             return callApi('accounts','POST', item).then(
                 res => {
+                    if (!res) return alert('Phát hiện truy cập bất hợp phát!');
+
                     dispatch(saveAccount(res.data));
                 }
             )
@@ -205,8 +220,9 @@ export const updateStatusAccountRequest = (item) => {
     return (dispatch) => {
         return callApi(('accounts/'+id),'PUT', item).then(
             res => {
+                if (!res) return alert('Phát hiện truy cập bất hợp phát!');
+
                 dispatch(updateStatusAccount(res.data.id_account));
-                // console.log(res.data);
             }
         )
     }
@@ -223,6 +239,8 @@ export const deleteAccountRequest = id_account => {
     return (dispatch) => {
         return callApi(('accounts/'+id_account),'DELETE',null).then(
             res => {
+                if (!res) return alert('Phát hiện truy cập bất hợp phát!');
+
                 dispatch(deleteAccount(id_account));
             }
         )
@@ -239,6 +257,8 @@ export const selectAccountRequest = id => {
     return (dispatch) => {
         return callApi(('accounts/'+id),'GET',id).then(
             res => {
+                if (!res) return alert('Phát hiện truy cập bất hợp phát!');
+
                 dispatch(selectAccount(res.data));
             }
         )
@@ -279,6 +299,8 @@ export const fetchCategoriesRequest = () => {
     return (dispatch) => {
         return callApi('categories','GET',null).then(
             res => {
+                if (!res) return alert('Phát hiện truy cập bất hợp phát!');
+
                 dispatch(fetchCategories(res.data));
             }
         )
@@ -303,6 +325,8 @@ export const saveCategoryRequest = (item) => {
         return (dispatch) => {
             return callApi(('categories/'+id),'PUT', item).then(
                 res => {
+                    if (!res) return alert('Phát hiện truy cập bất hợp phát!');
+
                     dispatch(saveCategory(res.data));
                     // console.log(res.data);
                 }
@@ -312,6 +336,8 @@ export const saveCategoryRequest = (item) => {
         return (dispatch) => {
             return callApi('categories','POST', item).then(
                 res => {
+                    if (!res) return alert('Phát hiện truy cập bất hợp phát!');
+
                     dispatch(saveCategory(res.data));
                 }
             )
@@ -329,7 +355,7 @@ export const selectCategoryRequest = id => {
     return (dispatch) => {
         return callApi(('categories/'+id),'GET',null).then(
             res => {
-                // console.log(res.data);
+                if (!res) return alert('Phát hiện truy cập bất hợp phát!');
                 dispatch(selectCategory(res.data));
             }
         )
@@ -352,8 +378,9 @@ export const updateStatusCategoryRequest = (item) => {
     return (dispatch) => {
         return callApi(('categories/'+id),'PUT', item).then(
             res => {
+                if (!res) return alert('Phát hiện truy cập bất hợp phát!');
+
                 dispatch(updateStatusCategory(res.data.id_category));
-                // console.log(res.data);
             }
         )
     }
@@ -370,6 +397,8 @@ export const deleteCategoryRequest = id => {
     return (dispatch) => {
         return callApi(('categories/'+id),'DELETE',null).then(
             res => {
+                if (!res) return alert('Phát hiện truy cập bất hợp phát!');
+
                  dispatch(deleteCategory(id));
             }
         )
@@ -388,6 +417,8 @@ export const fetchSizesRequest = () => {
     return (dispatch) => {
         return callApi('sizes','GET',null).then(
             res => {
+                if (!res) return alert('Phát hiện truy cập bất hợp phát!');
+
                 dispatch(fetchSizes(res.data));
             }
         )
@@ -412,6 +443,8 @@ export const saveSizeRequest = (item) => {
         return (dispatch) => {
             return callApi(('sizes/'+id),'PUT', item).then(
                 res => {
+                    if (!res) return alert('Phát hiện truy cập bất hợp phát!');
+
                     dispatch(saveSize(res.data));
                     // console.log(res.data);
                 }
@@ -421,6 +454,8 @@ export const saveSizeRequest = (item) => {
         return (dispatch) => {
             return callApi('sizes','POST', item).then(
                 res => {
+                    if (!res) return alert('Phát hiện truy cập bất hợp phát!');
+
                     dispatch(saveSize(res.data));
                 }
             )
@@ -438,7 +473,8 @@ export const selectSizeRequest = id => {
     return (dispatch) => {
         return callApi(('sizes/'+id),'GET',null).then(
             res => {
-                // console.log(res.data);
+                if (!res) return alert('Phát hiện truy cập bất hợp phát!');
+
                 dispatch(selectSize(res.data));
             }
         )
@@ -461,6 +497,8 @@ export const updateStatusSizeRequest = (item) => {
     return (dispatch) => {
         return callApi(('sizes/'+id),'PUT', item).then(
             res => {
+                if (!res) return alert('Phát hiện truy cập bất hợp phát!');
+
                 dispatch(updateStatusSize(res.data.id_size));
                 // console.log(res.data);
             }
@@ -478,6 +516,8 @@ export const deleteSizeRequest = id => {
     return (dispatch) => {
         return callApi(('sizes/'+id),'DELETE',null).then(
             res => {
+                if (!res) return alert('Phát hiện truy cập bất hợp phát!');
+
                  dispatch(deleteSize(id));
             }
         )
@@ -496,6 +536,8 @@ export const fetchSizeDetailsRequest = () => {
     return (dispatch) => {
         return callApi('size-details','GET',null).then(
             res => {
+                if (!res) return alert('Phát hiện truy cập bất hợp phát!');
+
                 dispatch(fetchSizeDetails(res.data));
             }
         )
@@ -522,6 +564,8 @@ export const saveSizeDetailsRequest = (item,type) => {
         return (dispatch) => {
             return callApi(('size-details'),'POST', item).then(
                 res => {
+                    if (!res) return alert('Phát hiện truy cập bất hợp phát!');
+
                     dispatch(saveSizeDetail(res.data));
                     // console.log(res.data);
                 }
@@ -532,6 +576,8 @@ export const saveSizeDetailsRequest = (item,type) => {
             
             return callApi('size-details','PUT', item).then(
                 res => {
+                    if (!res) return alert('Phát hiện truy cập bất hợp phát!');
+
                     dispatch(saveSizeDetail(res.data));
                 }
             )
@@ -551,6 +597,8 @@ export const fetchImageRequest = () => {
     return (dispatch) => {
         return callApi('collections','GET',null).then(
             res => {
+                if (!res) return alert('Phát hiện truy cập bất hợp phát!');
+
                 dispatch(fetchImage(res.data));
                 // console.log(res);
             }
@@ -568,7 +616,8 @@ export const saveImageRequest = item => {
     return (dispatch) => {
         return callApi(('collections'),'POST', item).then(
             res => {
-                
+                if (!res) return alert('Phát hiện truy cập bất hợp phát!');
+
                 dispatch(saveImage(res.data));
                 // console.log(res.data);
             }
@@ -652,6 +701,8 @@ export const addCheckoutRequest = (item, newQuantity) => {
         // update for tbl orders
         callApi('orders','POST', item).then(
             res => {
+                if (!res) return alert('Phát hiện truy cập bất hợp phát!');
+
                 let newCart = [];
 
                 item.cart.forEach(element => {
@@ -676,6 +727,8 @@ export const addCheckoutRequest = (item, newQuantity) => {
                             
                             callApi('size-details','PUT', element).then(
                                 res => {
+                                    if (!res) return alert('Phát hiện truy cập bất hợp phát!');
+
                                     dispatch(saveSizeDetail(res.data));
                                 }
                             )
@@ -701,6 +754,8 @@ export const fetchOrderRequest = id => {
     return (dispatch) => {
         return callApi(('orders/' + id),'GET',null).then(
             res => {
+                if (!res) return alert('Phát hiện truy cập bất hợp phát!');
+
                 dispatch(fetchOrder(res.data));
             }
         )
@@ -718,6 +773,8 @@ export const fetchOrderDetailRequest = id => {
     return (dispatch) => {
         return callApi(('orders-detail/order/' + id),'GET',null).then(
             res => {
+                if (!res) return alert('Phát hiện truy cập bất hợp phát!');
+
                 dispatch(fetchOrderDetail(res.data));
             }
         )

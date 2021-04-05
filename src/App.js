@@ -35,14 +35,15 @@ import OrderContainer from './containers/OrderContainer';
 
 
 function App() {
-
+	const token = localStorage.getItem('token');
+	const check = token&&token!==''?true:false;
+	
 	return (
 		<div className="App">
 	
 			<Router>
 
 				<HeaderContainer/>
-				
 				
 				<Switch>
 
@@ -98,27 +99,40 @@ function App() {
 					</Route>
 
 					<Route path="/managers" exact>
-						<Admin />
+						{
+							check?<Admin />:<LoginContainer/>
+						}
 					</Route>
 
 					<Route path='/managers/accounts'>
-						<AccountsCtrl />
+						{
+							check?<AccountsCtrl />:<LoginContainer/>
+						}
 					</Route>
 
 					<Route path='/managers/categories'>
-						<CategoriesContainer />
+						{
+							check?<CategoriesContainer />:<LoginContainer/>
+						}
+						
 					</Route>
 
 					<Route path='/managers/sizes'>
-						<SizesContainer />
+						{
+							check?<SizesContainer />:<LoginContainer/>
+						}
+						
+					</Route>
+
+					<Route path='/managers/products'>
+						{
+							check?<ProductManagerContaner />:<LoginContainer/>
+						}
+						
 					</Route>
 
 					<Route path='/cart'>
 						<CartContainer />
-					</Route>
-
-					<Route path='/managers/products'>
-						<ProductManagerContaner />
 					</Route>
 
 					<Route path='/checkouts'>
