@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 function Header(props) {
     // declare state component
-    const [isActiveSearch, setIsActiveSearch] = useState(false);
+    // const [isActiveSearch, setIsActiveSearch] = useState(false);
     const [isActiveHeader, setIsActiveHeader] = useState(false);
     
     //get props
@@ -21,9 +21,9 @@ function Header(props) {
     
 
     // excute when user click button search
-    var onToggleSearch = () => {
-        setIsActiveSearch(!isActiveSearch);
-    }
+    // var onToggleSearch = () => {
+    //     setIsActiveSearch(!isActiveSearch);
+    // }
 
     // set state when user scroll page
     useEffect(
@@ -91,10 +91,10 @@ function Header(props) {
                                 </ul>
                             </div>
                             <div className="header-grid__navigation__search">
-                                <a href='/#' onClick={onToggleSearch}>Tìm kiếm</a>
+                                <Link to="/search">Tìm kiếm</Link>
                                 {/* form search */}
                                 
-                                {
+                                {/* {
                                     isActiveSearch ? 
                                     <div className="header-grid__navigation__search__form-search">
                                         <form action="" method="">
@@ -102,8 +102,8 @@ function Header(props) {
                                             <button type="button"><i className="fa fa-search" aria-hidden="true"></i></button>
                                         </form>
                                     </div>:''
-                                }
-                                </div>
+                                } */}
+                            </div>
                             
                             {/* block account */}
                             <div className="header-grid__navigation__account">

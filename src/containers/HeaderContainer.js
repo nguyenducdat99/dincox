@@ -7,15 +7,22 @@ import { Link } from 'react-router-dom';
 
 // code function here
 function CartContainer(props){
+
+    // get props
+    const { 
+        cart,
+        liveAccount,
+        onLogoutAccount,
+        onFetchSize
+    } = props;
+
     useEffect(
         () => {
             props.onFetchApiCategory();
+            onFetchSize();
             // eslint-disable-next-line
         },[]
     )
-
-    // get props
-    const { cart,liveAccount,onLogoutAccount } = props;
 
     // get quantity item in cart
     var quantity = cart.length===0?0:cart.length;
@@ -92,6 +99,9 @@ const mapDispatchToProps = (dispatch,props) => {
         },
         onLogoutAccount: () => {
             dispatch(Actions.logoutAccount());
+        },
+        onFetchSize: () => {
+            dispatch(Actions.fetchSizesRequest());
         }
     }
 };

@@ -28,6 +28,17 @@
         }   
     }
     &__slide{
+        position: relative;
+        &::after{
+            position: absolute;
+            top: 0;
+            left: 0;
+            content: '';
+            width: 100%;
+            height: 100%;
+            background-color: $color-default-black-25;
+            z-index: 10;
+        }
         img{
             width: 100%;
             height: 100%;
@@ -38,6 +49,8 @@
             position: absolute;
             top: 35vh;
             width: 40vw;
+            z-index: 11;
+
             &__small-title{
                 p{
                     color: $color-default-white;

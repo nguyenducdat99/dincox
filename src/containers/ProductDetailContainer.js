@@ -11,7 +11,6 @@ function ProductHightlightContainer(props){
         () => {
             props.onFetchProduct();
             props.onFetchSizeDetail();
-            props.onFetchSize();
             props.onFetchImage();
             // eslint-disable-next-line
         },[]
@@ -48,9 +47,6 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         onFetchSizeDetail: () => {
             dispatch(Actions.fetchSizeDetailsRequest())
-        },
-        onFetchSize: () => {
-            dispatch(Actions.fetchSizesRequest());
         },
         onAddToCart: (newItem,id_size,quantity) => {
             dispatch(Actions.addToCart(newItem,id_size,quantity));

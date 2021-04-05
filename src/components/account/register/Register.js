@@ -30,7 +30,7 @@ function Register(){
                                 <button type="submit" className="register__form-group__form-control register__form-group__form-control--button">Đăng ký</button>
                             </div>
                             <div className="register__form-group">
-                                <Link to="/">Trở về</Link>
+                                <Link to="/account/login">Trở về</Link>
                             </div>
                         </form>
                     </div>
