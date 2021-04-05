@@ -11,7 +11,7 @@ function Header(props) {
     const [isActiveHeader, setIsActiveHeader] = useState(false);
     
     //get props
-    var { quantityRec,listCategoryRec,liveAccountRec,clearAccountRec } = props;
+    const { quantityRec,listCategoryRec,liveAccountRec,clearAccountRec } = props;
 
     
 

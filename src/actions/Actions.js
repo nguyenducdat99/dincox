@@ -256,8 +256,7 @@ export const loginAccountRequest = account => {
     return (dispatch) => {
         return callApi('login','POST', account).then(
             res => {
-                console.log(res);
-                dispatch(loginAccount(res.config.data));
+                dispatch(loginAccount(res.data));
             }
         )
     }

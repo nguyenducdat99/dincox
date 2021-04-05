@@ -1,4 +1,6 @@
 import * as types from "../constands/ActionTypes";
+import jwt from 'jwt-decode';
+
 const initialState = {
     id_account: 37,
     user_name: '',
@@ -7,28 +9,25 @@ const initialState = {
 }
 
 
-function setCookie(cname, cvalue, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = "expires="+ d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-}
-
 var myReducer = (state=initialState, action) => {
+    const payload = action.payload;
+
     switch (action.type) {
         case types.LOGIN_ACCOUNT:
-            alert(action.payload.message);
+            alert(payload.message);
 
-            if (action.payload.token!=='') {
+            if (payload.code*1 === 200) {
+                const user = jwt(payload.data.token);
                     
-                    state = {
-                        ...state,
-                        id_account: action.payload.id_account,
-                        user_name: action.payload.user_name,
-                        position: action.payload.position
-                    }
-                    setCookie('logined',action.payload.token,1);
-                    // window.location = '/';
+                state = {
+                    ...state,
+                    id_account: user.id_account,
+                    user_name: user.user_name,
+                    position: user.position
+                }
+                localStorage.setItem('token',payload.data.token);
+                
+                window.location = '/';
             }
 
             return state;
