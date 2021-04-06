@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import Support from '../components/support/Support';
 
 // code function here
-function CartContainer(props){
+function SupportContainer(props){
  
     // get props
     var { liveAccount,isActiveScroll } = props;
@@ -26,4 +26,4 @@ const mapDispatchToProps = (dispatch,props) => {
     return {
     }
 };
-export default connect(mapStateToProps,mapDispatchToProps)(CartContainer)
+export default connect(mapStateToProps,mapDispatchToProps)(SupportContainer)

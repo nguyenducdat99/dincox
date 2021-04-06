@@ -4,7 +4,7 @@ import * as Actions from '../actions/Actions';
 import Login from '../components/account/login/Login';
 
 // code function here
-function AccountLoginContainer(props){
+function AccountRegisterContainer(props){
     // get props
     const { onLoginAccount } = props;
 
@@ -28,4 +28,4 @@ const mapDispatchToProps = (dispatch, props) => {
         }
     }
 };
-export default connect(mapStateToProps,mapDispatchToProps)(AccountLoginContainer)
+export default connect(mapStateToProps,mapDispatchToProps)(AccountRegisterContainer)

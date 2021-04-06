@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import * as Actions from '../actions/Actions';
 
 // code function here
-function MyContaner(props){
+function ArticleDetailContainer(props){
     // load data
     useEffect(
         () => {
@@ -36,4 +36,4 @@ const mapDispatchToProps = (dispatch, props) => {
         }
     }
 };
-export default connect(mapStateToProps,mapDispatchToProps)(MyContaner)
+export default connect(mapStateToProps,mapDispatchToProps)(ArticleDetailContainer)

@@ -6,7 +6,7 @@ import Article from '../components/article/Article';
 import SingleArticle from '../components/article/smallarticle/SmallArticle';
 
 // code function here
-function MyContaner(props){
+function ArticleUIContainer(props){
     // load data
     useEffect(
         () => {
@@ -53,4 +53,4 @@ const mapDispatchToProps = (dispatch, props) => {
         }
     }
 };
-export default connect(mapStateToProps,mapDispatchToProps)(MyContaner)
+export default connect(mapStateToProps,mapDispatchToProps)(ArticleUIContainer)

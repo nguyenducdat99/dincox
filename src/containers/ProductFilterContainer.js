@@ -6,7 +6,7 @@ import { useParams } from "react-router";
 import * as Actions from '../actions/Actions';
 
 // code function here
-function MyContainer(props){
+function ProductFilterContainer(props){
     // get props value
     var { products,categories,sizes,images } = props;
     
@@ -75,4 +75,4 @@ const mapDispatchToProps = (dispatch, props) => {
         
     }
 };
-export default connect(mapStateToProps,mapDispatchToProps)(MyContainer)
+export default connect(mapStateToProps,mapDispatchToProps)(ProductFilterContainer)

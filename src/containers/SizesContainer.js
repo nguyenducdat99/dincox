@@ -8,7 +8,7 @@ import TaskItem from '../components/admin/sizes/tasklist/TaskItem';
 import { useEffect } from 'react';
 
 // code function here
-function CategoriesContainer(props){
+function SizesContainer(props){
 
     // load data
     useEffect( 
@@ -104,4 +104,4 @@ const mapDispatchToProps = (dispatch, props) => {
         }
     }
 };
-export default connect(mapStateToProps,mapDispatchToProps)(CategoriesContainer)
+export default connect(mapStateToProps,mapDispatchToProps)(SizesContainer)

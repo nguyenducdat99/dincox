@@ -7,6 +7,12 @@
     z-index: 2;
     background-color: $color-default-white;
     font-size: $font-size-36;
+    
+    a {
+        font-size: $font-size-16;
+        color: $color-default-black;
+        font-weight: $font-weight-400;
+    }
 
     &__contents {
         min-height: 300px;

@@ -2,8 +2,32 @@
 import './Register.scss';
 import SmallBanner from '../../fixcontents/smallbanner/SmallBanner';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 function Register(){
+    // declare state store value form
+    const [valueForm, setValueForm] = useState({
+        user_name: '',
+        password: '',
+        email: '',
+        address: ''
+    })
+
+    const onHandleChange = event => {
+        const value = event.target.value;
+        const name = event.target.name;
+
+        setValueForm({
+            ...valueForm,
+            [name]: value
+        })
+    }
+
+
+    const onHandleSubmit = event => {
+        event.preventDefault();
+        console.log(valueForm);
+    }
     return(
         <>
             <SmallBanner title="Tài khoản" title2="Tạo tài khoản"/>
@@ -13,18 +37,46 @@ function Register(){
                         <div className="register__title">
                             <h1>Tạo tài khoản</h1>
                         </div>
-                        <form action="" methode="">
+                        <form action="" methode="" onSubmit={onHandleSubmit}>
                             <div className="register__form-group">
-                                <input type="text" className="register__form-group__form-control" required placeholder="Họ"/>
+                                <input type="text" 
+                                    className="register__form-group__form-control" 
+                                    required 
+                                    placeholder="Tên đăng nhập"
+                                    name="user_name"
+                                    value={valueForm.user_name}
+                                    onChange={onHandleChange}
+                                />
                             </div>
                             <div className="register__form-group">
-                                <input type="text" className="register__form-group__form-control" required placeholder="Tên"/>
+                                <input type="password" 
+                                    className="register__form-group__form-control" 
+                                    required 
+                                    placeholder="Mật khẩu" 
+                                    value={valueForm.password}
+                                    name="password"
+                                    onChange={onHandleChange}
+                                />
                             </div>
                             <div className="register__form-group">
-                                <input type="email" className="register__form-group__form-control" required placeholder="Email"/>
+                                <input type="email" 
+                                    className="register__form-group__form-control" 
+                                    required 
+                                    placeholder="Email"
+                                    value={valueForm.email}
+                                    name="email"
+                                    onChange={onHandleChange}
+                                />
                             </div>
                             <div className="register__form-group">
-                                <input type="password" className="register__form-group__form-control" required placeholder="Mật khẩu" />
+                                <input type="text" 
+                                    className="register__form-group__form-control" 
+                                    required 
+                                    placeholder="Địa chỉ"
+                                    value={valueForm.address}
+                                    name='address'
+                                    onChange={onHandleChange}
+                                />
                             </div>
                             <div className="register__form-group">
                                 <button type="submit" className="register__form-group__form-control register__form-group__form-control--button">Đăng ký</button>

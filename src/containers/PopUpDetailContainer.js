@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import PopUpDetail from '../components/product/popupdetail/PopUpDetail';
 
 // code function here
-function MyContainer(props){
+function PopUpContainer(props){
     // load data
     useEffect(
         () => {
@@ -52,4 +52,4 @@ const mapDispatchToProps = (dispatch, props) => {
     }
 };
 
-export default connect(mapStateToProps,mapDispatchToProps)(MyContainer)
+export default connect(mapStateToProps,mapDispatchToProps)(PopUpContainer)

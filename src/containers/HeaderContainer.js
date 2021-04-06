@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 // code function here
-function CartContainer(props){
+function HeaderContainer(props){
 
     // get props
     const { 
@@ -105,4 +105,4 @@ const mapDispatchToProps = (dispatch,props) => {
         }
     }
 };
-export default connect(mapStateToProps,mapDispatchToProps)(CartContainer)
+export default connect(mapStateToProps,mapDispatchToProps)(HeaderContainer)

@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import ProductDetail from '../components/product/productdetail/ProductDetail';
 
 // code function here
-function ProductHightlightContainer(props){
+function ProductDetailContainer(props){
     // load data
     useEffect(
         () => {
@@ -57,4 +57,4 @@ const mapDispatchToProps = (dispatch, props) => {
     }
 };
 
-export default connect(mapStateToProps,mapDispatchToProps)(ProductHightlightContainer)
+export default connect(mapStateToProps,mapDispatchToProps)(ProductDetailContainer)
