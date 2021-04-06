@@ -1,17 +1,19 @@
 // import style library, components
 import {connect} from 'react-redux';
 import * as Actions from '../actions/Actions';
-import Login from '../components/account/login/Login';
+import Register from '../components/account/register/Register';
 
 // code function here
 function AccountRegisterContainer(props){
     // get props
-    const { onLoginAccount } = props;
+    const {
+        onRegisterAccount
+    } = props;
 
     // return login ui
     return(
-        <Login 
-            onLoginAccountRec={onLoginAccount}
+        <Register 
+            onRegisterAccount={onRegisterAccount}
         />
     );
 }
@@ -23,8 +25,8 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        onLoginAccount: account => {
-            dispatch(Actions.loginAccountRequest(account));
+        onRegisterAccount: data => {
+            dispatch(Actions.registerAccountRequest(data))
         }
     }
 };

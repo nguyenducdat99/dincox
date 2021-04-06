@@ -294,6 +294,23 @@ export const logoutAccount = () => {
     }
 }
 
+export const registerAccountRequest = data => {
+    return dispatch => {
+        return callApi('register','POST',data).then(
+            res => {
+                dispatch(registerAccount(res.data))
+            }
+        )
+    }
+}
+
+export const registerAccount = data => {
+    return {
+        type: types.REGISTER_ACCOUNT,
+        payload: data
+    }
+}
+
 // handle for categories
 export const fetchCategoriesRequest = () => {
     return (dispatch) => {

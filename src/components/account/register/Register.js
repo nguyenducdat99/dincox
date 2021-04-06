@@ -4,7 +4,12 @@ import SmallBanner from '../../fixcontents/smallbanner/SmallBanner';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
-function Register(){
+function Register(props){
+    // get props
+    const {
+        onRegisterAccount
+    } = props;
+
     // declare state store value form
     const [valueForm, setValueForm] = useState({
         user_name: '',
@@ -26,8 +31,19 @@ function Register(){
 
     const onHandleSubmit = event => {
         event.preventDefault();
-        console.log(valueForm);
+        
+        let message = 'Tên đăng nhập: ' + valueForm.user_name;
+            message += '\nEmail: ' + valueForm.email;
+            message += '\nĐịa chỉ: ' + valueForm.address;
+        const confirm = window.confirm(message+'\nBạn có muốn tạo tài khoản không?')
+
+        if (confirm) onRegisterAccount({
+            ...valueForm,
+            user_name: valueForm.user_name.toLowerCase(),
+            email: valueForm.email.toLowerCase()
+        });
     }
+
     return(
         <>
             <SmallBanner title="Tài khoản" title2="Tạo tài khoản"/>

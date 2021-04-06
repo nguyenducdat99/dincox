@@ -17,7 +17,7 @@ import PrivacyPolicy from "./components/fixcontents/privacypolicy/PrivacyPolicy"
 import ReturnPolicy from "./components/fixcontents/returnpolicy/ReturnPolicy";
 import StoreLocation from './components/fixcontents/storelocation/StoreLocation';
 import LoginContainer from './containers/AccountLoginContainer';
-import Register from './components/account/register/Register';
+import RegisterContainer from './containers/AccountRegisterContainer';
 import Admin from './components/admin/Admin';
 import AccountsCtrl from './components/admin/accounts/Account';
 import CategoriesContainer from './containers/CategoriesContainer';
@@ -95,7 +95,7 @@ function App() {
 					</Route>
 
 					<Route path="/account/register">
-						<Register/>
+						<RegisterContainer />
 					</Route>
 
 					<Route path="/managers" exact>

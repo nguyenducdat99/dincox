@@ -14,7 +14,7 @@ var myReducer = (state=initialState, action) => {
 
     switch (action.type) {
         case types.LOGIN_ACCOUNT:
-            alert(payload.message);
+            alert(payload.message+'\nTrang web sẽ chuyển hướng sau 1s.');
 
             if (payload.code*1 === 200) {
                 const user = jwt(payload.data.token);
@@ -37,7 +37,7 @@ var myReducer = (state=initialState, action) => {
             return state;
         
         case types.LOGOUT_ACCOUNT:
-            alert(initialState.message);
+            alert(initialState.message+'\nTrang web sẽ chuyển hướng sau 1s.');
             
             state = {...initialState};
             localStorage.setItem('token','');
@@ -48,7 +48,14 @@ var myReducer = (state=initialState, action) => {
             )
 
             return {...state}
-            
+        case types.REGISTER_ACCOUNT:
+            if (payload.code*1===200) {
+                alert(payload.message);
+                window.location = '/account/login';
+            }
+            if (payload.code*1===401) alert(payload.message);
+
+            return state;
         default:
             return state;
     }
