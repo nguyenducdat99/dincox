@@ -11,6 +11,7 @@
     margin-top: -80px;
     height: 100vh;
     
+
     .slick-arrow{
         display: none !important;
     }
@@ -18,17 +19,24 @@
         bottom: 50px;
         li button:before{
             content: '';
-            background-color: $color-default-black;
+            background-color: $color-default-white;
+            border: 1px solid $color-default-black;
+            border-radius: 50%;
         }
     }
     .slick-slider{
         height: 100%;
         .slick-list{
             height: 100%;
-        }   
+        }  
+        div {
+            height: 100%;
+        } 
     }
     &__slide{
         position: relative;
+        height: 100%;
+
         &::after{
             position: absolute;
             top: 0;
@@ -47,9 +55,11 @@
         }
         &__contents{
             position: absolute;
-            top: 35vh;
+            top: 35%;
+            left: 40px;
             width: 40vw;
             z-index: 11;
+            height: auto !important;
 
             &__small-title{
                 p{
@@ -73,6 +83,7 @@
                     min-width: 150px;
                     background-color: $color-default-white;
                     padding: 0 15px;
+                    margin-bottom: 15px;
                     line-height: 40px;
                     height: 40px;
                     color: $color-default-black;
@@ -87,6 +98,52 @@
                 &--last-child{
                     background-color: transparent !important;
                     color: $color-default-white !important;
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width: 480px) {
+    .slider {
+        height: 80vh;
+
+        &__slide {
+            &__contents {
+                top: 25%;
+                left: 30px;
+                &__title {
+                    p {
+                        font-size: 36px
+                    }
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width: 450px) {
+    .slider {
+        height: 80vh;
+
+        &__slide {
+            &__contents {
+                left: 10px;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 320px) {
+    .slider {
+        height: 60vh;
+
+        &__slide {
+            &__contents {
+                top: 15%;
+                left: 10px;
+
+                &__title {
+                    p {
+                        font-size: 30px;
+                    }
                 }
             }
         }

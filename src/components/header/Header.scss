@@ -32,14 +32,14 @@
     z-index: 999;
         // style for wrapper inside header
 
-        .header-grid{
+        &-grid{
             display: grid;
             grid-template-columns: 2fr 7fr;
             height: 100%;
-            .header-grid__logo{
+            &__logo{
                 padding-left: 30px;
             }
-            .header-grid__navigation{
+            &__navigation{
                 font-size: $font-size-16;
                 font-weight: $font-weight-700;
                 padding-left: 20px;
@@ -51,6 +51,20 @@
                     text-transform: uppercase;
                     cursor: pointer;
                     position: relative;
+                }
+
+                &__res {
+                    display: none;
+                    justify-content: flex-end;
+                    align-items: center;
+                    font-size: 28px;
+                    color: $color-default-white;
+                    
+
+
+                    label:first-child{
+                        margin-right: 20px;
+                    }
                 }
 
                 a::after,
@@ -69,18 +83,18 @@
                     width: 100%;
                 }
 
-                .header-grid__navigation__link,
-                .header-grid__navigation__search,
-                .header-grid__navigation__account,
-                .header-grid__navigation__cart{
+                &__link,
+                &__search,
+                &__account,
+                &__cart{
                     display: inline-block;
                 }
-                .header-grid__navigation__search,
-                .header-grid__navigation__account,
-                .header-grid__navigation__cart{
+                &__search,
+                &__account,
+                &__cart{
                     margin-right: 15px;
                 }
-                .header-grid__navigation__link{
+                &__link{
                     ul{
                         display: flex;
                         flex-direction: row;
@@ -178,10 +192,25 @@
                 }
             }
         }
-        @media only screen and (max-width: 1024px) {
-            .header-grid {
-                grid-template-columns: 1fr 7fr;
-            }
-
+    }
+    
+@media only screen and (max-width: 1024px) {
+    .header{
+        &-grid {
+            grid-template-columns: 1fr 7fr;
         }
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .header{
+        &-grid {
+            &__navigation {
+                display: none;
+                &__res {
+                    display: flex;
+                }
+            }
+        }
+    }
 }

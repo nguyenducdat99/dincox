@@ -127,6 +127,16 @@ function Header(props) {
                                 
                             </div>
                         </nav>
+                        
+
+                        <div className="header-grid__navigation__res">
+                            <label>
+                                <span className="fa fa-shopping-cart" aria-hidden="true"></span>&nbsp;(1)
+                            </label>
+                            <label>
+                                <span className="fa fa-bars" aria-hidden="true"></span>&nbsp;Menu
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>

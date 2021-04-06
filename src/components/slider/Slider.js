@@ -16,7 +16,7 @@ function Slider(){
         slidesToShow: 1,
         slidesToScroll: 1,
         swipeToSlide: true,
-        autoplay: true,
+        autoplay: false,
         autoplaySpeed: 4000
     };
 
