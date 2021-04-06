@@ -60,7 +60,7 @@ function Support(props) {
                     <p>Top</p>
                 </div>
             </div>
-            <div className="support__mobile-phone" onClick={onCall}>
+            <div className={isActiveHeader?"support__mobile-phone--none":"support__mobile-phone"} onClick={onCall}>
                 <div className="support__mobile-phone__animation">
                     <div className="support__mobile-phone__animation__background">
                     </div>

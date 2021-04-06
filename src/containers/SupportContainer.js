@@ -6,7 +6,7 @@ import Support from '../components/support/Support';
 function SupportContainer(props){
  
     // get props
-    var { liveAccount,isActiveScroll } = props;
+    const { liveAccount,isActiveScroll } = props;
 
     return(
         <Support 

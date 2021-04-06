@@ -75,6 +75,11 @@
         padding-right: 10px;
         cursor: pointer;
         z-index: 999;
+
+        &--none{
+            display: none;
+        }
+
         .support__mobile-phone__animation{
             width: 50px;
             border-radius: 50%;
@@ -151,5 +156,10 @@
             font-size: $font-size-18;
             line-height: 50px;
         }
+    }
+}
+@media only screen and (max-width:480px){
+    .support {
+        display: none;
     }
 }
