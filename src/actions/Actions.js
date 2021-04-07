@@ -154,6 +154,7 @@ export const fetchAccountRequest = () => {
         return callApi('accounts','GET',null).then(
             res => {
                 if (!res) return alert('Phát hiện truy cập bất hợp phát!');
+                
                 dispatch(fetchAccount(res.data));
             }
         )
@@ -184,7 +185,7 @@ export const saveAccountRequest = (item) => {
             return callApi(('accounts/'+id),'PUT', item).then(
                 res => {
                     if (!res) return alert('Phát hiện truy cập bất hợp phát!');
-
+                    console.log(res);
                     dispatch(saveAccount(res.data));
                 }
             )

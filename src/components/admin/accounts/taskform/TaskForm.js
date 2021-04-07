@@ -100,6 +100,7 @@ function TaskForm(props) {
                                 name="user_name"
                                 value={objectTask.user_name}
                                 required
+                                disabled={objectTask.id_account===''?false:true}
                                 />
                         </label>
                     </div>
@@ -140,6 +141,7 @@ function TaskForm(props) {
                                 value={objectTask.email}
                                 name="email"
                                 required
+                                disabled={objectTask.id_account===''?false:true}
                             />
                         </label>
                     </div>

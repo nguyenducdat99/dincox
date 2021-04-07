@@ -26,9 +26,14 @@ var AccountReducer = (state=initialState, action) =>{
             return state;
         case types.SAVE_ACCOUNT:
             index = findIndex(state,action.payload.id_account);
+            
+            console.log(action.payload);
 
-            if (index===-1) {
-                state.push(action.payload);
+            if(action.payload.code&&action.payload.code*1===401) {
+                alert(action.payload.message);
+            }else if (index===-1) {
+                alert(action.payload.message);
+                state.push(action.payload.data);
             }else{
                 state[index] = action.payload;
             }

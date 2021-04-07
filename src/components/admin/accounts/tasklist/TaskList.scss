@@ -5,6 +5,11 @@
 // style for function
 .task-list {
     margin-top: 15px;
+    height: 60vh;
+    overflow: scroll;
+    overflow-x: hidden;
+        
+        
     &__table {
         border: 1px solid $color-default-lightgray;
         width: 100%;
@@ -32,6 +37,8 @@
                 border-radius: .25em;  
                 white-space: nowrap;   
                 color: $color-default-white;
+                cursor: pointer;
+
 
                 &-info {
                     background-color: $color-default-green;

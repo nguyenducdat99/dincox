@@ -41,6 +41,17 @@ button[type=submit] {
 }
 
 
+/*custome style scroll bar*/
+*::-webkit-scrollbar {
+  width: 5px;
+}
+
+
+*::-webkit-scrollbar-thumb {
+  background-color:gray; 
+  border-radius: 10px;
+}
+
 /* remove arrow up/down count input */
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
