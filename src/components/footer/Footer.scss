@@ -100,7 +100,8 @@
 
 @media only screen and (max-width: 1200px) {
     .footer {
-        padding: 0 30px;
+        padding-left: 30px;
+        padding-right: 30px;
     }
 }
 
@@ -120,6 +121,7 @@
     .footer {
         padding: 0;
         padding-bottom: 30px;
+        padding-top: 30px;
         
         .wrapper {
             padding: 0 15px;

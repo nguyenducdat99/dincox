@@ -133,6 +133,7 @@ export const fetchArticleRequest = () => {
     return (dispatch) => {
         return callApi('news','GET',null).then(
             res => {
+                if (!res) return alert('Phát hiện truy cập bất hợp phát!');
                 dispatch(fetchArticle(res.data));
                 // console.log(res.data);
             }
