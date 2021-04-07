@@ -4,9 +4,7 @@
 
 // style for Aproduct 
 .aproduct {
-    min-width: 262px;
     width: 22%;
-    height: 373px;
     padding: 5px;
     margin: 0 15px;
     margin-top: 50px;
@@ -19,7 +17,6 @@
     }
     .aproduct__image {
         position: relative;
-        height: 85%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -27,7 +24,6 @@
         margin-bottom: 5px;
         img{
             width: 100%;
-            min-width: 252px;
         }
         .aproduct__sale{
             position: absolute;
@@ -129,19 +125,50 @@
 
 @media only screen and (max-width: 1200px) {
     .aproduct {
-        min-width: 250px;
+        &__image{
+            &__select {
+                width: 80% !important;
+            }
+        }        
     }
 }
 
 @media only screen and (max-width: 1040px) {
     .aproduct {
-        min-width: 315px;
-        .aproduct__image__select__search-plus{
-            transform: translateX(-94px) !important;
-        }
-        .aproduct__image__select__cart-plus{
-            transform: translateX(94px) !important;
-        }
-        
+        margin-left: 10px;
+        margin-right: 10px;
+        &__image{
+            &__select {
+                width: 100% !important;
+                button[type=button] {
+                    padding: 5px 5px !important;
+                }
+            }
+        }        
+    }
+}
+@media only screen and (max-width: 768px) {
+    .aproduct {
+        width: 30%;
+        &__image{
+            &__select {
+                display: none !important;
+            }
+        }        
+    }
+}
+@media only screen and (max-width: 600px) {
+    .aproduct {
+        width: 29%;       
+    }
+}
+@media only screen and (max-width: 480px) {
+    .aproduct {
+        width: 44%;       
+    }
+}
+@media only screen and (max-width: 340px) {
+    .aproduct {
+        width: 43%;       
     }
 }
