@@ -3,12 +3,14 @@ import './Header.scss';
 import logo from './logo-dincox.png';
 import SupportContainer from '../../containers/SupportContainer';
 import { Link } from 'react-router-dom';
+import VerticalMenu from '../fixcontents/verticalmenu/VerticalMenu';
 
 
 function Header(props) {
     // declare state component
     // const [isActiveSearch, setIsActiveSearch] = useState(false);
     const [isActiveHeader, setIsActiveHeader] = useState(false);
+    const [showVerticalMenu, setShowVerticalMenu] = useState(false);
     
     //get props
     const { 
@@ -18,14 +20,11 @@ function Header(props) {
         onLogoutAccount 
     } = props;
 
+    // handle toggle vertical menu
+    const onToggleVerticalMenu = () => {
+        setShowVerticalMenu(!showVerticalMenu);
+    }
     
-
-    // excute when user click button search
-    // var onToggleSearch = () => {
-    //     setIsActiveSearch(!isActiveSearch);
-    // }
-
-    // set state when user scroll page
     useEffect(
         () => {
             window.addEventListener('scroll', () => {
@@ -35,6 +34,14 @@ function Header(props) {
                     setIsActiveHeader(false);
                 }
             })
+
+            window.addEventListener('resize', () => {
+
+                if(window.innerWidth>992) {
+                    setShowVerticalMenu(false);
+                }
+            })
+
         },[]
     )
 
@@ -94,15 +101,6 @@ function Header(props) {
                                 <Link to="/search">Tìm kiếm</Link>
                                 {/* form search */}
                                 
-                                {/* {
-                                    isActiveSearch ? 
-                                    <div className="header-grid__navigation__search__form-search">
-                                        <form action="" method="">
-                                            <input type="text" placeholder="Tìm kiếm ..." />
-                                            <button type="button"><i className="fa fa-search" aria-hidden="true"></i></button>
-                                        </form>
-                                    </div>:''
-                                } */}
                             </div>
                             
                             {/* block account */}
@@ -131,16 +129,27 @@ function Header(props) {
 
                         <div className="header-grid__navigation__res">
                             <label>
-                                <span className="fa fa-shopping-cart" aria-hidden="true"></span>&nbsp;(1)
+                                <span className="fa fa-shopping-cart" aria-hidden="true"></span>&nbsp;
+                                {quantityRec===0?'':'('+quantityRec+')'}
                             </label>
-                            <label>
-                                <span className="fa fa-bars" aria-hidden="true"></span>&nbsp;Menu
+                            <label
+                                onClick={onToggleVerticalMenu}
+                            >
+                                <span 
+                                    className="fa fa-bars" 
+                                    aria-hidden="true"
+                                ></span>&nbsp;Menu
                             </label>
                         </div>
                     </div>
                 </div>
             </div>
             <SupportContainer isActiveScroll={isActiveHeader} />
+            <VerticalMenu
+                showVerticalMenu={showVerticalMenu}
+                onCloseMenu={onToggleVerticalMenu}
+                quantityRec={quantityRec}
+            />
         </>
     );
 }

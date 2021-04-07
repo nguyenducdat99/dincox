@@ -44,7 +44,6 @@ function App() {
 			<Router>
 
 				<HeaderContainer/>
-				
 				<Switch>
 
 					<Route path="/" exact>

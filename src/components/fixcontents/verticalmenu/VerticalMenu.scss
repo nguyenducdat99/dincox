@@ -3,26 +3,86 @@
 @import '../../../scss/Variable.scss';
 
 // style for code
-.store-location{
-    min-height: 300px;
-    background-color: $color-default-white;
-    position: relative;
-    z-index: 2;
-    padding-top: 30px;
-    h1 {
-        padding-bottom: 15px;
-        border-bottom: 1px solid $color-default-lightgray;
-        margin-bottom: 15px;
-        text-transform: uppercase;
-        font-size: $font-size-24;
+.vertical-menu {
+    background-color: $color-default-black;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: auto;
+    padding: 10px;
+    font-weight: 400;
+    z-index: 1000;
+    color: $color-default-white;
+    height: 100vh;
+    transform: translateX(100%) translateZ(0);
+
+    &--show {
+        transform: translateX(0) translateZ(0);
     }
-    p {
-        margin-bottom: 15px;
-        font-size: $font-size-16;
-        img{
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
+
+    &__close {
+        display: flex;
+        justify-content: flex-end;
+        padding-bottom: 30px;
+    }
+
+    &__body {
+        &__search {
+            background-color: $color-default-white;
+
+            input,
+            button {
+                padding: 0.375rem;
+                border: none;
+                border-radius: 0;
+                background-color: transparent;
+                font-size: $font-size-16;
+
+                &:focus {
+                    outline: none;
+                }
+            }
+        }
+
+        &__navigation {
+            ul {
+                li {
+                    padding: 0.75rem 0;
+                    position: relative;
+                    transition: 0.4 ease-in;
+                    
+                    &:hover {
+                        padding-left: 0.75rem;
+                        transition: 0.4s ease;
+                    }
+                    &:first-child {
+                        padding-top: 1.5rem;
+                        
+                        &:hover {
+                            padding-left: 0;
+                        }
+
+                        p {
+                            display: flex;
+                            justify-content: space-between;
+                        }
+
+                        .menu-lv-2 {
+                            li {
+                                &:last-child {
+                                    padding-bottom: 0;
+                                }
+
+                                &:hover {
+                                    padding-left: 0.75rem;
+                                }
+                            }
+                        }
+
+                    }
+
+                }
+            }
         }
     }
 }
