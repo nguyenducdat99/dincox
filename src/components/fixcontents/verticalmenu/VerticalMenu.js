@@ -8,7 +8,9 @@ function VerticalMenu(props) {
     // get Props
     const {
         showVerticalMenu,
-        onCloseMenu
+        onCloseMenu,
+        liveAccountRec,
+        onLogoutAccount
     } = props;
 
     // decalre state
@@ -78,7 +80,24 @@ function VerticalMenu(props) {
                                 >Kiểm tra đơn hàng</Link>
                             </li>
                             <li>Hệ thống cửa hàng</li>
-                            <li>Đăng nhập</li>
+                            <li>
+                                
+                                {
+                                    liveAccountRec.user_name===''?
+                                    <Link to='/account/login'
+                                        onClick={()=> onCloseMenu()}
+                                    >Đăng nhập</Link>:
+                                    <>
+                                        <span>Chào,{liveAccountRec.user_name}</span>
+                                        &nbsp;
+                                        <span 
+                                            className="fa fa-sign-out" 
+                                            aria-hidden="true"
+                                            onClick={onLogoutAccount}
+                                        ></span>
+                                    </>
+                                }
+                            </li>
                         </ul>
                     </div>
                 </div>

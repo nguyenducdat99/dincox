@@ -4,6 +4,7 @@ import Header from '../components/header/Header';
 import * as Actions from '../actions/Actions';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 // code function here
 function HeaderContainer(props){
@@ -84,6 +85,12 @@ function HeaderContainer(props){
     );
 }
 
+HeaderContainer.propTypes = {
+    cart: PropTypes.array,
+    categories: PropTypes.array,
+    liveAccount: PropTypes.object,
+    onLogoutAccount: PropTypes.func
+}
 
 const mapStateToProps = state => {
     return {

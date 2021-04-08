@@ -62,3 +62,43 @@
         
     }
 }
+
+@media only screen and (max-width: 1200px) {
+    .login{
+        &__grid {
+            width: 55%;
+        }
+    }
+}
+@media only screen and (max-width: 992px) {
+    .login{
+        &__grid {
+            width: 70%;
+        }
+    }
+}
+@media only screen and (max-width: 768px) {
+    .login{
+        &__grid {
+            width: 90%;
+        }
+
+        &__form-group {
+            p {
+                width: 30%;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 480px) {
+    .login{
+        &__form-group {
+            a {
+                width: 30%;
+            }
+            p {
+                width: 50%;
+            }
+        }
+    }
+}

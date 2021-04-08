@@ -149,6 +149,8 @@ function Header(props) {
                 showVerticalMenu={showVerticalMenu}
                 onCloseMenu={onToggleVerticalMenu}
                 quantityRec={quantityRec}
+                liveAccountRec={liveAccountRec}
+                onLogoutAccount={onLogoutAccount}
             />
         </>
     );

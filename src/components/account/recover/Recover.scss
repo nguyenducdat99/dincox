@@ -9,6 +9,7 @@
     background-color: $color-default-white;
     position: relative;
     z-index: 2;
+
     &__title{
         text-align: center;
         border-bottom: 1px dashed $color-default-lightgray;
@@ -48,7 +49,6 @@
                 font-weight: 700;
             }
         }
-        a,
         p{
             display: block;
             color: $color-default-gray;
@@ -56,6 +56,31 @@
             font-size: $font-size-16;
             line-height: 1.6;
             cursor: pointer;
+            width: 30%;
+            margin: 0 auto;
         }
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .recover{
+        &__grid {
+            width: 55%;
+        }
+    }
+}
+@media only screen and (max-width: 992px) {
+    .recover{
+        &__grid {
+            width: 70%;
+        }
+    }
+}
+@media only screen and (max-width: 768px) {
+    .recover{
+        &__grid {
+            width: 90%;
+        }
+
     }
 }
