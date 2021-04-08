@@ -1,6 +1,7 @@
 import * as types from "../constands/ActionTypes";
 import jwt from 'jwt-decode';
 
+
 const initialState = {
     id_account: 37,
     user_name: '',
@@ -14,7 +15,7 @@ var myReducer = (state=initialState, action) => {
 
     switch (action.type) {
         case types.LOGIN_ACCOUNT:
-            alert(payload.message+'\nTrang web sẽ chuyển hướng sau 1s.');
+            alert(payload.message);
 
             if (payload.code*1 === 200) {
                 const user = jwt(payload.data.token);
@@ -27,27 +28,15 @@ var myReducer = (state=initialState, action) => {
                 }
                 localStorage.setItem('token',payload.data.token);
 
-                setTimeout(
-                    () => {
-                        window.location = '/';
-                    },1000
-                )
             }
 
             return state;
         
         case types.LOGOUT_ACCOUNT:
-            alert(initialState.message+'\nTrang web sẽ chuyển hướng sau 1s.');
+            alert(initialState.message);
             
-            state = {...initialState};
-            localStorage.setItem('token','');
-            setTimeout(
-                () => {
-                    window.location = '/';
-                },1000
-            )
 
-            return {...state}
+            return {...initialState}
         case types.REGISTER_ACCOUNT:
             if (payload.code*1===200) {
                 alert(payload.message);

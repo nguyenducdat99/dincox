@@ -1,12 +1,21 @@
 // import style library, component
 import './Login.scss';
 import SmallBanner from '../../fixcontents/smallbanner/SmallBanner';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Recover from '../recover/Recover';
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 // funciton code here
 function Login(props){
+    // get props
+    const {
+        loginedAccount
+    } = props;
+
+    // get History
+    let history = useHistory();
+
     // declare state
     const [showRecover, setShowRecover] = useState(false);
     const [loginAccount, setLoginAccount] = useState(
@@ -19,6 +28,13 @@ function Login(props){
     var onShowRecover = () => {
         setShowRecover(!showRecover);
     }
+
+    useEffect(
+        () => {
+            if (loginedAccount.id_account*1!==37) return history.replace('/');
+            // eslint-disable-next-line
+        },[loginedAccount]
+    )
 
     // hanle when submit
     var onHandleSubmit = event => {
