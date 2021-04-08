@@ -2,12 +2,21 @@
 import {connect} from 'react-redux';
 import * as Actions from '../actions/Actions';
 import Order from '../components/order/Order';
+import PropTypes from 'prop-types';
 
 // code function here
 function OrderContainer(props){
     // declare state
-    const {fetchOrder, orders, fetchOrderDetail, orderDetails, 
-        products, sizes} = props;
+    const {
+        fetchOrder, 
+        orders, 
+        fetchOrderDetail, 
+        orderDetails, 
+        products, 
+        sizes,
+        resetOrder
+
+    } = props;
 
     return(
         <Order
@@ -17,10 +26,20 @@ function OrderContainer(props){
             orderDetailsRec={orderDetails}
             productsRec={products}
             sizesRec={sizes}
+            resetOrder={resetOrder}
         />
     );
 }
 
+OrderContainer.propTypes = {
+    fetchOrder: PropTypes.func,
+    orders: PropTypes.array,
+    fetchOrderDetail: PropTypes.func,
+    orderDetail: PropTypes.object,
+    products: PropTypes.array,
+    sizes: PropTypes.array,
+    resetOrder: PropTypes.func
+};
 
 const mapStateToProps = state => {
     return {
@@ -37,6 +56,9 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         fetchOrderDetail: id => {
             dispatch(Actions.fetchOrderDetailRequest(id));
+        },
+        resetOrder: () => {
+            dispatch(Actions.resetOrder());
         }
     }
 };

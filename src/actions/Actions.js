@@ -806,3 +806,9 @@ export const fetchOrderDetail = items => {
     }
 }
 
+export const resetOrder = () => {
+    return {
+        type: types.RESET_ORDER
+    }
+}
+

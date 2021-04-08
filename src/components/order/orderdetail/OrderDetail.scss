@@ -21,7 +21,7 @@
         max-height: 75%;
         margin: 0 auto;
         background-color: $color-default-background-tiki;
-        padding: 30px 15px 30px 30px;
+        padding: 30px;
         position: relative;
         overflow: scroll;
         overflow-x: hidden;
@@ -89,3 +89,40 @@
         }
     }
 }//end copyright
+
+@media only screen and (max-width: 1024px) {
+    .order-detail {
+        width: 70% !important;
+        padding: 20px !important; 
+    }
+}
+@media only screen and (max-width: 768px) {
+    .order-detail {
+        width: 80% !important;
+        padding: 10px !important; 
+        
+        &__head {
+            column-gap: 10px !important;
+            margin-bottom: 10px !important;
+        }
+    }
+}
+@media only screen and (max-width: 600px) {
+    .order-detail {
+        width: 90% !important;
+
+        &__body {
+            overflow: scroll;
+        }
+    }
+}
+@media only screen and (max-width: 480px) {
+    .order-detail {
+
+        &__head {
+            grid-template-columns: auto;
+            grid-template-rows: auto auto auto;
+            row-gap: 10px;
+        }
+    }
+}

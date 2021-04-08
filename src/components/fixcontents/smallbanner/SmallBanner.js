@@ -3,7 +3,6 @@ import './SmallBanner.scss';
 import { Link } from "react-router-dom";
 import BackgroundImage from './background_image.png';
 import { useEffect } from 'react';
-
 function SmallBanner(props){
     // focus to header
     useEffect(

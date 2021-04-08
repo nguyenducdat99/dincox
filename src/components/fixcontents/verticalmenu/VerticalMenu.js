@@ -1,5 +1,6 @@
 // import style library, Image, component
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './VerticalMenu.scss';
 
 // code function here
@@ -71,7 +72,11 @@ function VerticalMenu(props) {
                             </li>
                             <li>Sale off
                             </li>
-                            <li>Kiểm tra đơn hàng</li>
+                            <li>
+                                <Link to='/orders'
+                                    onClick={()=> onCloseMenu()}
+                                >Kiểm tra đơn hàng</Link>
+                            </li>
                             <li>Hệ thống cửa hàng</li>
                             <li>Đăng nhập</li>
                         </ul>

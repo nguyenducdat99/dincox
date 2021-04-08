@@ -7,13 +7,19 @@ import './Order.scss';
 // code function here
 function Order(props){
     // get props
-    const {fetchOrderDetailRec, orderDetailsRec, productsRec, 
-        fetchOrderRec, ordersRec, sizesRec} = props;
+    const {
+        fetchOrderDetailRec, 
+        orderDetailsRec, 
+        productsRec, 
+        fetchOrderRec, 
+        ordersRec, 
+        sizesRec,
+        resetOrder
+    } = props;
 
     // declare state
     const [showDetail,setShowDetail] = useState(false);
-    const [presentOrder,setPresentOrder] = useState(
-        {
+    const [presentOrder,setPresentOrder] = useState({
             id_order: 0,
             id_account: 0,
             create_at: "",
@@ -23,8 +29,7 @@ function Order(props){
             sent_to: "",
             transport_fee: 0,
             status: 0
-        }
-        );
+    });
     const [numberPhone, setNumberPhone] = useState('');
             
     // open form detail
@@ -32,6 +37,14 @@ function Order(props){
         setPresentOrder(order);
         setShowDetail(true);
     }
+
+    // reset orders 
+    useEffect(
+        () => {
+            resetOrder();
+            // eslint-disable-next-line
+        },[]
+    )
 
     // get order detail
     useEffect(
@@ -151,6 +164,7 @@ function Order(props){
                             <button type='submit'>Kiểm tra</button>
                         </form>
 
+                        <div className='order__result'>
                         {
                             ordersRec.length===0?
                             '':
@@ -174,6 +188,7 @@ function Order(props){
                                 </tbody>
                             </table>
                         }
+                        </div>
                         
                     </div>
                 </div>
