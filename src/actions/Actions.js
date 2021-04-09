@@ -7,7 +7,7 @@ export const fetchProductRequest = () => {
     return (dispatch) => {
         return callApi('products','GET',null).then(
             res => {
-                if (!res) return alert('Lỗi mất dữ liệu!');
+                if (!res) return console.log('Lỗi mất dữ liệu!');
 
                 dispatch(fetchProduct(res.data));
             }

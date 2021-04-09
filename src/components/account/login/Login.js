@@ -1,7 +1,7 @@
 // import style library, component
 import './Login.scss';
 import SmallBanner from '../../fixcontents/smallbanner/SmallBanner';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import Recover from '../recover/Recover';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -24,18 +24,18 @@ function Login(props){
             password: ''
         }
     )
+    const location = useLocation();
     // event process
     var onShowRecover = () => {
         setShowRecover(!showRecover);
     }
-
 
     useEffect(
         () => {
             const token = localStorage.getItem('token');
             const check = token&&token!==''?true:false;
 
-            if (check) return history.replace('/');
+            if (check&&location.pathname==='/account/login') return history.replace('/');
             // eslint-disable-next-line
         },[loginedAccount]
     )

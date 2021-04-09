@@ -29,7 +29,7 @@ function Header(props) {
     // handle when logout
     const onLogout = () => {
         onLogoutAccount();
-        history.replace('/');
+        history.replace('/account/login');
     }
 
 
