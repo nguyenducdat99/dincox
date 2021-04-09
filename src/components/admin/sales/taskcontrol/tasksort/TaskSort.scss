@@ -1,0 +1,20 @@
+// import style library
+@import '../../../../../App.css';
+@import '../../../../../scss/Variable.scss';
+
+// style for function here
+.task-sort {
+    &__select {
+        background-color: $color-btn-primary;
+        color: $color-default-white;
+        padding: 6px 12px;
+        line-height: 1.4;
+        font-size: $font-size-14;
+        border-radius: 4px;
+        height: 34px;
+        
+        &:focus{
+            outline: none;
+        }
+    }
+}

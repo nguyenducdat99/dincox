@@ -32,11 +32,30 @@ import ProductManagerContaner from './containers/ProductManagerContaner';
 import CheckoutContainer from './containers/CheckoutContainer';
 import Search from './components/fixcontents/search/Search';
 import OrderContainer from './containers/OrderContainer';
+import SaleContainer from './containers/SaleContainer';
+import { useEffect, useState } from 'react';
 
 
-function App() {
-	const token = localStorage.getItem('token');
-	const check = token&&token!==''?true:false;
+function App(props) {
+	// get props
+	const {
+		loginedAccount
+	} = props;
+	
+	// get state
+	const [check,setCheck] = useState(false);
+
+	useEffect(
+		() => {
+			const token = localStorage.getItem('token');
+
+			if (token&&token!=='') {
+				return setCheck(true);
+			}
+
+			setCheck(false);
+		},[loginedAccount]
+	)
 	
 	return (
 		<div className="App">
@@ -94,7 +113,9 @@ function App() {
 					</Route>
 
 					<Route path="/account/register">
-						<RegisterContainer />
+						{
+							check?<NotFound/>:<RegisterContainer />
+						}
 					</Route>
 
 					<Route path="/managers" exact>
@@ -126,6 +147,13 @@ function App() {
 					<Route path='/managers/products'>
 						{
 							check?<ProductManagerContaner />:<LoginContainer/>
+						}
+						
+					</Route>
+
+					<Route path='/managers/sales'>
+						{
+							check?<SaleContainer />:<LoginContainer/>
 						}
 						
 					</Route>

@@ -1,0 +1,48 @@
+// import style library
+@import '../../../../App.css';
+@import '../../../../scss/Variable.scss';
+
+// style for function
+.task-list {
+    margin-top: 15px;
+    &__table {
+        border: 1px solid $color-default-lightgray;
+        width: 100%;
+        border-collapse: collapse;
+
+        tr {
+            th {
+                padding: 8px;
+                border: 1px solid $color-default-lightgray;
+                text-align: center;
+            }
+            td {
+                padding: 8px;
+                border: 1px solid $color-default-lightgray;
+                text-align: center;
+            }
+
+            .label {
+                display: inline;
+                padding: .3em .6em;
+                font-size: 75%;
+                font-weight: $font-weight-700;
+                line-height: 1.4;
+                text-align: center;
+                border-radius: .25em;  
+                white-space: nowrap;   
+                color: $color-default-white;
+
+                &-info {
+                    background-color: $color-default-green;
+                }                                  
+                &-danger {
+                    background-color: $color-default-btn-danger;
+                }
+            }
+        }
+        &__line-odd {
+            background-color: $color-default-line-odd;
+        }
+    }
+}
