@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import './Header.scss';
 import logo from './logo-dincox.png';
 import SupportContainer from '../../containers/SupportContainer';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import VerticalMenu from '../fixcontents/verticalmenu/VerticalMenu';
 
 
@@ -11,7 +11,8 @@ function Header(props) {
     // const [isActiveSearch, setIsActiveSearch] = useState(false);
     const [isActiveHeader, setIsActiveHeader] = useState(false);
     const [showVerticalMenu, setShowVerticalMenu] = useState(false);
-    
+    let history = useHistory();
+
     //get props
     const { 
         quantityRec,
@@ -25,6 +26,14 @@ function Header(props) {
         setShowVerticalMenu(!showVerticalMenu);
     }
     
+    // handle when logout
+    const onLogout = () => {
+        onLogoutAccount();
+        history.replace('/');
+    }
+
+
+    // handle effect when resize view
     useEffect(
         () => {
             window.addEventListener('scroll', () => {
@@ -114,7 +123,7 @@ function Header(props) {
                                         <span 
                                             className="fa fa-sign-out" 
                                             aria-hidden="true"
-                                            onClick={onLogoutAccount}
+                                            onClick={onLogout}
                                         ></span>
                                     </>
                                 }
@@ -150,7 +159,7 @@ function Header(props) {
                 onCloseMenu={onToggleVerticalMenu}
                 quantityRec={quantityRec}
                 liveAccountRec={liveAccountRec}
-                onLogoutAccount={onLogoutAccount}
+                onLogoutAccount={onLogout}
             />
         </>
     );

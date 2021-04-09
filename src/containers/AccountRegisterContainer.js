@@ -2,25 +2,35 @@
 import {connect} from 'react-redux';
 import * as Actions from '../actions/Actions';
 import Register from '../components/account/register/Register';
+import PropTypes from 'prop-types';
+
 
 // code function here
 function AccountRegisterContainer(props){
     // get props
     const {
-        onRegisterAccount
+        onRegisterAccount,
+        loginedAccount
     } = props;
 
     // return login ui
     return(
         <Register 
             onRegisterAccount={onRegisterAccount}
+            loginedAccount={loginedAccount}
         />
     );
 }
 
+AccountRegisterContainer.propTypes = {
+    onRegisterAccount: PropTypes.func,
+    loginedAccount: PropTypes.object
+}
+
+
 const mapStateToProps = state => {
     return {
-        
+        loginedAccount: state.loginedAccount
     }
 };
 const mapDispatchToProps = (dispatch, props) => {

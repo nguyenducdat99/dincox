@@ -31,7 +31,10 @@ function Login(props){
 
     useEffect(
         () => {
-            if (loginedAccount.id_account*1!==37) return history.replace('/');
+            const token = localStorage.getItem('token');
+            const check = token&&token!==''?true:false;
+
+            if (check) return history.replace('/');
             // eslint-disable-next-line
         },[loginedAccount]
     )

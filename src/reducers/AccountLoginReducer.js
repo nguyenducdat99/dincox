@@ -35,12 +35,16 @@ var myReducer = (state=initialState, action) => {
         case types.LOGOUT_ACCOUNT:
             alert(initialState.message);
             
+            localStorage.setItem('token','');
 
             return {...initialState}
         case types.REGISTER_ACCOUNT:
             if (payload.code*1===200) {
-                alert(payload.message);
-                window.location = '/account/login';
+                const confirm = window.confirm(payload.message + "\nBạn có muốn tới trang đăng nhập không?");
+                if (confirm) state = { 
+                    ...state, 
+                    position: 0
+                }
             }
             if (payload.code*1===401) alert(payload.message);
 

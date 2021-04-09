@@ -1,14 +1,29 @@
 // import style library, component
 import './Register.scss';
 import SmallBanner from '../../fixcontents/smallbanner/SmallBanner';
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 function Register(props){
     // get props
     const {
-        onRegisterAccount
+        onRegisterAccount,
+        loginedAccount
     } = props;
+
+    // get history
+    let history = useHistory();
+
+    // router when register successful
+    useEffect(
+        () => {
+            if (loginedAccount.position===0&&loginedAccount.user_name==='') 
+                history.replace('/account/login');
+            
+                // eslint-disable-next-line
+        },[loginedAccount]
+    )
+
 
     // declare state store value form
     const [valueForm, setValueForm] = useState({
@@ -32,16 +47,33 @@ function Register(props){
     const onHandleSubmit = event => {
         event.preventDefault();
         
+        if (valueForm.user_name.indexOf(' ')!==-1) return alert("Tên đăng nhập không chứ khoảng trống!");
+
         let message = 'Tên đăng nhập: ' + valueForm.user_name;
             message += '\nEmail: ' + valueForm.email;
             message += '\nĐịa chỉ: ' + valueForm.address;
         const confirm = window.confirm(message+'\nBạn có muốn tạo tài khoản không?')
 
-        if (confirm) onRegisterAccount({
-            ...valueForm,
-            user_name: valueForm.user_name.toLowerCase(),
-            email: valueForm.email.toLowerCase()
-        });
+        if (confirm) {
+            onRegisterAccount({
+                ...valueForm,
+                user_name: valueForm.user_name.toLowerCase(),
+                email: valueForm.email.toLowerCase()
+            });
+            onClearForm();
+        }
+    }
+
+    const onClearForm = () => {
+        setValueForm(
+            {
+                ...valueForm,
+                user_name: '',
+                password: '',
+                email: '',
+                address: ''
+            }
+        )
     }
 
     return(
