@@ -60,7 +60,7 @@ function Sizes(props) {
                             </div>
                             <div className="sizes__manager__other-action">
                                 <button type="button" className="btn-primary" onClick={onToggleForm}>
-                                    <span className="fa fa-plus"></span>Thêm Danh Mục
+                                    <span className="fa fa-plus"></span>Thêm Kích Cỡ
                                 </button>
                                 <TaskControl 
                                     onSearch={onSearch}

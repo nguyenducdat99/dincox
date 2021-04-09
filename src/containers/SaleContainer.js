@@ -1,7 +1,7 @@
 // import style library, components
 import {connect} from 'react-redux';
 import * as Actions from '../actions/Actions';
-
+import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import Sales from '../components/admin/sales/Sales';
 import TaskForm from '../components/admin/sales/taskform/TaskForm';
@@ -10,35 +10,45 @@ import TaskList from '../components/admin/sales/tasklist/TaskList'
 
 // code function here
 function SaleContainer(props){
+    // get props
+    const {
+        onFetchApi,
+        onCloseForm,
+        items,
+        onFilter
+    } = props;
+
 
     // load data
     useEffect( 
         () => {
-            props.onFetchApi();
+            onFetchApi();
             props.onCloseForm();
             // eslint-disable-next-line
         },[]
     )
+
+
     // declare state,variable
     var taskForm = () =>{
         return (
             <TaskForm 
                 itemEditRec={props.itemEdit}
                 onClearItemEditRec={props.onClearItemEdit}
-                onCloseFormRec={props.onCloseForm}
+                onCloseFormRec={onCloseForm}
                 onSaveItemRec={props.onSaveItem}
             />
         )
     };// use for categories
 
-    var listIndex = props.items.map((item, index) => {
+    var listIndex = items.map((item, index) => {
         return (
             <TaskItem 
                 key={index}
                 index={index+1} 
                 itemRec={item}
                 onDeleteItemRec={props.onDeleteItem}
-                onCloseFormRec={props.onCloseForm}
+                onCloseFormRec={onCloseForm}
                 onSelectItemEditRec={props.onSelectItemEdit}
                 onOpenFormRec={props.onOpenForm}
                 onUpdateStatusRec={props.onUpdateStatus}
@@ -62,14 +72,21 @@ function SaleContainer(props){
             taskFormRec={taskForm}
             taskListRec={taskList}
             onClearItemEditRec={props.onClearItemEdit}
-            
+            onFilter={onFilter}
         />
     );
 }
 
+SaleContainer.propTypes = {
+    onFetchApi: PropTypes.func,
+    onCloseForm: PropTypes.func,
+    items: PropTypes.array,
+    onFilter: PropTypes.func
+}
+
 const mapStateToProps = state => {
     return {
-        items: state.listSize,
+        items: state.sales,
         isDisplayForm: state.isDisplayForm,
         itemEdit: state.sizeEdit
     }
@@ -77,7 +94,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch, props) => {
     return {
         onFetchApi : () => {
-            dispatch(Actions.fetchSizesRequest());
+            dispatch(Actions.fetchSaleRequest());
         },
         onToggleForm: () => {
             dispatch(Actions.toggleForm());
@@ -102,6 +119,9 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         onUpdateStatus: item => {
             dispatch(Actions.updateStatusSizeRequest(item));
+        }, 
+        onFilter: keyword => {
+            dispatch(Actions.filterSale(keyword));
         }
     }
 };

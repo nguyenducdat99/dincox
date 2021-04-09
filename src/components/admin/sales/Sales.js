@@ -8,7 +8,10 @@ function Sales(props) {
     // declare state component
     // const [keyWord, setKeyWord] = useState('');
     // const [sortType, setSortType] = useState('0');
-    var { isDisplayFormRec } = props;
+    const { 
+        isDisplayFormRec,
+        onFilter
+    } = props;
     
 
     // toggle form add/edit
@@ -29,8 +32,8 @@ function Sales(props) {
     };
 
     // handle search
-    var onSearch = text => {
-        // setKeyWord(text);
+    var onSearch = keyword => {
+        onFilter(keyword);
     }
 
     // handle sort
@@ -41,11 +44,11 @@ function Sales(props) {
 
     return (
         <>
-            <SmallBanner title="Quản lý"/>
+            <SmallBanner title="Quản lý khuyến mại"/>
             <div className='sales'>
                 <div className="wrapper">
                     <div className="sales__title">
-                        <h1>Quản lý kích cỡ</h1>
+                        <h1>Quản lý khuyến mại</h1>
                     </div>
                     <div className="sales__manager">
                         <div className={isDisplayFormRec?
@@ -60,7 +63,7 @@ function Sales(props) {
                             </div>
                             <div className="sales__manager__other-action">
                                 <button type="button" className="btn-primary" onClick={onToggleForm}>
-                                    <span className="fa fa-plus"></span>Thêm Danh Mục
+                                    <span className="fa fa-plus"></span>Thêm Khuyến mãi
                                 </button>
                                 <TaskControl 
                                     onSearch={onSearch}

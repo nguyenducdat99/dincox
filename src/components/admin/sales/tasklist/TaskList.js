@@ -10,7 +10,7 @@ function TaskList(props) {
                 <thead>
                     <tr>
                         <th>STT</th>
-                        <th>Kích thước</th>
+                        <th>Tên khuyến mãi</th>
                         <th>Trạng thái</th>
                         <th>Hành động</th>
                     </tr>

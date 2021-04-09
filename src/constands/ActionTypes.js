@@ -63,4 +63,8 @@ export const FETCH_ORDER = 'FETCH_ORDER';
 export const FETCH_ORDER_DETAIL = 'FETCH_ORDER_DETAIL';
 export const RESET_ORDER = 'RESET_ORDER';
 
+// sale 
+export const FETCH_SALES = 'FETCH_SALES';
+export const FILTER_SALES = 'FILTER_SALES';
+
 

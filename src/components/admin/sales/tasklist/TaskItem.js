@@ -1,6 +1,9 @@
 function TaskItem(props) {
     //  get props, declare variable, constant
-    var { index, itemRec } = props;
+    const { 
+        index, 
+        itemRec 
+    } = props;
 
     // console.log('item in task item: ' + )
     // handle return item for onSlectItem
@@ -26,7 +29,7 @@ function TaskItem(props) {
     return (
         <tr className={index%2===0?"task-list__table__line-odd":''}>
             <td>{index}</td>
-            <td>{itemRec.size_name}</td>
+            <td>{itemRec.sale_name}</td>
             <td>
                 {
                     <span 
