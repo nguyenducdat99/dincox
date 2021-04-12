@@ -830,11 +830,4 @@ export const fetchSale = items => {
     }
 }
 
-export const filterSale = keyword => {
-    return {
-        type: types.FILTER_SALES,
-        payload: keyword
-    }
-}
-
 

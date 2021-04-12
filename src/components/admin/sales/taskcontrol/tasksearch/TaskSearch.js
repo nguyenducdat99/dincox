@@ -4,18 +4,23 @@ import './TaskSearch.scss';
 
 // code function here
 function TaskSearch(props) {
+    // get props
+    const {
+        onSearch
+    } = props;
+
+
     // daclare state
     const [keyword, setKeyword] = useState('');
 
     // handle when input
     var onHandleChange = event => {
-        setKeyword(event.target.value)
+        let value = event.target.value;
+
+        setKeyword(value)
+        onSearch(value);
     }
 
-    // handle when click button search
-    var onSearch = () => {
-        props.onSearch(keyword)
-    }
 
     return (
         <div className="task-search">

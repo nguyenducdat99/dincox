@@ -1,3 +1,13 @@
+
+// global constant
+// decalre constant
+export const NAME_UP = 'NAME_UP';
+export const NAME_DOWN = 'NAME_DOWN';
+export const STATUS_TRUE = 'STATUS_TRUE';
+export const STATUS_FALSE = 'STATUS_FALSE';
+
+
+
 // handle for product
 export const FETCH_PRODUCT = "FETCH_PRODUCT";
 export const SAVE_PRODUCT = "SAVE_PRODUCT";
@@ -65,6 +75,4 @@ export const RESET_ORDER = 'RESET_ORDER';
 
 // sale 
 export const FETCH_SALES = 'FETCH_SALES';
-export const FILTER_SALES = 'FILTER_SALES';
-
 

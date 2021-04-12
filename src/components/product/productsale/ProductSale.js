@@ -62,7 +62,7 @@ function ProductSale(props){
                     }
                 </div>
                 <div className="product__sales__expand">
-                    <button type="button" onClick={onSeeMore}>Xêm thêm</button>
+                    <button type="button" onClick={onSeeMore}>Xem thêm</button>
                 </div>
             </div>
             {/* end product sales */}

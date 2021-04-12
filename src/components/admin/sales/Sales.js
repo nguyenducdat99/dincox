@@ -1,16 +1,17 @@
 // import style library, components
 import './Sales.scss';
 import SmallBanner from '../../fixcontents/smallbanner/SmallBanner';
-import TaskControl from './taskcontrol/TaskControl';
 
 // function code here
 function Sales(props) {
-    // declare state component
-    // const [keyWord, setKeyWord] = useState('');
-    // const [sortType, setSortType] = useState('0');
+    // get props 
     const { 
         isDisplayFormRec,
-        onFilter
+        itemEditRec,
+        onToggleFormRec,
+        taskListRec,
+        taskFormRec,
+        taskControl
     } = props;
     
 
@@ -25,22 +26,10 @@ function Sales(props) {
                 status: 0
             }
         )
-        let { itemEditRec } = props;
         if (itemEditRec&&itemEditRec.id_size === ''){
-            props.onToggleFormRec();
+            onToggleFormRec();
         }
     };
-
-    // handle search
-    var onSearch = keyword => {
-        onFilter(keyword);
-    }
-
-    // handle sort
-    var onSort = type => {
-        // setSortType(type);
-    }
-
 
     return (
         <>
@@ -58,19 +47,18 @@ function Sales(props) {
                                 "sales__manager__add-update":
                                 "sales__manager__add-update--hidden"}>
                                 {
-                                    props.taskFormRec()
+                                    taskFormRec()
                                 }
                             </div>
                             <div className="sales__manager__other-action">
                                 <button type="button" className="btn-primary" onClick={onToggleForm}>
                                     <span className="fa fa-plus"></span>Thêm Khuyến mãi
                                 </button>
-                                <TaskControl 
-                                    onSearch={onSearch}
-                                    onSort={onSort}
-                                />
                                 {
-                                    props.taskListRec()
+                                    taskControl()
+                                }
+                                {
+                                   taskListRec()
                                 }
                             </div>
                         </div>
@@ -80,6 +68,9 @@ function Sales(props) {
         </>
     )
 }
+
+
+
 
 
 export default Sales;

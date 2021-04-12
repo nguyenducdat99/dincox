@@ -11,18 +11,6 @@ var myReducer = (state=initialState, action) => {
 
             return [...payload];
 		
-        case types.FILTER_SALES:
-
-            console.log(payload);
-            const saleCopy = [...state];
-            state = saleCopy.filter(
-                element => {
-                    return element.sale_name.includes(payload);
-                } 
-            )
-
-            console.log(state);
-
         default:
             return state;
     }
