@@ -60,6 +60,15 @@ function Sales(props) {
                                 {
                                    taskListRec()
                                 }
+                                <div className="sales__manager__pagination">
+                                    <button type="button">
+                                        <i className="fa fa-angle-left" aria-hidden="true"></i>
+                                    </button>
+                                    <input type="text" value={'10'} readOnly/>
+                                    <button type='button'>
+                                        <i className="fa fa-angle-right" aria-hidden="true"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>

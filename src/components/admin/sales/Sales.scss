@@ -87,5 +87,32 @@
                 }
             }
         }
+
+        &__pagination {
+            margin-top: 15px;
+            button[type=button],
+            input[type=text] {
+                border: none;
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            button[type=button] {
+                padding: 0.375rem 0.75rem;
+                background: none;
+                font-size: $font-size-16;
+            }
+            input[type=text] {
+                padding: 0.375rem 0.75rem;
+                font-size: $font-size-16;
+                width: 50px;
+                text-align: center;
+                border-bottom: 1px solid $color-default-lightgray;
+                padding-bottom: 0;
+            }
+        }
     }// end style manager
+
+    
 }

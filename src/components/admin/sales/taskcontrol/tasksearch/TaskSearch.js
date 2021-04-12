@@ -14,13 +14,18 @@ function TaskSearch(props) {
     const [keyword, setKeyword] = useState('');
 
     // handle when input
-    var onHandleChange = event => {
+    const onHandleChange = event => {
         let value = event.target.value;
 
         setKeyword(value)
         onSearch(value);
     }
 
+    // clear keyword
+    const clear = () => {
+        setKeyword('');
+        onSearch('');
+    };
 
     return (
         <div className="task-search">
@@ -32,9 +37,9 @@ function TaskSearch(props) {
                 
             />
             <span className="task-search__form-group-button">
-                <button type="button" className="btn-primary" onClick={onSearch}>
+                <button type="button" className="btn-primary" onClick={clear}>
                     <span>
-                        <span className="fa fa-search"></span>Tìm
+                        <span className="fa fa-repeat"></span>Xóa
                     </span>
                 </button>
             </span>

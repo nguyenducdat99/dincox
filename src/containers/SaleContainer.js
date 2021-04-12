@@ -18,8 +18,12 @@ function SaleContainer(props){
     const {
         onFetchApi,
         onCloseForm,
+        onOpenForm,
         items,
-        onFilter
+        onFilter,
+        itemEdit,
+        onClearItemEdit,
+        onSaveItem
     } = props;
 
     // declare state
@@ -40,10 +44,10 @@ function SaleContainer(props){
     var taskForm = () =>{
         return (
             <TaskForm 
-                itemEditRec={props.itemEdit}
-                onClearItemEditRec={props.onClearItemEdit}
+                itemEditRec={itemEdit}
+                onClearItemEditRec={onClearItemEdit}
                 onCloseFormRec={onCloseForm}
-                onSaveItemRec={props.onSaveItem}
+                onSaveItemRec={onSaveItem}
             />
         )
     };// use for categories
@@ -81,12 +85,12 @@ function SaleContainer(props){
                 onDeleteItemRec={props.onDeleteItem}
                 onCloseFormRec={onCloseForm}
                 onSelectItemEditRec={props.onSelectItemEdit}
-                onOpenFormRec={props.onOpenForm}
+                onOpenFormRec={onOpenForm}
                 onUpdateStatusRec={props.onUpdateStatus}
             />
         )
     });// use for taskList
-
+    
     // return tasklist ui
     const taskList = () => {
         return (
@@ -151,8 +155,12 @@ function SaleContainer(props){
 SaleContainer.propTypes = {
     onFetchApi: PropTypes.func,
     onCloseForm: PropTypes.func,
+    onOpenForm: PropTypes.func,
     items: PropTypes.array,
-    onFilter: PropTypes.func
+    onFilter: PropTypes.func,
+    itemEdit: PropTypes.object,
+    onClearItemEdit: PropTypes.func,
+    onSaveItem: PropTypes.func
 }
 
 const mapStateToProps = state => {

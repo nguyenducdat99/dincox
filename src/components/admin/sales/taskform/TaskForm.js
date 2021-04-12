@@ -1,20 +1,33 @@
 // import style library, component
+import moment from 'moment';
 import { useEffect, useState } from 'react';
 import './TaskForm.scss';
 
 
 // function code here
 function TaskForm(props) {
+    // get props
+    const {
+        onSaveItemRec,
+        itemEditRec,
+        onCloseFormRec,
+        onClearItemEditRec
+    } = props;
+
+
     // declare state component
     const [objectTask,setObjectTask] = useState(
         {
-            id_size: '',
-            size_name: '',
+            id_sale: '',
+            sale_name: '',
             created_at: null,
             edited_at: null,
+            start_at: formatDateForInput(),
+            end_at: formatDateForInput(),
             status: 0
         }
     )
+
     useEffect(
         () => {
             if (props.itemEditRec.id_size!=='') {
@@ -29,6 +42,10 @@ function TaskForm(props) {
     // handle when submit
     var onHandleSubmit = event => {
         event.preventDefault();
+
+        if(moment(objectTask.start_at) >= moment(objectTask.end_at)) 
+            return alert('Ngày kết thúc phải lớn hơn ngày bắt đầu khuyến mãi.');
+
         props.onSaveItemRec(objectTask);
         onClear();
         onExitForm();
@@ -53,35 +70,39 @@ function TaskForm(props) {
         setObjectTask(
             {
                 ...objectTask,
-                id_size: '',
-                size_name: '',
+                id_sale: '',
+                sale_name: '',
                 created_at: null,
                 edited_at: null,
+                start_at: formatDateForInput(),
+                end_at: formatDateForInput(),
                 status: 0
             }
         )
     }
 
+
     // Exit this form
     var onExitForm = () => {
         props.onClearItemEditRec(
             {
-                id_size: '',
-                size_name: '',
+                id_sale: '',
+                sale_name: '',
                 created_at: null,
                 edited_at: null,
+                start_at: new Date(),
+                end_at: new Date(),
                 status: 0
             }
         )
         props.onCloseFormRec();
     }
 
-    
 
     return (
         <div className="task-form">
             <div className="task-form__title">
-                <h3>{props.itemEditRec.id_size!==''?'Sửa Kích Thứớc':'Thêm Kích Thước'}
+                <h3>{props.itemEditRec.id_size!==''?'Sửa Khuyến Mại':'Thêm Khuyến Mại'}
                     <span className="fa fa-times-circle task-form__title__close" onClick={onExitForm}></span>
                 </h3>
             </div>
@@ -89,12 +110,36 @@ function TaskForm(props) {
                 <form action="" method="" onSubmit={onHandleSubmit}>
                     <div className="form-group">
                         <label>
-                            <p>Kích thước:</p>
+                            <p>Khuyến mại:</p>
                                 <input type='text' 
                                 className="form-control" 
                                 onChange={onHandleChange}
-                                name="size_name"
-                                value={objectTask.size_name}
+                                name="sale_name"
+                                value={objectTask.sale_name}
+                                required
+                                />
+                        </label>
+                    </div>
+                    <div className="form-group">
+                        <label>
+                            <p>Ngày bắt đầu:</p>
+                                <input type='date' 
+                                className="form-control" 
+                                onChange={onHandleChange}
+                                name="start_at"
+                                value={objectTask.start_at}
+                                required
+                                />
+                        </label>
+                    </div>
+                    <div className="form-group">
+                        <label>
+                            <p>Ngày kết thúc:</p>
+                                <input type='date' 
+                                className="form-control" 
+                                onChange={onHandleChange}
+                                name="end_at"
+                                value={objectTask.end_at}
                                 required
                                 />
                         </label>
@@ -129,6 +174,14 @@ function TaskForm(props) {
             </div>
         </div>
     )
+}
+
+function formatDateForInput() {
+    const d = new Date();
+    let isoDate = d.toISOString();
+    let splitDate = isoDate.split('T')
+    
+    return splitDate[0];
 }
 
 export default TaskForm;
