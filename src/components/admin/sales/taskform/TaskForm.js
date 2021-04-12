@@ -11,14 +11,15 @@ function TaskForm(props) {
         onSaveItemRec,
         itemEditRec,
         onCloseFormRec,
-        onClearItemEditRec
+        onClearItemEditRec,
+        items
     } = props;
 
 
     // declare state component
     const [objectTask,setObjectTask] = useState(
         {
-            id_sale: '',
+            id_sale: -1,
             sale_name: '',
             created_at: null,
             edited_at: null,
@@ -30,23 +31,30 @@ function TaskForm(props) {
 
     useEffect(
         () => {
-            if (props.itemEditRec.id_size!=='') {
-                setObjectTask(props.itemEditRec);
+            if (itemEditRec.id_size!=='') {
+                setObjectTask(itemEditRec);
             }else {
                 onClear();
             }
             // eslint-disable-next-line 
-        }, [props.itemEditRec]
+        }, [itemEditRec]
     )
 
     // handle when submit
     var onHandleSubmit = event => {
         event.preventDefault();
 
+        if(checkNameExist(items,objectTask.sale_name))
+            return alert('Khuyến mãi đã tồn tại.');
         if(moment(objectTask.start_at) >= moment(objectTask.end_at)) 
-            return alert('Ngày kết thúc phải lớn hơn ngày bắt đầu khuyến mãi.');
+            return alert('Ngày kết thúc phải muộn hơn ngày bắt đầu khuyến mãi.');
+        if(moment(objectTask.start_at) < moment(formatDateForInput()))
+            return alert('Thời gian bắt đầu không được sớm hơn ngày hôm nay.');
+        if(moment(objectTask.end_at) <= moment(formatDateForInput()))
+            return alert('Thời gian kết thúc phải muốn hơn hôm nay.');
+        
 
-        props.onSaveItemRec(objectTask);
+        onSaveItemRec(objectTask);
         onClear();
         onExitForm();
     }
@@ -70,7 +78,7 @@ function TaskForm(props) {
         setObjectTask(
             {
                 ...objectTask,
-                id_sale: '',
+                id_sale: -1,
                 sale_name: '',
                 created_at: null,
                 edited_at: null,
@@ -84,25 +92,25 @@ function TaskForm(props) {
 
     // Exit this form
     var onExitForm = () => {
-        props.onClearItemEditRec(
+        onClearItemEditRec(
             {
-                id_sale: '',
+                id_sale: -1,
                 sale_name: '',
                 created_at: null,
                 edited_at: null,
-                start_at: new Date(),
-                end_at: new Date(),
+                start_at: formatDateForInput(),
+                end_at: formatDateForInput(),
                 status: 0
             }
         )
-        props.onCloseFormRec();
+        onCloseFormRec();
     }
 
 
     return (
         <div className="task-form">
             <div className="task-form__title">
-                <h3>{props.itemEditRec.id_size!==''?'Sửa Khuyến Mại':'Thêm Khuyến Mại'}
+                <h3>{itemEditRec.id_size!==''?'Sửa Khuyến Mại':'Thêm Khuyến Mại'}
                     <span className="fa fa-times-circle task-form__title__close" onClick={onExitForm}></span>
                 </h3>
             </div>
@@ -182,6 +190,16 @@ function formatDateForInput() {
     let splitDate = isoDate.split('T')
     
     return splitDate[0];
+}
+
+function checkNameExist(array, name) {
+    let result = false;
+
+    array.forEach(element => {
+        if(element.sale_name.trim()===name.trim()) result = true;
+    });
+
+    return result;
 }
 
 export default TaskForm;

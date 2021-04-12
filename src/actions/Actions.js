@@ -829,5 +829,22 @@ export const fetchSale = items => {
         payload: items
     }
 }
+export const saveSaleRequest = item => {
+    
+    return (dispatch) => {
+        return callApi(('sales'),'POST',item).then(
+            res => {
+                if (!res) return console.log('add data failed');
 
+                dispatch(saveSale(res.data));
+            }
+        )
+    }
+}
+export const saveSale = item => {
+    return {
+        type: types.SAVE_SALE,
+        payload: item
+    }
+}
 

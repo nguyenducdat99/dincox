@@ -48,6 +48,7 @@ function SaleContainer(props){
                 onClearItemEditRec={onClearItemEdit}
                 onCloseFormRec={onCloseForm}
                 onSaveItemRec={onSaveItem}
+                items={items}
             />
         )
     };// use for categories
@@ -188,7 +189,7 @@ const mapDispatchToProps = (dispatch, props) => {
             dispatch(Actions.selectSizeRequest(id));
         },
         onSaveItem: item => {
-            dispatch(Actions.saveSizeRequest(item));
+            dispatch(Actions.saveSaleRequest(item));
         },
         onClearItemEdit: item => {
             dispatch(Actions.selectSize(item));
@@ -226,4 +227,4 @@ const sortStatusTrue = (a,b) => {
 
 
 
-export default connect(mapStateToProps,mapDispatchToProps)(SaleContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(SaleContainer)

@@ -75,4 +75,4 @@ export const RESET_ORDER = 'RESET_ORDER';
 
 // sale 
 export const FETCH_SALES = 'FETCH_SALES';
-
+export const SAVE_SALE = 'SAVE_SALE';
