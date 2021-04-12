@@ -1,4 +1,4 @@
-import * as types from "../constands/ActionTypes";
+import * as types from "../constants/ActionTypes";
 const initialState = [];
 var MyReducer = (state=initialState, action) => {
     switch (action.type) {

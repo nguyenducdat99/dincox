@@ -1,4 +1,4 @@
-import * as types from '../constands/ActionTypes';
+import * as types from '../constants/ActionTypes';
 import callApi from '../utils/ApiCaller';
 // import uploader from '../utils/Uploader';
 

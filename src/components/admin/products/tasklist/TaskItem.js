@@ -1,4 +1,4 @@
-import * as constands from '../../../../constands/Config';
+import * as constants from '../../../../constants/Config';
 
 function findCategoryName(items, id) {
     let result = '';
@@ -29,7 +29,7 @@ function TaskItem(props) {
     var path = findImages(imagesRec,itemRec.id_product);
     
     // conver path
-    path = '' + constands.API_URL + path[0];
+    path = '' + constants.API_URL + path[0];
 
     // get category name
     var productCategory = findCategoryName(categoriesRec, itemRec.id_category);

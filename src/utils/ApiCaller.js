@@ -1,6 +1,6 @@
-// import module, constands
+// import module, constants
 import axios from 'axios';
-import * as configs from '../constands/Config';
+import * as configs from '../constants/Config';
 
 export default async function callApi(endpoint, method, body) {
     const token = localStorage.getItem('token');

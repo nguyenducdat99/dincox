@@ -2,7 +2,7 @@ import './ProductDetail.scss';
 import SmallBanner from '../../fixcontents/smallbanner/SmallBanner';
 import { useParams} from 'react-router-dom';
 import { useState } from 'react';
-import * as constands from '../../../constands/Config';
+import * as constants from '../../../constants/Config';
 
 
 function findCurrentProduct(items,id) {
@@ -116,14 +116,14 @@ function ProductDetail(props){
         (element,index) => {
             return (
                 <div key={index} className="product-detail__list-image__image">
-                    <img src={'' + constands.API_URL + element} alt={"demo"+index}/>
+                    <img src={'' + constants.API_URL + element} alt={"demo"+index}/>
                 </div>
             )
         }
     )
     
     // conver path
-    path = '' + constands.API_URL + path[0];
+    path = '' + constants.API_URL + path[0];
 
     // hanle when click add to cart
     var addToCart =  () => {

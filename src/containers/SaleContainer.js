@@ -1,7 +1,7 @@
 // import style library, components
 import {connect} from 'react-redux';
 import * as Actions from '../actions/Actions';
-import * as Types from '../constands/ActionTypes';
+import * as Types from '../constants/ActionTypes';
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import Sales from '../components/admin/sales/Sales';

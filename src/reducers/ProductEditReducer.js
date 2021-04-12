@@ -1,4 +1,4 @@
-import * as types from "../constands/ActionTypes";
+import * as types from "../constants/ActionTypes";
 const initialState = {
     id_product: '',
     id_category: '',

@@ -1,7 +1,7 @@
 // import style library, components
 import './ProductSale.scss';
 import { useState } from 'react';
-import * as Actions from '../../../constands/Config';
+import * as Actions from '../../../constants/Config';
 
 function makeRandomIndex(max) {
     return Math.floor((Math.random() * max))

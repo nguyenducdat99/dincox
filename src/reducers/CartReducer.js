@@ -1,4 +1,4 @@
-import * as types from "../constands/ActionTypes";
+import * as types from "../constants/ActionTypes";
 
 let data = JSON.parse(localStorage.getItem('cartStore'))
 const initialState = data ? data : [];

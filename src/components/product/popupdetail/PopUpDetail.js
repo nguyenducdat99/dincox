@@ -1,7 +1,7 @@
 import './PopUpDetail.scss';
 import { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom';
-import * as constands from '../../../constands/Config';
+import * as constants from '../../../constants/Config';
 
 
 function findSizeName(items,id) {
@@ -95,14 +95,14 @@ function PopUpDetail(props){
         (element, index) => {
             return (
                 <div key={index} className="product-detail__list-image__image">
-                    <img src={'' + constands.API_URL + element} alt="dincox small"/>
+                    <img src={'' + constants.API_URL + element} alt="dincox small"/>
                 </div>
             )
         }
     )
     
     // conver path
-    path = '' + constands.API_URL + path[0];
+    path = '' + constants.API_URL + path[0];
 
     // get discount
     const discount = 25; 

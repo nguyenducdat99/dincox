@@ -3,7 +3,7 @@ import './Aproduct.scss';
 import PopupProductContainer from '../../../containers/PopUpDetailContainer';
 import { useState } from 'react';
 import {Link} from 'react-router-dom';
-import * as Actions from '../../../constands/Config';
+import * as Actions from '../../../constants/Config';
 
 
 function findImages(items,id) {

@@ -1,6 +1,6 @@
 // import style library
 import { useState } from 'react';
-import * as Types from '../../../../../constands/ActionTypes';
+import * as Types from '../../../../../constants/ActionTypes';
 import './TaskSort.scss';
 
 // code function here
