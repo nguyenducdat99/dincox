@@ -14,9 +14,23 @@ function TaskList(props) {
 
     // list item for current page
     const quantityItem = 10;
+    const quantityMax = Math.floor(listItem.length/quantityItem);
     const startSlice = pageNumber*quantityItem;
     const endSlice = (pageNumber+1)*quantityItem;
     const itemInPage = listItem.slice(startSlice,endSlice);
+
+    
+
+    // handle pagination
+    const nextPage = () => {
+        if (pageNumber === quantityMax) return;
+        setPageNumber(pageNumber + 1);
+    }
+
+    const previousPage = () => {
+        if (pageNumber === 0) return;
+        setPageNumber(pageNumber - 1);
+    }
 
     return (
         <>
@@ -40,11 +54,11 @@ function TaskList(props) {
                 </table>
             </div>
             <div className="sales__manager__pagination">
-                <button type="button">
+                <button type="button" onClick={previousPage}>
                     <i className="fa fa-angle-left" aria-hidden="true"></i>
                 </button>
                 <input type="text" value={pageNumber+1} readOnly/>
-                <button type='button'>
+                <button type='button' onClick={nextPage}>
                     <i className="fa fa-angle-right" aria-hidden="true"></i>
                 </button>
             </div>
