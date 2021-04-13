@@ -23,7 +23,8 @@ function SaleContainer(props){
         onFilter,
         itemEdit,
         onClearItemEdit,
-        onSaveItem
+        onSaveItem,
+        onSelectItemEdit
     } = props;
 
     // declare state
@@ -85,7 +86,7 @@ function SaleContainer(props){
                 itemRec={item}
                 onDeleteItemRec={props.onDeleteItem}
                 onCloseFormRec={onCloseForm}
-                onSelectItemEditRec={props.onSelectItemEdit}
+                onSelectItemEditRec={onSelectItemEdit}
                 onOpenFormRec={onOpenForm}
                 onUpdateStatusRec={props.onUpdateStatus}
             />
@@ -161,14 +162,15 @@ SaleContainer.propTypes = {
     onFilter: PropTypes.func,
     itemEdit: PropTypes.object,
     onClearItemEdit: PropTypes.func,
-    onSaveItem: PropTypes.func
+    onSaveItem: PropTypes.func,
+    onSelectItemEdit: PropTypes.func
 }
 
 const mapStateToProps = state => {
     return {
         items: state.sales,
         isDisplayForm: state.isDisplayForm,
-        itemEdit: state.sizeEdit
+        itemEdit: state.saleEdit
     }
 };
 const mapDispatchToProps = (dispatch, props) => {
@@ -186,13 +188,13 @@ const mapDispatchToProps = (dispatch, props) => {
             dispatch(Actions.closeForm())
         },
         onSelectItemEdit: id => {
-            dispatch(Actions.selectSizeRequest(id));
+            dispatch(Actions.selectSaleRequest(id));
         },
         onSaveItem: item => {
             dispatch(Actions.saveSaleRequest(item));
         },
         onClearItemEdit: item => {
-            dispatch(Actions.selectSize(item));
+            dispatch(Actions.selectSale(item));
         },
         onDeleteItem: id => {
             dispatch(Actions.deleteSizeRequest(id));

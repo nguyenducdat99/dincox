@@ -4,19 +4,20 @@ function TaskItem(props) {
     //  get props, declare variable, constant
     const { 
         index, 
-        itemRec 
+        itemRec,
+        onSelectItemEditRec,
+        onOpenFormRec
     } = props;
 
-    // console.log('item in task item: ' + )
     // handle return item for onSlectItem
     var onSelectItem = () => {
-        props.onSelectItemEditRec(itemRec.id_size);
-        props.onOpenFormRec();
+        onSelectItemEditRec(itemRec.id_sale);
+        onOpenFormRec();
     }
     
     // handle update status
     var onUpdateStatus = () => {
-        props.onUpdateStatusRec(itemRec);
+       props.onUpdateStatusRec(itemRec);
     }
 
     // handle delete task

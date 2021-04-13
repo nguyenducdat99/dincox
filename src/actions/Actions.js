@@ -2,7 +2,7 @@ import * as types from '../constants/ActionTypes';
 import callApi from '../utils/ApiCaller';
 // import uploader from '../utils/Uploader';
 
-// handle for products
+// action for products
 export const fetchProductRequest = () => {
     return (dispatch) => {
         return callApi('products','GET',null).then(
@@ -128,7 +128,7 @@ export const updateSaleProduct = id => {
     }
 }
 
-// handle for news
+// actions for article
 export const fetchArticleRequest = () => {
     return (dispatch) => {
         return callApi('news','GET',null).then(
@@ -148,7 +148,7 @@ export const fetchArticle = items => {
 }
 
 
-// handle for accounts
+// action for account
 export const fetchAccountRequest = () => {
     return (dispatch) => {
         return callApi('accounts','GET',null).then(
@@ -313,7 +313,7 @@ export const registerAccount = data => {
     }
 }
 
-// handle for categories
+// action for category
 export const fetchCategoriesRequest = () => {
     return (dispatch) => {
         return callApi('categories','GET',null).then(
@@ -431,7 +431,7 @@ export const deleteCategory = id => {
     }
 }
 
-// hadle for sizes
+// action for size
 export const fetchSizesRequest = () => {
     return (dispatch) => {
         return callApi('sizes','GET',null).then(
@@ -550,7 +550,7 @@ export const deleteSize = id => {
     }
 }
  
-// hadle for sizes detail
+// action for size detail
 export const fetchSizeDetailsRequest = () => {
     return (dispatch) => {
         return callApi('size-details','GET',null).then(
@@ -576,8 +576,6 @@ export const saveSizeDetailsRequest = (item,type) => {
         status: item.status*1
     }
     
-    console.log(item);
-    console.log(type);
 
     if (type){
         return (dispatch) => {
@@ -611,7 +609,74 @@ export const saveSizeDetail = item => {
     }
 }
 
-// handle for images
+
+// action for sale
+export const fetchSaleRequest = () => {
+    return (dispatch) => {
+        return callApi(('sales'),'GET',null).then(
+            res => {
+                if (!res) return console.log('get data failed');
+
+                dispatch(fetchSale(res.data));
+            }
+        )
+    }
+}
+export const fetchSale = items => {
+    return {
+        type: types.FETCH_SALES,
+        payload: items
+    }
+}
+export const saveSaleRequest = item => {
+    
+    if (item.id_sale===-1) {
+        return (dispatch) => {
+            return callApi(('sales'),'POST',item).then(
+                res => {
+                    if (!res) return console.log('add data failed');
+    
+                    dispatch(saveSale(res.data));
+                }
+            )
+        }
+    }
+    return dispatch => {
+        return callApi(('sales/'+item.id_sale), 'POST', item).then(
+            res => { 
+                if (!res) return console.log('update data failed')
+                dispatch(saveSale(res.data));
+            }
+        )
+    }
+}
+export const saveSale = item => {
+    return {
+        type: types.SAVE_SALE,
+        payload: item
+    }
+}
+
+export const selectSaleRequest = id => {
+    return dispatch => {
+        return callApi(('sales/'+id),'GET',null).then(
+            res => {
+                if(!res) return console.log('get sale detail failed');
+
+                dispatch(selectSale(res.data));
+            }
+        )
+    }
+}
+
+export const selectSale = item => {
+    return {
+        type: types.SALE_EDIT,
+        payload: item
+    }
+}
+
+// action for image
 export const fetchImageRequest = () => {
     return (dispatch) => {
         return callApi('collections','GET',null).then(
@@ -668,7 +733,7 @@ export const closeForm = () => {
     }
 }
 
-// handle for cart 
+// action for cart
 export const addToCart = (newItem,size,quantity) => {
     return {
         type: types.ADD_TO_CART,
@@ -699,7 +764,7 @@ export const deleteCart = () => {
     }
 }
 
-// handle for checkout
+// action for checkout
 export const addCheckout = info => {
     return {
         type: types.ADD_CHECKOUT,
@@ -768,7 +833,7 @@ export const addCheckoutRequest = (item, newQuantity) => {
 }
 
 
-// handle for order
+// action for order
 export const fetchOrderRequest = id => {
     return (dispatch) => {
         return callApi(('orders/' + id),'GET',null).then(
@@ -811,40 +876,3 @@ export const resetOrder = () => {
         type: types.RESET_ORDER
     }
 }
-
-export const fetchSaleRequest = () => {
-    return (dispatch) => {
-        return callApi(('sales'),'GET',null).then(
-            res => {
-                if (!res) return console.log('get data failed');
-
-                dispatch(fetchSale(res.data));
-            }
-        )
-    }
-}
-export const fetchSale = items => {
-    return {
-        type: types.FETCH_SALES,
-        payload: items
-    }
-}
-export const saveSaleRequest = item => {
-    
-    return (dispatch) => {
-        return callApi(('sales'),'POST',item).then(
-            res => {
-                if (!res) return console.log('add data failed');
-
-                dispatch(saveSale(res.data));
-            }
-        )
-    }
-}
-export const saveSale = item => {
-    return {
-        type: types.SAVE_SALE,
-        payload: item
-    }
-}
-

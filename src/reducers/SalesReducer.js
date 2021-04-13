@@ -18,6 +18,15 @@ var myReducer = (state=initialState, action) => {
             if (index === -1) {
                 state.push(payload);
             }
+            if(index !== - 1) {
+                state[index] = {
+                    ...state[index],
+                    sale_name: payload.sale_name,
+                    start_at: payload.start_at,
+                    end_at: payload.end_at,
+                    status: payload.status
+                }
+            }
 
             
             return [...state];

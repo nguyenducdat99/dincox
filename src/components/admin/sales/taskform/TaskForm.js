@@ -110,7 +110,7 @@ function TaskForm(props) {
     return (
         <div className="task-form">
             <div className="task-form__title">
-                <h3>{itemEditRec.id_size!==''?'Sửa Khuyến Mại':'Thêm Khuyến Mại'}
+                <h3>{itemEditRec.id_sale!==-1?'Sửa Khuyến Mại':'Thêm Khuyến Mại'}
                     <span className="fa fa-times-circle task-form__title__close" onClick={onExitForm}></span>
                 </h3>
             </div>
@@ -135,7 +135,7 @@ function TaskForm(props) {
                                 className="form-control" 
                                 onChange={onHandleChange}
                                 name="start_at"
-                                value={objectTask.start_at}
+                                value={formatDate(objectTask.start_at)}
                                 required
                                 />
                         </label>
@@ -147,7 +147,7 @@ function TaskForm(props) {
                                 className="form-control" 
                                 onChange={onHandleChange}
                                 name="end_at"
-                                value={objectTask.end_at}
+                                value={formatDate(objectTask.end_at)}
                                 required
                                 />
                         </label>
@@ -188,6 +188,12 @@ function formatDateForInput() {
     const d = new Date();
     let isoDate = d.toISOString();
     let splitDate = isoDate.split('T')
+    
+    return splitDate[0];
+}
+
+function formatDate(d) {
+    let splitDate = d.split('T')
     
     return splitDate[0];
 }
