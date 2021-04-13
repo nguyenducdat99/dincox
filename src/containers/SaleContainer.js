@@ -24,7 +24,11 @@ function SaleContainer(props){
         itemEdit,
         onClearItemEdit,
         onSaveItem,
-        onSelectItemEdit
+        onSelectItemEdit,
+        isDisplayForm,
+        onToggleForm,
+        onUpdateStatus,
+        onDeleteItem
     } = props;
 
     // declare state
@@ -84,11 +88,11 @@ function SaleContainer(props){
                 key={index}
                 index={index+1} 
                 itemRec={item}
-                onDeleteItemRec={props.onDeleteItem}
+                onDeleteItemRec={onDeleteItem}
                 onCloseFormRec={onCloseForm}
                 onSelectItemEditRec={onSelectItemEdit}
                 onOpenFormRec={onOpenForm}
-                onUpdateStatusRec={props.onUpdateStatus}
+                onUpdateStatusRec={onUpdateStatus}
             />
         )
     });// use for taskList
@@ -141,13 +145,13 @@ function SaleContainer(props){
 
     return(
         <Sales
-            isDisplayFormRec={props.isDisplayForm}
-            onSelectItemEditRec={props.onSelectItemEdit}
-            itemEditRec={props.itemEdit}
-            onToggleFormRec={props.onToggleForm}
+            isDisplayFormRec={isDisplayForm}
+            onSelectItemEditRec={onSelectItemEdit}
+            itemEditRec={itemEdit}
+            onToggleFormRec={onToggleForm}
             taskFormRec={taskForm}
             taskListRec={taskList}
-            onClearItemEditRec={props.onClearItemEdit}
+            onClearItemEditRec={onClearItemEdit}
             onFilter={onFilter}
             taskControl={taskControl}
         />
@@ -163,7 +167,11 @@ SaleContainer.propTypes = {
     itemEdit: PropTypes.object,
     onClearItemEdit: PropTypes.func,
     onSaveItem: PropTypes.func,
-    onSelectItemEdit: PropTypes.func
+    onSelectItemEdit: PropTypes.func,
+    isDisplayForm: PropTypes.bool,
+    onToggleForm: PropTypes.func,
+    onUpdateStatus: PropTypes.func,
+    onDeleteItem: PropTypes.func
 }
 
 const mapStateToProps = state => {
@@ -200,7 +208,7 @@ const mapDispatchToProps = (dispatch, props) => {
             dispatch(Actions.deleteSizeRequest(id));
         },
         onUpdateStatus: item => {
-            dispatch(Actions.updateStatusSizeRequest(item));
+            dispatch(Actions.updateStatusSaleRequest(item));
         }, 
     }
 };

@@ -48,6 +48,7 @@ export const DELETE_SIZE = "DELETE_SIZE";
 export const FETCH_SALES = 'FETCH_SALES';
 export const SAVE_SALE = 'SAVE_SALE';
 export const SALE_EDIT = 'SALE_EDIT';
+export const UPDATE_STATUS_SALE = 'UPDATE_STATUS_SALE';
 
 // hanlde for size detail
 export const FETCH_SIZE_DETAILS = "FETCH_SIZE_DETAILS";

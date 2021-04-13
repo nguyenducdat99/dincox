@@ -33,8 +33,8 @@ function TaskItem(props) {
         <tr className={index%2===0?"task-list__table__line-odd":''}>
             <td>{index}</td>
             <td>{itemRec.sale_name}</td>
-            <td>{moment(itemRec.start_at).format('DD/MM/yyyy')}</td>
-            <td>{moment(itemRec.end_at).format('DD/MM/yyyy')}</td>
+            <td>{moment(itemRec.start_at).format('DD-MM-yyyy')}</td>
+            <td>{moment(itemRec.end_at).format('DD-MM-yyyy')}</td>
             <td>
                 {
                     <span 

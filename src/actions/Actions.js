@@ -642,7 +642,7 @@ export const saveSaleRequest = item => {
         }
     }
     return dispatch => {
-        return callApi(('sales/'+item.id_sale), 'POST', item).then(
+        return callApi(('sales/'+item.id_sale), 'PUT', item).then(
             res => { 
                 if (!res) return console.log('update data failed')
                 dispatch(saveSale(res.data));
@@ -673,6 +673,33 @@ export const selectSale = item => {
     return {
         type: types.SALE_EDIT,
         payload: item
+    }
+}
+
+export const updateStatusSaleRequest = item => {
+
+    item = {
+        ...item,
+        status: (item.status*1===1)?0:1
+    }
+    const id = item.id_sale;
+
+    return (dispatch) => {
+        return callApi(('sales/'+id),'PUT', item).then(
+            res => {
+                if (!res) return console.log('update status sale failed');
+
+                dispatch(updateStatusSale(res.data.id_sale));
+                // console.log(res.data);
+            }
+        )
+    }
+  
+}
+export const updateStatusSale = id => {
+    return {
+        type: types.UPDATE_STATUS_SALE,
+        payload: id
     }
 }
 

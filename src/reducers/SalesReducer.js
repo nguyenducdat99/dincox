@@ -2,7 +2,7 @@ import * as types from "../constants/ActionTypes";
 const initialState = [];
 
 
-
+var index = -1;
 var myReducer = (state=initialState, action) => {
     const payload = action.payload;
 
@@ -13,7 +13,7 @@ var myReducer = (state=initialState, action) => {
 
             return [...state];
 		case types.SAVE_SALE:
-            const index = findIndex(state,payload.id_sale);
+            index = findIndex(state,payload.id_sale);
             
             if (index === -1) {
                 state.push(payload);
@@ -28,7 +28,17 @@ var myReducer = (state=initialState, action) => {
                 }
             }
 
-            
+            return [...state];
+        case types.UPDATE_STATUS_SALE:
+            index = findIndex(state,payload);
+
+            if (index !== -1) {
+                state[index] = {
+                    ...state[index],
+                    status: (state[index].status === 1)?0:1
+                }
+            }
+
             return [...state];
         default:
             return state;
