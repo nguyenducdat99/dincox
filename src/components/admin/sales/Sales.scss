@@ -112,7 +112,25 @@
                 padding-bottom: 0;
             }
         }
-    }// end style manager
+    }// end style manager  
+}
 
-    
+@media only screen and (max-width: 1200px) {
+    .sales {
+        padding: 30px;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .sales {
+        &__manager {
+            &__grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 480px) {
+    .sales {
+        padding: 15px;
+    }
 }
