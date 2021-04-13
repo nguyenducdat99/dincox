@@ -1,11 +1,14 @@
 
 // global constant
-// decalre constant
 export const NAME_UP = 'NAME_UP';
 export const NAME_DOWN = 'NAME_DOWN';
 export const STATUS_TRUE = 'STATUS_TRUE';
 export const STATUS_FALSE = 'STATUS_FALSE';
-
+export const PRICE_UP = 'PRICE_UP';
+export const PRICE_DOWN = 'PRICE_DOWN';
+export const SALE_TRUE = 'SALE_TRUE';
+export const SALE_FALSE = 'SALE_FALSE';
+export const CATEGORY_GROUP = 'CATEGORY_GROUP';
 
 
 // handle for product

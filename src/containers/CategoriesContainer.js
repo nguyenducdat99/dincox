@@ -95,7 +95,7 @@ function CategoriesContainer(props){
                 listItem={listIndex}
             />
         )
-    }// use for categories
+    }
 
     // return ui task control
     const taskControlUI = () => {

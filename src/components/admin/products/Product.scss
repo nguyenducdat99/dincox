@@ -99,3 +99,24 @@
         }
     }// end style manager
 }
+
+
+@media only screen and (max-width: 1200px) {
+    .main {
+        padding: 30px;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .main {
+        &__manager {
+            &__grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 480px) {
+    .main {
+        padding: 15px;
+    }
+}

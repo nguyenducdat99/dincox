@@ -46,7 +46,7 @@ function SaleContainer(props){
 
 
     // return taskForm ui
-    var taskForm = () =>{
+    const taskForm = () =>{
         return (
             <TaskForm 
                 itemEditRec={itemEdit}
@@ -104,8 +104,7 @@ function SaleContainer(props){
                 listItem={listIndex}
             />
         )
-    }// use for categories
-
+    }
 
     // return task control ui
     const taskControl = () => {

@@ -2,20 +2,19 @@
 import {  useState } from 'react';
 import './QuantityForm.scss';
 
-function findQuantity(arr, id_product, id_size) {
-    var result= -1;
-    arr.forEach((item, index) => {
-
-        if (item.id_size*1 === id_size*1&&item.id_product*1===id_product*1) {
-            result = item.quantity; 
-        };
-    });
-    return result;
-}
-
 
 // function code here
 function TaskForm(props) {
+    // get props 
+    const { 
+        closeFormQuantityRec,
+        optionSizeUIRec,
+        itemEditRec,
+        onUpdateQuantityRec,
+        sizeDetailsRec 
+    } = props;
+
+
     // declare state component
     const [objectTask,setObjectTask] = useState(
         {
@@ -24,8 +23,6 @@ function TaskForm(props) {
         }
     )
 
-    // get props 
-    const { closeFormQuantityRec,optionSizeUIRec,itemEditRec,onUpdateQuantityRec,sizeDetailsRec } = props;
 
     // get quantity of size currently
     var quantityCurrent = findQuantity(sizeDetailsRec,itemEditRec.id_product,objectTask.id_size);
@@ -97,8 +94,6 @@ function TaskForm(props) {
             </div>
             <div className="quantity-form__body">
                 <form action="" method="" onSubmit={onHandleSubmit}>
-                   
-         
 
                     <div className="form-group">
                         <label>
@@ -146,5 +141,18 @@ function TaskForm(props) {
         </div>
     )
 }
+
+
+function findQuantity(arr, id_product, id_size) {
+    var result= -1;
+    arr.forEach((item, index) => {
+
+        if (item.id_size*1 === id_size*1&&item.id_product*1===id_product*1) {
+            result = item.quantity; 
+        };
+    });
+    return result;
+}
+
 
 export default TaskForm;

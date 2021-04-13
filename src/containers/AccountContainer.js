@@ -91,7 +91,7 @@ function AccountContainer(props){
                 onUpdateStatusRec={onUpdateStatus}
             />
         )
-    });// use for taskList
+    });
 
     // return ui task list
     const taskListUI = () => {

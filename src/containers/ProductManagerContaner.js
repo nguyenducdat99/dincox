@@ -1,37 +1,66 @@
 // import style library, components
 import {connect} from 'react-redux';
 import * as Actions from '../actions/Actions';
+import * as Types from '../constants/ActionTypes';
+import PropTypes from 'prop-types';
 import Product from '../components/admin/products/Product';
 import TaskForm from '../components/admin/products/taskform/TaskForm';
 import TaskList from '../components/admin/products/tasklist/TaskList';
 import TaskItem from '../components/admin/products/tasklist/TaskItem';
-import QuantityForm from '../components/admin/products/quantityform/QuantityForm'
+import TaskControl from '../components/admin/products/taskcontrol/TaskControl';
+import QuantityForm from '../components/admin/products/quantityform/QuantityForm';
 import ImageForm from '../components/admin/products/imagesform/ImagesForm';
 import { useEffect, useState } from 'react';
 
 // code function here
 function ProductContainer(props){
+    // get props
+    const {
+        items, 
+        categories, 
+        sizes, 
+        onUpdateQuantity, 
+        sizeDetails, 
+        images, 
+        onUpdateImage,
+        onFetchImage,
+        onCloseForm,
+        onFetchApi,
+        onClearItemEdit,
+        onToggleForm,
+        onSelectItemEdit,
+        isDisplayForm,
+        onUpdateSale,
+        onUpdateStatus,
+        onOpenForm,
+        onDeleteItem,
+        onSaveItem,
+        itemEdit
+    } = props;
+
     // declare state
     const [showQuantity,setShowQuantity] = useState(false);
     const [showImage,setShowImage] = useState(false);
+    const [keyword, setKeyword] = useState('');
+    const [sortType, setSortType] = useState('');
 
     // open Form Image 
-    var openFormImage = () => {
+    const openFormImage = () => {
         setShowImage(true);
     }
 
     // close Form Image
-    var closeFormImage = () => {
+    const closeFormImage = () => {
         setShowImage(false);
     }
     
     // open form product quantity
-    var openFormQuantity = () => {
+    const openFormQuantity = () => {
         setShowQuantity(true);
     }
     
     // close form product quantity
-    var closeFormQuantity = () => {
+    const closeFormQuantity = () => {
         setShowQuantity(false);
     }
 
@@ -39,50 +68,48 @@ function ProductContainer(props){
     // load data
     useEffect( 
         () => {
-            props.onFetchApi();
-            props.onCloseForm();
-            props.onFetchImage();
-            // props.onOpenForm();
+            onFetchApi();
+            onCloseForm();
+            onFetchImage();
+            // onOpenForm();
             // eslint-disable-next-line
         },[]
     )
 
-    // get props
-    const {items, categories, sizes, onUpdateQuantity, sizeDetails, images, onUpdateImage} = props;
 
     // return option category ui
-    var optionCategoryUI = categories.map((element,index) => {
+    const optionCategoryUI = categories.map((element,index) => {
         return <option key={index} value={element.id_category}>{element.category_name}</option>
     })
 
     // return option sizes ui
-    var optionSizeUI = sizes.map((element,index) => {
+    const optionSizeUI = sizes.map((element,index) => {
         return <option key={index} value={element.id_size}>{element.size_name}</option>
     })
 
     
 
     // return task form ui
-    var taskForm = () =>{
+    const taskForm = () =>{
         return (
             <TaskForm 
-                itemEditRec={props.itemEdit}
-                onClearItemEditRec={props.onClearItemEdit}
-                onCloseFormRec={props.onCloseForm}
-                onSaveItemRec={props.onSaveItem}
+                itemEditRec={itemEdit}
+                onClearItemEditRec={onClearItemEdit}
+                onCloseFormRec={onCloseForm}
+                onSaveItemRec={onSaveItem}
                 optionCategoryUIRec={optionCategoryUI}
             />
         )
     };
 
     // return quantity form ui
-    var quantityForm = () =>{
+    const quantityForm = () =>{
         return (
             <QuantityForm 
                 onOpenQuantityForm={openFormQuantity}
                 closeFormQuantityRec={closeFormQuantity}
                 optionSizeUIRec={optionSizeUI}
-                itemEditRec={props.itemEdit}
+                itemEditRec={itemEdit}
                 onUpdateQuantityRec={onUpdateQuantity}
                 sizeDetailsRec={sizeDetails}
             />
@@ -90,30 +117,68 @@ function ProductContainer(props){
     };
 
     // return image form ui
-    var imageForm = () =>{
+    const imageForm = () =>{
         return (
             <ImageForm 
                 closeFormImageRec={closeFormImage}
-                itemEditRec={props.itemEdit}
+                itemEditRec={itemEdit}
                 onUpdateImageRec={onUpdateImage}
             />
         )
     };
 
-    // return list item in cart
-    var listIndex = items.map((item, index) => {
+    // filter items with keyword
+    var itemsFilter = items.filter(
+        element => {
+            return element.product_name.toLowerCase().includes(keyword.toLowerCase())||
+            element.price.toString().includes(keyword);
+        } 
+    )
+    switch (sortType) {
+        case Types.NAME_UP:
+            itemsFilter.sort(sortNameUp);
+            break;
+        case Types.NAME_DOWN:
+            itemsFilter.sort(sortNameDown);
+            break;
+        case Types.STATUS_TRUE:
+            itemsFilter.sort(sortStatusTrue);
+            break;
+        case Types.STATUS_FALSE:
+            itemsFilter.sort(sortStatusFalse);
+            break;
+        case Types.PRICE_UP:
+            itemsFilter.sort(sortPriceUp);
+            break;
+        case Types.PRICE_DOWN:
+            itemsFilter.sort(sortPriceDown);
+            break;
+        case Types.SALE_TRUE:
+            itemsFilter.sort(sortSaleTrue);
+            break;
+        case Types.SALE_FALSE:
+            itemsFilter.sort(sortSaleFalse);
+            break;
+        case Types.CATEGORY_GROUP:
+            itemsFilter.sort(sortByCategory);
+            break;
+        default:
+            
+            break;
+    }
+    const listIndex = itemsFilter.map((item, index) => {
         return (
             <TaskItem 
                 key={index}
                 index={index+1} 
                 itemRec={item}
                 categoriesRec={categories}
-                onDeleteItemRec={props.onDeleteItem}
-                onCloseFormRec={props.onCloseForm}
-                onSelectItemEditRec={props.onSelectItemEdit}
-                onOpenFormRec={props.onOpenForm}
-                onUpdateStatusRec={props.onUpdateStatus}
-                onUpdateSaleRec={props.onUpdateSale}
+                onDeleteItemRec={onDeleteItem}
+                onCloseFormRec={onCloseForm}
+                onSelectItemEditRec={onSelectItemEdit}
+                onOpenFormRec={onOpenForm}
+                onUpdateStatusRec={onUpdateStatus}
+                onUpdateSaleRec={onUpdateSale}
                 openFormQuantityRec={openFormQuantity}
                 openFormImageRec={openFormImage}
                 imagesRec={images}
@@ -122,30 +187,109 @@ function ProductContainer(props){
     });// use for taskList
 
     // return list item in cart
-    var taskList = () => {
+    const taskList = () => {
         return (
             <TaskList
                 listItem={listIndex}
             />
         )
-    }// use for categories
+    }
+
+    // return ui task control
+    const taskControlUI = () => {
+        return (
+            <TaskControl 
+                onSearch={onSearch}
+                onSort={onSort}
+            />
+        )
+    }
+
+
+    // handle when input keyword
+    const onSearch = keyword => {
+        setKeyword(keyword);
+    }
+
+    // handle when sort
+    const onSort = type => {
+        switch (type) {
+            case Types.NAME_UP:
+                setSortType(Types.NAME_UP);
+                break;
+            case Types.NAME_DOWN:
+                setSortType(Types.NAME_DOWN);
+                break;
+            case Types.STATUS_TRUE:
+                setSortType(Types.STATUS_TRUE);
+                break;
+            case Types.STATUS_FALSE:
+                setSortType(Types.STATUS_FALSE);
+                break;
+            case Types.PRICE_UP:
+                setSortType(Types.PRICE_UP);
+                break;
+            case Types.PRICE_DOWN:
+                setSortType(Types.PRICE_DOWN);
+                break;
+            case Types.SALE_TRUE:
+                setSortType(Types.SALE_TRUE);
+                break;
+            case Types.SALE_FALSE:
+                setSortType(Types.SALE_FALSE);
+                break;
+            case Types.CATEGORY_GROUP:
+                setSortType(Types.CATEGORY_GROUP);
+                break;
+            default:
+                
+                break;
+        }
+    }
+
+
 
     return(
         <Product
-            isDisplayFormRec={props.isDisplayForm}
-            onSelectItemEditRec={props.onSelectItemEdit}
-            itemEditRec={props.itemEdit}
-            onToggleFormRec={props.onToggleForm}
+            isDisplayFormRec={isDisplayForm}
+            onSelectItemEditRec={onSelectItemEdit}
+            itemEditRec={itemEdit}
+            onToggleFormRec={onToggleForm}
             taskFormRec={taskForm}
             taskListRec={taskList}
-            onClearItemEditRec={props.onClearItemEdit}
+            onClearItemEditRec={onClearItemEdit}
             showQuantityRec={showQuantity}
             quantityFormRec={quantityForm}
             showImageRec={showImage}
             imageFormRec={imageForm}
+            taskControlUI={taskControlUI}
         />
     );
 }
+
+ProductContainer.propTypes = {
+    itemEdit: PropTypes.object,
+    onSaveItem: PropTypes.func,
+    onDeleteItem: PropTypes.func,
+    onOpenForm: PropTypes.func,
+    onUpdateStatus: PropTypes.func,
+    onUpdateSale: PropTypes.func,
+    isDisplayForm: PropTypes.bool,
+    onSelectItemEdit: PropTypes.func,
+    onToggleForm: PropTypes.func,
+    onClearItemEdit: PropTypes.func,
+    onFetchApi: PropTypes.func,
+    onCloseForm: PropTypes.func,
+    onFetchImage: PropTypes.func,
+    onUpdateImage: PropTypes.func,
+    images: PropTypes.array,
+    sizeDetails: PropTypes.array,
+    onUpdateQuantity: PropTypes.func,
+    sizes: PropTypes.array,
+    categories: PropTypes.array,
+    items: PropTypes.array,
+};
+
 
 const mapStateToProps = state => {
     return {
@@ -201,4 +345,53 @@ const mapDispatchToProps = (dispatch, props) => {
         }
     }
 };
+
+
+// custom sort 
+const sortNameUp = (a,b) => {
+    if (a.product_name > b.product_name) return 1;
+    if (a.product_name < b.product_name) return -1;
+    return 0;
+}
+const sortNameDown = (a,b) => {
+    if (a.product_name > b.product_name) return -1;
+    if (a.product_name < b.product_name) return 1;
+    return 0;
+}
+const sortPriceUp = (a,b) => {
+    if (a.price > b.price) return 1;
+    if (a.price < b.price) return -1;
+    return 0;
+}
+const sortPriceDown = (a,b) => {
+    if (a.price > b.price) return -1;
+    if (a.price < b.price) return 1;
+    return 0;
+}
+const sortStatusFalse = (a,b) => {
+    if (a.status > b.status) return 1;
+    if (a.status < b.status) return -1;
+    return 0;
+}
+const sortStatusTrue = (a,b) => {
+    if (a.status > b.status) return -1;
+    if (a.status < b.status) return 1;
+    return 0;
+}
+const sortSaleTrue = (a,b) => {
+    if (a.is_sale > b.is_sale) return -1;
+    if (a.is_sale < b.is_sale) return 1;
+    return 0;
+}
+const sortSaleFalse = (a,b) => {
+    if (a.is_sale > b.is_sale) return 1;
+    if (a.is_sale < b.is_sale) return -1;
+    return 0;
+}
+const sortByCategory = (a,b) => {
+    if (a.id_category > b.id_category) return 1;
+    if (a.id_category < b.id_category) return -1;
+    return 0;
+}
+
 export default connect(mapStateToProps,mapDispatchToProps)(ProductContainer)

@@ -1,30 +1,20 @@
 import * as constants from '../../../../constants/Config';
 
-function findCategoryName(items, id) {
-    let result = '';
-    items.forEach(element => {
-        if ( element.id_category*1===id*1) result = element.category_name;
-    });
-
-    return result;
-}
-
-function findImages(items,id) {
-    let result = [];
-
-    items.sort(function(a, b){return b.id_image - a.id_image})
-
-    items.forEach(element => {
-        if (element.id_product*1 === id*1) result.push(element.path);
-    });
-
-    return result;
-}
-
 function TaskItem(props) {
     //  get props, declare variable, constant
-    var {index, itemRec, categoriesRec,openFormQuantityRec, openFormImageRec, imagesRec} = props;
-    
+    const {
+        index, 
+        itemRec, 
+        categoriesRec,
+        openFormQuantityRec, 
+        openFormImageRec, 
+        imagesRec,
+        onUpdateSaleRec,
+        onOpenFormRec,
+        onSelectItemEditRec,
+        onUpdateStatusRec
+    } = props;
+
     // get images for item
     var path = findImages(imagesRec,itemRec.id_product);
     
@@ -32,45 +22,38 @@ function TaskItem(props) {
     path = '' + constants.API_URL + path[0];
 
     // get category name
-    var productCategory = findCategoryName(categoriesRec, itemRec.id_category);
+    const productCategory = findCategoryName(categoriesRec, itemRec.id_category);
 
     // handle return item for onSlectItem
-    var onSelectItem = () => {
-        props.onSelectItemEditRec(itemRec.id_product);
-        props.onOpenFormRec();
+    const onSelectItem = () => {
+        onSelectItemEditRec(itemRec.id_product);
+        onOpenFormRec();
     }
 
     // handle when update quantity
-    var onUpdateQantity = () => {
-        props.onSelectItemEditRec(itemRec.id_product);
+    const onUpdateQantity = () => {
+        onSelectItemEditRec(itemRec.id_product);
         openFormQuantityRec()
     }
 
     // handle when update quantity
-    var onUpdateImage = () => {
-        props.onSelectItemEditRec(itemRec.id_product);
+    const onUpdateImage = () => {
+        onSelectItemEditRec(itemRec.id_product);
         openFormImageRec()
     }
     
     // handle update status
-    var onUpdateStatus = () => {
-        props.onUpdateStatusRec(itemRec);
+    const onUpdateStatus = () => {
+        onUpdateStatusRec(itemRec);
     }
     
     // handle update sale
-    var onUpdateSale = () => {
-        props.onUpdateSaleRec(itemRec);
+    const onUpdateSale = () => {
+        onUpdateSaleRec(itemRec);
     }
 
-    // handle delete task
-    // eslint-disable-next-line
-    var onDeleteItem = () => {
-        // if (window.confirm('Bạn có muốn xóa không?')) {
-        //     props.onDeleteItemRec(itemRec.id_category);
-        //     props.onCloseFormRec();
-        // } 
-    }
 
+    // return ui
     return (
         <tr className={index%2===0?"task-list__table__line-odd":''}>
             <td>{index}</td>
@@ -119,12 +102,31 @@ function TaskItem(props) {
                     <span className="fa fa-pencil"></span>Sửa
                 </button>
 
-                {/* <button type="button" className="btn btn-danger" onClick={onDeleteItem}>
-                    <span className="fa fa-trash"></span>Xóa
-                </button> */}
             </td>
         </tr>
     )
 }
+
+function findCategoryName(items, id) {
+    let result = '';
+    items.forEach(element => {
+        if ( element.id_category*1===id*1) result = element.category_name;
+    });
+
+    return result;
+}
+
+function findImages(items,id) {
+    let result = [];
+
+    items.sort(function(a, b){return b.id_image - a.id_image})
+
+    items.forEach(element => {
+        if (element.id_product*1 === id*1) result.push(element.path);
+    });
+
+    return result;
+}
+
 
 export default TaskItem;

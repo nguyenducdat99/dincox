@@ -6,6 +6,14 @@ import './ImagesForm.scss';
 
 // function code here
 function TaskForm(props) {
+
+    // get props 
+    const {
+        closeFormImageRec,
+        itemEditRec, 
+        onUpdateImageRec
+    } = props;
+
     // declare state component
     const [objectTask,setObjectTask] = useState(
         {
@@ -16,9 +24,6 @@ function TaskForm(props) {
             status: 1
         }
     )
-
-    // get props 
-    const {closeFormImageRec,itemEditRec, onUpdateImageRec} = props;
 
     // handle when submit
     var onHandleSubmit = event => {
@@ -31,8 +36,6 @@ function TaskForm(props) {
         data.append('status', objectTask.status);
 
         onUpdateImageRec(data);
-
-        
         onExitForm();
     }
 
@@ -70,8 +73,6 @@ function TaskForm(props) {
         closeFormImageRec();
     }
 
-    
-
     return (
         <div className="images-form">
             <div className="images-form__title">
@@ -103,10 +104,7 @@ function TaskForm(props) {
                             <span className="fa fa-plus"></span>
                             Lưu Lại
                         </button>&nbsp;
-                        {/* <button type="button" className="btn btn-danger" onClick={onClear}>
-                            <span className="fa fa-close"></span>
-                            Hủy bỏ
-                        </button> */}
+
                     </div>
                 </form>
             </div>

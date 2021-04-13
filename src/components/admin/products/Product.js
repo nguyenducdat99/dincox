@@ -1,19 +1,27 @@
 // import style library, components
 import './Product.scss';
 import SmallBanner from '../../fixcontents/smallbanner/SmallBanner';
-import TaskControl from './taskcontrol/TaskControl';
 
 // function code here
 function Categories(props) {
-    // declare state component
-    // const [keyWord, setKeyWord] = useState('');
-    // const [sortType, setSortType] = useState('0');
-    var {isDisplayFormRec, showQuantityRec, quantityFormRec, showImageRec, imageFormRec} = props;
+    const {
+        isDisplayFormRec, 
+        showQuantityRec, 
+        quantityFormRec, 
+        showImageRec, 
+        imageFormRec,
+        taskControlUI,
+        taskFormRec,
+        taskListRec,
+        onToggleFormRec,
+        itemEditRec,
+        onClearItemEditRec
+    } = props;
     
 
     // toggle form add/edit
-    var onToggleForm = () => {
-        props.onClearItemEditRec(
+    const onToggleForm = () => {
+        onClearItemEditRec(
             {
                 id_product: '',
                 id_category: '',
@@ -24,21 +32,11 @@ function Categories(props) {
                 status: 0,
             }
         )
-        let { itemEditRec } = props;
         if (itemEditRec&&itemEditRec.id_product === ''){
-            props.onToggleFormRec();
+            onToggleFormRec();
         }
     };
 
-    // handle search
-    var onSearch = text => {
-        // setKeyWord(text);
-    }
-
-    // handle sort
-    var onSort = type => {
-        // setSortType(type);
-    }
 
     return (
         <>
@@ -67,7 +65,7 @@ function Categories(props) {
                         <div className={isDisplayFormRec?"main__manager__grid":"main__manager__grid--hidden"}>
                             <div className={isDisplayFormRec?"main__manager__add-update":"main__manager__add-update--hidden"}>
                                 {
-                                    isDisplayFormRec?props.taskFormRec():''
+                                    isDisplayFormRec?taskFormRec():''
                                 }
 
                             </div>
@@ -75,12 +73,11 @@ function Categories(props) {
                                 <button type="button" className="btn-primary" onClick={onToggleForm}>
                                     <span className="fa fa-plus"></span>Thêm Sản Phẩm
                                 </button>
-                                <TaskControl 
-                                    onSearch={onSearch}
-                                    onSort={onSort}
-                                />
                                 {
-                                    props.taskListRec()
+                                    taskControlUI()
+                                }
+                                {
+                                    taskListRec()
                                 }
                             </div>
                         </div>
@@ -90,6 +87,4 @@ function Categories(props) {
         </>
     )
 }
-
-
 export default Categories;
