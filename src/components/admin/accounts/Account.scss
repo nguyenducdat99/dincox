@@ -89,3 +89,23 @@
         }
     }// end style manager
 }
+
+@media only screen and (max-width: 1200px) {
+    .account {
+        padding: 30px;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .account {
+        &__manager {
+            &__grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 480px) {
+    .account {
+        padding: 15px;
+    }
+}

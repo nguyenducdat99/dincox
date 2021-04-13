@@ -185,7 +185,6 @@ export const saveAccountRequest = (item) => {
             return callApi(('accounts/'+id),'PUT', item).then(
                 res => {
                     if (!res) return console.log('get data failed');
-                    console.log(res);
                     dispatch(saveAccount(res.data));
                 }
             )

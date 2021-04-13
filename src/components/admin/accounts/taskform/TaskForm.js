@@ -1,11 +1,17 @@
 // import style library, component
 import { useEffect, useState } from 'react';
 import './TaskForm.scss';
-import { connect } from 'react-redux';
-import * as Actions from '../../../../actions/Actions'
 
 // function code here
 function TaskForm(props) {
+    // get props
+    const {
+        itemEdit,
+        onSaveItem,
+        onCloseForm,
+        onClearItemEdit
+    } = props;
+
     // declare state component
     const [objectTask,setObjectTask] = useState(
         {
@@ -19,19 +25,19 @@ function TaskForm(props) {
     )
     useEffect(
         () => {
-            if (props.itemEdit.id_account!=='') {
-                setObjectTask(props.itemEdit);
+            if (itemEdit.id_account!=='') {
+                setObjectTask(itemEdit);
             }else {
                 onClear();
             }
             // eslint-disable-next-line 
-        }, [props.itemEdit]
+        }, [itemEdit]
     )
 
     // handle when submit
     var onHandleSubmit = event => {
         event.preventDefault();
-        props.onSaveItem(objectTask);
+        onSaveItem(objectTask);
         onClear();
         onExitForm();
     }
@@ -67,7 +73,7 @@ function TaskForm(props) {
 
     // Exit this form
     var onExitForm = () => {
-        props.onClearItemEdit(
+        onClearItemEdit(
             {
                 id_account: '',
                 user_name: '',
@@ -77,7 +83,7 @@ function TaskForm(props) {
                 status: 0
             }
         )
-        props.onCloseForm();
+       onCloseForm();
     }
 
     
@@ -85,7 +91,7 @@ function TaskForm(props) {
     return (
         <div className="task-form">
             <div className="task-form__title">
-                <h3>{props.itemEdit.id_account!==''?'Sửa Tài Khoản':'Thêm tài khoản'}
+                <h3>{itemEdit.id_account!==''?'Sửa Tài Khoản':'Thêm tài khoản'}
                     <span className="fa fa-times-circle task-form__title__close" onClick={onExitForm}></span>
                 </h3>
             </div>
@@ -175,25 +181,5 @@ function TaskForm(props) {
         </div>
     )
 }
-const mapStateToProps = state => {
-    return {
-        itemEdit: state.accountEdit
-    }
-}
-const mapActionToProps = (dispatch, props) => {
-    return {
-        onSaveItem: item => {
-            dispatch(Actions.saveAccountRequest(item));
-        },
-        onCloseForm: () => {
-            dispatch(Actions.closeForm());
-        },
-        onSelectItemEdit: item => {
-            dispatch(Actions.selectAccountRequest(item));
-        },
-        onClearItemEdit: item => {
-            dispatch(Actions.selectAccount(item));
-        }
-    }
-}
-export default connect(mapStateToProps,mapActionToProps)(TaskForm);
+
+export default TaskForm;

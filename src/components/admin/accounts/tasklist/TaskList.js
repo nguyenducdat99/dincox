@@ -1,70 +1,71 @@
 // import style library
+import { useState } from 'react';
 import './TaskList.scss'
-import TaskItem from './TaskItem';
-import { connect } from 'react-redux';
-import { useEffect } from 'react';
-import * as Actions from '../../../../actions/Actions';
 
 // code function here
 function TaskList(props) {
-    // declare state 
+    // get props
+    const {
+        listIndex 
+    } = props;
 
-    // load data
-    useEffect( 
-        () => {
-            props.onFetchAccounts();
-            // eslint-disable-next-line
-        },[]
-    )
+    // declare state;
+    const [pageNumber, setPageNumber] = useState(0);
 
-    // declare list Item
-    var { task } = props;
+    // list item for current page
+    const quantityItem = 10;
+    const quantityMax = Math.floor(listIndex.length/quantityItem);
+    const startSlice = pageNumber*quantityItem;
+    const endSlice = (pageNumber+1)*quantityItem;
+    const itemInPage = listIndex.slice(startSlice,endSlice);
 
-    let listIndex = task.map((item, index) => {
-        return (
-            <TaskItem 
-                key={index}
-                index={index+1} 
-                task={item}
-            />
-        )
-    });
+    
+
+    // handle pagination
+    const nextPage = () => {
+        if (pageNumber === quantityMax) return;
+        setPageNumber(pageNumber + 1);
+    }
+
+    const previousPage = () => {
+        if (pageNumber === 0) return;
+        setPageNumber(pageNumber - 1);
+    }
+    
 
     return (
-        <div className="task-list">
-            <table className="task-list__table"> 
-                <thead>
-                    <tr>
-                        <th>STT</th>
-                        <th>Tài khoản</th>
-                        <th>Người sử dụng</th>
-                        <th>Email</th>
-                        <th>Trạng thái</th>
-                        <th>Hành động</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        listIndex
-                    }
-                </tbody>
-            </table>
-        </div>
+        <>
+            <div className="task-list">
+                <table className="task-list__table"> 
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Tài khoản</th>
+                            <th>Người sử dụng</th>
+                            <th>Email</th>
+                            <th>Trạng thái</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            itemInPage
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div className="task-list__pagination">
+                <button type="button" onClick={previousPage}>
+                    <i className="fa fa-angle-left" aria-hidden="true"></i>
+                </button>
+                <input type="text" value={pageNumber+1} readOnly/>
+                <button type='button' onClick={nextPage}>
+                    <i className="fa fa-angle-right" aria-hidden="true"></i>
+                </button>
+            </div>
+        </>
     )
 }
 
-const mapStateToStateTaskList = state => {
-    return {
-        task: state.ListAccount
-    }
-}
 
-const mapDispatchToProps = (dispatch, props) => {
-    return {
-        onFetchAccounts : items => {
-            dispatch(Actions.fetchAccountRequest());
-        }
-    }
-}
-
-export default connect(mapStateToStateTaskList,mapDispatchToProps)(TaskList);
+export default TaskList;

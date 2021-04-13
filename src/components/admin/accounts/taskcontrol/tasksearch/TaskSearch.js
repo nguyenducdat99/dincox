@@ -4,17 +4,26 @@ import './TaskSearch.scss';
 
 // code function here
 function TaskSearch(props) {
-    // daclare state
+    // get props
+    const {
+        onSearch
+    } = props;
+
+    // daclare state component
     const [keyword, setKeyword] = useState('');
 
     // handle when input
-    var onHandleChange = event => {
-        setKeyword(event.target.value)
+    const onHandleChange = event => {
+        const value = event.target.value;
+
+        setKeyword(value)
+        onSearch(value)
     }
 
     // handle when click button search
-    var onSearch = () => {
-        props.onSearch(keyword)
+    const onClear = () => {
+        setKeyword('');
+        onSearch('');
     }
 
     return (
@@ -27,9 +36,9 @@ function TaskSearch(props) {
                 
             />
             <span className="task-search__form-group-button">
-                <button type="button" className="btn-primary" onClick={onSearch}>
+                <button type="button" className="btn-primary" onClick={onClear}>
                     <span>
-                        <span className="fa fa-search"></span>Tìm
+                        <span className="fa fa-undo"></span>Xóa
                     </span>
                 </button>
             </span>

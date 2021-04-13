@@ -19,7 +19,6 @@ import StoreLocation from './components/fixcontents/storelocation/StoreLocation'
 import LoginContainer from './containers/AccountLoginContainer';
 import RegisterContainer from './containers/AccountRegisterContainer';
 import Admin from './components/admin/Admin';
-import AccountsCtrl from './components/admin/accounts/Account';
 import CategoriesContainer from './containers/CategoriesContainer';
 import NotFound from './components/notfound/NotFound';
 import CartContainer from './containers/CartContainer';
@@ -34,6 +33,7 @@ import Search from './components/fixcontents/search/Search';
 import OrderContainer from './containers/OrderContainer';
 import SaleContainer from './containers/SaleContainer';
 import { useEffect, useState } from 'react';
+import AccountContainer from './containers/AccountContainer';
 
 
 function App(props) {
@@ -126,7 +126,7 @@ function App(props) {
 
 					<Route path='/managers/accounts'>
 						{
-							check?<AccountsCtrl />:<LoginContainer/>
+							check?<AccountContainer />:<LoginContainer/>
 						}
 					</Route>
 

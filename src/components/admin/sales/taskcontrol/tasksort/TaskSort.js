@@ -15,7 +15,7 @@ function TaskSort(props) {
     const [sortType, setSortType] = useState(Types.NAME_UP);
 
     var onHandleChange = (event) => {
-        let value = event.target.value;
+        const value = event.target.value;
 
         setSortType(value);
         onSort(value);
