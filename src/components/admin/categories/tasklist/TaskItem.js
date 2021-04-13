@@ -1,26 +1,22 @@
 function TaskItem(props) {
-    //  get props, declare variable, constant
-    var { index, itemRec } = props;
+    //  get props
+    const { 
+        index, 
+        itemRec ,
+        onSelectItemEditRec,
+        onOpenFormRec,
+        onUpdateStatusRec
+    } = props;
 
-    // console.log('item in task item: ' + )
     // handle return item for onSlectItem
-    var onSelectItem = () => {
-        props.onSelectItemEditRec(itemRec.id_category);
-        props.onOpenFormRec();
+    const onSelectItem = () => {
+        onSelectItemEditRec(itemRec.id_category);
+        onOpenFormRec();
     }
     
     // handle update status
-    var onUpdateStatus = () => {
-        props.onUpdateStatusRec(itemRec);
-    }
-
-    // handle delete task
-    // eslint-disable-next-line
-    var onDeleteItem = () => {
-        // if (window.confirm('Bạn có muốn xóa không?')) {
-        //     props.onDeleteItemRec(itemRec.id_category);
-        //     props.onCloseFormRec();
-        // } 
+    const onUpdateStatus = () => {
+        onUpdateStatusRec(itemRec);
     }
 
     return (
@@ -41,10 +37,6 @@ function TaskItem(props) {
                 <button type="button" className="btn btn-warning" onClick={onSelectItem}>
                     <span className="fa fa-pencil"></span>Sửa
                 </button>
-                &nbsp;
-                {/* <button type="button" className="btn btn-danger" onClick={onDeleteItem}>
-                    <span className="fa fa-trash"></span>Xóa
-                </button> */}
             </td>
         </tr>
     )

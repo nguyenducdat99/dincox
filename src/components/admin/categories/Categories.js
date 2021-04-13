@@ -1,19 +1,24 @@
 // import style library, components
 import './Categories.scss';
 import SmallBanner from '../../fixcontents/smallbanner/SmallBanner';
-import TaskControl from './taskcontrol/TaskControl';
 
 // function code here
 function Categories(props) {
-    // declare state component
-    // const [keyWord, setKeyWord] = useState('');
-    // const [sortType, setSortType] = useState('0');
-    var { isDisplayFormRec } = props;
+    // get props
+    const { 
+        isDisplayFormRec ,
+        onClearItemEditRec,
+        itemEditRec,
+        onToggleFormRec,
+        taskListRec,
+        taskFormRec,
+        taskControlUI
+    } = props;
     
 
     // toggle form add/edit
     var onToggleForm = () => {
-        props.onClearItemEditRec(
+        onClearItemEditRec(
             {
                 id_category: '',
                 category_name: '',
@@ -22,22 +27,10 @@ function Categories(props) {
                 status: 0
             }
         )
-        let { itemEditRec } = props;
         if (itemEditRec&&itemEditRec.id_category === ''){
-            props.onToggleFormRec();
+            onToggleFormRec();
         }
     };
-
-    // handle search
-    var onSearch = text => {
-        // setKeyWord(text);
-    }
-
-    // handle sort
-    var onSort = type => {
-        // setSortType(type);
-    }
-
 
     return (
         <>
@@ -51,19 +44,18 @@ function Categories(props) {
                         <div className={isDisplayFormRec?"categories__manager__grid":"categories__manager__grid--hidden"}>
                             <div className={isDisplayFormRec?"categories__manager__add-update":"categories__manager__add-update--hidden"}>
                                 {
-                                    props.taskFormRec()
+                                    taskFormRec()
                                 }
                             </div>
                             <div className="categories__manager__other-action">
                                 <button type="button" className="btn-primary" onClick={onToggleForm}>
                                     <span className="fa fa-plus"></span>Thêm Danh Mục
                                 </button>
-                                <TaskControl 
-                                    onSearch={onSearch}
-                                    onSort={onSort}
-                                />
                                 {
-                                    props.taskListRec()
+                                    taskControlUI()
+                                }
+                                {
+                                    taskListRec()
                                 }
                             </div>
                         </div>

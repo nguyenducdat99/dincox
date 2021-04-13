@@ -6,17 +6,24 @@ import TaskSort from './tasksort/TaskSort';
 
 // function code here
 function TaskControl(props) {
+    // get props
+    const {
+        onSearch,
+        onSort
+    } = props;
+
+    // return ui
     return (
         <div className="task-control">
             <div className="task-control__grid">
                 <div className="task-control__search">
                     <TaskSearch
-                        onSearch={props.onSearch}
+                        onSearch={onSearch}
                     />
                 </div>
                 <div className="task-control__sort">
                     <TaskSort
-                        onSort={props.onSort}
+                        onSort={onSort}
                     />
                 </div>
             </div>

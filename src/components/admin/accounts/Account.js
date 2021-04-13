@@ -6,9 +6,8 @@ import {  useEffect } from 'react';
 
 // function code here
 function Account(props) {
-    // declare state component
-    // const [keyWord, setKeyWord] = useState('');
-    // const [sortType, setSortType] = useState('0');
+
+    // get props
     const { 
         isDisplayForm,
         onCloseForm,
@@ -79,6 +78,5 @@ function Account(props) {
         </>
     )
 }
-
 
 export default Account;

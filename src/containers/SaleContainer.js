@@ -61,7 +61,7 @@ function SaleContainer(props){
     // filter items with keyword
     var itemsFilter = items.filter(
         element => {
-            return element.sale_name.includes(keyword);
+            return element.sale_name.toLowerCase().includes(keyword.toLowerCase());
         } 
     )
     switch (sortType) {

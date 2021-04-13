@@ -56,7 +56,8 @@ function AccountContainer(props){
     // filter items with keyword
     var itemsFilter = items.filter(
         element => {
-            return element.user_name.includes(keyword)||element.email.includes(keyword);
+            return element.user_name.toLowerCase().includes(keyword.toLowerCase())||
+            element.email.toLowerCase().includes(keyword.toLowerCase());
         } 
     )
     switch (sortType) {

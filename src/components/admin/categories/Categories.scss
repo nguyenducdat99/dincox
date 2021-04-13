@@ -89,3 +89,23 @@
         }
     }// end style manager
 }
+
+@media only screen and (max-width: 1200px) {
+    .categories {
+        padding: 30px;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .categories {
+        &__manager {
+            &__grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 480px) {
+    .categories {
+        padding: 15px;
+    }
+}

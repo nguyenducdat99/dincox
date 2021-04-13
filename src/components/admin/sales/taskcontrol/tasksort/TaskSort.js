@@ -14,7 +14,7 @@ function TaskSort(props) {
     // delcare type sort
     const [sortType, setSortType] = useState(Types.NAME_UP);
 
-    var onHandleChange = (event) => {
+    const onHandleChange = (event) => {
         const value = event.target.value;
 
         setSortType(value);

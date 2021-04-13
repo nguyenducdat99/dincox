@@ -5,6 +5,14 @@ import './TaskForm.scss';
 
 // function code here
 function TaskForm(props) {
+    // get props
+    const {
+        itemEditRec,
+        onCloseFormRec,
+        onClearItemEditRec,
+        onSaveItemRec
+    } = props;
+
     // declare state component
     const [objectTask,setObjectTask] = useState(
         {
@@ -17,19 +25,19 @@ function TaskForm(props) {
     )
     useEffect(
         () => {
-            if (props.itemEditRec.id_category!=='') {
-                setObjectTask(props.itemEditRec);
+            if (itemEditRec.id_category!=='') {
+                setObjectTask(itemEditRec);
             }else {
                 onClear();
             }
             // eslint-disable-next-line 
-        }, [props.itemEditRec]
+        }, [itemEditRec]
     )
 
     // handle when submit
     var onHandleSubmit = event => {
         event.preventDefault();
-        props.onSaveItemRec(objectTask);
+        onSaveItemRec(objectTask);
         onClear();
         onExitForm();
     }
@@ -64,7 +72,7 @@ function TaskForm(props) {
 
     // Exit this form
     var onExitForm = () => {
-        props.onClearItemEditRec(
+        onClearItemEditRec(
             {
                 id_category: '',
                 category_name: '',
@@ -73,7 +81,7 @@ function TaskForm(props) {
                 status: 0
             }
         )
-        props.onCloseFormRec();
+        onCloseFormRec();
     }
 
     
@@ -81,7 +89,7 @@ function TaskForm(props) {
     return (
         <div className="task-form">
             <div className="task-form__title">
-                <h3>{props.itemEditRec.id_category!==''?'Sửa Danh mục':'Thêm Danh Mục'}
+                <h3>{itemEditRec.id_category!==''?'Sửa Danh mục':'Thêm Danh Mục'}
                     <span className="fa fa-times-circle task-form__title__close" onClick={onExitForm}></span>
                 </h3>
             </div>
