@@ -3,7 +3,7 @@ import './Product.scss';
 import SmallBanner from '../../fixcontents/smallbanner/SmallBanner';
 
 // function code here
-function Categories(props) {
+function Product(props) {
     const {
         isDisplayFormRec, 
         showQuantityRec, 
@@ -87,4 +87,4 @@ function Categories(props) {
         </>
     )
 }
-export default Categories;
+export default Product;

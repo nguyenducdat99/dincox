@@ -89,3 +89,23 @@
         }
     }// end style manager
 }
+
+@media only screen and (max-width: 1200px) {
+    .sizes {
+        padding: 30px;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .sizes {
+        &__manager {
+            &__grid {
+                display: block;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 480px) {
+    .sizes {
+        padding: 15px;
+    }
+}

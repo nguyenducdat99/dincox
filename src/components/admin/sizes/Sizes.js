@@ -1,19 +1,24 @@
 // import style library, components
 import './Sizes.scss';
 import SmallBanner from '../../fixcontents/smallbanner/SmallBanner';
-import TaskControl from './taskcontrol/TaskControl';
 
 // function code here
 function Sizes(props) {
-    // declare state component
-    // const [keyWord, setKeyWord] = useState('');
-    // const [sortType, setSortType] = useState('0');
-    var { isDisplayFormRec } = props;
+    // get props
+    const { 
+        isDisplayFormRec,
+        onClearItemEditRec,
+        itemEditRec,
+        onToggleFormRec,
+        taskFormRec,
+        taskListRec,
+        taskControlUI
+     } = props;
     
 
     // toggle form add/edit
-    var onToggleForm = () => {
-        props.onClearItemEditRec(
+    const onToggleForm = () => {
+        onClearItemEditRec(
             {
                 id_size: '',
                 size_name: '',
@@ -22,21 +27,11 @@ function Sizes(props) {
                 status: 0
             }
         )
-        let { itemEditRec } = props;
+
         if (itemEditRec&&itemEditRec.id_size === ''){
-            props.onToggleFormRec();
+            onToggleFormRec();
         }
     };
-
-    // handle search
-    var onSearch = text => {
-        // setKeyWord(text);
-    }
-
-    // handle sort
-    var onSort = type => {
-        // setSortType(type);
-    }
 
 
     return (
@@ -55,19 +50,18 @@ function Sizes(props) {
                                 "sizes__manager__add-update":
                                 "sizes__manager__add-update--hidden"}>
                                 {
-                                    props.taskFormRec()
+                                    taskFormRec()
                                 }
                             </div>
                             <div className="sizes__manager__other-action">
                                 <button type="button" className="btn-primary" onClick={onToggleForm}>
                                     <span className="fa fa-plus"></span>Thêm Kích Cỡ
                                 </button>
-                                <TaskControl 
-                                    onSearch={onSearch}
-                                    onSort={onSort}
-                                />
                                 {
-                                    props.taskListRec()
+                                    taskControlUI()
+                                }
+                                {
+                                    taskListRec()
                                 }
                             </div>
                         </div>
