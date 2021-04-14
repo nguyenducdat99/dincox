@@ -25,10 +25,10 @@ function TotalItem(props) {
     return (
         <div className='total-item'>
             <div className='total-item__note'>
-                <label>
+                {/* <label>
                     <p>Chú thích cho cửa hàng</p>
                     <textarea rows={6}></textarea>
-                </label>
+                </label> */}
             </div>
             <div className='total-item__checkout'>
                 <p>Tổng tiền: <b>{totalAmount(listItem)}<u>đ</u></b></p>

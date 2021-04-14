@@ -77,7 +77,7 @@ function Order(props){
     var onHandleSubmit = event => {
         event.preventDefault();
         if (numberPhone.trim()==='') return alert('Bạn vui lòng nhập số điện thoại để kiểm tra!')
-        
+        if (numberPhone.length<9) return alert('Số điện điện thoại không đúng định dạng.');
         fetchOrderRec(numberPhone);
     }
 
