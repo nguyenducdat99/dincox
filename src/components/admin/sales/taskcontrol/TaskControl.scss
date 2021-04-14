@@ -3,11 +3,14 @@
 @import '../../../../scss/Variable.scss';
 
 // style for function
-.task-control{
-    margin-top: 15px;
-    &__grid{
-        display: grid;
-        grid-template-columns: 6fr 1fr;
-        column-gap: 30px;
+.sales {
+    .task-control{
+        margin-top: 15px;
+        &__grid{
+            display: grid;
+            grid-template-columns: 6fr 1fr;
+            column-gap: 30px;
+        }
     }
+    
 }

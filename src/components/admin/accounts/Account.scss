@@ -99,7 +99,7 @@
     .account {
         &__manager {
             &__grid {
-                grid-template-columns: 1fr;
+                display: block;
             }
         }
     }

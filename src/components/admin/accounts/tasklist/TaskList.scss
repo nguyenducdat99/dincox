@@ -3,81 +3,85 @@
 @import '../../../../scss/Variable.scss';
 
 // style for function
-.task-list {
-    margin-top: 15px;
-    height: 60vh;
-    overflow: scroll;
-    overflow-x: hidden;
-        
-    &__table {
-        border: 1px solid $color-default-lightgray;
-        width: 100%;
-        border-collapse: collapse;
-
-        tr {
-            th {
-                padding: 8px;
-                border: 1px solid $color-default-lightgray;
-                text-align: center;
-            }
-            td {
-                padding: 8px;
-                border: 1px solid $color-default-lightgray;
-                text-align: center;
-            }
-
-            .label {
-                display: inline;
-                padding: .3em .6em;
-                font-size: 75%;
-                font-weight: $font-weight-700;
-                line-height: 1.4;
-                text-align: center;
-                border-radius: .25em;  
-                white-space: nowrap;   
-                color: $color-default-white;
-                cursor: pointer;
-
-
-                &-info {
-                    background-color: $color-default-green;
-                }                                  
-                &-danger {
-                    background-color: $color-default-btn-danger;
+.account {
+    .task-list {
+        margin-top: 15px;
+        height: 60vh;
+        overflow: scroll;
+        overflow-x: hidden;
+            
+        &__table {
+            border: 1px solid $color-default-lightgray;
+            width: 100%;
+            border-collapse: collapse;
+    
+            tr {
+                th {
+                    padding: 8px;
+                    border: 1px solid $color-default-lightgray;
+                    text-align: center;
+                }
+                td {
+                    padding: 8px;
+                    border: 1px solid $color-default-lightgray;
+                    text-align: center;
+                }
+    
+                .label {
+                    display: inline;
+                    padding: .3em .6em;
+                    font-size: 75%;
+                    font-weight: $font-weight-700;
+                    line-height: 1.4;
+                    text-align: center;
+                    border-radius: .25em;  
+                    white-space: nowrap;   
+                    color: $color-default-white;
+                    cursor: pointer;
+    
+    
+                    &-info {
+                        background-color: $color-default-green;
+                    }                                  
+                    &-danger {
+                        background-color: $color-default-btn-danger;
+                    }
                 }
             }
-        }
-        &__line-odd {
-            background-color: $color-default-line-odd;
-        }
-    }
-    &__pagination {
-        margin-top: 15px;
-        button[type=button],
-        input[type=text] {
-            border: none;
-            &:focus {
-                outline: none;
+            &__line-odd {
+                background-color: $color-default-line-odd;
             }
         }
-
-        button[type=button] {
-            padding: 0.375rem 0.75rem;
-            background: none;
-            font-size: $font-size-16;
-        }
-        input[type=text] {
-            padding: 0.375rem 0.75rem;
-            font-size: $font-size-16;
-            width: 50px;
-            text-align: center;
-            border-bottom: 1px solid $color-default-lightgray;
-            padding-bottom: 0;
+        &__pagination {
+            margin-top: 15px;
+            button[type=button],
+            input[type=text] {
+                border: none;
+                &:focus {
+                    outline: none;
+                }
+            }
+    
+            button[type=button] {
+                padding: 0.375rem 0.75rem;
+                background: none;
+                font-size: $font-size-16;
+            }
+            input[type=text] {
+                padding: 0.375rem 0.75rem;
+                font-size: $font-size-16;
+                width: 50px;
+                text-align: center;
+                border-bottom: 1px solid $color-default-lightgray;
+                padding-bottom: 0;
+            }
         }
     }
 }
 @media only screen and (max-width: 768px) {
-    .task-list {
-        overflow-x: visible;
+    .account {
+        .task-list {
+            overflow-x: visible;
+        }
     }
 }
