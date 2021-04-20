@@ -1,60 +1,35 @@
 import './ProductDetail.scss';
 import SmallBanner from '../../fixcontents/smallbanner/SmallBanner';
 import { useParams} from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as constants from '../../../constants/Config';
 
-
-function findCurrentProduct(items,id) {
-    let result = {
-        id_product: 0,
-        id_category: 0, 
-        product_name: 'DinCox',
-        price: 0,
-        description: ''
-    }
-
-    items.forEach((item, index)=>{
-        if(item.id_product*1===id*1){
-            result = item;
-        }
-    })
-
-    return result;
-}
-
-function findSizeName(items,id) {
-    let result = '';
-    items.forEach((element,index) => {
-        if (element.id_size*1===id*1) result = element.size_name
-    })
-
-    return result;
-}
-
-function findCategoryName(items,id) {
-    let result = '';
-    items.forEach((element,index) => {
-        if (element.id_category*1===id*1) result = element.category_name
-    })
-
-    return result;
-}
-
-
-function findImages(items,id) {
-    let result = [];
-    
-    items.sort(function(a, b){return b.id_image - a.id_image})
-    items.forEach(element => {
-        if (element.id_product*1 === id*1) result.push(element.path);
-    });
-
-    return result;
-}
-
-
 function ProductDetail(props){
+
+    // useEffect(
+    //     () => {
+    //         window.fbAsyncInit = function() {
+    //             FB.init({
+    //             appId      : '250130313471996',
+    //             cookie     : true,
+    //             xfbml      : true,
+    //             version    : 'v10.0'
+    //             });
+                
+    //             FB.AppEvents.logPageView();   
+                
+    //         };
+
+    //         (function(d, s, id){
+    //             var js, fjs = d.getElementsByTagName(s)[0];
+    //             if (d.getElementById(id)) {return;}
+    //             js = d.createElement(s); js.id = id;
+    //             js.src = "https://connect.facebook.net/en_US/sdk.js";
+    //             fjs.parentNode.insertBefore(js, fjs);
+    //         }(document, 'script', 'facebook-jssdk'));
+    //     },[]
+    // )
+
     // declare state component
     // eslint-disable-next-line
     const [sizeSelected,setSizeSelected] = useState(0);
@@ -62,35 +37,49 @@ function ProductDetail(props){
     // get id from url
     const { id } = useParams();
     //get props
-    const { productsRec, sizeDetailsRec, sizesRec, categoriesRec, onAddToCartRec, imagesRec } = props;
+    const { 
+        productsRec, 
+        sizeDetailsRec, 
+        sizesRec, 
+        categoriesRec, 
+        onAddToCartRec, 
+        imagesRec 
+    } = props;
     
     // get current product
-    var currentProduct = findCurrentProduct(productsRec,id);
+    const currentProduct = findCurrentProduct(productsRec,id);
 
     // get data for product detail
-    var { id_product,id_category, product_name, price, description, is_sale } = currentProduct;
+    const { 
+        id_product,
+        id_category, 
+        product_name, 
+        price, 
+        description, 
+        is_sale 
+    } = currentProduct;
     
     // get category name for product
-    var categoryName = findCategoryName(categoriesRec,id_category);
+    const categoryName = findCategoryName(categoriesRec,id_category);
 
 
     // get list size of product
-    var listSizeSelect = sizeDetailsRec.filter((element,index)=>{
+    const listSizeSelect = sizeDetailsRec.filter((element,index)=>{
         return element.id_product*1===id*1&&element.quantity!==0
     })
 
     // get max quantity product from selected size
-    var quantityMax = listSizeSelect[sizeSelected]?listSizeSelect[sizeSelected].quantity:0;
+    const quantityMax = listSizeSelect[sizeSelected]?listSizeSelect[sizeSelected].quantity:0;
     if (quantity>quantityMax) setQuantity(quantityMax);
 
 
     // get list size name of product
-    var listSizeSelectName = listSizeSelect.map((element, index) => {
+    const listSizeSelectName = listSizeSelect.map((element, index) => {
         return findSizeName(sizesRec,element.id_size);
     })
 
     // return list size name ui
-    var listSizeSelectNameUi = listSizeSelectName.map((element,index) =>                                
+    const listSizeSelectNameUi = listSizeSelectName.map((element,index) =>                                
     <div key={index} 
         className={"product-detail__content__size__one-select " +
             (index===sizeSelected?"product-detail__content__size__active-select":"")
@@ -112,7 +101,7 @@ function ProductDetail(props){
     var path = findImages(imagesRec,id_product);
 
     // return list small images
-    var listSmallImage = path.map(
+    const listSmallImage = path.map(
         (element,index) => {
             return (
                 <div key={index} className="product-detail__list-image__image">
@@ -126,14 +115,13 @@ function ProductDetail(props){
     path = '' + constants.API_URL + path[0];
 
     // hanle when click add to cart
-    var addToCart =  () => {
+    const addToCart =  () => {
         onAddToCartRec(currentProduct,listSizeSelect[sizeSelected].id_size,quantity);
         alert('Thêm vào giỏ thành công!');
     }    
 
     // get discount
     const discount = 25;
-
     return(
         <>
             <SmallBanner title="Chi tiết sản phẩm" title2={product_name}/>
@@ -276,11 +264,65 @@ function ProductDetail(props){
                         </div>
                         {/* close product detail content */}
                     </div>
+                    <div className='product-detail__comment'>
+                        <div className="fb-comments" 
+                            data-href={"http://localhost:3000/products/"+id}
+                            data-width="100%" data-numposts="5"
+                        ></div>
+                    </div>
                 </div>
             </div>
         
         </>
     );
+}
+
+function findCurrentProduct(items,id) {
+    let result = {
+        id_product: 0,
+        id_category: 0, 
+        product_name: 'DinCox',
+        price: 0,
+        description: ''
+    }
+
+    items.forEach((item, index)=>{
+        if(item.id_product*1===id*1){
+            result = item;
+        }
+    })
+
+    return result;
+}
+
+function findSizeName(items,id) {
+    let result = '';
+    items.forEach((element,index) => {
+        if (element.id_size*1===id*1) result = element.size_name
+    })
+
+    return result;
+}
+
+function findCategoryName(items,id) {
+    let result = '';
+    items.forEach((element,index) => {
+        if (element.id_category*1===id*1) result = element.category_name
+    })
+
+    return result;
+}
+
+
+function findImages(items,id) {
+    let result = [];
+    
+    items.sort(function(a, b){return b.id_image - a.id_image})
+    items.forEach(element => {
+        if (element.id_product*1 === id*1) result.push(element.path);
+    });
+
+    return result;
 }
 
 export default ProductDetail;
