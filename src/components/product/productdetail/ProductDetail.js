@@ -3,32 +3,35 @@ import SmallBanner from '../../fixcontents/smallbanner/SmallBanner';
 import { useParams} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import * as constants from '../../../constants/Config';
+import { FacebookProvider, Comments } from 'react-facebook'
 
 function ProductDetail(props){
 
-    // useEffect(
-    //     () => {
-    //         window.fbAsyncInit = function() {
-    //             FB.init({
-    //             appId      : '250130313471996',
-    //             cookie     : true,
-    //             xfbml      : true,
-    //             version    : 'v10.0'
-    //             });
-                
-    //             FB.AppEvents.logPageView();   
-                
-    //         };
+    // // load facebook sdk.js
+    useEffect(
+        () => {
+            const fb = document.createElement("script");
+            fb.async = true;
+            fb.src = 'https://connect.facebook.net/vi_VN/sdk.js'
+            document.body.appendChild(fb);
 
-    //         (function(d, s, id){
-    //             var js, fjs = d.getElementsByTagName(s)[0];
-    //             if (d.getElementById(id)) {return;}
-    //             js = d.createElement(s); js.id = id;
-    //             js.src = "https://connect.facebook.net/en_US/sdk.js";
-    //             fjs.parentNode.insertBefore(js, fjs);
-    //         }(document, 'script', 'facebook-jssdk'));
-    //     },[]
-    // )
+            const facebookScript = document.createElement("script");
+            facebookScript.innerHTML = `
+                window.fbAsyncInit = function() {
+                    FB.init({
+                    appId      : '250130313471996',
+                    cookie     : true,
+                    xfbml      : true,
+                    version    : 'v10.0'
+                    });
+                };`
+
+            document.body.appendChild(facebookScript);
+            if (window.FB) {
+                window.FB.XFBML.parse();
+            }
+        },[]
+    )
 
     // declare state component
     // eslint-disable-next-line
