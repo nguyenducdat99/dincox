@@ -702,6 +702,17 @@ export const updateStatusSale = id => {
     }
 }
 
+export const addSaleForProduct = data => {
+    return dispatch => {
+        console.log(data);
+        // return callApi('', data).then(
+        //     res => {
+        //         console.log(res);
+        //     }
+        // )
+    }
+}
+
 // action for image
 export const fetchImageRequest = () => {
     return (dispatch) => {

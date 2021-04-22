@@ -9,6 +9,7 @@ import TaskForm from '../components/admin/sales/taskform/TaskForm';
 import TaskItem from '../components/admin/sales/tasklist/TaskItem';
 import TaskList from '../components/admin/sales/tasklist/TaskList'
 import TaskControl from '../components/admin/sales/taskcontrol/TaskControl';
+import ProductSale from '../components/admin/sales/productsale/ProductSale';
 import { useState } from 'react';
 
 
@@ -28,12 +29,15 @@ function SaleContainer(props){
         isDisplayForm,
         onToggleForm,
         onUpdateStatus,
-        onDeleteItem
+        onDeleteItem,
+        ListProduct,
+        onAddSaleForProduct
     } = props;
 
     // declare state
     const [keyword, setKeyword] = useState('');
     const [sortType, setSortType] = useState('');
+    const [displayProductSaleForm, setDisplayProductSaleForm] = useState(false);
 
     // load data
     useEffect( 
@@ -44,6 +48,16 @@ function SaleContainer(props){
         },[]
     )
 
+    
+    // close product sale form
+    const onCloseProductSaleForm = () => {
+        setDisplayProductSaleForm(false);
+    }
+
+    // open product sale form
+    const onOpenProductSaleForm = () => {
+        setDisplayProductSaleForm(true);
+    }
 
     // return taskForm ui
     const taskForm = () =>{
@@ -93,6 +107,7 @@ function SaleContainer(props){
                 onSelectItemEditRec={onSelectItemEdit}
                 onOpenFormRec={onOpenForm}
                 onUpdateStatusRec={onUpdateStatus}
+                onOpenProductSaleForm={onOpenProductSaleForm}
             />
         )
     });// use for taskList
@@ -142,6 +157,28 @@ function SaleContainer(props){
         }
     }
 
+    // return list option product for select
+    const optionProductUI = ListProduct.map(
+        (element,index) => {
+            return (
+                <option key={index} value={element.id_product}>{element.product_name}</option>
+            )
+        }
+    )
+
+    // return ui add sale to product
+    const addProductSaleUI = () => {
+        return (
+            <ProductSale 
+                onCloseProductSaleForm={onCloseProductSaleForm}
+                optionProductUI={optionProductUI}
+                itemEdit={itemEdit}
+                onAddSaleForProduct={onAddSaleForProduct}
+            />
+        )
+    }
+
+
     return(
         <Sales
             isDisplayFormRec={isDisplayForm}
@@ -153,6 +190,8 @@ function SaleContainer(props){
             onClearItemEditRec={onClearItemEdit}
             onFilter={onFilter}
             taskControl={taskControl}
+            addProductSaleUI={addProductSaleUI}
+            displayProductSaleForm={displayProductSaleForm}
         />
     );
 }
@@ -170,14 +209,17 @@ SaleContainer.propTypes = {
     isDisplayForm: PropTypes.bool,
     onToggleForm: PropTypes.func,
     onUpdateStatus: PropTypes.func,
-    onDeleteItem: PropTypes.func
+    onDeleteItem: PropTypes.func,
+    ListProduct: PropTypes.array,
+    onAddSaleForProduct: PropTypes.func
 }
 
 const mapStateToProps = state => {
     return {
         items: state.sales,
         isDisplayForm: state.isDisplayForm,
-        itemEdit: state.saleEdit
+        itemEdit: state.saleEdit,
+        ListProduct: state.ListProduct
     }
 };
 const mapDispatchToProps = (dispatch, props) => {
@@ -209,6 +251,9 @@ const mapDispatchToProps = (dispatch, props) => {
         onUpdateStatus: item => {
             dispatch(Actions.updateStatusSaleRequest(item));
         }, 
+        onAddSaleForProduct: data => {
+            dispatch(Actions.addSaleForProduct(data));
+        }
     }
 };
 

@@ -47,11 +47,12 @@ export const SIZE_EDIT = "SIZE_EDIT";
 export const UPDATE_STATUS_SIZE = "UPDATE_STATUS_SIZE";
 export const DELETE_SIZE = "DELETE_SIZE";
 
-// sale 
+// handle for sale 
 export const FETCH_SALES = 'FETCH_SALES';
 export const SAVE_SALE = 'SAVE_SALE';
 export const SALE_EDIT = 'SALE_EDIT';
 export const UPDATE_STATUS_SALE = 'UPDATE_STATUS_SALE';
+export const ADD_SALE_DETAIL = 'ADD_SALE_DETAIL';
 
 // hanlde for size detail
 export const FETCH_SIZE_DETAILS = "FETCH_SIZE_DETAILS";
@@ -81,5 +82,7 @@ export const DELETE_CHECKOUT = 'DELETE_CHECKOUT';
 export const FETCH_ORDER = 'FETCH_ORDER';
 export const FETCH_ORDER_DETAIL = 'FETCH_ORDER_DETAIL';
 export const RESET_ORDER = 'RESET_ORDER';
+
+
 
 

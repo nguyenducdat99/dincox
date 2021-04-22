@@ -11,7 +11,9 @@ function Sales(props) {
         onToggleFormRec,
         taskListRec,
         taskFormRec,
-        taskControl
+        taskControl,
+        addProductSaleUI,
+        displayProductSaleForm
     } = props;
     
 
@@ -36,6 +38,13 @@ function Sales(props) {
     return (
         <>
             <SmallBanner title="Quản lý khuyến mại"/>
+            {
+                displayProductSaleForm?<div className="background-blur">
+                {
+                    addProductSaleUI()
+                }
+                </div>:''
+            }
             <div className='sales'>
                 <div className="wrapper">
                     <div className="sales__title">

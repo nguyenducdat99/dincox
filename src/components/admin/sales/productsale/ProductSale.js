@@ -1,62 +1,56 @@
 // import style library, component
 import {  useState } from 'react';
-import './QuantityForm.scss';
+import './ProductSale.scss';
 
 
 // function code here
 function TaskForm(props) {
     // get props 
     const { 
-        closeFormQuantityRec,
-        optionSizeUIRec,
-        itemEditRec,
-        onUpdateQuantityRec,
-        sizeDetailsRec 
+        onCloseProductSaleForm,
+        optionProductUI,
+        itemEdit,
+        onAddSaleForProduct
     } = props;
 
 
     // declare state component
     const [objectTask,setObjectTask] = useState(
         {
-            id_size: 0,
-            quantity: 0
+            id_product: -1,
+            id_sale: -1,
+            discount: 0
         }
     )
 
-
-    // get quantity of size currently
-    var quantityCurrent = findQuantity(sizeDetailsRec,itemEditRec.id_product,objectTask.id_size);
-
-    // get type action after submit
-    var type = quantityCurrent===-1?true:false;
-
-    // updat quantity of size current
-    quantityCurrent = quantityCurrent===-1?0:quantityCurrent;
-    
    
     // handle when submit
     const onHandleSubmit = event => {
         event.preventDefault();
-        if (objectTask.id_size*1===0*1) return alert('Bạn vui lòng chọn kích thước!');
-        onUpdateQuantityRec(
-            {
-                id_product: itemEditRec.id_product*1,
-                id_size: objectTask.id_size*1,
-                quantity: objectTask.quantity*1+quantityCurrent,
-            },
-            type
-        )
+        if (objectTask.id_product*1===-1*1) return alert('Bạn vui lòng chọn sản phẩm cần thêm khuyến mãi!');
         
-        // console.log(objectTask);
+        // console.log(
+        //     {
+        //         id_product: objectTask.id_product*1,
+        //         id_sale: itemEdit.id_sale*1,
+        //         discount: objectTask.discount*1
+        //     }
+        // );
+        onAddSaleForProduct(
+            {
+                id_product: objectTask.id_product*1,
+                id_sale: itemEdit.id_sale*1,
+                discount: objectTask.discount*1
+            }
+        )
         
         onExitForm();
     }
 
     // handle when value change
     const onHandleChange = event => {
-        let target = event.target;
-        let name = target.name;
-        let value = target.value;
+        const name = event.target.name;
+        const value = event.target.value;
         
         setObjectTask(
             {
@@ -71,8 +65,9 @@ function TaskForm(props) {
         setObjectTask(
             {
                 ...objectTask,
-                id_size: 0,
-                quantity: 0
+                id_product: -1,
+                id_sale: -1,
+                discount: 0
             }
         )
     }
@@ -80,34 +75,34 @@ function TaskForm(props) {
     // Exit this form
     const onExitForm = () => {
         onClear();
-        closeFormQuantityRec();
+        onCloseProductSaleForm()
     }
 
-    
-
     return (
-        <div className="quantity-form">
-            <div className="quantity-form__title">
-                <h3>Thêm số lượng
-                    <span className="fa fa-times-circle quantity-form__title__close" onClick={onExitForm}></span>
+        <div className="product-sale">
+            <div className="product-sale__title">
+                <h3>Thêm sản phẩm khuyến mãi
+                    <span className="fa fa-times-circle product-sale__title__close" onClick={onExitForm}></span>
                 </h3>
             </div>
-            <div className="quantity-form__body">
+            <div className="product-sale__body">
                 <form action="" method="" onSubmit={onHandleSubmit}>
 
                     <div className="form-group">
                         <label>
-                            <p>Kích cỡ:</p>
+                            <p>Chọn sản phẩm:</p>
                             <select 
                                 className="form-control"
                                 onChange={onHandleChange}
-                                value={objectTask.id_size}
-                                name="id_size"
+                                value={objectTask.id_product}
+                                name="id_product"
+                                title='Bạn có thể nhấn chữ cái đầu của sản phẩm để chọn nhanh.'
                                 required
                             >
-                                <option value={0}>Lựa chọn</option>
+                                <option value={-1}>Lựa chọn</option>
+                                <option value={0}>Chọn tất cả</option>
                                 {
-                                    optionSizeUIRec
+                                    optionProductUI
                                 }
                             </select>
                         </label>
@@ -115,11 +110,13 @@ function TaskForm(props) {
 
                     <div className="form-group">
                         <label>
-                            <p>Số lượng:</p>
+                            <p>Giảm giá(%):</p>
                             <input type='number'
+                                min='0'
+                                max='99'
                                 value={objectTask.quantity}
                                 className="form-control"
-                                name='quantity'
+                                name='discount'
                                 onChange={onHandleChange}
                                 required
                             />
@@ -142,17 +139,6 @@ function TaskForm(props) {
     )
 }
 
-
-function findQuantity(arr, id_product, id_size) {
-    var result= -1;
-    arr.forEach((item, index) => {
-
-        if (item.id_size*1 === id_size*1&&item.id_product*1===id_product*1) {
-            result = item.quantity; 
-        };
-    });
-    return result;
-}
 
 
 export default TaskForm;

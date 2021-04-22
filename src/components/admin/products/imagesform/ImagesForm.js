@@ -26,7 +26,7 @@ function TaskForm(props) {
     )
 
     // handle when submit
-    var onHandleSubmit = event => {
+    const onHandleSubmit = event => {
         event.preventDefault();
         const data = new FormData()
         data.append('id_product', itemEditRec.id_product);
@@ -40,7 +40,7 @@ function TaskForm(props) {
     }
 
     // handle when value change
-    var onHandleChange = event => {
+    const onHandleChange = event => {
         let target = event.target;
         let name = target.name;
         let value = target.files[0];
@@ -68,7 +68,7 @@ function TaskForm(props) {
     }
 
     // Exit this form
-    var onExitForm = () => {
+    const onExitForm = () => {
         onClear();
         closeFormImageRec();
     }

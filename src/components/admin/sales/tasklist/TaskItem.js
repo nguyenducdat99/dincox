@@ -6,18 +6,26 @@ function TaskItem(props) {
         index, 
         itemRec,
         onSelectItemEditRec,
-        onOpenFormRec
+        onOpenFormRec,
+        onOpenProductSaleForm,
+        onUpdateStatusRec
     } = props;
 
     // handle return item for onSlectItem
-    var onSelectItem = () => {
+    const onSelectItem = () => {
         onSelectItemEditRec(itemRec.id_sale);
         onOpenFormRec();
     }
     
     // handle update status
-    var onUpdateStatus = () => {
-       props.onUpdateStatusRec(itemRec);
+    const onUpdateStatus = () => {
+       onUpdateStatusRec(itemRec);
+    }
+
+    // handle when add sale for product
+    const onAddSaleForProduct = () => {
+        onSelectItemEditRec(itemRec.id_sale);
+        onOpenProductSaleForm()
     }
 
     // handle delete task
@@ -50,6 +58,10 @@ function TaskItem(props) {
                     <span className="fa fa-pencil"></span>Sửa
                 </button>
                 &nbsp;
+                <button type="button" className="btn btn-warning" onClick={onAddSaleForProduct}>
+                    <span className="fa fa-percent"></span>Thêm sản phẩm
+                </button>
+ 
                 {/* <button type="button" className="btn btn-danger" onClick={onDeleteItem}>
                     <span className="fa fa-trash"></span>Xóa
                 </button> */}

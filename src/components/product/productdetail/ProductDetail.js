@@ -3,7 +3,6 @@ import SmallBanner from '../../fixcontents/smallbanner/SmallBanner';
 import { useParams} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import * as constants from '../../../constants/Config';
-import { FacebookProvider, Comments } from 'react-facebook'
 
 function ProductDetail(props){
 
