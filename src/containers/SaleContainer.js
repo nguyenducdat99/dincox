@@ -174,6 +174,7 @@ function SaleContainer(props){
                 optionProductUI={optionProductUI}
                 itemEdit={itemEdit}
                 onAddSaleForProduct={onAddSaleForProduct}
+                ListProduct={ListProduct}
             />
         )
     }

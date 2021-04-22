@@ -1,7 +1,7 @@
 // import style library, component
 import {  useState } from 'react';
 import './ProductSale.scss';
-
+import moment from 'moment';
 
 // function code here
 function TaskForm(props) {
@@ -10,7 +10,8 @@ function TaskForm(props) {
         onCloseProductSaleForm,
         optionProductUI,
         itemEdit,
-        onAddSaleForProduct
+        onAddSaleForProduct,
+        ListProduct
     } = props;
 
 
@@ -19,6 +20,7 @@ function TaskForm(props) {
         {
             id_product: -1,
             id_sale: -1,
+            create_at: moment(new Date()).format('yyyy-MM-DD HH:mm:ss'),
             discount: 0
         }
     )
@@ -29,20 +31,31 @@ function TaskForm(props) {
         event.preventDefault();
         if (objectTask.id_product*1===-1*1) return alert('Bạn vui lòng chọn sản phẩm cần thêm khuyến mãi!');
         
-        // console.log(
-        //     {
-        //         id_product: objectTask.id_product*1,
-        //         id_sale: itemEdit.id_sale*1,
-        //         discount: objectTask.discount*1
-        //     }
-        // );
-        onAddSaleForProduct(
-            {
-                id_product: objectTask.id_product*1,
-                id_sale: itemEdit.id_sale*1,
-                discount: objectTask.discount*1
-            }
-        )
+        var payload = [];
+
+        if (objectTask.id_product*1!==0) {
+            payload.push([
+                objectTask.id_product*1,
+                itemEdit.id_sale*1,
+                objectTask.create_at,
+                objectTask.discount*1
+            ])
+        } else {
+            ListProduct.forEach(element => {
+                
+                if(element.status*1) payload.push(
+                    [
+                        element.id_product*1,
+                        itemEdit.id_sale*1,
+                        objectTask.create_at,
+                        objectTask.discount*1
+                    ]
+                )
+            });
+        }
+
+        // console.log(payload);
+        onAddSaleForProduct(payload);
         
         onExitForm();
     }
@@ -138,7 +151,6 @@ function TaskForm(props) {
         </div>
     )
 }
-
 
 
 export default TaskForm;

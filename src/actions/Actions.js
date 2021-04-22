@@ -704,12 +704,11 @@ export const updateStatusSale = id => {
 
 export const addSaleForProduct = data => {
     return dispatch => {
-        console.log(data);
-        // return callApi('', data).then(
-        //     res => {
-        //         console.log(res);
-        //     }
-        // )
+        return callApi('sale-details','POST', data).then(
+            res => {
+                // console.log(res.data);
+            }
+        )
     }
 }
 

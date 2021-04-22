@@ -58,7 +58,11 @@ function TaskItem(props) {
                     <span className="fa fa-pencil"></span>Sửa
                 </button>
                 &nbsp;
-                <button type="button" className="btn btn-warning" onClick={onAddSaleForProduct}>
+                <button type="button" 
+                    className="btn btn-warning" 
+                    onClick={onAddSaleForProduct}
+                    disabled={itemRec.status?false:true}
+                >
                     <span className="fa fa-percent"></span>Thêm sản phẩm
                 </button>
  
