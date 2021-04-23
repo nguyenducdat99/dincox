@@ -4,40 +4,47 @@ import PopupProductContainer from '../../../containers/PopUpDetailContainer';
 import { useState } from 'react';
 import {Link} from 'react-router-dom';
 import * as Actions from '../../../constants/Config';
+import * as ConvertState from '../../../commons/HandleState';
 
-
-function findImages(items,id) {
-    let result = [];
-    items.forEach(element => {
-        if (element.id_product*1 === id*1) result.push(element.path);
-    });
-
-    result.sort(function(a, b){return a.id_image - b.id_image})
-
-    return result;
-}
 
 function Aproduct(props) {
     // declare state and variable
     const [toggleQuickView, setToggleQuickView] = useState(false);
 
     // get props
-    var { data, sizeDetailsRec, imagesRec } = props;
+    const { 
+        data, 
+        sizeDetailsRec, 
+        imagesRec,
+        saleDetails,
+        onAddToCartRec 
+    } = props;
 
     // get value of props data
-    var { id_product, product_name, is_sale, price } = data;// get data from props
+    const { 
+        id_product, 
+        product_name, 
+        is_sale, 
+        price 
+    } = data;
     
     // get list size of product
-    var listSizeSelect = !sizeDetailsRec?[]:sizeDetailsRec.filter(element=>{
-        return element.id_product*1===id_product*1
-    })
+    const listSizeSelect = !sizeDetailsRec?
+    []:
+    sizeDetailsRec.filter(
+        element => {
+            return element.id_product*1===id_product*1
+        }
+    )
 
     // get quantity of product
     var quantity = 0;
     if (listSizeSelect.length!==0) {
-        listSizeSelect.forEach(element => {
-            quantity = quantity + element.quantity;
-        });
+        listSizeSelect.forEach(
+            element => {
+                quantity = quantity + element.quantity;
+            }
+        );
     }
 
     // get images for item
@@ -46,23 +53,31 @@ function Aproduct(props) {
     // conver path
     path = '' + Actions.API_URL + path[0];
 
-    // code function here
-    var onToggleQuickView = () => {
+    // handle when click open quick view
+    const onToggleQuickView = () => {
         setToggleQuickView(true);
     }
-    var resetToggleQuickView = () => {
+
+    // close quick view
+    const resetToggleQuickView = () => {
         setToggleQuickView(false);
     }
-    var onSelectItem = () => {
+
+    // handle when select item add to card
+    const onSelectItem = () => {
         if (quantity===0) {
             return alert('Sản phẩm đã hết!');
         }
-        props.onAddToCartRec(data,listSizeSelect[0].id_size);
+        onAddToCartRec(data,listSizeSelect[0].id_size);
     }
 
     // get discount
-    const discount = 25;
+    var discount = 0;
+    if (saleDetails.length>0)
+        discount = ConvertState.findDiscountForProduct(id_product,saleDetails)[0].discount
 
+
+    // return ui component
     return(
         <>
             <div className="aproduct">
@@ -72,13 +87,15 @@ function Aproduct(props) {
                        <Link to={"/products/"+id_product}>
                             <img src={path} alt={product_name} />
                             {
-                                is_sale?
+                                (is_sale&&discount!==0)?
                                 <div className="aproduct__sale">
                                     <p>{'-' + discount + '%'}</p>
                                 </div>:''
                             }
                             {
-                                (listSizeSelect.length!==0&&quantity!==0)?'':<div className='aproduct__sold-out'>Cháy hàng</div>
+                                (listSizeSelect.length!==0&&quantity!==0)?
+                                '':
+                                <div className='aproduct__sold-out'>Cháy hàng</div>
                             }
                             
                         </Link>
@@ -130,13 +147,28 @@ function Aproduct(props) {
             </div>
             {toggleQuickView?
                 <PopupProductContainer 
-                    isToggle={toggleQuickView?"true":"false"} 
+                    isToggle={toggleQuickView?true:false} 
                     resetToggleQuickView={resetToggleQuickView} 
-                    item={props.data} 
+                    item={data} 
+                    discount={discount}
                 />:
                 ''
             }
         </>
     );
 }
+
+
+function findImages(items,id) {
+    let result = [];
+    items.forEach(element => {
+        if (element.id_product*1 === id*1) result.push(element.path);
+    });
+
+    result.sort(function(a, b){return a.id_image - b.id_image})
+
+    return result;
+}
+
+
 export default Aproduct;

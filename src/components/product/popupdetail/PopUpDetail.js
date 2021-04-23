@@ -4,25 +4,6 @@ import {Link} from 'react-router-dom';
 import * as constants from '../../../constants/Config';
 
 
-function findSizeName(items,id) {
-    let result = '';
-    items.forEach((element,index) => {
-        if (element.id_size*1===id*1) result = element.size_name
-    })
-
-    return result;
-}
-
-function findImages(items,id) {
-    let result = [];
-    items.forEach(element => {
-        if (element.id_product*1 === id*1) result.push(element.path);
-    });
-
-    result.sort(function(a, b){return a.id_image - b.id_image})
-
-    return result;
-}
 
 function PopUpDetail(props){
     // declare state and variable
@@ -31,40 +12,57 @@ function PopUpDetail(props){
     const [quantity, setQuantity] = useState(1); 
 
     // get props
-    const { item, sizeDetailsRec, sizesRec, onAddToCartRec, imagesRec } = props;
+    const { 
+        item,
+        sizeDetailsRec, 
+        sizesRec, 
+        onAddToCartRec, 
+        imagesRec, 
+        resetToggleQuickView,
+        discount
+    } = props;
+
+    console.log(discount);
 
     // get data from props
-    var { id_product, product_name, price, is_sale } = item;
+    const { 
+        id_product, 
+        product_name, 
+        price, 
+        is_sale 
+    } = item;
+
+
 
     // load state data from database local
     useEffect(
         () => {
-            setIsToggle(((props.isToggle==='true')?true:false));
+            setIsToggle(((props.isToggle)?true:false));
         },[props.isToggle]
     )
 
     // active ui
-    var onToggle = () => {
+    const onToggle = () => {
         setIsToggle(!isToggle);
-        props.resetToggleQuickView();
+        resetToggleQuickView();
     }
 
     // get list size of product
-    var listSizeSelect = sizeDetailsRec.filter((element)=>{
+    const listSizeSelect = sizeDetailsRec.filter((element)=>{
         return element.id_product*1===id_product*1
     })
 
     // get max quantity product from selected size
-    var quantityMax = listSizeSelect[sizeSelected].quantity;
+    const quantityMax = listSizeSelect[sizeSelected].quantity;
     if (quantity>quantityMax) setQuantity(quantityMax);
 
     // get list size name of product
-    var listSizeSelectName = listSizeSelect.map((element, index) => {
+    const listSizeSelectName = listSizeSelect.map((element, index) => {
         return findSizeName(sizesRec,element.id_size);
     })
 
     // return list size name ui
-    var listSizeSelectNameUi = listSizeSelectName.map((element,index) =>                                
+    const listSizeSelectNameUi = listSizeSelectName.map((element,index) =>                                
     <div key={index} 
         className={"product-detail__content__size__one-select " +
             (index===sizeSelected?"product-detail__content__size__active-select":"")
@@ -82,7 +80,7 @@ function PopUpDetail(props){
     )
         
     // hanle when click add to cart
-    var addToCart =  () => {
+    const addToCart =  () => {
         onAddToCartRec(item,listSizeSelect[sizeSelected].id_size,quantity);
         alert('Thêm vào giỏ thành công!');
     }   
@@ -91,7 +89,7 @@ function PopUpDetail(props){
     var path = findImages(imagesRec,id_product);
 
     // return list image 
-    var listSmallImage = path.map(
+    const listSmallImage = path.map(
         (element, index) => {
             return (
                 <div key={index} className="product-detail__list-image__image">
@@ -104,8 +102,6 @@ function PopUpDetail(props){
     // conver path
     path = '' + constants.API_URL + path[0];
 
-    // get discount
-    const discount = 25; 
 
     return(
         // product detail
@@ -144,7 +140,7 @@ function PopUpDetail(props){
 
                             {/* open product detail content price */}
                             {
-                                is_sale?
+                                (is_sale&&discount!==0)?
                                 <div className="product-detail__content__price">
                                     <div className="product-detail__content__price__current-price">
                                         <p>{price*(100-discount)/100} <u>đ</u></p>
@@ -215,4 +211,25 @@ function PopUpDetail(props){
         </div>
     );
 }
+
+function findSizeName(items,id) {
+    let result = '';
+    items.forEach((element,index) => {
+        if (element.id_size*1===id*1) result = element.size_name
+    })
+
+    return result;
+}
+
+function findImages(items,id) {
+    let result = [];
+    items.forEach(element => {
+        if (element.id_product*1 === id*1) result.push(element.path);
+    });
+
+    result.sort(function(a, b){return a.id_image - b.id_image})
+
+    return result;
+}
+
 export default PopUpDetail;

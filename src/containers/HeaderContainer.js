@@ -14,13 +14,22 @@ function HeaderContainer(props){
         cart,
         liveAccount,
         onLogoutAccount,
-        onFetchSize
+        onFetchSize,
+        onFetchImage,
+        onFetchSizeDetail,
+        onFetchProduct,
+        onFetchApiCategory,
+        onFetchSaleDetail
     } = props;
 
     useEffect(
         () => {
-            props.onFetchApiCategory();
+            onFetchApiCategory();
+            onFetchProduct();
+            onFetchSizeDetail();
+            onFetchImage();
             onFetchSize();
+            onFetchSaleDetail()
             // eslint-disable-next-line
         },[]
     )
@@ -89,7 +98,13 @@ HeaderContainer.propTypes = {
     cart: PropTypes.array,
     categories: PropTypes.array,
     liveAccount: PropTypes.object,
-    onLogoutAccount: PropTypes.func
+    onLogoutAccount: PropTypes.func,
+    onFetchSaleDetail: PropTypes.func,
+    onFetchApiCategory: PropTypes.func,
+    onFetchProduct: PropTypes.func,
+    onFetchSizeDetail: PropTypes.func,
+    onFetchImage: PropTypes.func,
+    onFetchSize: PropTypes.func
 }
 
 const mapStateToProps = state => {
@@ -109,7 +124,20 @@ const mapDispatchToProps = (dispatch,props) => {
         },
         onFetchSize: () => {
             dispatch(Actions.fetchSizesRequest());
+        },
+        onFetchImage: () => {
+            dispatch(Actions.fetchImageRequest());
+        },
+        onFetchProduct: () => {
+            dispatch(Actions.fetchProductRequest());
+        },
+        onFetchSizeDetail: () => {
+            dispatch(Actions.fetchSizeDetailsRequest());
+        },
+        onFetchSaleDetail: () => {
+            dispatch(Actions.fetchSaleDetailRequest());
         }
+        
     }
 };
 export default connect(mapStateToProps,mapDispatchToProps)(HeaderContainer)

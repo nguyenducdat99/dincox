@@ -4,33 +4,43 @@ import ProductFilter from '../components/product/productfilter/ProductFilter';
 import ResultFilter from '../components/product/productfilter/resultfilter/ReSultFilter';
 import { useParams } from "react-router";
 import * as Actions from '../actions/Actions';
+import PropTypes from 'prop-types';
 
 // code function here
 function ProductFilterContainer(props){
     // get props value
-    var { products,categories,sizes,images } = props;
+    const { 
+        products,
+        categories,
+        sizes,
+        images,
+        saleDetails,
+        sizeDetails,
+        onAddToCart
+    } = props;
     
     // convert id from url to category title
     const { id } = useParams();
 
     // get title for result filter
-    let index = findIndex(categories,id);
-    let title = index===-1?'Tất cả các sản phẩm':categories[index].category_name;
+    const index = findIndex(categories,id);
+    const title = index===-1?'Tất cả các sản phẩm':categories[index].category_name;
 
 
     // declare variable
-    var ResultFilterUI = () => {
+    const ResultFilterUI = () => {
         return (
             <ResultFilter
                 titleRec={title}   
                 listProductRec={products}
-                onAddToCart={props.onAddToCart}
-                sizeDetails={props.sizeDetails} 
+                onAddToCart={onAddToCart}
+                sizeDetails={sizeDetails} 
                 images={images}
+                saleDetails={saleDetails}
             />
         )
-    }// use for product filter
-    var SizesFilterUI = sizes.map((element, index) => {
+    }
+    const SizesFilterUI = sizes.map((element, index) => {
         return (
             <li key={index}>
                 <label>
@@ -41,7 +51,7 @@ function ProductFilterContainer(props){
         )
     });
 
-    // return value 
+    // return UI 
     return(
             <ProductFilter 
                 onResultFilterRec={ResultFilterUI}
@@ -50,21 +60,25 @@ function ProductFilterContainer(props){
             />
     );
 }
-var findIndex = (arr,id) => {
-    let result = -1;
-    arr.forEach((element, index) => {
-        if (element.id_category*1 === id*1) result = index
-    });
 
-    return result;
+ProductFilterContainer.propTypes = {
+    products: PropTypes.array,
+    categories: PropTypes.array,
+    sizes: PropTypes.array,
+    images: PropTypes.array,
+    saleDetails: PropTypes.array,
+    onAddToCart: PropTypes.func,
+    sizeDetails: PropTypes.array
 }
+
 const mapStateToProps = state => {
     return {
         products: state.ListProduct,
         categories: state.listCategory,
         sizes: state.listSize,
         sizeDetails: state.listSizeDetail,
-        images: state.listImages
+        images: state.listImages,
+        saleDetails: state.saleDetails
     }
 };
 const mapDispatchToProps = (dispatch, props) => {
@@ -75,4 +89,14 @@ const mapDispatchToProps = (dispatch, props) => {
         
     }
 };
+
+const findIndex = (arr,id) => {
+    let result = -1;
+    arr.forEach((element, index) => {
+        if (element.id_category*1 === id*1) result = index
+    });
+
+    return result;
+}
+
 export default connect(mapStateToProps,mapDispatchToProps)(ProductFilterContainer)

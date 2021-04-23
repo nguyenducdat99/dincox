@@ -18,6 +18,7 @@ import order from './OrderReducer';
 import orderDetail from './OrderDetailReducer';
 import sales from './SalesReducer';
 import saleEdit from './SaleEditReducer';
+import saleDetails from './SaleDetailsReducer';
 
 const Reducers = combineReducers({
     ListProduct,
@@ -38,7 +39,8 @@ const Reducers = combineReducers({
     order,
     orderDetail,
     sales,
-    saleEdit
+    saleEdit,
+    saleDetails
 });
 
 export default Reducers;

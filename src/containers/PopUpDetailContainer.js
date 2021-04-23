@@ -3,33 +3,62 @@ import {connect} from 'react-redux';
 import * as Actions from '../actions/Actions';
 import { useEffect } from 'react';
 import PopUpDetail from '../components/product/popupdetail/PopUpDetail';
+import PropTypes from 'prop-types';
 
 // code function here
 function PopUpContainer(props){
+    // get props
+    const {
+        discount,
+        onFetchSizeDetail,
+        products, 
+        sizeDetails, 
+        sizes, 
+        categories, 
+        onAddToCart, 
+        images,
+        resetToggleQuickView,
+        isToggle,
+        item
+    } = props;
+
     // load data
     useEffect(
         () => {
-            props.onFetchSizeDetail();
+            onFetchSizeDetail();
             // eslint-disable-next-line
         },[]
     )
-
-    // get props 
-    var {products, sizeDetails, sizes, categories, onAddToCart, images} = props;  
     
     return(
         <PopUpDetail 
-            resetToggleQuickView={props.resetToggleQuickView}
-            isToggle={props.isToggle}
-            item={props.item}
+            resetToggleQuickView={resetToggleQuickView}
+            isToggle={isToggle}
+            item={item}
             productsRec={products}
             sizeDetailsRec={sizeDetails} 
             sizesRec={sizes}
             categoriesRec={categories}
             onAddToCartRec={onAddToCart}
             imagesRec={images}
+            discount={discount}
         />
     );
+}
+
+
+PopUpContainer.propTypes = {
+    discount: PropTypes.number,
+    onFetchSizeDetail: PropTypes.func,
+    products: PropTypes.array, 
+    sizeDetails: PropTypes.array, 
+    sizes: PropTypes.array, 
+    categories: PropTypes.array, 
+    onAddToCart: PropTypes.func, 
+    images: PropTypes.array,
+    resetToggleQuickView: PropTypes.func,
+    isToggle: PropTypes.bool,
+    item: PropTypes.object
 }
 
 const mapStateToProps = (state) =>{

@@ -24,6 +24,8 @@ function TaskItem(props) {
 
     // handle when add sale for product
     const onAddSaleForProduct = () => {
+        if (!itemRec.status) return alert('Khuyến mãi không được kích hoạt.');
+        if (moment()>moment(itemRec.end_at)) return alert("Khuyến mãi đã hết hạn."); 
         onSelectItemEditRec(itemRec.id_sale);
         onOpenProductSaleForm()
     }
@@ -61,7 +63,6 @@ function TaskItem(props) {
                 <button type="button" 
                     className="btn btn-warning" 
                     onClick={onAddSaleForProduct}
-                    disabled={itemRec.status?false:true}
                 >
                     <span className="fa fa-percent"></span>Thêm sản phẩm
                 </button>

@@ -7,38 +7,48 @@ import { useState } from 'react';
 function ResultFilter(props) {
     // declare state component
     const [recentPage, setRecentPage] = useState(1);
+
     // declare product count per page
-    let productCount = 6;
-    // load data from store
-    var { listProductRec,titleRec,sizeDetails,images } = props;
+    const productCount = 6;
+
+    // get props
+    const { 
+        listProductRec,
+        titleRec,
+        sizeDetails,
+        images,
+        saleDetails,
+        onAddToCart
+    } = props;
     
     // slice item for page view
-    let indexStart = (recentPage-1)*productCount;
-    let indexEnd = recentPage*productCount;
-    var indexMax = Math.ceil(listProductRec.length/productCount);
+    const indexStart = (recentPage-1)*productCount;
+    const indexEnd = recentPage*productCount;
+    const indexMax = Math.ceil(listProductRec.length/productCount);
 
     // return interface
-    var listIndex = listProductRec.slice(indexStart,indexEnd).map((item, index) => {
+    const listIndex = listProductRec.slice(indexStart,indexEnd).map((item, index) => {
         return (
             <SingleProduct 
                 key={index} 
                 data={item}
-                onAddToCartRec={props.onAddToCart}
+                onAddToCartRec={onAddToCart}
                 sizeDetailsRec={sizeDetails} 
                 imagesRec={images}
+                saleDetails={saleDetails}
             />
         )
     });
     // handle page number up
-    var onPageNumberUp = () => {
+    const onPageNumberUp = () => {
         setRecentPage(recentPage+1);
     };
     // handle page number down
-    var onPageNumberDown = () => {
+    const onPageNumberDown = () => {
         setRecentPage(recentPage-1);
     };
 
-
+    //return ui
     return(
         <div className="result-filter">
             <div className="result-filter__head">

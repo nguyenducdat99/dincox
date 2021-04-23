@@ -54,6 +54,10 @@ export const SALE_EDIT = 'SALE_EDIT';
 export const UPDATE_STATUS_SALE = 'UPDATE_STATUS_SALE';
 export const ADD_SALE_DETAIL = 'ADD_SALE_DETAIL';
 
+// handle for sale details
+export const FETCH_SALE_DETAILS = 'FETCH_SALE_DETAILS';
+export const SAVE_SALE_DETAIL = 'SAVE_SALE_DETAIL';
+
 // hanlde for size detail
 export const FETCH_SIZE_DETAILS = "FETCH_SIZE_DETAILS";
 export const SAVE_SIZE_DETAIL = "SAVE_SIZE_DETAIL";
@@ -74,11 +78,11 @@ export const DELETE_CART = "DELETE_CART";
 export const FETCH_IMAGES = "FETCH_IMAGES";
 export const SAVE_IMAGES = "SAVE_IMAGES";
 
-// checkout 
+// handler for checkout 
 export const ADD_CHECKOUT = 'ADD_CHECKOUT';
 export const DELETE_CHECKOUT = 'DELETE_CHECKOUT';
 
-// order
+// handler for order
 export const FETCH_ORDER = 'FETCH_ORDER';
 export const FETCH_ORDER_DETAIL = 'FETCH_ORDER_DETAIL';
 export const RESET_ORDER = 'RESET_ORDER';

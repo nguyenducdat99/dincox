@@ -8,13 +8,19 @@ function ProductFilter(props){
     // declare state component
     const [filterPrice, setFilterPrice] = useState(false);
     const [filterSize, setFilterSize] = useState(false);
-    var { titleRec,onResultFilterRec,sizesFilterRec } = props;
+
+    // get props
+    const { 
+        titleRec,
+        onResultFilterRec,
+        sizesFilterRec 
+    } = props;
 
     // function use when use click
-    var onShowFilterPrice = () => {
+    const onShowFilterPrice = () => {
         setFilterPrice(!filterPrice);
     }
-    var onShowFilterSize = () => {
+    const onShowFilterSize = () => {
         setFilterSize(!filterSize);
     }
 
@@ -29,7 +35,7 @@ function ProductFilter(props){
                             <div className="product-filter__filter--size">
                                 <div className="product-filter__filter__title" onClick={onShowFilterPrice}>
                                     <p>Giá</p>
-                                    <i className={filterPrice?"fa fa-plus":"fa fa-minus"} aria-hidden="true"></i>
+                                    <i className={filterPrice?"fa fa-minus":"fa fa-plus"} aria-hidden="true"></i>
                                 </div>
                                 <div className={filterPrice?"product-filter__filter__contents":"product-filter__filter__contents--none"}>
                                     <ul>
@@ -65,7 +71,7 @@ function ProductFilter(props){
                             <div className="product-filter__filter--price">
                                 <div className="product-filter__filter__title" onClick={onShowFilterSize}>
                                     <p>Kích cỡ</p>
-                                    <i className={filterSize?"fa fa-plus":"fa fa-minus"} aria-hidden="true"></i>
+                                    <i className={filterSize?"fa fa-minus":"fa fa-plus"} aria-hidden="true"></i>
                                 </div>
                                 <div className={filterSize?"product-filter__filter__contents":"product-filter__filter__contents--none"}>
                                     <ul>

@@ -3,22 +3,6 @@ import './ProductSale.scss';
 import { useState } from 'react';
 import * as Actions from '../../../constants/Config';
 
-function makeRandomIndex(max) {
-    return Math.floor((Math.random() * max))
-}
-
-function makeRandomPath(items) {
-    let result = '';
-
-    
-    if (items.length === 0) {
-        return result;
-    }else{
-        result = result + Actions.API_URL + (items[makeRandomIndex(items.length)].path);
-    }
-
-    return result;
-}
 
 // code function here
 function ProductSale(props){
@@ -26,7 +10,9 @@ function ProductSale(props){
     const [amountProduct,setAmountProduct] = useState(4);// amount product show
 
     // get props 
-    const {imagesRec} = props;
+    const {
+        imagesRec,
+    } = props;
 
     // filet props
     var imagesFillter = imagesRec.filter(
@@ -89,6 +75,24 @@ function ProductSale(props){
             {/* end product banner */}
         </>
     );
+}
+
+
+function makeRandomIndex(max) {
+    return Math.floor((Math.random() * max))
+}
+
+function makeRandomPath(items) {
+    let result = '';
+
+    
+    if (items.length === 0) {
+        return result;
+    }else{
+        result = result + Actions.API_URL + (items[makeRandomIndex(items.length)].path);
+    }
+
+    return result;
 }
 
 export default ProductSale;

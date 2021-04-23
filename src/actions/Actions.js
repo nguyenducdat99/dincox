@@ -706,9 +706,40 @@ export const addSaleForProduct = data => {
     return dispatch => {
         return callApi('sale-details','POST', data).then(
             res => {
-                // console.log(res.data);
+                if (!res) return console.log('get sale detail failed');
+                alert('Thêm khuyến mại thành công.');
+                dispatch(saveSaleDetail(res.data));
             }
         )
+    }
+}
+
+export const fetchSaleDetailRequest = () => {
+    return dispatch => {
+        return callApi('sale-details','GET',null).then(
+            res => {
+                if (!res) return console.log('get sale detail failed');
+
+                dispatch(fetchSaleDetail(res.data));
+            }
+        )
+    }
+}
+
+export const fetchSaleDetail = data => {
+    return  {
+        type: types.FETCH_SALE_DETAILS,
+        payload: {
+            message: 'get sale detail complete',
+            data: data
+        }
+    }
+}
+
+export const saveSaleDetail = data => {
+    return {
+        type: types.SAVE_SALE_DETAIL,
+        payload: data
     }
 }
 

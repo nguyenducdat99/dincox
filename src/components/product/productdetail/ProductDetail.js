@@ -29,6 +29,7 @@ function ProductDetail(props){
             if (window.FB) {
                 window.FB.XFBML.parse();
             }
+            
         },[]
     )
 

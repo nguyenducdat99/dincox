@@ -3,11 +3,17 @@ import {connect} from 'react-redux';
 import ProductSale from '../components/product/productsale/ProductSale';
 import SingleProduct from '../components/product/aproduct/Aproduct';
 import * as Actions from '../actions/Actions';
+import PropTypes from 'prop-types';
 
 // code function here
 function ProductSaleContainer(props){
     // get props
-    var { listProductSale,sizeDetails,images } = props;
+    const { 
+        listProductSale,
+        sizeDetails,
+        images,
+        saleDetails
+    } = props;
 
     // return product ui
     var listIndex = [];
@@ -19,6 +25,7 @@ function ProductSaleContainer(props){
                 onAddToCartRec={props.onAddToCart}
                 sizeDetailsRec={sizeDetails} 
                 imagesRec={images}
+                saleDetails={saleDetails}
             />);
         }
     });
@@ -29,15 +36,25 @@ function ProductSaleContainer(props){
         <ProductSale 
             listProduct={listIndex} 
             imagesRec={images}
+            saleDetails={saleDetails}
         />
     );
 }
 
-const mapStateToProps = (state) => {
+ProductSaleContainer.propTypes = {
+    images: PropTypes.array,
+    sizeDetails: PropTypes.array,
+    listProductSale: PropTypes.array,
+    saleDetails: PropTypes.array
+}
+
+
+const mapStateToProps = state => {
     return {
         listProductSale: state.ListProduct,
         sizeDetails: state.listSizeDetail,
-        images: state.listImages
+        images: state.listImages,
+        saleDetails: state.saleDetails
     }
 };
 
