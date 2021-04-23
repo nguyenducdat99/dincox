@@ -3,6 +3,7 @@ import SmallBanner from '../../fixcontents/smallbanner/SmallBanner';
 import { useParams} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import * as constants from '../../../constants/Config';
+import * as ConvertState from '../../../commons/HandleState';
 
 function ProductDetail(props){
 
@@ -37,8 +38,10 @@ function ProductDetail(props){
     // eslint-disable-next-line
     const [sizeSelected,setSizeSelected] = useState(0);
     const [quantity, setQuantity] = useState(1);
+
     // get id from url
     const { id } = useParams();
+
     //get props
     const { 
         productsRec, 
@@ -46,7 +49,8 @@ function ProductDetail(props){
         sizesRec, 
         categoriesRec, 
         onAddToCartRec, 
-        imagesRec 
+        imagesRec,
+        saleDetails 
     } = props;
     
     // get current product
@@ -124,7 +128,11 @@ function ProductDetail(props){
     }    
 
     // get discount
-    const discount = 25;
+    var discount = 0;
+    if (saleDetails.length>0)
+        discount = ConvertState.findDiscountForProduct(id_product,saleDetails)[0].discount
+
+
     return(
         <>
             <SmallBanner title="Chi tiết sản phẩm" title2={product_name}/>
@@ -168,7 +176,7 @@ function ProductDetail(props){
 
                             {/* open product detail content price */}
                             {
-                                is_sale?
+                                (is_sale&&discount!==0)?
                                 <div className="product-detail__content__price">
                                     <div className="product-detail__content__price__current-price">
                                         <p>{price*(100-discount)/100} <u>đ</u></p>

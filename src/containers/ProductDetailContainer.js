@@ -3,22 +3,35 @@ import {connect} from 'react-redux';
 import * as Actions from '../actions/Actions';
 import { useEffect } from 'react';
 import ProductDetail from '../components/product/productdetail/ProductDetail';
+import PropTypes from 'prop-types';
 
 // code function here
 function ProductDetailContainer(props){
+    // get props 
+    const { 
+        products, 
+        sizeDetails, 
+        sizes, 
+        categories, 
+        onAddToCart, 
+        images,
+        onFetchImage,
+        onFetchSizeDetail,
+        onFetchProduct,
+        saleDetails
+    } = props;  
+
     // load data
     useEffect(
         () => {
-            props.onFetchProduct();
-            props.onFetchSizeDetail();
-            props.onFetchImage();
+            onFetchProduct();
+            onFetchSizeDetail();
+            onFetchImage();
             // eslint-disable-next-line
         },[]
     )
 
-    // get props 
-    var { products, sizeDetails, sizes, categories, onAddToCart, images } = props;  
-    
+
     return(
         <ProductDetail 
             productsRec={products}
@@ -27,8 +40,22 @@ function ProductDetailContainer(props){
             categoriesRec={categories}
             onAddToCartRec={onAddToCart}
             imagesRec={images}
+            saleDetails={saleDetails}
         />
     );
+}
+
+ProductDetailContainer.propTypes = {
+    products: PropTypes.array, 
+    sizeDetails: PropTypes.array, 
+    sizes: PropTypes.array, 
+    categories: PropTypes.array, 
+    onAddToCart: PropTypes.func, 
+    images: PropTypes.array,
+    onFetchImage: PropTypes.func,
+    onFetchSizeDetail: PropTypes.func,
+    onFetchProduct: PropTypes.func,
+    saleDetails: PropTypes.array
 }
 
 const mapStateToProps = (state) =>{
@@ -37,7 +64,8 @@ const mapStateToProps = (state) =>{
         sizeDetails: state.listSizeDetail,
         sizes: state.listSize,
         categories: state.listCategory,
-        images: state.listImages
+        images: state.listImages,
+        saleDetails: state.saleDetails
     }
 }
 const mapDispatchToProps = (dispatch, props) => {
