@@ -85,7 +85,11 @@ function Aproduct(props) {
                    <div className="aproduct__image">
                        
                        <Link to={"/products/"+id_product}>
-                            <img src={path} alt={product_name} />
+                            <img 
+                                src={path} 
+                                alt={product_name} 
+                                onLoad={event=>event.target.style='opacity: 1'}
+                            />
                             {
                                 (is_sale&&discount!==0)?
                                 <div className="aproduct__sale">
