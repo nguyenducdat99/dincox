@@ -6,7 +6,13 @@ import './ReceiverForm.scss';
 // code function here
 function ReceiverForm(props) {
     // get props
-    const {toggleFormRec, onCloseForm, onAddInfoCheckoutRec, infoRec, loginedAccountRec} = props;
+    const {
+        toggleFormRec, 
+        onCloseForm, 
+        onAddInfoCheckoutRec, 
+        infoRec, 
+        loginedAccountRec
+    } = props;
 
     // declare state
     const [info, setInfo] = useState(
@@ -33,9 +39,9 @@ function ReceiverForm(props) {
 
     
     // handle when change value of input in form
-    var onHandleChange = event => {
-        let name = event.target.name;
-        let value = event.target.value;
+    const onHandleChange = event => {
+        const name = event.target.name;
+        const value = event.target.value;
         
         setInfo({
             ...info,
@@ -45,7 +51,7 @@ function ReceiverForm(props) {
 
 
     // handle when submit
-    var onHandleSubmit = event => {
+    const onHandleSubmit = event => {
         event.preventDefault();
 
         onCloseForm();
@@ -58,7 +64,7 @@ function ReceiverForm(props) {
     }
 
 
-
+    // return ui
     return (
         <div className={toggleFormRec?'info-receiver':'info-receiver--none'}>
             <h2>Thông tin nhận hàng</h2>

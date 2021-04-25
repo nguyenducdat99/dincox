@@ -60,7 +60,7 @@ function CartItem(props) {
     
     // conver path
     path = '' + constants.API_URL + path[0];
-    console.log(item);
+     
     // get discount
     let discount = 0;
     if (saleDetails.length>0)

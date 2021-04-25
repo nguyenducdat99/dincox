@@ -1,27 +1,28 @@
 // import library style, component
 import './Payment.scss';
 
-function findQuantity(arr, id_product, id_size) {
-    var result= -1;
-    arr.forEach((item, index) => {
-
-        if (item.id_size*1 === id_size*1&&item.id_product*1===id_product*1) {
-            result = item.quantity; 
-        };
-    });
-    return result;
-}
-
 // code function here
 function Payment(props) {
     // get props
-    const {onCloseForm, toggleFormRec, transportFeeRec, 
-        cartRec, infoRec, onAddCheckoutRec, sizeDetailsRec } = props;
+    const {
+        onCloseForm, 
+        toggleFormRec, 
+        transportFeeRec, 
+        cartRec, 
+        infoRec, 
+        onAddCheckoutRec, 
+        sizeDetailsRec,
+        saleDetails 
+    } = props;
 
 
-    var newSizeDetail = [];
+    let newSizeDetail = [];
     cartRec.forEach(element => {
-        let currentQuantity = findQuantity(sizeDetailsRec, element.product.id_product, element.size); 
+        const currentQuantity = findQuantity(
+            sizeDetailsRec, 
+            element.product.id_product,
+             element.size
+        ); 
 
         newSizeDetail.push({
             id_product: element.product.id_product,
@@ -32,23 +33,19 @@ function Payment(props) {
     }); 
 
     // handle when submit
-    var onHandleSubmit = event => {
+    const onHandleSubmit = event => {
         event.preventDefault();
         onAddCheckoutRec(
             {
                 info: infoRec,
                 cart: cartRec,
                 transportFee: transportFeeRec
-            }, newSizeDetail
+            }, 
+            newSizeDetail,
+            saleDetails
         )
     }
     
-    //         // get quantity of size currently
-    // var quantityCurrent = findQuantity(sizeDetailsRec,itemEditRec.id_product,objectTask.id_size);
-
-    // // updat quantity of size current
-    // quantityCurrent = quantityCurrent===-1?0:quantityCurrent;
-
     return (
         <div className={toggleFormRec?"payment--none":'payment'}>
             <form action='' method='' onSubmit={onHandleSubmit}>
@@ -88,6 +85,17 @@ function Payment(props) {
             </form>
         </div>
     )
+}
+
+function findQuantity(arr, id_product, id_size) {
+    let result= -1;
+    arr.forEach((item, index) => {
+
+        if (item.id_size*1 === id_size*1&&item.id_product*1===id_product*1) {
+            result = item.quantity; 
+        };
+    });
+    return result;
 }
 
 export default Payment;

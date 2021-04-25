@@ -5,27 +5,40 @@ import ReceiveForm from './receiverform/ReceiverForm';
 import Payment from './payment/Payment';
 import { useState } from 'react';
 
+
 // code function here
 function Checkout(props) {
     // get props
-    const { onAddInfoCheckoutRec, infoRec, listItemRec, 
-        totalRec, cartRec, onAddCheckoutRec, sizeDetailsRec, loginedAccountRec } = props;
+    const { 
+        onAddInfoCheckoutRec, 
+        infoRec, 
+        listItemRec, 
+        totalRec, 
+        cartRec, 
+        onAddCheckoutRec, 
+        sizeDetailsRec, 
+        loginedAccountRec,
+        saleDetails 
+    } = props;
 
     // declare state
     const [toggleForm, setToggleForm] = useState(true);
+
     // eslint-disable-next-line
     const [transportFee, setTransportFee] = useState(33000)
 
     // close form receive
-    var onCloseForm = () => {
+    const onCloseForm = () => {
         setToggleForm(false);
     }
 
     // close form payment
-    var onOpenForm = () => {
+    const onOpenForm = () => {
         setToggleForm(true);
     }
 
+
+    // return ui
     return (
         <>
             <Smallbanner title="Thanh toán" />
@@ -53,7 +66,7 @@ function Checkout(props) {
                                         infoRec={infoRec}
                                         onAddCheckoutRec={onAddCheckoutRec}
                                         sizeDetailsRec={sizeDetailsRec}
-                                        
+                                        saleDetails={saleDetails}
                                     />
                                 </>
                             }

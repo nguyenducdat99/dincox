@@ -1,6 +1,6 @@
 import * as types from '../constants/ActionTypes';
 import callApi from '../utils/ApiCaller';
-// import uploader from '../utils/Uploader';
+import * as ConvertState from '../commons/HandleState';
 
 // action for products
 export const fetchProductRequest = () => {
@@ -846,9 +846,10 @@ export const deleteCheckout = () => {
 }
 
 
-export const addCheckoutRequest = (item, newQuantity) => {
+export const addCheckoutRequest = (item, newQuantity, saleDetails) => {
 
     return (dispatch) => {
+ 
         // update for tbl orders
         callApi('orders','POST', item).then(
             res => {
@@ -858,13 +859,16 @@ export const addCheckoutRequest = (item, newQuantity) => {
 
                 item.cart.forEach(element => {
                     let itemCart = [];
+                    let discount = 0;
+                    if (element.product.is_sale&&saleDetails.length>0)
+                        discount = ConvertState.findDiscountForProduct(
+                            element.product.id_product,
+                            saleDetails
+                        )[0].discount;
+
                     itemCart.push(res.data.id_order);
                     itemCart.push(element.product.id_product);
-                    if (element.product.is_sale) {
-                        itemCart.push(25);
-                    } else {
-                        itemCart.push(0);
-                    }
+                    itemCart.push(discount);
                     itemCart.push(element.size);
                     itemCart.push(element.quantity);
                     newCart.push(itemCart);
@@ -873,7 +877,7 @@ export const addCheckoutRequest = (item, newQuantity) => {
                 // update for tblorder detail
                 callApi('orders-detail','POST', newCart).then(
                     () => {
-                        console.log(newQuantity);
+                        
                         newQuantity.forEach(element => {
                             
                             callApi('size-details','PUT', element).then(
