@@ -2,39 +2,7 @@
 import { useEffect, useState } from 'react';
 import './CartItem.scss';
 import * as constants from '../../../constants/Config';
-
-
-function findSizeName(items, id_size) {
-    let result = "";
-    items.forEach(element => {
-        if (element.id_size===id_size) result = element.size_name
-    });
-
-    return result;
-}
-
-function findQuantity(items, id_product, id_size) {
-    let result = 0;
-    items.forEach(element => {
-        if (element.id_product===id_product&&element.id_size===id_size) {
-            result = element.quantity;
-        }  
-    });
-
-    return result;
-}
-
-function findImages(items,id) {
-    let result = [];
-
-    items.sort(function(a, b){return b.id_image - a.id_image})
-
-    items.forEach(element => {
-        if (element.id_product*1 === id*1) result.push(element.path);
-    });
-
-    return result;
-}
+import * as ConvertState from '../../../commons/HandleState';
 
 // code funciton here
 function CartItem(props) {
@@ -42,7 +10,15 @@ function CartItem(props) {
     const [quantity,setQuantity] = useState(0);
 
     // / get props
-    var { item, sizesRec, sizeDetailsRec, imagesRec } = props;
+    const { 
+        item, 
+        sizesRec, 
+        sizeDetailsRec, 
+        imagesRec,
+        saleDetails,
+        onDelItemInCartRec,
+        onUpdateQuantityRec 
+    } = props;
 
     // load quantity
     useEffect(
@@ -53,23 +29,23 @@ function CartItem(props) {
     )
     
     // get size name from id_size 
-    var sizeName = findSizeName(sizesRec,item.size);
+    const sizeName = findSizeName(sizesRec,item.size);
 
     // get max quantity
-    var quantityMax = findQuantity(sizeDetailsRec,item.product.id_product, item.size);
+    const quantityMax = findQuantity(sizeDetailsRec,item.product.id_product, item.size);
  
     // handle when click delete item in cart
-    var onDelItemInCartSend = (item,size) => {
-        props.onDelItemInCartRec(item,size);
+    const onDelItemInCartSend = (item,size) => {
+        onDelItemInCartRec(item,size);
     }
 
 
     // handle when change quantity of item in cart
-    var onUpdateQuantitySend = (updateItem,size ,quantity) => {
+    const onUpdateQuantitySend = (updateItem,size ,quantity) => {
         if (quantity===0) {
-            props.onDelItemInCartRec(updateItem,size);
+            onDelItemInCartRec(updateItem,size);
         }else{
-            props.onUpdateQuantityRec(updateItem, size,quantity);
+            onUpdateQuantityRec(updateItem, size,quantity);
         }
     }
 
@@ -84,9 +60,11 @@ function CartItem(props) {
     
     // conver path
     path = '' + constants.API_URL + path[0];
-
+    console.log(item);
     // get discount
-    const discount = 25;
+    let discount = 0;
+    if (saleDetails.length>0)
+        discount = ConvertState.findDiscountForProduct(item.product.id_product,saleDetails)[0].discount;
 
     // get factor
     const factor = item.product.is_sale?((100-discount)/100):1
@@ -139,4 +117,39 @@ function CartItem(props) {
             </tr>
     )
 }
+
+
+function findSizeName(items, id_size) {
+    let result = "";
+    items.forEach(element => {
+        if (element.id_size===id_size) result = element.size_name
+    });
+
+    return result;
+}
+
+function findQuantity(items, id_product, id_size) {
+    let result = 0;
+    items.forEach(element => {
+        if (element.id_product===id_product&&element.id_size===id_size) {
+            result = element.quantity;
+        }  
+    });
+
+    return result;
+}
+
+function findImages(items,id) {
+    let result = [];
+
+    items.sort(function(a, b){return b.id_image - a.id_image})
+
+    items.forEach(element => {
+        if (element.id_product*1 === id*1) result.push(element.path);
+    });
+
+    return result;
+}
+
+
 export default CartItem;

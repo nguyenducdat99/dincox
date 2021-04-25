@@ -9,19 +9,28 @@ import { useEffect } from 'react';
 
 // code function here
 function CartContainer(props){
+    // get props
+    const { 
+        cart, 
+        sizes, 
+        sizeDetails, 
+        images,
+        onUpdateQuantity,
+        onDelItemInCart,
+        onFetchImage,
+        saleDetails
+    } = props;
+
     // LOAD DATA
     useEffect(
         () => {
-            props.onFetchImage();
+            onFetchImage();
             // eslint-disable-next-line
         },[]
     )
 
-    // declare state
-    var { cart, sizes, sizeDetails, images } = props;
-
     // return item in cart ui
-    var showCart = cart => {
+    const showCart = cart => {
         if (cart.length ===0) return (
             <tr>
                 <td>Không có sản phẩm nào trong giỏ</td>
@@ -32,19 +41,23 @@ function CartContainer(props){
                         key={index} 
                         item={item}
                         index={index+1}
-                        onDelItemInCartRec={props.onDelItemInCart}
-                        onUpdateQuantityRec={props.onUpdateQuantity}
+                        onDelItemInCartRec={onDelItemInCart}
+                        onUpdateQuantityRec={onUpdateQuantity}
                         sizesRec={sizes}
                         sizeDetailsRec={sizeDetails}
                         imagesRec={images}
+                        saleDetails={saleDetails}
                     />
         });
     }
 
     // return total item in cart
-    var showTotalItem = cart => {
+    const showTotalItem = cart => {
         if (cart.length === 0) return "";
-        return <TotalItem listItem={cart}/>
+        return <TotalItem 
+                    listItem={cart}
+                    saleDetails={saleDetails}
+                />
     }
 
     return(
@@ -64,7 +77,14 @@ CartContainer.propTypes = {
                 quantity: PropTypes.number
             }
         )
-    )
+    ),
+    sizes: PropTypes.array, 
+    sizeDetails: PropTypes.array, 
+    images: PropTypes.array,
+    onUpdateQuantity: PropTypes.func,
+    onDelItemInCart: PropTypes.func,
+    onFetchImage: PropTypes.func,
+    saleDetails: PropTypes.array 
 }
 
 const mapStateToProps = state => {
@@ -72,7 +92,8 @@ const mapStateToProps = state => {
         cart: state.cart,        
         sizeDetails: state.listSizeDetail,
         sizes: state.listSize,
-        images: state.listImages
+        images: state.listImages,
+        saleDetails: state.saleDetails
     }
 };
 const mapDispatchToProps = (dispatch, props) => {
