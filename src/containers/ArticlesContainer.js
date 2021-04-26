@@ -9,6 +9,8 @@ import TaskList from '../components/admin/articles/tasklist/TaskList';
 import TaskItem from '../components/admin/articles/tasklist/TaskItem';
 import TaskControl from '../components/admin/articles/taskcontrol/TaskControl';
 import { useEffect, useState } from 'react';
+import ImageForm from '../components/admin/articles/imagesform/ImagesForm';
+
 
 // code function here
 function ArticlesContainer(props){
@@ -25,12 +27,25 @@ function ArticlesContainer(props){
         onOpenForm,
         onDeleteItem,
         onSaveItem,
-        items
+        items,
+        onUpdateImage
     } = props;
 
     // declare state component
     const [keyword, setKeyword] = useState('');
     const [sortType, setSortType] = useState('');
+    const [showImage,setShowImage] = useState(false);
+
+    // open Form Image 
+    const openFormImage = () => {
+        setShowImage(true);
+    }
+
+    // close Form Image
+    const closeFormImage = () => {
+        setShowImage(false);
+    }
+    
 
     // load data
     useEffect( 
@@ -55,7 +70,10 @@ function ArticlesContainer(props){
     // filter items with keyword
     var itemsFilter = items.filter(
         element => {
-            return element.title.toLowerCase().includes(keyword.toLowerCase());
+            return element.title.toLowerCase().includes(keyword.toLowerCase())||
+                    element.contents.toLowerCase().includes(keyword.toLowerCase())||
+                    element.created_at.toLowerCase().includes(keyword.toLowerCase())||
+                    element.author.toLowerCase().includes(keyword.toLowerCase());
         } 
     )
     switch (sortType) {
@@ -86,6 +104,9 @@ function ArticlesContainer(props){
                 onSelectItemEditRec={onSelectItemEdit}
                 onOpenFormRec={onOpenForm}
                 onUpdateStatusRec={onUpdateStatus}
+                closeFormImage={closeFormImage}
+                openFormImageRec={openFormImage}
+
             />
         )
     });// use for taskList
@@ -106,7 +127,6 @@ function ArticlesContainer(props){
             />
         )
     }
-
 
     // handle when input keyword
     const onSearch = keyword => {
@@ -135,6 +155,18 @@ function ArticlesContainer(props){
     }
 
 
+    // return image form ui
+    const imageForm = () =>{
+        return (
+            <ImageForm 
+                closeFormImageRec={closeFormImage}
+                itemEditRec={itemEdit}
+                onUpdateImageRec={onUpdateImage}
+            />
+        )
+    };
+
+    // return ui
     return(
         <Articles
             isDisplayFormRec={isDisplayForm}
@@ -145,6 +177,8 @@ function ArticlesContainer(props){
             taskListRec={taskList}
             onClearItemEditRec={onClearItemEdit}
             taskControlUI={taskControlUI}
+            showImageRec={showImage}
+            imageFormRec={imageForm}
         />
     );
 }
@@ -194,24 +228,27 @@ const mapDispatchToProps = (dispatch, props) => {
         onClearItemEdit: item => {
             dispatch(Actions.selectArticle(item));
         },
-        onDeleteItem: id => {
-            dispatch(Actions.deleteCategoryRequest(id));
-        },
+        // onDeleteItem: id => {
+        //     dispatch(Actions.deleteCategoryRequest(id));
+        // },
         onUpdateStatus: item => {
-            dispatch(Actions.updateStatusCategoryRequest(item));
+            dispatch(Actions.updateStatusArticleRequest(item));
+        },
+        onUpdateImage: item => {
+            dispatch(Actions.saveImageRequest(item));
         }
     }
 };
 
 // custom sort 
 const sortNameUp = (a,b) => {
-    if (a.category_name > b.category_name) return 1;
-    if (a.category_name < b.category_name) return -1;
+    if (a.title > b.title) return 1;
+    if (a.title < b.title) return -1;
     return 0;
 }
 const sortNameDown = (a,b) => {
-    if (a.category_name > b.category_name) return -1;
-    if (a.category_name < b.category_name) return 1;
+    if (a.title > b.title) return -1;
+    if (a.title < b.title) return 1;
     return 0;
 }
 const sortStatusFalse = (a,b) => {

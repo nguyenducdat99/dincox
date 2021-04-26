@@ -22,6 +22,7 @@ export const UPDATE_SALE_PRODUCT = "UPDATE_SALE_PRODUCT";
 export const FETCH_ARTICLE = "FETCH_ARTICLE";
 export const SAVE_ARTICLE = "SAVE_ARTICLE";
 export const ARTICLE_EDIT = 'ARTICLE_EDIT';
+export const UPDATE_STATUS_ARTICLE = 'UPDATE_STATUS_ARTICLE';
 
 // handle for account
 export const FECTH_ACCOUNT = "FETCH_ACCOUNT";

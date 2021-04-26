@@ -5,7 +5,8 @@ function TaskItem(props) {
         itemRec ,
         onSelectItemEditRec,
         onOpenFormRec,
-        onUpdateStatusRec
+        onUpdateStatusRec,
+        openFormImageRec
     } = props;
 
     // handle return item for onSlectItem
@@ -14,6 +15,13 @@ function TaskItem(props) {
         onOpenFormRec();
     }
     
+    
+    // handle when update quantity
+    const onUpdateImage = () => {
+        onSelectItemEditRec(itemRec.id_new);
+        openFormImageRec()
+    }
+
     // handle update status
     const onUpdateStatus = () => {
         onUpdateStatusRec(itemRec);
@@ -31,9 +39,6 @@ function TaskItem(props) {
                 </a>
             </td>
             <td>
-                {itemRec.contents.trim()!==''?itemRec.contents:'Chưa có'}
-            </td>
-            <td>
                 {
                     <span 
                         className={!(itemRec.status) ? 'label label-danger' : 'label label-info' } 
@@ -46,6 +51,9 @@ function TaskItem(props) {
             <td>
                 <button type="button" className="btn btn-warning" onClick={onSelectItem}>
                     <span className="fa fa-pencil"></span>Sửa
+                </button>
+                <button type="button" className="btn btn-warning" onClick={onUpdateImage}>
+                    <span className="fa fa-file-image-o"></span>Thêm ảnh
                 </button>
             </td>
         </tr>

@@ -3,10 +3,19 @@
 @import '../../../../scss/Variable.scss';
 
 // style for funciton
-.articles {
-    .task-form {
+.background-blur {
+    .images-form {
         border: 1px solid $color-default-border-warning;
         border-radius: 4px;
+        width: 400px;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%,-50%,0);
+        background: $color-default-gradient-v1;
+        z-index: 3;
+        box-shadow: 0 0 7px 0 $color-default-black;
+    
         &__title {
             background-color: $color-default-background-warning;
             color: $color-default-warning;
@@ -62,18 +71,8 @@
                         outline: none;
                     }
                 }
-                textarea.form-control {
-                    height: auto;
-                }
     
             }
-        }
-    }
-}
-@media only screen and (max-width: 768px) {
-    .articles {
-        .task-form {
-            margin-bottom: 15px;
         }
     }
 }

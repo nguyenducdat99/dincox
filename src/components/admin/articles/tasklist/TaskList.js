@@ -47,7 +47,6 @@ function TaskList(props) {
                             <th>Tác giả</th>
                             <th>Ngày tạo</th>
                             <th>Trích dẫn</th>
-                            <th>Nội dung</th>
                             <th>Trạng thái</th>
                             <th>Hành động</th>
                         </tr>

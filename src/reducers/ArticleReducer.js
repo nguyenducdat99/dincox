@@ -12,8 +12,7 @@ const MyReducer = (state=initialState, action) => {
 			return [...state];
         case types.SAVE_ARTICLE:
             index = findIndex(state,action.payload.id_new);
-            // console.log(action.payload);
-            // console.log(index);
+
             if (index === -1) {
                 state.push(action.payload);
             }else{
@@ -28,16 +27,16 @@ const MyReducer = (state=initialState, action) => {
             }
 
             return [...state] 
-        // case types.UPDATE_STATUS_CATEGORY:
-        //     index = findIndex(state,action.payload);
-        //     if (index !== -1 ) {
-        //         state[index] = {
-        //             ...state[index],
-        //             status: (state[index].status*1===1)?0:1
-        //         }
-        //     }
+        case types.UPDATE_STATUS_ARTICLE:
+            index = findIndex(state,action.payload);
+            if (index !== -1 ) {
+                state[index] = {
+                    ...state[index],
+                    status: (state[index].status*1===1)?0:1
+                }
+            }
 
-        //     return [...state]
+            return [...state]
         // case types.DELETE_CATEGORY:
         //     index = findIndex(state, action.payload);
             

@@ -32,6 +32,10 @@
                     a:active {
                         color: $color-default-facebook;
                     }
+
+                    button:first-child {
+                        margin-bottom: 10px;
+                    }
                 }
     
                 .label {
@@ -44,6 +48,7 @@
                     border-radius: .25em;  
                     white-space: nowrap;   
                     color: $color-default-white;
+                    cursor: pointer;
     
                     &-info {
                         background-color: $color-default-green;
@@ -84,7 +89,7 @@
     }
 }
 @media only screen and (max-width: 768px) {
-    .categories {
+    .articles {
         .task-list {
             overflow-x: visible;
         }

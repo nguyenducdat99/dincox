@@ -202,6 +202,32 @@ export const selectArticle = item => {
     }
 }
 
+export const updateStatusArticleRequest = (item) => {
+
+    item = {
+        ...item,
+        status: (item.status*1===1)?0:1
+    }
+    let id = item.id_new;
+
+    return (dispatch) => {
+        return callApi(('news/'+id),'PUT', item).then(
+            res => {
+                if (!res) return console.log('get data failed');
+
+                dispatch(updateStatusArticle(res.data.id_new));
+            }
+        )
+    }
+  
+}
+export const updateStatusArticle = id => {
+    return {
+        type: types.UPDATE_STATUS_ARTICLE,
+        payload: id
+    }
+}
+
 // action for account
 export const fetchAccountRequest = () => {
     return (dispatch) => {

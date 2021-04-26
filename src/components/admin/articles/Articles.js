@@ -12,7 +12,9 @@ function Articles(props) {
         onToggleFormRec,
         taskListRec,
         taskFormRec,
-        taskControlUI
+        taskControlUI,
+        imageFormRec,
+        showImageRec
     } = props;
     
 
@@ -37,6 +39,13 @@ function Articles(props) {
     return (
         <>
             <SmallBanner title="Quản lý"/>
+            {
+                showImageRec?<div className="background-blur">
+                {
+                       imageFormRec()
+                }
+                 </div>:''
+            }
             <div className='articles'>
                 <div className="wrapper">
                     <div className="articles__title">
