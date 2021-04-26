@@ -147,6 +147,47 @@ export const fetchArticle = items => {
     }
 }
 
+export const saveArticleRequest = item => {
+  
+    item = {
+        ...item,
+        status: item.status*1
+    }
+    const id = item.id_new;
+
+    return dispatch => {
+        console.log(item);
+    }
+    // if (id !== ''){
+    //     return (dispatch) => {
+    //         return callApi(('accounts/'+id),'PUT', item).then(
+    //             res => {
+    //                 if (!res) return console.log('get data failed');
+    //                 dispatch(saveAccount(res.data));
+    //             }
+    //         )
+    //     }
+    // } else {
+    //     return (dispatch) => {
+    //         return callApi('accounts','POST', item).then(
+    //             res => {
+    //                 if (!res) return console.log('get data failed');
+
+    //                 dispatch(saveAccount(res.data));
+    //             }
+    //         )
+    //     }
+    // }
+    
+}
+export const saveArticle = newArticle => {
+    return {
+        type: types.SAVE_ARTICLE,
+        payload: newArticle
+    }
+}
+
+
 
 // action for account
 export const fetchAccountRequest = () => {

@@ -34,6 +34,7 @@ import OrderContainer from './containers/OrderContainer';
 import SaleContainer from './containers/SaleContainer';
 import { useEffect, useState } from 'react';
 import AccountContainer from './containers/AccountContainer';
+import ArticlesContainer from './containers/ArticlesContainer';
 
 
 function App(props) {
@@ -148,7 +149,12 @@ function App(props) {
 						{
 							check?<ProductManagerContaner />:<LoginContainer/>
 						}
-						
+					</Route>
+
+					<Route path='/managers/articles'>
+						{
+							check?<ArticlesContainer />:<LoginContainer/>
+						}
 					</Route>
 
 					<Route path='/managers/sales'>

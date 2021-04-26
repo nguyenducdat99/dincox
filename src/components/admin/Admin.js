@@ -36,6 +36,10 @@ function Admin() {
                                 <div className="admin__nav__body__select">
                                     <Link to="/managers/sales">Quản lý khuyến mại</Link>
                                 </div>
+
+                                <div className="admin__nav__body__select">
+                                    <Link to="/managers/articles">Quản lý bài viết</Link>
+                                </div>
                             </div>
                         </div>
                         <div className="admin__description">

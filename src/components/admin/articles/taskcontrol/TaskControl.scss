@@ -1,0 +1,16 @@
+// import style library
+@import '../../../../App.css';
+@import '../../../../scss/Variable.scss';
+
+// style for function
+.articles {
+    .task-control{
+        margin-top: 15px;
+        &__grid{
+            display: grid;
+            grid-template-columns: 6fr 1fr;
+            column-gap: 30px;
+        }
+    }
+    
+}

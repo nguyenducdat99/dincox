@@ -127,6 +127,13 @@
         }
     }
 }
+@media only screen and (max-width: 1366px) {
+    .product-filter {
+        .aproduct {
+            width: 29%;
+        }
+    }
+}
 
 @media only screen and (max-width: 1200px) {
     .aproduct {
@@ -135,6 +142,11 @@
                 width: 80% !important;
             }
         }        
+    }
+    .product-filter {
+        .aproduct {
+            width: 27%;
+        }
     }
 }
 
@@ -177,3 +189,5 @@
         width: 43%;       
     }
 }
+
+// style for product in product filter
