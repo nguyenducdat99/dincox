@@ -4,9 +4,9 @@ import { useParams} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import * as constants from '../../../constants/Config';
 import * as ConvertState from '../../../commons/HandleState';
+import ImageZoom from 'react-medium-image-zoom';
 
 function ProductDetail(props){
-
     // // load facebook sdk.js
     useEffect(
         () => {
@@ -38,6 +38,7 @@ function ProductDetail(props){
     // eslint-disable-next-line
     const [sizeSelected,setSizeSelected] = useState(0);
     const [quantity, setQuantity] = useState(1);
+    const [mainImage, setMainImage] = useState('');
 
     // get id from url
     const { id } = useParams();
@@ -105,21 +106,37 @@ function ProductDetail(props){
 
     
     // get images for item
-    var path = findImages(imagesRec,id_product);
+    const path = findImages(imagesRec,id_product);
 
     // return list small images
     const listSmallImage = path.map(
         (element,index) => {
             return (
-                <div key={index} className="product-detail__list-image__image">
-                    <img src={'' + constants.API_URL + element} alt={"demo"+index}/>
+                <div key={index} 
+                    className="product-detail__list-image__image"
+                >
+                    <img 
+                        src={'' + constants.API_URL + element} 
+                        alt={"demo"+index}
+                        onLoad={event=>event.target.style='opacity: 1'}
+                        onClick={
+                            () => {
+                                setMainImage('' + constants.API_URL + element)
+                            }
+                        }
+                    />
                 </div>
             )
         }
     )
     
     // conver path
-    path = '' + constants.API_URL + path[0];
+    useEffect(
+        () => {
+            if (path[0]) setMainImage('' + constants.API_URL + path[0]);
+            // eslint-disable-next-line
+        },[]
+    )
 
     // hanle when click add to cart
     const addToCart =  () => {
@@ -133,6 +150,7 @@ function ProductDetail(props){
         discount = ConvertState.findDiscountForProduct(id_product,saleDetails)[0].discount;
 
 
+    // return ui
     return(
         <>
             <SmallBanner title="Chi tiết sản phẩm" title2={product_name}/>
@@ -152,7 +170,21 @@ function ProductDetail(props){
                         {/* open main */}
                         <div className="product-detail__main-image">
                             <div className="product-detail__main-image__image">
-                                <img src={path} alt={product_name}/>
+                                {/* <img src={path} alt={product_name}/> */}
+                                <ImageZoom
+                                    image={{
+                                        src: mainImage,
+                                        alt: product_name,
+                                        style: { 
+                                            width: '100%' ,
+                                            height: '100%'
+                                        }
+                                    }}
+                                    zoomImage={{
+                                        src: mainImage,
+                                        alt: product_name
+                                    }}
+                                />
                             </div>
                         </div>
                         {/* close main */}
