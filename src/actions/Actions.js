@@ -155,29 +155,26 @@ export const saveArticleRequest = item => {
     }
     const id = item.id_new;
 
-    return dispatch => {
-        console.log(item);
-    }
-    // if (id !== ''){
-    //     return (dispatch) => {
-    //         return callApi(('accounts/'+id),'PUT', item).then(
-    //             res => {
-    //                 if (!res) return console.log('get data failed');
-    //                 dispatch(saveAccount(res.data));
-    //             }
-    //         )
-    //     }
-    // } else {
-    //     return (dispatch) => {
-    //         return callApi('accounts','POST', item).then(
-    //             res => {
-    //                 if (!res) return console.log('get data failed');
+    if (id !== ''){
+        return (dispatch) => {
+            return callApi(('news/'+id),'PUT', item).then(
+                res => {
+                    if (!res) return console.log('get data failed');
+                    dispatch(saveArticle(res.data));
+                }
+            )
+        }
+    } else {
+        return (dispatch) => {
+            return callApi('news','POST', item).then(
+                res => {
+                    if (!res) return console.log('get data failed');
 
-    //                 dispatch(saveAccount(res.data));
-    //             }
-    //         )
-    //     }
-    // }
+                    dispatch(saveArticle(res.data));
+                }
+            )
+        }
+    }
     
 }
 export const saveArticle = newArticle => {
@@ -187,7 +184,23 @@ export const saveArticle = newArticle => {
     }
 }
 
+export const selectArticleRequest = id => {
+    return (dispatch) => {
+        return callApi(('news/'+id),'GET',id).then(
+            res => {
+                if (!res) return console.log('get data failed');
 
+                dispatch(selectArticle(res.data));
+            }
+        )
+    }
+}
+export const selectArticle = item => {
+    return {
+        type: types.ARTICLE_EDIT,
+        payload: item
+    }
+}
 
 // action for account
 export const fetchAccountRequest = () => {

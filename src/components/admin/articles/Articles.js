@@ -20,14 +20,15 @@ function Articles(props) {
     const onToggleForm = () => {
         onClearItemEditRec(
             {
-                id_category: '',
-                category_name: '',
-                created_at: '',
-                edited_at: '',
+                id_new: '',
+                author: '',
+                title: '',
+                contents: '',
+                reference_links: '',
                 status: 0
             }
         )
-        if (itemEditRec&&itemEditRec.id_category === ''){
+        if (itemEditRec&&itemEditRec.id_new === ''){
             onToggleFormRec();
         }
     };

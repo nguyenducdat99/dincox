@@ -10,7 +10,7 @@ function TaskItem(props) {
 
     // handle return item for onSlectItem
     const onSelectItem = () => {
-        onSelectItemEditRec(itemRec.id_category);
+        onSelectItemEditRec(itemRec.id_new);
         onOpenFormRec();
     }
     
@@ -29,6 +29,9 @@ function TaskItem(props) {
                 <a href={itemRec.reference_links} target='_blank' rel='noreferrer'>
                     <u>{itemRec.reference_links}</u>
                 </a>
+            </td>
+            <td>
+                {itemRec.contents.trim()!==''?itemRec.contents:'Chưa có'}
             </td>
             <td>
                 {

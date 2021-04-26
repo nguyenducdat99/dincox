@@ -168,7 +168,7 @@ const mapStateToProps = state => {
     return {
         items: state.listArticle,
         isDisplayForm: state.isDisplayForm,
-        itemEdit: state.categoryEdit
+        itemEdit: state.ArticleEdit
     }
 };
 const mapDispatchToProps = (dispatch, props) => {
@@ -186,13 +186,13 @@ const mapDispatchToProps = (dispatch, props) => {
             dispatch(Actions.closeForm())
         },
         onSelectItemEdit: id => {
-            dispatch(Actions.selectCategoryRequest(id));
+            dispatch(Actions.selectArticleRequest(id));
         },
         onSaveItem: item => {
             dispatch(Actions.saveArticleRequest(item));
         },
         onClearItemEdit: item => {
-            dispatch(Actions.selectCategory(item));
+            dispatch(Actions.selectArticle(item));
         },
         onDeleteItem: id => {
             dispatch(Actions.deleteCategoryRequest(id));

@@ -3,20 +3,9 @@ import * as types from '../constants/ActionTypes'
 const initialState =  [];
 
 
-function findIndex(state, id) {
-    var result= -1;
-    state.forEach((item, index) => {
-
-        if (item.id_category*1 === id*1) {
-            result = index; 
-        };
-    });
-    return result;
-}
-
 var index = -1;
 
-var MyReducer = (state=initialState, action) =>{
+const MyReducer = (state=initialState, action) =>{
     switch (action.type) {
         case types.FETCH_CATEGORIES:
             state = action.payload;
@@ -52,6 +41,17 @@ var MyReducer = (state=initialState, action) =>{
         default:
             return state;
     }
+}
+
+function findIndex(state, id) {
+    var result= -1;
+    state.forEach((item, index) => {
+
+        if (item.id_category*1 === id*1) {
+            result = index; 
+        };
+    });
+    return result;
 }
 
 export default MyReducer;

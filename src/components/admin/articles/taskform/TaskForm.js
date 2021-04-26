@@ -27,7 +27,7 @@ function TaskForm(props) {
     useEffect(
         () => {
             if (itemEditRec.id_new!=='') {
-                // setObjectTask(itemEditRec);
+                setObjectTask(itemEditRec);
             }else {
                 onClear();
             }
@@ -145,7 +145,6 @@ function TaskForm(props) {
                                     name="contents"
                                     value={objectTask.contents}
                                     rows='4'
-                                    required
                                 >
                                 </textarea>
                         </label>
