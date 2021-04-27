@@ -31,6 +31,7 @@ function ProductFilterContainer(props){
     const ResultFilterUI = () => {
         return (
             <ResultFilter
+                idCategory={id}
                 titleRec={title}   
                 listProductRec={products}
                 onAddToCart={onAddToCart}

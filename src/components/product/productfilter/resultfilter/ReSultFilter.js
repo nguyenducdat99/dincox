@@ -1,12 +1,13 @@
 // import style library, component
 import './ResultFilter.scss';
 import SingleProduct from '../../aproduct/Aproduct';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // cose function here
 function ResultFilter(props) {
     // declare state component
     const [recentPage, setRecentPage] = useState(1);
+    const [presentCategory, setPresentCategory] = useState(false);
 
     // declare product count per page
     const productCount = 6;
@@ -18,16 +19,31 @@ function ResultFilter(props) {
         sizeDetails,
         images,
         saleDetails,
-        onAddToCart
+        onAddToCart,
+        idCategory
     } = props;
     
+    // load data
+    useEffect(
+        () => {
+            setPresentCategory(idCategory);
+        },[idCategory]
+    )
+
     // slice item for page view
     const indexStart = (recentPage-1)*productCount;
     const indexEnd = recentPage*productCount;
     const indexMax = Math.ceil(listProductRec.length/productCount);
 
     // return interface
-    const listIndex = listProductRec.slice(indexStart,indexEnd).map((item, index) => {
+    const listIndex = listProductRec
+    .filter(
+        element => {
+            if (!idCategory) return true;
+            return element.id_category*1 === presentCategory*1;
+        }
+    )
+    .slice(indexStart,indexEnd).map((item, index) => {
         return (
             <SingleProduct 
                 key={index} 
