@@ -2,6 +2,7 @@
 import './ResultFilter.scss';
 import SingleProduct from '../../aproduct/Aproduct';
 import { useEffect, useState } from 'react';
+import * as types from '../../../../constants/ActionTypes';
 
 // cose function here
 function ResultFilter(props) {
@@ -20,9 +21,13 @@ function ResultFilter(props) {
         images,
         saleDetails,
         onAddToCart,
-        idCategory
+        idCategory,
+        onSort
     } = props;
     
+    // declare state component
+    const [sortType,setSortType] = useState(types.NAME_UP);
+
     // load data
     useEffect(
         () => {
@@ -72,6 +77,15 @@ function ResultFilter(props) {
         setRecentPage(recentPage-1);
     };
 
+
+    // handle when change type sort
+    const onHandleChange = event => {
+        const value = event.target.value;
+
+        setSortType(value);
+        onSort(value);
+    }
+
     //return ui
     return(
         <div className="result-filter">
@@ -80,17 +94,16 @@ function ResultFilter(props) {
                     <h1>{titleRec}</h1>
                 </div>
                 <div className="result-filter__head__filter">
-                   <span>Sắp xếp</span>
-                   <select defaultValue="2">
-                       <option value="0">Tùy chọn</option>
-                       <option value="1">Sản phẩm bán chạy</option>
-                       <option value="2">Theo bảng chữ cái A-Z</option>
-                       <option value="3">Theo bảng chữ cái Z-A</option>
-                       <option value="4">Giá từ cao tới thấp</option>
-                       <option value="5">Giá từ thấp tới cao</option>
-                       <option value="6">Mới nhất</option>
-                       <option value="7">Cũ nhất</option>
-                   </select>
+                    <span>Sắp xếp</span>
+                    <select 
+                        value={sortType}
+                        onChange={onHandleChange}
+                    >
+                       <option value={types.NAME_UP}>Theo bảng chữ cái A-Z</option>
+                       <option value={types.NAME_DOWN}>Theo bảng chữ cái Z-A</option>
+                       <option value={types.PRICE_DOWN}>Giá từ cao tới thấp</option>
+                       <option value={types.PRICE_UP}>Giá từ thấp tới cao</option>
+                    </select>
                 </div>
             </div>
             
