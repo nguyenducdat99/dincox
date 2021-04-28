@@ -27,23 +27,28 @@ function ResultFilter(props) {
     useEffect(
         () => {
             setPresentCategory(idCategory);
+            setRecentPage(1);
         },[idCategory]
     )
 
     // slice item for page view
     const indexStart = (recentPage-1)*productCount;
     const indexEnd = recentPage*productCount;
-    const indexMax = Math.ceil(listProductRec.length/productCount);
 
-    // return interface
-    const listIndex = listProductRec
-    .filter(
+
+    // filter product using category
+    const listIndexFilter = listProductRec.filter(
         element => {
             if (!idCategory) return true;
             return element.id_category*1 === presentCategory*1;
         }
     )
-    .slice(indexStart,indexEnd).map((item, index) => {
+
+    // find product quantity max for page
+    const indexMax = Math.ceil(listIndexFilter.length/productCount);
+        
+    // return ui
+    const listIndex = listIndexFilter.slice(indexStart,indexEnd).map((item, index) => {
         return (
             <SingleProduct 
                 key={index} 
@@ -55,6 +60,9 @@ function ResultFilter(props) {
             />
         )
     });
+
+    
+
     // handle page number up
     const onPageNumberUp = () => {
         setRecentPage(recentPage+1);
@@ -95,7 +103,7 @@ function ResultFilter(props) {
                 <button type='button' onClick={onPageNumberDown} className={(recentPage===1)?"result-filter__pagination__button-hidden":""}>
                     <i className="fa fa-angle-left" aria-hidden="true"></i>
                 </button>
-                <button type='button' onClick={onPageNumberUp} className={(recentPage===indexMax)?"result-filter__pagination__button-hidden":""}>
+                <button type='button' onClick={onPageNumberUp} className={(recentPage===indexMax||listIndex.length<productCount)?"result-filter__pagination__button-hidden":""}>
                     <i className="fa fa-angle-right" aria-hidden="true"></i>
                 </button>
             </div>
