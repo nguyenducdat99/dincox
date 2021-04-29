@@ -86,23 +86,13 @@ function ProductFilterContainer(props){
             />
         )
     }
-    const SizesFilterUI = sizes.map((element, index) => {
-        return (
-            <li key={index}>
-                <label>
-                    <input type="checkbox" />
-                    <span>{element.size_name}</span>
-                </label>
-            </li>
-        )
-    });
 
     // return UI 
     return(
             <ProductFilter 
                 onResultFilterRec={ResultFilterUI}
                 titleRec={title}
-                sizesFilterRec={SizesFilterUI}
+                sizes={sizes}
             />
     );
 }
