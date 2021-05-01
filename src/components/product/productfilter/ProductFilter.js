@@ -18,18 +18,8 @@ function ProductFilter(props){
         sizesFilterRec,
         sizes 
     } = props;
+ 
 
-    // return option select
-    const SizesFilterUI = sizes.map((element, index) => {
-        return (
-            <li key={index}>
-                <label>
-                    <input type="checkbox" value={sizes.id_size} />
-                    <span>{element.size_name}</span>
-                </label>
-            </li>
-        )
-    });
 
     // function use when use click
     const onShowFilterPrice = () => {
@@ -42,19 +32,48 @@ function ProductFilter(props){
     // handle when select price filter
     const onHandlePrice = event => {
         const value = event.target.value;
-
+        
         setValFilterPrice(value);
     }
-    console.log(valFilterPrice);
 
     // handle when select size filter
     const onhandleSize = event => {
         const value = event.target.value;
+ 
+        let valFilterSizeCopy = [...valFilterSize];
+        let index = valFilterSizeCopy.indexOf(value);
+        
+        if(index > -1) {
+            valFilterSizeCopy = valFilterSizeCopy.filter(
+                element => {
+                    return element !== value;
+                }
+            ) 
+        }else{
+            valFilterSizeCopy.push(value);
+        }
 
-        setValFilterSize([...valFilterSize].push(value));
+        setValFilterSize(valFilterSizeCopy);
     }
 
+    console.log(valFilterPrice, valFilterSize);
 
+    // return option select
+    const SizesFilterUI = sizes.map((element, index) => {
+
+        return (
+            <li key={index}>
+                <label >
+                    <input 
+                        type="checkbox" 
+                        value={element.id_size} 
+                        onChange={onhandleSize}
+                    />
+                    <span>{element.size_name}</span>
+                </label>
+            </li>
+        )
+    });
     // render component
     return(
         <>
@@ -71,41 +90,58 @@ function ProductFilter(props){
                                 <div className={filterPrice?"product-filter__filter__contents":"product-filter__filter__contents--none"}>
                                     <ul>
                                         <li>
-                                            <label onChange={onHandlePrice}>
+                                            <label >
                                                 <input 
                                                     type="radio" 
                                                     value='0' 
                                                     name='filter-price'
+                                                    onChange={onHandlePrice}
                                                 />
                                                 <span>Tất cả</span>
                                             </label>
                                         </li>
                                         <li>
-                                            <label onChange={onHandlePrice}>
+                                            <label >
                                                 <input 
                                                     type="radio" 
                                                     value='1' 
                                                     name='filter-price'
+                                                    onChange={onHandlePrice}
                                                 />
                                                 <span>Nhỏ hơn 100.000đ</span>
                                             </label>
                                         </li>
                                         <li>
                                             <label onChange={onHandlePrice}>
-                                                <input type="radio" value='2' name='filter-price'/>
+                                                <input 
+                                                    type="radio" 
+                                                    value='2' 
+                                                    name='filter-price'
+                                                    onChange={onHandlePrice}
+                                                />
                                                 <span>100.000đ - 500.000đ</span>
                                             </label>
                                         </li>
                                         <li>
                                             <label onChange={onHandlePrice}>
-                                                <input type="radio" value='3' name='filter-price' />
+                                                <input 
+                                                    type="radio" 
+                                                    value='3' 
+                                                    name='filter-price' 
+                                                    onChange={onHandlePrice}
+                                                />
                                                 <span>500.000đ - 1.000.000đ</span>
                                             </label>
                                         </li>
                                         
                                         <li>
                                             <label onChange={onHandlePrice}>
-                                                <input type="radio" value='4' name='filter-price' />
+                                                <input 
+                                                    type="radio" 
+                                                    value='4' 
+                                                    name='filter-price' 
+                                                    onChange={onHandlePrice}
+                                                />
                                                 <span>Lớn hơn 1.000.000đ</span>
                                             </label>
                                         </li>
@@ -121,8 +157,12 @@ function ProductFilter(props){
                                 <div className={filterSize?"product-filter__filter__contents":"product-filter__filter__contents--none"}>
                                     <ul>
                                         <li>
-                                            <label>
-                                                <input type="checkbox" value='0'/>
+                                            <label >
+                                                <input 
+                                                    type="checkbox" 
+                                                    value='0'
+                                                    onChange={onhandleSize}
+                                                />
                                                 <span>Tất cả</span>
                                             </label>
                                         </li>
