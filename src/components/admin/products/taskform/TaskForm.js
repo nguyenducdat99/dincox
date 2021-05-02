@@ -33,8 +33,10 @@ function TaskForm(props) {
 
    
     // handle when submit
-    var onHandleSubmit = event => {
+    const onHandleSubmit = event => {
         event.preventDefault();
+
+        if (objectTask.id_category*1===0) return alert('Vui lòng chọn danh mục sản phẩm!');
         props.onSaveItemRec(objectTask);
         // console.log(objectTask);
         onClear();
@@ -42,7 +44,7 @@ function TaskForm(props) {
     }
 
     // handle when value change
-    var onHandleChange = event => {
+    const onHandleChange = event => {
         let target = event.target;
         let name = target.name;
         let value = target.value;
@@ -56,7 +58,7 @@ function TaskForm(props) {
     }
 
     // clear value form
-    function onClear() {
+    const onClear = () => {
         setObjectTask(
             {
                 ...objectTask,
@@ -72,7 +74,7 @@ function TaskForm(props) {
     }
 
     // Exit this form
-    var onExitForm = () => {
+    const onExitForm = () => {
         props.onClearItemEditRec(
             {
                 id_product: '',

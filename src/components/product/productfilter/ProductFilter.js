@@ -5,19 +5,22 @@ import './ProductFilter.scss';
 
 // code function here
 function ProductFilter(props){
-    // declare state component
-    const [filterPrice, setFilterPrice] = useState(false);
-    const [filterSize, setFilterSize] = useState(false);
-    const [valFilterPrice, setValFilterPrice] = useState(null);
-    const [valFilterSize, setValFilterSize] = useState([]);
-
+    
     // get props
     const { 
         titleRec,
         onResultFilterRec,
-        sizesFilterRec,
-        sizes 
+        sizes,
+        onHandleChangeSize,
+        onHandleChangePrice
     } = props;
+
+    // declare state component
+    const [filterPrice, setFilterPrice] = useState(false);
+    const [filterSize, setFilterSize] = useState(false);
+    const [valFilterSize, setValFilterSize] = useState([]);
+    // eslint-disable-next-line
+    const [valFilterPrice, setValFilterPrice] = useState(null);
  
 
 
@@ -32,7 +35,8 @@ function ProductFilter(props){
     // handle when select price filter
     const onHandlePrice = event => {
         const value = event.target.value;
-        
+
+        onHandleChangePrice(value);
         setValFilterPrice(value);
     }
 
@@ -53,10 +57,11 @@ function ProductFilter(props){
             valFilterSizeCopy.push(value);
         }
 
+        onHandleChangeSize(valFilterSizeCopy);
         setValFilterSize(valFilterSizeCopy);
     }
 
-    console.log(valFilterPrice, valFilterSize);
+
 
     // return option select
     const SizesFilterUI = sizes.map((element, index) => {
@@ -119,7 +124,7 @@ function ProductFilter(props){
                                                     name='filter-price'
                                                     onChange={onHandlePrice}
                                                 />
-                                                <span>100.000đ - 500.000đ</span>
+                                                <span>100.000đ - 499.000đ</span>
                                             </label>
                                         </li>
                                         <li>
@@ -130,7 +135,7 @@ function ProductFilter(props){
                                                     name='filter-price' 
                                                     onChange={onHandlePrice}
                                                 />
-                                                <span>500.000đ - 1.000.000đ</span>
+                                                <span>500.000đ - 999.000đ</span>
                                             </label>
                                         </li>
                                         
@@ -142,7 +147,7 @@ function ProductFilter(props){
                                                     name='filter-price' 
                                                     onChange={onHandlePrice}
                                                 />
-                                                <span>Lớn hơn 1.000.000đ</span>
+                                                <span>Từ 1.000.000đ</span>
                                             </label>
                                         </li>
                                         

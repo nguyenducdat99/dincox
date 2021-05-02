@@ -36,6 +36,12 @@ function ResultFilter(props) {
         },[idCategory]
     )
 
+    // load data when products changes
+    useEffect(
+        () => {
+            setRecentPage(1);
+        },[listProductRec]
+    )
     // slice item for page view
     const indexStart = (recentPage-1)*productCount;
     const indexEnd = recentPage*productCount;

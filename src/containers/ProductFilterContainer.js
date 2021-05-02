@@ -20,19 +20,36 @@ function ProductFilterContainer(props){
         sizeDetails,
         onAddToCart
     } = props;
+
+    // convert id from url to category title
+    const { id } = useParams();
     
     // declare state component
     const [sortType, setSortType] = useState(types.NAME_UP);
+    const [valFilterPrice, setValFilterPrice] = useState(null);
+    const [valFilterSize, setValFilterSize] = useState([]);
     
-    // convert id from url to category title
-    const { id } = useParams();
+    // handle change value valFilterPrice
+    const onHandleChangePrice = price => {
+        setValFilterPrice(price)
+    }
 
+    // handle change value valFilerSize
+    const onHandleChangeSize = array => {
+
+        setValFilterSize([...array]);
+    }
     // get title for result filter
     const index = findIndex(categories,id);
     const title = index===-1?'Tất cả các sản phẩm':categories[index].category_name;
 
-    // filter product
-    var itemsFilter = products;
+    // filter product using size
+    var itemsFilter = (valFilterPrice===null||valFilterPrice*1===0)?
+    products:
+    onFilterPrice(valFilterPrice,products);
+    
+    console.log(valFilterPrice,itemsFilter);
+    // sort product
     switch (sortType) {
         case types.NAME_UP:
             itemsFilter.sort(sortNameUp);
@@ -93,6 +110,8 @@ function ProductFilterContainer(props){
                 onResultFilterRec={ResultFilterUI}
                 titleRec={title}
                 sizes={sizes}
+                onHandleChangeSize={onHandleChangeSize}
+                onHandleChangePrice={onHandleChangePrice}
             />
     );
 }
@@ -157,5 +176,39 @@ const sortPriceDown = (a,b) => {
     return 0;
 }
 
+const onFilterPrice = (type,array) => {
+    switch (type) {
+        case '1':
+            const result1 = array.filter(
+                element => {
+                    return element.price<100000;
+                }
+            )
+            return result1;
+        case '2':
+            const result2 = array.filter(
+                element => {
+                    return element.price>=100000&&element.price<500000;
+                }
+            )
+            return result2;
+        case '3':
+            const result3 = array.filter(
+                element => {
+                    return element.price>=500000&&element.price<1000000;
+                }
+            )
+            return result3;
+        case '4':
+            const result4 = array.filter(
+                element => {
+                    return element.price>=1000000;
+                }
+            )
+            return result4;
+        default:
+            return array;
+    }
+}
 
 export default connect(mapStateToProps,mapDispatchToProps)(ProductFilterContainer)
