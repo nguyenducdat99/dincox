@@ -47,8 +47,11 @@ function ProductFilterContainer(props){
     var itemsFilter = (valFilterPrice===null||valFilterPrice*1===0)?
     products:
     onFilterPrice(valFilterPrice,products);
-    
-    console.log(valFilterPrice,itemsFilter);
+ 
+    itemsFilter = (valFilterSize.length<1||valFilterSize.indexOf('0')>-1)?
+    itemsFilter:
+    onFilterSize(products,sizeDetails,valFilterSize);
+
     // sort product
     switch (sortType) {
         case types.NAME_UP:
@@ -209,6 +212,36 @@ const onFilterPrice = (type,array) => {
         default:
             return array;
     }
+}
+
+const onCheckFilterSize = (id_product,arraySize,types) => {
+    // find size detail 
+    const sizeDetail = arraySize.filter(
+        element => {
+            return element.id_product*1 === id_product;
+        }
+    )
+    let result = false;
+
+    if (sizeDetail.length<0) return result;
+
+    sizeDetail.forEach(
+        element => {
+            if(types.indexOf(element.id_size+'')>-1) result = true;
+        }
+    )
+
+    return result;
+}
+
+const onFilterSize = (products,size_details,types) => {
+    const result = products.filter(
+        element => {
+            return onCheckFilterSize(element.id_product,size_details,types);
+        }
+    )
+
+    return result;
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(ProductFilterContainer)
