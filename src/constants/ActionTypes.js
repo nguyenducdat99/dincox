@@ -86,6 +86,7 @@ export const DELETE_CHECKOUT = 'DELETE_CHECKOUT';
 
 // handler for order
 export const FETCH_ORDER = 'FETCH_ORDER';
+export const FETCH_ALL_ORDER = 'FETCH_ALL_ORDER';
 export const FETCH_ORDER_DETAIL = 'FETCH_ORDER_DETAIL';
 export const RESET_ORDER = 'RESET_ORDER';
 

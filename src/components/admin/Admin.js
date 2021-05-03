@@ -40,6 +40,10 @@ function Admin() {
                                 <div className="admin__nav__body__select">
                                     <Link to="/managers/articles">Quản lý bài viết</Link>
                                 </div>
+
+                                <div className="admin__nav__body__select">
+                                    <Link to="/managers/orders">Quản lý đơn hàng</Link>
+                                </div>
                             </div>
                         </div>
                         <div className="admin__description">

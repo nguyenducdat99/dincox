@@ -160,9 +160,10 @@ function SaleContainer(props){
     // return list option product for select
     const optionProductUI = ListProduct.map(
         (element,index) => {
-            return (
+            if(element.is_sale) return (
                 <option key={index} value={element.id_product}>{element.product_name}</option>
             )
+            return '';
         }
     )
 

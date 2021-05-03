@@ -3,7 +3,7 @@
 @import '../../../scss/Variable.scss';
 
 // style for function
-.account {
+.orders {
     padding: 30px 0;
     background-color: $color-default-white;
     min-height: 700px;
@@ -55,15 +55,7 @@
             }
         }
         
-        &__grid {
-            display: grid;
-            grid-template-columns: 4fr 8fr;
-            column-gap: 30px;
-            &--hiddem {
-                display: grid;
-                grid: 8fr;
-            }
-        }
+
         &__add-update {
             &--hidden {
                 display: none;
@@ -91,12 +83,12 @@
 }
 
 @media only screen and (max-width: 1200px) {
-    .account {
+    .orders {
         padding: 30px;
     }
 }
 @media only screen and (max-width: 768px) {
-    .account {
+    .orders {
         &__manager {
             &__grid {
                 display: block;
@@ -105,7 +97,7 @@
     }
 }
 @media only screen and (max-width: 480px) {
-    .account {
+    .orders {
         padding: 15px;
     }
 }

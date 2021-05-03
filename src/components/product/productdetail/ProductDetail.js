@@ -146,8 +146,10 @@ function ProductDetail(props){
 
     // get discount
     var discount = 0;
-    if (saleDetails.length>0)
-        discount = ConvertState.findDiscountForProduct(id_product,saleDetails)[0].discount;
+    if (is_sale&&saleDetails.length>0)
+        discount = ConvertState.findDiscountForProduct(id_product,saleDetails).length>0?
+            ConvertState.findDiscountForProduct(id_product,saleDetails)[0].discount:
+            discount;
 
 
     // return ui

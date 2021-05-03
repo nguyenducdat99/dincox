@@ -1,0 +1,106 @@
+// import style library
+@import '../../../../App.css';
+@import '../../../../scss/Variable.scss';
+
+// style for function
+.orders {
+    .task-list {
+        margin-top: 15px;
+        height: 60vh;
+        overflow: scroll;
+        overflow-x: hidden;
+
+        &__table {
+            border: 1px solid $color-default-lightgray;
+            width: 100%;
+            border-collapse: collapse;
+    
+            tr {
+                th {
+                    padding: 8px;
+                    border: 1px solid $color-default-lightgray;
+                    text-align: center;
+                }
+                td {
+                    padding: 8px;
+                    border: 1px solid $color-default-lightgray;
+                    text-align: center;
+
+                    button {
+                        display: block;
+                        width: 100%;
+
+                        &:first-child {
+                            margin-bottom: 10px;
+                        }
+                    }
+
+                    select {
+                        padding: 0.25rem;
+                        border-radius: 0.25rem;
+                        font-size: 10px;
+                        color: $color-default-white;
+                        background: red;
+                        text-transform: uppercase;
+                        text-align: center;
+                        border: 1px solid transparent;
+                        font-weight: $font-weight-700
+                    }
+                }
+    
+                .label {
+                    display: inline;
+                    padding: .3em .6em;
+                    font-size: 75%;
+                    font-weight: $font-weight-700;
+                    line-height: 1.4;
+                    text-align: center;
+                    border-radius: .25em;  
+                    white-space: nowrap;   
+                    color: $color-default-white;
+    
+                    &-info {
+                        background-color: $color-default-green;
+                    }                                  
+                    &-danger {
+                        background-color: $color-default-btn-danger;
+                    }
+                }
+            }
+            &__line-odd {
+                background-color: $color-default-line-odd;
+            }
+        }
+        &__pagination {
+            margin-top: 15px;
+            button[type=button],
+            input[type=text] {
+                border: none;
+                &:focus {
+                    outline: none;
+                }
+            }
+    
+            button[type=button] {
+                padding: 0.375rem 0.75rem;
+                background: none;
+                font-size: $font-size-16;
+            }
+            input[type=text] {
+                padding: 0.375rem 0.75rem;
+                font-size: $font-size-16;
+                width: 50px;
+                text-align: center;
+                border-bottom: 1px solid $color-default-lightgray;
+                padding-bottom: 0;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 768px) {
+    .orders {
+        .task-list {
+            overflow-x: visible;
+        }
+    }
+}

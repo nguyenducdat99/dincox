@@ -18,7 +18,7 @@ function Sales(props) {
     
 
     // toggle form add/edit
-    var onToggleForm = () => {
+    const onToggleForm = () => {
         props.onClearItemEditRec(
             {
                 id_sale: -1,

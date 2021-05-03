@@ -996,6 +996,17 @@ export const fetchOrderRequest = id => {
         )
     }
 }
+export const fetchAllOrderRequest = () => {
+    return (dispatch) => {
+        return callApi('orders', 'GET',null).then(
+            res => {
+                if (!res) return console.log('get data failed');
+
+                dispatch(fetchOrder(res.data));
+            }
+        )
+    }
+}
 export const fetchOrder = items => {
     return {
         type: types.FETCH_ORDER,
