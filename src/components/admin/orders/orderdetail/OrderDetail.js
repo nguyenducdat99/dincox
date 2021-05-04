@@ -1,42 +1,12 @@
 // import lstyle library
 import './OrderDetail.scss';
-import { mapValueAndName } from '../../../constants/GlobalVariables'
-
-function findProductName(items, id) {
-    let result = '';
-    
-    items.forEach(element => {
-        if (element.id_product*1===id*1) result = element.product_name;
-    });
-
-    return result;
-}
-
-function findProductPrice(items, id) {
-    let result = '';
-    
-    items.forEach(element => {
-        if (element.id_product*1===id*1) result = element.price;
-    });
-
-    return result;
-}
-
-function findSizeName(items, id) {
-    let result = '';
-    
-    items.forEach(element => {
-        if (element.id_size*1===id*1) result = element.size_name;
-    });
-
-    return result;
-}
+import { mapValueAndName } from '../../../../constants/GlobalVariables';
 
 // code function here
 function OrderDetail(props){
     // get props
     const {
-        onCloseFormRec,
+        closeDetail, 
         presentOrderRec, 
         orderDetailsRec, 
         productsRec, 
@@ -44,6 +14,7 @@ function OrderDetail(props){
     } = props;
 
     var valueOrder = 0;
+    
 
     // return list ui
     const listItem = orderDetailsRec.length===0?
@@ -88,12 +59,12 @@ function OrderDetail(props){
                 return '';
         }
     }
-    
+
     // return ui
     return (
        <div className="order-detail__wrapper">
            <div className="order-detail">
-               <div className="order-detail__close" onClick={onCloseFormRec}>
+               <div className="order-detail__close" onClick={closeDetail}>
                     <u><i className="fa fa-angle-left" aria-hidden="true"></i><span> Thoát</span></u>
                </div>
                 <h3>
@@ -157,6 +128,36 @@ function OrderDetail(props){
            </div>
        </div>
    )
+}
+
+function findProductName(items, id) {
+    let result = '';
+    
+    items.forEach(element => {
+        if (element.id_product*1===id*1) result = element.product_name;
+    });
+
+    return result;
+}
+
+function findProductPrice(items, id) {
+    let result = '';
+    
+    items.forEach(element => {
+        if (element.id_product*1===id*1) result = element.price;
+    });
+
+    return result;
+}
+
+function findSizeName(items, id) {
+    let result = '';
+    
+    items.forEach(element => {
+        if (element.id_size*1===id*1) result = element.size_name;
+    });
+
+    return result;
 }
 
 export default OrderDetail;

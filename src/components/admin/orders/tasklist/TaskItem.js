@@ -7,8 +7,7 @@ function TaskItem(props) {
         index, 
         itemRec,
         onUpdateStatusRec,
-        onOpenFormRec,
-        onSelectItemEditRec 
+        openDetail 
     } = props;
 
     // declare state component;
@@ -42,8 +41,7 @@ function TaskItem(props) {
 
     // handle return item for onSlectItem
     const onSelectItem = () => {
-        onSelectItemEditRec(itemRec.id_size);
-        onOpenFormRec();
+        openDetail(itemRec);
     }
     
 
@@ -122,6 +120,29 @@ function TaskItem(props) {
         }
     }
 
+    var colorSelect = '';
+    switch (statusItem*1) {
+        case -1:
+            colorSelect = 'huy';
+            break;
+        case 0:
+            colorSelect = 'dat-hang';
+            break;
+        case 1:
+            colorSelect = 'xac-nhan';
+            break;
+        case 2:
+            colorSelect = 'giao-hang';
+            break;
+        case 3:
+            colorSelect = 'thanh-cong';
+            break;
+    
+        default:
+
+            break;
+    }
+
     // return ui
     return (
         <tr className={index%2===0?"task-list__table__line-odd":''}>
@@ -138,6 +159,7 @@ function TaskItem(props) {
                 <select
                     value={statusItem}
                     onChange={onHandleChange}
+                    className={colorSelect}
                 >
                     {optionStatus()}
                 </select>

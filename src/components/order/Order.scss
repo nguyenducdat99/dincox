@@ -63,13 +63,26 @@
                 text-align: center;
                 padding: 6px 12px;
     
-                .waiting {
-                    color: $color-default-btn-danger;
+                .huy {
+                    color: $color-huy;
                 }
-    
-                .successful {
-                    color: $color-default-green;
+
+                .dat-hang {
+                    color: $color-dat-hang;
                 }
+
+                .giao-hang {
+                    color: $color-giao-hang;
+                }
+
+                .xac-nhan {
+                    color: $color-xac-nhan;
+                }
+
+                .thanh-cong {
+                    color: $color-thanh-cong;
+                }
+
                 u {
                     color: $color-btn-primary;
                     cursor: pointer;

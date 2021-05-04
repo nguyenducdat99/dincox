@@ -39,12 +39,27 @@
                         padding: 0.25rem;
                         border-radius: 0.25rem;
                         font-size: 10px;
-                        // color: $color-default-white;
-                        // background: red;
+                        color: $color-default-white;
                         text-transform: uppercase;
                         text-align: center;
                         border: 1px solid transparent;
                         font-weight: $font-weight-700
+                    }
+
+                    .dat-hang {
+                        background-color: $color-dat-hang;
+                    }
+                    .xac-nhan {
+                        background-color: $color-xac-nhan;
+                    }
+                    .giao-hang {
+                        background-color: $color-giao-hang;
+                    }
+                    .thanh-cong {
+                        background-color: $color-thanh-cong;
+                    }
+                    .huy {
+                        background-color: $color-huy;
                     }
                 }
     

@@ -2,17 +2,23 @@
 import './Orders.scss';
 import SmallBanner from '../../fixcontents/smallbanner/SmallBanner';
 
+
 // function code here
 function Orders(props) {
     // get props
     const { 
         taskListRec,
-        taskControlUI
+        taskControlUI,
+        showDetail,
+        orderDetailUI
      } = props;
 
     return (
         <>
             <SmallBanner title="Quản lý"/>
+            {
+                showDetail?orderDetailUI():''
+            }
             <div className='orders'>
                 <div className="wrapper">
                     <div className="orders__title">

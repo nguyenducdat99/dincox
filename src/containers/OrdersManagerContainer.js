@@ -7,6 +7,7 @@ import Orders from '../components/admin/orders/Orders';
 import TaskList from '../components/admin/orders/tasklist/TaskList';
 import TaskItem from '../components/admin/orders/tasklist/TaskItem';
 import TaskControl from '../components/admin/orders/taskcontrol/TaskControl';
+import OrderDetail from '../components/admin/orders/orderdetail/OrderDetail';
 import { useEffect, useState } from 'react';
 
 // code function here
@@ -16,12 +17,64 @@ function OrdersManagerContainer(props){
         onFetchApi,
         onSelectItemEdit,
         onUpdateStatus,
-        items
+        items,
+        products,
+        sizes,
+        orderDetails,
+        fetchOrderDetail
     } = props;
 
     // declare state
     const [keyword, setKeyword] = useState('');
     const [sortType, setSortType] = useState('');
+    const [showDetail, setShowDetail] = useState(false);
+    const [presentOrder,setPresentOrder] = useState({
+        id_order: 0,
+        id_account: 0,
+        create_at: "",
+        email: "",
+        number_phone: "0",
+        receiver: "",
+        sent_to: "",
+        transport_fee: 0,
+        status: 0
+    });
+
+
+    // get order detail
+    useEffect(
+        () => {
+            if (presentOrder.id_order!==0) {
+                fetchOrderDetail(presentOrder.id_order);
+            }
+            // eslint-disable-next-line
+        },[presentOrder.id_order]
+    )
+
+    // handle open order detail
+    const openDetail = item => {
+        setPresentOrder(item);
+        setShowDetail(true);
+    }
+
+    // handle close order detail
+    const closeDetail = () => {
+        setPresentOrder(
+            {
+                id_order: 0,
+                id_account: 0,
+                create_at: "",
+                email: "",
+                number_phone: "0",
+                receiver: "",
+                sent_to: "",
+                transport_fee: 0,
+                status: 0
+            }
+        );
+        setShowDetail(false);
+    }
+
 
     // load data
     useEffect( 
@@ -30,14 +83,19 @@ function OrdersManagerContainer(props){
             // eslint-disable-next-line
         },[]
     )
-    
+   
     // filter items with keyword
-    var itemsFilter = items.filter(
+    var itemsFilter = (items.length>0)?items.filter(
         element => {
-            // return element.size_name.toLowerCase().includes(keyword.toLowerCase());
-            return true;
+            return  ((element.create_at)?element.create_at.toLowerCase().includes(keyword.toLowerCase()):false)||
+                    ((element.email)?element.email.toLowerCase().includes(keyword.toLowerCase()):false)||
+                    ((element.sent_to)?element.sent_to.toLowerCase().includes(keyword.toLowerCase()):false)||
+                    ((element.number_phone)?element.number_phone.toLowerCase().includes(keyword.toLowerCase()):false)||
+                    ((element.receiver)?element.receiver.toLowerCase().includes(keyword.toLowerCase()):false)||
+                    ((element.id_order)?('dincox'+element.id_order).toLowerCase().includes(keyword.toLowerCase()):false)
         } 
-    )
+    ):items;
+
     switch (sortType) {
         case Types.NAME_UP:
             itemsFilter.sort(sortNameUp);
@@ -66,6 +124,7 @@ function OrdersManagerContainer(props){
                 itemRec={item}
                 onSelectItemEditRec={onSelectItemEdit}
                 onUpdateStatusRec={onUpdateStatus}
+                openDetail={openDetail}
             />
         )
     });// use for taskList
@@ -129,11 +188,26 @@ function OrdersManagerContainer(props){
         }
     }
 
+    // return order detail
+    const orderDetailUI = () => {
+        return (
+            <OrderDetail 
+                closeDetail={closeDetail}
+                orderDetailsRec={orderDetails}
+                productsRec={products}
+                sizesRec={sizes}
+                presentOrderRec={presentOrder}
+            />
+        )
+    }
+
     // return ui
     return(
         <Orders
             taskListRec={taskList}
             taskControlUI={taskControlUI}
+            orderDetailUI={orderDetailUI}
+            showDetail={showDetail}
         />
     );
 }
@@ -150,14 +224,21 @@ OrdersManagerContainer.propTypes = {
     onDeleteItem: PropTypes.func,
     onSaveItem: PropTypes.func,
     onFetchApi: PropTypes.func,
-    onCloseForm: PropTypes.func
+    onCloseForm: PropTypes.func,
+    products: PropTypes.array,
+    sizes: PropTypes.array,
+    orderDetails: PropTypes.array,
+    fetchOrderDetail: PropTypes.func
 }
 
 const mapStateToProps = state => {
     return {
         items: state.order,
         isDisplayForm: state.isDisplayForm,
-        itemEdit: state.sizeEdit
+        itemEdit: state.sizeEdit,
+        orderDetails: state.orderDetail,
+        sizes: state.listSize,
+        products: state.ListProduct,
     }
 };
 const mapDispatchToProps = (dispatch, props) => {
@@ -170,29 +251,32 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         onUpdateStatus: data => {
             dispatch(Actions.updateStatusOrderRequest(data));
-        }
+        },
+        fetchOrderDetail: id => {
+            dispatch(Actions.fetchOrderDetailRequest(id));
+        },
     }
 };
 
 // custom sort 
 const sortNameUp = (a,b) => {
-    if (a.size_name > b.size_name) return 1;
-    if (a.size_name < b.size_name) return -1;
+    if (a.id_order > b.id_order) return 1;
+    if (a.id_order < b.id_order) return -1;
     return 0;
 }
 const sortNameDown = (a,b) => {
-    if (a.size_name > b.size_name) return -1;
-    if (a.size_name < b.size_name) return 1;
+    if (a.id_order > b.id_order) return -1;
+    if (a.id_order < b.id_order) return 1;
     return 0;
 }
 const sortStatusFalse = (a,b) => {
-    if (a.status > b.status) return 1;
-    if (a.status < b.status) return -1;
+    if (a.receiver > b.receiver) return 1;
+    if (a.receiver < b.receiver) return -1;
     return 0;
 }
 const sortStatusTrue = (a,b) => {
-    if (a.status > b.status) return -1;
-    if (a.status < b.status) return 1;
+    if (a.receiver > b.receiver) return -1;
+    if (a.receiver < b.receiver) return 1;
     return 0;
 }
 

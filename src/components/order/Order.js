@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import SmallBanner from '../fixcontents/smallbanner/SmallBanner';
 import OrderDetail from './orderdetail/OrderDetail';
+import { mapValueAndName } from '../../constants/GlobalVariables'
 import './Order.scss';
 
 // code function here
@@ -88,6 +89,23 @@ function Order(props){
         setNumberPhone(value);
     }
 
+    const statusOrder = (status) => {
+        switch (status*1) {
+            case -1:
+                return <span className="huy">{mapValueAndName[4].name}</span>
+            case 0:
+                return <span className="dat-hang">{mapValueAndName[0].name}</span>
+            case 1:
+                return <span className="xac-nhan">{mapValueAndName[1].name}</span>
+            case 2:
+                return <span className="giao-hang">{mapValueAndName[2].name}</span>
+            case 3:
+                return <span className="thanh-cong">{mapValueAndName[3].name}</span>
+            default:
+                return '';
+        }
+    }
+
     // return list ui
     const listOrder = ordersRec.length===0?'':ordersRec.map(
         (element, index) => {
@@ -109,9 +127,7 @@ function Order(props){
                     </td>
                     <td>
                     {
-                        element.status?
-                        <span className="waiting">Đặt hàng</span>:
-                        <span className="successful">Giao thành công</span> 
+                        statusOrder(element.status)
                     }
                     </td>
                     <td>
