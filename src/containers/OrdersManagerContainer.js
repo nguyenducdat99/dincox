@@ -8,7 +8,6 @@ import TaskList from '../components/admin/orders/tasklist/TaskList';
 import TaskItem from '../components/admin/orders/tasklist/TaskItem';
 import TaskControl from '../components/admin/orders/taskcontrol/TaskControl';
 import { useEffect, useState } from 'react';
-import { mapValueAndName } from '../constants/GlobalVariables';
 
 // code function here
 function OrdersManagerContainer(props){
@@ -57,19 +56,6 @@ function OrdersManagerContainer(props){
             break;
     }
 
-    // return option for status of order
-    const optionStatus = mapValueAndName.map(
-        (element, index) => {
-            return (
-                <option 
-                    key={index}
-                    value={element.value}
-                >
-                    {element.name}
-                </option>
-            )
-        }
-    )
     
     // return item in task list
     const listIndex = itemsFilter.map((item, index) => {
@@ -80,7 +66,6 @@ function OrdersManagerContainer(props){
                 itemRec={item}
                 onSelectItemEditRec={onSelectItemEdit}
                 onUpdateStatusRec={onUpdateStatus}
-                optionStatus={optionStatus}
             />
         )
     });// use for taskList
@@ -183,8 +168,8 @@ const mapDispatchToProps = (dispatch, props) => {
         onSelectItemEdit: id => {
             dispatch(Actions.selectSizeRequest(id));
         },
-        onUpdateStatus: item => {
-            dispatch(Actions.updateStatusSizeRequest(item));
+        onUpdateStatus: data => {
+            dispatch(Actions.updateStatusOrderRequest(data));
         }
     }
 };

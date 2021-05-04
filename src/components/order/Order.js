@@ -33,7 +33,7 @@ function Order(props){
     const [numberPhone, setNumberPhone] = useState('');
             
     // open form detail
-    var onOpenForm = order => {
+    const onOpenForm = order => {
         setPresentOrder(order);
         setShowDetail(true);
     }
@@ -57,7 +57,7 @@ function Order(props){
     )
 
     // close form detail
-    var onCloseForm = () => {
+    const onCloseForm = () => {
         setPresentOrder(
             {
                 id_order: 0,
@@ -74,7 +74,7 @@ function Order(props){
         setShowDetail(false);
     }
     // handle when submit
-    var onHandleSubmit = event => {
+    const onHandleSubmit = event => {
         event.preventDefault();
         if (numberPhone.trim()==='') return alert('Bạn vui lòng nhập số điện thoại để kiểm tra!')
         if (numberPhone.length<9) return alert('Số điện điện thoại không đúng định dạng.');
@@ -82,14 +82,14 @@ function Order(props){
     }
 
     // handle when input change
-    var onHandleChange = event => {
+    const onHandleChange = event => {
         let value = event.target.value;
 
         setNumberPhone(value);
     }
 
     // return list ui
-    var listOrder = ordersRec.length===0?'':ordersRec.map(
+    const listOrder = ordersRec.length===0?'':ordersRec.map(
         (element, index) => {
             return (
                 <tr
@@ -128,7 +128,7 @@ function Order(props){
         }
     )
 
-
+    // return ui
     return(
         <>
             <SmallBanner title='Kiểm tra đơn hàng'/>

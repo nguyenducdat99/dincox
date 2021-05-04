@@ -983,7 +983,6 @@ export const addCheckoutRequest = (item, newQuantity, saleDetails) => {
     }
 }
 
-
 // action for order
 export const fetchOrderRequest = id => {
     return (dispatch) => {
@@ -1036,5 +1035,30 @@ export const fetchOrderDetail = items => {
 export const resetOrder = () => {
     return {
         type: types.RESET_ORDER
+    }
+}
+export const updateStatusOrderRequest = data => {
+
+    const id = data.id_order;
+
+    return (dispatch) => {
+        return callApi(('orders/'+id),'PUT', data).then(
+            res => {
+                if (!res) return console.log('update status order failed');
+
+                dispatch(updateStatusOrder(res.data));
+                // console.log(res.data);
+            }
+        )
+    }
+  
+}
+export const updateStatusOrder = data => {
+    return {
+        type: types.UPDATE_STATUS_ORDER,
+        payload: {
+            id_order: data.id_order,
+            status: data.status
+        }
     }
 }
