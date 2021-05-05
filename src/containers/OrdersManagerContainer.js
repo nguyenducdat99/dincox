@@ -8,10 +8,24 @@ import TaskList from '../components/admin/orders/tasklist/TaskList';
 import TaskItem from '../components/admin/orders/tasklist/TaskItem';
 import TaskControl from '../components/admin/orders/taskcontrol/TaskControl';
 import OrderDetail from '../components/admin/orders/orderdetail/OrderDetail';
-import { useEffect, useState } from 'react';
+import ComponentToPrint from '../components/admin/orders/orderdetail/OrderDetailPrint';
+import { useEffect, useRef, useState } from 'react';
+import { useReactToPrint } from 'react-to-print';
 
 // code function here
 function OrdersManagerContainer(props){
+    // ------------------handle for print------------------
+    // get ref
+    const componentRef = useRef();
+    const handlePrint = useReactToPrint(
+        {
+            content: () => componentRef.current,
+        }
+    );
+    // ----------------------------------------------------
+
+
+
     // get props
     const {
         onFetchApi,
@@ -52,30 +66,19 @@ function OrdersManagerContainer(props){
     )
 
     // handle open order detail
-    const openDetail = item => {
+    const openDetail = (item,option) => {
+        if (option) return setPresentOrder(item);
+
         setPresentOrder(item);
         setShowDetail(true);
     }
 
     // handle close order detail
     const closeDetail = () => {
-        setPresentOrder(
-            {
-                id_order: 0,
-                id_account: 0,
-                create_at: "",
-                email: "",
-                number_phone: "0",
-                receiver: "",
-                sent_to: "",
-                transport_fee: 0,
-                status: 0
-            }
-        );
         setShowDetail(false);
     }
 
-
+    
     // load data
     useEffect( 
         () => {
@@ -125,6 +128,7 @@ function OrdersManagerContainer(props){
                 onSelectItemEditRec={onSelectItemEdit}
                 onUpdateStatusRec={onUpdateStatus}
                 openDetail={openDetail}
+                handlePrint={handlePrint}
             />
         )
     });// use for taskList
@@ -200,6 +204,18 @@ function OrdersManagerContainer(props){
             />
         )
     }
+    // return order detail
+    const orderDetailPrintUI = () => {
+        return (
+            <ComponentToPrint 
+                ref={componentRef}
+                orderDetailsRec={orderDetails}
+                productsRec={products}
+                sizesRec={sizes}
+                presentOrderRec={presentOrder}
+            />
+        )
+    }
 
     // return ui
     return(
@@ -207,6 +223,7 @@ function OrdersManagerContainer(props){
             taskListRec={taskList}
             taskControlUI={taskControlUI}
             orderDetailUI={orderDetailUI}
+            orderDetailPrintUI={orderDetailPrintUI}
             showDetail={showDetail}
         />
     );

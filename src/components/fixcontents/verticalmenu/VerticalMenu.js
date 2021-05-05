@@ -23,10 +23,10 @@ function VerticalMenu(props) {
     }
 
 
-    // handle when submit
-    const onHandleSubmit = event => {
-        event.preventDefault();
-    }
+    // // handle when submit
+    // const onHandleSubmit = event => {
+    //     event.preventDefault();
+    // }
 
     return(
         <>

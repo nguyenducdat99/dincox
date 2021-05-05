@@ -1,13 +1,18 @@
 import { useEffect, useState } from "react";
 import { mapValueAndName } from "../../../../constants/GlobalVariables";
 
+
+
 function TaskItem(props) {
+
+
     //  get props, declare variable, constant
     const { 
         index, 
         itemRec,
         onUpdateStatusRec,
-        openDetail 
+        openDetail,
+        handlePrint 
     } = props;
 
     // declare state component;
@@ -143,6 +148,14 @@ function TaskItem(props) {
             break;
     }
 
+    const onHanlePrint = () => {
+        openDetail(itemRec,true);
+        
+        setTimeout(()=>{
+            handlePrint();
+        },500)
+    }
+
     // return ui
     return (
         <tr className={index%2===0?"task-list__table__line-odd":''}>
@@ -168,7 +181,7 @@ function TaskItem(props) {
                 <button type="button" className="btn btn-warning" onClick={onSelectItem}>
                     <span className="fa fa-search"></span>Chi tiết
                 </button>
-                <button type="button" className="btn btn-warning" onClick={onSelectItem}>
+                <button type="button" className="btn btn-warning" onClick={onHanlePrint}>
                     <span className="fa fa-print"></span>In hóa đơn
                 </button>
             </td>

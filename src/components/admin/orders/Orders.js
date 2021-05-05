@@ -10,7 +10,8 @@ function Orders(props) {
         taskListRec,
         taskControlUI,
         showDetail,
-        orderDetailUI
+        orderDetailUI,
+        orderDetailPrintUI
      } = props;
 
     return (
@@ -18,6 +19,9 @@ function Orders(props) {
             <SmallBanner title="Quản lý"/>
             {
                 showDetail?orderDetailUI():''
+            }
+            {
+                orderDetailPrintUI()
             }
             <div className='orders'>
                 <div className="wrapper">
