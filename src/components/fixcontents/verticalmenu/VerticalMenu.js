@@ -10,7 +10,8 @@ function VerticalMenu(props) {
         showVerticalMenu,
         onCloseMenu,
         liveAccountRec,
-        onLogoutAccount
+        onLogoutAccount,
+        listCategoryRec
     } = props;
 
     // decalre state
@@ -39,14 +40,14 @@ function VerticalMenu(props) {
                     </label>
                 </div>
                 <div className='vertical-menu__body'>
-                    <div className='vertical-menu__body__search'>
+                    {/* <div className='vertical-menu__body__search'>
                         <form action='' method='' onSubmit={onHandleSubmit}>
                             <input type='text' placeholder='Tìm sản phẩm...'/>
                             <button type='submit'>
                                 <i className="fa fa-search" aria-hidden="true"></i>
                             </button>
                         </form>
-                    </div>
+                    </div> */}
                     <div className='vertical-menu__body__navigation'>
                         <ul>
                             <li>
@@ -65,21 +66,35 @@ function VerticalMenu(props) {
                                 {
                                     showMenu2?
                                     <ul className='menu-lv-2'>
-                                        <li>Dày da</li>
-                                        <li>Dày thể thao</li>
-                                        <li>Dép nam</li>
-                                        <li>Phụ kiện</li>
+                                        {listCategoryRec(0,onCloseMenu)}
                                     </ul>:''
                                 }
                             </li>
-                            <li>Sale off
+                            <li>
+                                Sale off
                             </li>
                             <li>
-                                <Link to='/orders'
+                                <Link 
+                                    to='/orders'
                                     onClick={()=> onCloseMenu()}
                                 >Kiểm tra đơn hàng</Link>
                             </li>
-                            <li>Hệ thống cửa hàng</li>
+                            <li>
+                                <Link  
+                                    to='/store-location'
+                                    onClick={()=> onCloseMenu()}
+                                >
+                                    Hệ thống cửa hàng
+                                </Link>
+                            </li>
+                            <li>
+                                <Link  
+                                    to='/search'
+                                    onClick={()=> onCloseMenu()}
+                                >
+                                    Tìm kiếm sản phẩm
+                                </Link>
+                            </li>
                             <li>
                                 
                                 {

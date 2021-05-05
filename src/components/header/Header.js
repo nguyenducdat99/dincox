@@ -160,6 +160,7 @@ function Header(props) {
                 quantityRec={quantityRec}
                 liveAccountRec={liveAccountRec}
                 onLogoutAccount={onLogout}
+                listCategoryRec={listCategoryRec}
             />
         </>
     );

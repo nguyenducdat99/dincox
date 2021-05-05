@@ -36,10 +36,22 @@ function HeaderContainer(props){
 
     // get quantity item in cart
     var quantity = cart.length===0?0:cart.length;
-    var listCategory = check => {
+    const listCategory = (check, callback) => {
         switch (check) {
             case 0:
                 return props.categories.map((item,index)=>{
+                    if (callback) {
+                        return (
+                            <li key={index}>
+                                <Link 
+                                    to={'/collections/'+item.id_category}
+                                    onClick={()=> callback()}
+                                >
+                                    {item.category_name}
+                                </Link>
+                            </li>
+                        )
+                    }
                     return (
                         <li key={index}>
                             <Link to={'/collections/'+item.id_category}>
