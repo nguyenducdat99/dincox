@@ -207,6 +207,13 @@
                 display: none;
                 &__res {
                     display: flex;
+
+                    label {
+                        margin-right:20px;
+                        a {
+                            color: $color-default-white;
+                        }
+                    }
                 }
             }
         }

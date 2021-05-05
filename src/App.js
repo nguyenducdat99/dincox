@@ -29,13 +29,13 @@ import ArticleUIContainer from './containers/ArticleUIContainer';
 import ArticleDetailContainer from './containers/ArticleDetailContainer';
 import ProductManagerContaner from './containers/ProductManagerContaner';
 import CheckoutContainer from './containers/CheckoutContainer';
-import Search from './components/fixcontents/search/Search';
 import OrderContainer from './containers/OrderContainer';
 import SaleContainer from './containers/SaleContainer';
 import { useEffect, useState } from 'react';
 import AccountContainer from './containers/AccountContainer';
 import ArticlesContainer from './containers/ArticlesContainer';
 import OrdersManagerContainer from './containers/OrdersManagerContainer';
+import SearchContainer from './containers/SearchContainer';
 
 
 function App(props) {
@@ -107,7 +107,7 @@ function App(props) {
 					</Route>
 
 					<Route path="/search">
-						<Search/>
+						<SearchContainer/>
 					</Route>
 
 					<Route path="/account/login">

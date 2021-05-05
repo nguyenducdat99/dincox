@@ -138,8 +138,10 @@ function Header(props) {
 
                         <div className="header-grid__navigation__res">
                             <label>
-                                <span className="fa fa-shopping-cart" aria-hidden="true"></span>&nbsp;
-                                {quantityRec===0?'':'('+quantityRec+')'}
+                                <Link to='/cart'>
+                                    <span className="fa fa-shopping-cart" aria-hidden="true"></span>&nbsp;
+                                    {quantityRec===0?'':'('+quantityRec+')'}
+                                </Link>
                             </label>
                             <label
                                 onClick={onToggleVerticalMenu}
