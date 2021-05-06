@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Search from '../components/fixcontents/search/Search';
 import SingleProduct from '../components/product/aproduct/Aproduct';
 import * as Actions from '../actions/Actions';
+import { useState } from 'react';
 
 // code function here
 function SearchContainer(props){
@@ -16,10 +17,22 @@ function SearchContainer(props){
         saleDetails,
         onAddToCart
     } = props;
+    // delcare state component
+    const [keyword, setKeyword] = useState('');
 
+    // onhandle change keyword
+    const onHandleChangeKeyWord = keyword => {
+        setKeyword(keyword);
+    }
 
+    // filter product
+    const productsFilter = products.filter(
+        element => {
+            return element.product_name.toLowerCase().includes(keyword.toLocaleLowerCase());
+        }
+    )
     // get quantity max
-    const listIndex = products.map((item,index)=>{
+    const listIndex = productsFilter.map((item,index)=>{
         return(
             <SingleProduct 
                 key={index} 
@@ -32,11 +45,12 @@ function SearchContainer(props){
         )
     })
     
-    console.log(listIndex);
+    
 
     return(
         <Search 
             listIndex={listIndex}    
+            setKeywordContainer={onHandleChangeKeyWord}
         />
     );
 }
@@ -46,7 +60,7 @@ SearchContainer.propTypes = {
     images: PropTypes.array,
     sizeDetails: PropTypes.array,
     products: PropTypes.array,
-    onAddToCart: PropTypes.func
+    onAddToCart: PropTypes.func,
 }
 
 const mapStateToProps = state => {

@@ -71,7 +71,12 @@ function VerticalMenu(props) {
                                 }
                             </li>
                             <li>
-                                Sale off
+                                <Link  
+                                    to='/sale-off'
+                                    onClick={()=> onCloseMenu()}
+                                >
+                                    Sale off
+                                </Link>
                             </li>
                             <li>
                                 <Link 

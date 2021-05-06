@@ -36,6 +36,7 @@ import AccountContainer from './containers/AccountContainer';
 import ArticlesContainer from './containers/ArticlesContainer';
 import OrdersManagerContainer from './containers/OrdersManagerContainer';
 import SearchContainer from './containers/SearchContainer';
+import SaleOffContainer from './containers/SaleOffContainer';
 
 
 function App(props) {
@@ -108,6 +109,10 @@ function App(props) {
 
 					<Route path="/search">
 						<SearchContainer/>
+					</Route>
+
+					<Route path="/sale-off">
+						<SaleOffContainer/>
 					</Route>
 
 					<Route path="/account/login">

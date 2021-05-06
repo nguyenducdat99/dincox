@@ -100,7 +100,7 @@ function Header(props) {
                                             {listCategoryRec(-1)}
                                         </ul>
                                     </li>
-                                    <li><a href='/#'>Sale Off</a></li>
+                                    <li><Link to='/sale-off'>Sale Off</Link></li>
                                     <li><Link to='/store-location'>Hệ thống cửa hàng</Link></li>
                                     <li>
                                         <Link to="/orders">Kiểm tra đơn hàng</Link>                                  </li>
