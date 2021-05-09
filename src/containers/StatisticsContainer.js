@@ -28,7 +28,6 @@ function StatisticContainer(props) {
     // eslint-disable-next-line
   }, []);
 
-  console.log(orders);
   // return ui
   return (
     <Statistics
