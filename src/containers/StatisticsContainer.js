@@ -1,56 +1,62 @@
 // import style library, components
 import { connect } from "react-redux";
 import * as Actions from "../actions/Actions";
-import * as Types from "../constants/ActionTypes";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import Statistics from "../components/admin/statistics/Statistics";
 
 // code function here
-function SizesContainer(props) {
+function StatisticContainer(props) {
   // get props
-  const {} = props;
+  const {
+    accounts,
+    products,
+    articles,
+    onFetchDataProduct,
+    onFetchDataUser,
+    onFetchDataArticle,
+  } = props;
 
   // load data
   useEffect(() => {
+    onFetchDataArticle();
+    onFetchDataProduct();
+    onFetchDataUser();
     // eslint-disable-next-line
   }, []);
 
   // return ui
-  return <Statistics />;
+  return (
+    <Statistics accounts={accounts} products={products} articles={articles} />
+  );
 }
 
-SizesContainer.propTypes = {};
+StatisticContainer.propTypes = {
+  accounts: PropTypes.array,
+  products: PropTypes.array,
+  articles: PropTypes.array,
+  onFetchDataProduct: PropTypes.func,
+  onFetchDataUser: PropTypes.func,
+  onFetchDataArticle: PropTypes.func,
+};
 
 const mapStateToProps = (state) => {
   return {
-    items: state.listSize,
-    isDisplayForm: state.isDisplayForm,
-    itemEdit: state.sizeEdit,
+    accounts: state.ListAccount,
+    articles: state.listArticle,
+    products: state.ListProduct,
   };
 };
 const mapDispatchToProps = (dispatch, props) => {
   return {
-    onFetchApi: () => {
-      dispatch(Actions.fetchSizesRequest());
+    onFetchDataUser: () => {
+      dispatch(Actions.fetchAccountRequest());
     },
-    onToggleForm: () => {
-      dispatch(Actions.toggleForm());
+    onFetchDataProduct: () => {
+      dispatch(Actions.fetchProductRequest());
     },
-    onSelectItemEdit: (id) => {
-      dispatch(Actions.selectSizeRequest(id));
-    },
-    onSaveItem: (item) => {
-      dispatch(Actions.saveSizeRequest(item));
-    },
-    onClearItemEdit: (item) => {
-      dispatch(Actions.selectSize(item));
-    },
-    onDeleteItem: (id) => {
-      dispatch(Actions.deleteSizeRequest(id));
-    },
-    onUpdateStatus: (item) => {
-      dispatch(Actions.updateStatusSizeRequest(item));
+    onFetchDataArticle: () => {
+      dispatch(Actions.fetchArticleRequest());
     },
   };
 };
@@ -77,4 +83,4 @@ const sortStatusTrue = (a, b) => {
   return 0;
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SizesContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(StatisticContainer);
