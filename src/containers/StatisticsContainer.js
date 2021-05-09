@@ -2,7 +2,7 @@
 import { connect } from "react-redux";
 import * as Actions from "../actions/Actions";
 import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Statistics from "../components/admin/statistics/Statistics";
 
 // code function here
@@ -12,9 +12,11 @@ function StatisticContainer(props) {
     accounts,
     products,
     articles,
+    orders,
     onFetchDataProduct,
     onFetchDataUser,
     onFetchDataArticle,
+    onFetchDataOrder,
   } = props;
 
   // load data
@@ -22,12 +24,19 @@ function StatisticContainer(props) {
     onFetchDataArticle();
     onFetchDataProduct();
     onFetchDataUser();
+    onFetchDataOrder();
     // eslint-disable-next-line
   }, []);
 
+  console.log(orders);
   // return ui
   return (
-    <Statistics accounts={accounts} products={products} articles={articles} />
+    <Statistics
+      accounts={accounts}
+      products={products}
+      articles={articles}
+      orders={orders}
+    />
   );
 }
 
@@ -35,9 +44,11 @@ StatisticContainer.propTypes = {
   accounts: PropTypes.array,
   products: PropTypes.array,
   articles: PropTypes.array,
+  orders: PropTypes.array,
   onFetchDataProduct: PropTypes.func,
   onFetchDataUser: PropTypes.func,
   onFetchDataArticle: PropTypes.func,
+  onFetchDataOrder: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {
@@ -45,6 +56,7 @@ const mapStateToProps = (state) => {
     accounts: state.ListAccount,
     articles: state.listArticle,
     products: state.ListProduct,
+    orders: state.order,
   };
 };
 const mapDispatchToProps = (dispatch, props) => {
@@ -58,29 +70,10 @@ const mapDispatchToProps = (dispatch, props) => {
     onFetchDataArticle: () => {
       dispatch(Actions.fetchArticleRequest());
     },
+    onFetchDataOrder: () => {
+      dispatch(Actions.fetchDataStatisticsRequest());
+    },
   };
-};
-
-// custom sort
-const sortNameUp = (a, b) => {
-  if (a.size_name > b.size_name) return 1;
-  if (a.size_name < b.size_name) return -1;
-  return 0;
-};
-const sortNameDown = (a, b) => {
-  if (a.size_name > b.size_name) return -1;
-  if (a.size_name < b.size_name) return 1;
-  return 0;
-};
-const sortStatusFalse = (a, b) => {
-  if (a.status > b.status) return 1;
-  if (a.status < b.status) return -1;
-  return 0;
-};
-const sortStatusTrue = (a, b) => {
-  if (a.status > b.status) return -1;
-  if (a.status < b.status) return 1;
-  return 0;
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(StatisticContainer);

@@ -6,7 +6,7 @@ import moment from "moment";
 // function code here
 function Statistics(props) {
   // get props
-  const { accounts, products, articles } = props;
+  const { accounts, products, articles, orders } = props;
 
   // get data account update
   const dataAccountUpdate =
@@ -34,13 +34,17 @@ function Statistics(props) {
                 <sup
                   title={
                     "Số tài khoản đã tạo mới là: " +
-                    dataAccountUpdate.quantityUpdate
+                      dataAccountUpdate?.quantityUpdate || 0
                   }
                 >
                   {dataAccountUpdate?.quantityUpdate || 0}
                 </sup>
                 /
-                <sub title={"Tổng số tài khoản: " + dataAccountUpdate.quantity}>
+                <sub
+                  title={
+                    "Tổng số tài khoản: " + dataAccountUpdate?.quantity || 0
+                  }
+                >
                   {dataAccountUpdate?.quantity || 0}
                 </sub>
               </div>
@@ -51,14 +55,16 @@ function Statistics(props) {
                 <sup
                   title={
                     "Số sản phẩm đã tạo mới là: " +
-                    dataProductUpdate.quantityUpdate
+                      dataProductUpdate?.quantityUpdate || 0
                   }
                 >
                   {dataProductUpdate?.quantityUpdate || 0}
                 </sup>
                 /
                 <sub
-                  title={"Tổng số sản phẩm là: " + dataProductUpdate.quantity}
+                  title={
+                    "Tổng số sản phẩm là: " + dataProductUpdate?.quantity || 0
+                  }
                 >
                   {dataProductUpdate?.quantity || 0}
                 </sub>
@@ -70,14 +76,16 @@ function Statistics(props) {
                 <sup
                   title={
                     "Số bài viết đã tạo mới là: " +
-                    dataArticleUpdate.quantityUpdate
+                      dataArticleUpdate?.quantityUpdate || 0
                   }
                 >
                   {dataArticleUpdate?.quantityUpdate || 0}
                 </sup>
                 /
                 <sub
-                  title={"Tổng số bài viết là: " + dataArticleUpdate.quantity}
+                  title={
+                    "Tổng số bài viết là: " + dataArticleUpdate?.quantity || 0
+                  }
                 >
                   {dataArticleUpdate?.quantity || 0}
                 </sub>
@@ -125,11 +133,6 @@ const quantityProductUpdate = (array) => {
       ? moment(element.created_at).format("yyyy-MM")
       : "";
 
-    console.log({ created_at: element.created_at, month });
-    console.log({
-      start: moment().startOf("week").format("yyyy-MM-DD"),
-      end: moment().endOf("week").format("yyyy-MM-DD"),
-    });
     if (month + "" === moment(new Date()).format("yyyy-MM") + "")
       quantityUpdate = quantityUpdate + 1;
   });

@@ -878,6 +878,21 @@ export const fetchOrder = (items) => {
     payload: items,
   };
 };
+export const fetchDataStatisticsRequest = () => {
+  return (dispatch) => {
+    return callApi("statistics", "GET", null).then((res) => {
+      if (!res) return console.log("get data failed");
+
+      dispatch(fetchDataStatistics(res.data));
+    });
+  };
+};
+export const fetchDataStatistics = (items) => {
+  return {
+    type: types.GET_DATA_STATISTICS,
+    payload: items,
+  };
+};
 
 export const fetchOrderDetailRequest = (id) => {
   return (dispatch) => {
