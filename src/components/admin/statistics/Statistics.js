@@ -49,7 +49,7 @@ function Statistics(props) {
 
   // get data statistic
   const dataStatistic =
-    orders && orders.length > 0 ? getDataStatistic(orders) : null;
+    orders && orders.length > 0 ? getDataStatistic(orders, timezone) : null;
 
   // convert to profit
   const profit = getProfit(dataStatistic, products);
@@ -319,22 +319,37 @@ const findProduct = (array, id) => {
   return result;
 };
 
-const getDataStatistic = (array) => {
+const getDataStatistic = (array, type) => {
   if (!array) return;
+
+  let timeFormat = "DD-MM-YYYY";
+
+  switch (type * 1) {
+    case TIME_ZONE[0].value * 1:
+      timeFormat = "DD-MM-YYYY";
+      break;
+
+    case TIME_ZONE[1].value * 1:
+      timeFormat = "MM-YYYY";
+      break;
+
+    default:
+      break;
+  }
 
   const dataProduct = [];
 
   const arrayFilter = array.filter((element) => {
     const time1 = element.create_at
-      ? moment(element.create_at, "DD-MM-yyyy").format("yyyy")
+      ? moment(element.create_at, "DD-MM-yyyy").format(timeFormat)
       : "";
     const time2 = element.create_at
-      ? moment(element.create_at, "yyyy-MM-DD").format("yyyy")
+      ? moment(element.create_at, "yyyy-MM-DD").format(timeFormat)
       : "";
 
     return (
-      time1 + "" === moment(new Date()).format("yyyy") + "" ||
-      time2 + "" === moment(new Date()).format("yyyy") + ""
+      time1 + "" === moment(new Date()).format(timeFormat) + "" ||
+      time2 + "" === moment(new Date()).format(timeFormat) + ""
     );
   });
 
