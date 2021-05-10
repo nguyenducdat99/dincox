@@ -63,6 +63,25 @@
     display: grid;
     grid-template-columns: 50% 50%;
   }
+
+  &__timezone {
+    margin-bottom: 30px;
+
+    button {
+      padding: 0.375rem 0.75rem;
+      background: transparent;
+      border: 2px solid #2f4b7c;
+      font-size: $font-size-18;
+      margin-right: 15px;
+      border-radius: 0.25rem;
+      color: #2f4b7c;
+
+      &.active {
+        color: white;
+        background-color: #2f4b7c;
+      }
+    }
+  }
 }
 
 @media only screen and (max-width: 1200px) {

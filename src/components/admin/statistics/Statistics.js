@@ -3,23 +3,49 @@ import "./Statistics.scss";
 import SmallBanner from "../../fixcontents/smallbanner/SmallBanner";
 import moment from "moment";
 import { Doughnut, PolarArea } from "react-chartjs-2";
+import { useState } from "react";
+
+const TIME_ZONE = [
+  {
+    value: 0,
+    message: "DAY",
+  },
+  {
+    value: 1,
+    message: "MONTH",
+  },
+];
 
 // function code here
 function Statistics(props) {
+  // declare state component
+  const [timezone, setTimezone] = useState(TIME_ZONE[0].value * 1);
+
   // get props
   const { accounts, products, articles, orders } = props;
 
+  // change state
+  const onChangeTimezone = (a) => {
+    setTimezone(a);
+  };
+
   // get data account update
   const dataAccountUpdate =
-    accounts && accounts.length > 0 ? quantityAccountUpdate(accounts) : null;
+    accounts && accounts.length > 0
+      ? quantityAccountUpdate(accounts, timezone)
+      : null;
 
   // get data product update
   const dataProductUpdate =
-    products && products.length > 0 ? quantityProductUpdate(products) : null;
+    products && products.length > 0
+      ? quantityProductUpdate(products, timezone)
+      : null;
 
   // get data article update
   const dataArticleUpdate =
-    articles && articles.length > 0 ? quantityArticleUpdate(articles) : null;
+    articles && articles.length > 0
+      ? quantityArticleUpdate(articles, timezone)
+      : null;
 
   // get data statistic
   const dataStatistic =
@@ -79,6 +105,28 @@ function Statistics(props) {
       <SmallBanner title="Thống kê dữ liệu" />
       <div className="statistics">
         <div className="wrapper">
+          <div className="statistics__timezone">
+            <button
+              type="button"
+              onClick={() => onChangeTimezone(TIME_ZONE[0].value * 1)}
+              className={
+                timezone * 1 === TIME_ZONE[0].value * 1 ? "active" : ""
+              }
+              disabled={timezone * 1 === TIME_ZONE[0].value * 1 ? true : false}
+            >
+              Dữ liệu ngày
+            </button>
+            <button
+              type="button"
+              onClick={() => onChangeTimezone(TIME_ZONE[1].value * 1)}
+              className={
+                timezone * 1 === TIME_ZONE[1].value * 1 ? "active" : ""
+              }
+              disabled={timezone * 1 === TIME_ZONE[1].value * 1 ? true : false}
+            >
+              Dữ liệu tháng
+            </button>
+          </div>
           <h2>Cập nhật mới</h2>
           <div className="statistics__update__grid">
             <div className="statistics__update__column">
@@ -178,8 +226,23 @@ function Statistics(props) {
   );
 }
 
-const quantityAccountUpdate = (array) => {
+const quantityAccountUpdate = (array, type) => {
   if (!array) return;
+
+  let timeFormat = "DD-MM-YYYY";
+
+  switch (type * 1) {
+    case TIME_ZONE[0].value * 1:
+      timeFormat = "DD-MM-YYYY";
+      break;
+
+    case TIME_ZONE[1].value * 1:
+      timeFormat = "MM-YYYY";
+      break;
+
+    default:
+      break;
+  }
 
   let quantity = 0;
   let quantityUpdate = 0;
@@ -188,10 +251,10 @@ const quantityAccountUpdate = (array) => {
     quantity = quantity + 1;
 
     let time = element.join_at
-      ? moment(element.join_at).format("yyyy-MM-DD")
+      ? moment(element.join_at).format(timeFormat)
       : "";
 
-    if (time + "" === moment(new Date()).format("yyyy-MM-DD") + "")
+    if (time + "" === moment(new Date()).format(timeFormat) + "")
       quantityUpdate = quantityUpdate + 1;
   });
 
@@ -201,8 +264,23 @@ const quantityAccountUpdate = (array) => {
   };
 };
 
-const quantityProductUpdate = (array) => {
+const quantityProductUpdate = (array, type) => {
   if (!array) return;
+
+  let timeFormat = "DD-MM-YYYY";
+
+  switch (type * 1) {
+    case TIME_ZONE[0].value * 1:
+      timeFormat = "DD-MM-YYYY";
+      break;
+
+    case TIME_ZONE[1].value * 1:
+      timeFormat = "MM-YYYY";
+      break;
+
+    default:
+      break;
+  }
 
   let quantity = 0;
   let quantityUpdate = 0;
@@ -211,10 +289,10 @@ const quantityProductUpdate = (array) => {
     quantity = quantity + 1;
 
     let time = element.created_at
-      ? moment(element.created_at).format("yyyy-MM-DD")
+      ? moment(element.created_at).format(timeFormat)
       : "";
 
-    if (time + "" === moment(new Date()).format("yyyy-MM-DD") + "")
+    if (time + "" === moment(new Date()).format(timeFormat) + "")
       quantityUpdate = quantityUpdate + 1;
   });
 
@@ -224,10 +302,10 @@ const quantityProductUpdate = (array) => {
   };
 };
 
-const quantityArticleUpdate = (array) => {
+const quantityArticleUpdate = (array, type) => {
   if (!array) return;
 
-  return quantityProductUpdate(array);
+  return quantityProductUpdate(array, type);
 };
 const findProduct = (array, id) => {
   let result = -1;
