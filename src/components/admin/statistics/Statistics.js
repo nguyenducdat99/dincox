@@ -28,7 +28,19 @@ function Statistics(props) {
   // convert to profit
   const profit = getProfit(dataStatistic, products);
 
-  console.log({ profit });
+  // get amount profit
+  let amountProfit = 0;
+  profit?.forEach((element) => {
+    amountProfit = amountProfit + element.profit;
+  });
+
+  // get amount quantity
+  let amountQuantity = 0;
+  profit?.forEach((element) => {
+    amountQuantity = amountQuantity + element.quantity;
+  });
+
+  // console.log({ profit });
   // covert data for chart
   const labels = profit?.map((element) => element.product_name) || [];
   const datasetsForDoughnut = profit?.map((element) => element.profit) || [];
@@ -136,7 +148,7 @@ function Statistics(props) {
           <h2>Doanh thu</h2>
           <div className="statistics__profit">
             <div className="statistics__profit__column">
-              <h3>Lợi nhuận thu được:</h3>
+              <h3>Lợi nhuận thu được: {amountProfit}đ</h3>
               <div className="profit">
                 <Doughnut
                   data={{ ...dataDoughnut }}
@@ -148,7 +160,7 @@ function Statistics(props) {
               </div>
             </div>
             <div className="statistics__profit__column">
-              <h3>Số lượng sản phẩm bán ra:</h3>
+              <h3>Số lượng sản phẩm bán ra: {amountQuantity}(đôi)</h3>
               <div className="quantity">
                 <PolarArea
                   data={{ ...dataPolarArea }}
@@ -235,11 +247,17 @@ const getDataStatistic = (array) => {
   const dataProduct = [];
 
   const arrayFilter = array.filter((element) => {
-    let time = element.create_at
+    const time1 = element.create_at
       ? moment(element.create_at, "DD-MM-yyyy").format("yyyy")
       : "";
+    const time2 = element.create_at
+      ? moment(element.create_at, "yyyy-MM-DD").format("yyyy")
+      : "";
 
-    return time + "" === moment(new Date()).format("yyyy") + "";
+    return (
+      time1 + "" === moment(new Date()).format("yyyy") + "" ||
+      time2 + "" === moment(new Date()).format("yyyy") + ""
+    );
   });
 
   arrayFilter.forEach((element) => {
@@ -274,7 +292,7 @@ const getProfit = (arrProductInOrder, arrProductInData) => {
 
     return {
       id_product: element.id_product,
-      product_name: arrProductInData[index].product_name,
+      product_name: arrProductInData[index]?.product_name,
       quantity: element.quantity,
       profit: profit,
     };
