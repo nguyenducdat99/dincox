@@ -3,7 +3,14 @@ import { mapValueAndName } from "../../../../constants/GlobalVariables";
 
 function TaskItem(props) {
   //  get props, declare variable, constant
-  const { index, itemRec, onUpdateStatusRec, openDetail, handlePrint } = props;
+  const {
+    index,
+    itemRec,
+    onUpdateStatusRec,
+    openDetail,
+    handlePrint,
+    findItemReturn,
+  } = props;
 
   // declare state component;
   const [statusItem, setStatusItem] = useState(-1);
@@ -22,10 +29,11 @@ function TaskItem(props) {
     const confirm = window.confirm("Bạn muốn thay đổi trạng thái đơn hàng?");
 
     if (confirm) {
-      onUpdateStatusRec({
-        id_order: itemRec.id_order,
-        status: value * 1,
-      });
+      // onUpdateStatusRec({
+      //   id_order: itemRec.id_order,
+      //   status: value * 1,
+      // });
+      if (value * 1 === -1) findItemReturn(itemRec, value);
       setStatusItem(value);
     }
   };

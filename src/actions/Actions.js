@@ -936,3 +936,16 @@ export const updateStatusOrder = (data) => {
     },
   };
 };
+export const returnQuantityRequest = (data) => {
+  return (dispatch) => {
+    console.log({ data });
+  };
+};
+export const returnQuantity = (data) => {
+  return {
+    type: types.RETURN_QUANTITY,
+    payload: {
+      item: data,
+    },
+  };
+};
