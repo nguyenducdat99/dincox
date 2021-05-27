@@ -565,7 +565,6 @@ export const saveSizeDetailsRequest = (item, type) => {
     ...item,
     status: item.status * 1,
   };
-
   if (type) {
     return (dispatch) => {
       return callApi("size-details", "POST", item).then((res) => {
@@ -938,7 +937,18 @@ export const updateStatusOrder = (data) => {
 };
 export const returnQuantityRequest = (data) => {
   return (dispatch) => {
-    console.log({ data });
+    data.forEach((element) => {
+      const item = {
+        ...element,
+        status: element.status * 1,
+      };
+      // console.log({ item });
+      return callApi("size-details", "PUT", item).then((res) => {
+        if (!res) return console.log("get data failed");
+        // console.log(res?.data);
+        dispatch(saveSizeDetail(res.data));
+      });
+    });
   };
 };
 export const returnQuantity = (data) => {

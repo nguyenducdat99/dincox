@@ -33,6 +33,8 @@ function OrdersManagerContainer(props) {
     orderDetails,
     fetchOrderDetail,
     returnQuantity,
+    sizeDetails,
+    fetchSizeDetail,
   } = props;
 
   // declare state
@@ -51,6 +53,13 @@ function OrdersManagerContainer(props) {
     status: 0,
   });
   const [statusCurrent, setStatusCurrent] = useState(1);
+
+  // load data
+  useEffect(() => {
+    onFetchApi();
+    fetchSizeDetail();
+    // eslint-disable-next-line
+  }, []);
 
   // get order detail
   useEffect(() => {
@@ -76,7 +85,7 @@ function OrdersManagerContainer(props) {
 
   useEffect(() => {
     if (statusCurrent * 1 === -1) {
-      const data = convertOrderDetail(orderDetails);
+      const data = convertOrderDetail(orderDetails, sizeDetails);
 
       returnQuantity(data);
       setStatusCurrent(1);
@@ -88,12 +97,6 @@ function OrdersManagerContainer(props) {
   const closeDetail = () => {
     setShowDetail(false);
   };
-
-  // load data
-  useEffect(() => {
-    onFetchApi();
-    // eslint-disable-next-line
-  }, []);
 
   // filter items with keyword
   var itemsFilter =
@@ -262,6 +265,8 @@ OrdersManagerContainer.propTypes = {
   orderDetails: PropTypes.array,
   fetchOrderDetail: PropTypes.func,
   returnQuantity: PropTypes.func,
+  fetchSizeDetail: PropTypes.func,
+  sizeDetails: PropTypes.array,
 };
 
 const mapStateToProps = (state) => {
@@ -272,6 +277,7 @@ const mapStateToProps = (state) => {
     orderDetails: state.orderDetail,
     sizes: state.listSize,
     products: state.ListProduct,
+    sizeDetails: state.listSizeDetail,
   };
 };
 const mapDispatchToProps = (dispatch, props) => {
@@ -287,6 +293,9 @@ const mapDispatchToProps = (dispatch, props) => {
     },
     fetchOrderDetail: (id) => {
       dispatch(Actions.fetchOrderDetailRequest(id));
+    },
+    fetchSizeDetail: () => {
+      dispatch(Actions.fetchSizeDetailsRequest());
     },
     returnQuantity: (data) => {
       dispatch(Actions.returnQuantityRequest(data));
@@ -316,14 +325,40 @@ const sortStatusTrue = (a, b) => {
   return 0;
 };
 
-const convertOrderDetail = (array) => {
+const getQuantityInStore = (sizeDetails, id_product, id_size) => {
+  let quantity = 0;
+  let status = 0;
+  sizeDetails.forEach((element) => {
+    if (
+      element.id_product * 1 === id_product &&
+      element.id_size * 1 === id_size
+    ) {
+      quantity = element.quantity * 1;
+      status = element.status * 1;
+    }
+  });
+
+  return {
+    quantity: quantity,
+    status: status,
+  };
+};
+
+const convertOrderDetail = (array, sizeDetails) => {
   let result = [];
 
   array.forEach((element) => {
     result.push({
       id_product: element.id_product,
       id_size: element.size,
-      quantity: element.quantity,
+      quantity:
+        getQuantityInStore(sizeDetails, element.id_product, element.size)
+          ?.quantity *
+          1 +
+        element.quantity,
+      status:
+        getQuantityInStore(sizeDetails, element.id_product, element.size)
+          ?.status * 1,
     });
   });
 

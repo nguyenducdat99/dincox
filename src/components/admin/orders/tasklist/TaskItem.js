@@ -29,10 +29,10 @@ function TaskItem(props) {
     const confirm = window.confirm("Bạn muốn thay đổi trạng thái đơn hàng?");
 
     if (confirm) {
-      // onUpdateStatusRec({
-      //   id_order: itemRec.id_order,
-      //   status: value * 1,
-      // });
+      onUpdateStatusRec({
+        id_order: itemRec.id_order,
+        status: value * 1,
+      });
       if (value * 1 === -1) findItemReturn(itemRec, value);
       setStatusItem(value);
     }
