@@ -338,8 +338,10 @@ const getDataStatistic = (array, type) => {
   }
 
   const dataProduct = [];
-
-  const arrayFilter = array.filter((element) => {
+  const arrayValid = array.filter((element) => {
+    return element.status * 1 >= 3;
+  });
+  const arrayFilter = arrayValid.filter((element) => {
     const time1 = element.create_at
       ? moment(element.create_at, "DD-MM-yyyy").format(timeFormat)
       : "";

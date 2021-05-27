@@ -75,6 +75,9 @@ function TaskItem(props) {
       case 1:
         return (
           <>
+            <option value={mapValueAndName[4].value}>
+              {mapValueAndName[4].name}
+            </option>
             <option value={mapValueAndName[1].value}>
               {mapValueAndName[1].name}
             </option>
@@ -89,6 +92,9 @@ function TaskItem(props) {
       case 2:
         return (
           <>
+            <option value={mapValueAndName[4].value}>
+              {mapValueAndName[4].name}
+            </option>
             <option value={mapValueAndName[2].value}>
               {mapValueAndName[2].name}
             </option>
