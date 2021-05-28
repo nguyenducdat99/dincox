@@ -37,6 +37,10 @@ function ProductDetail(props) {
   const [quantity, setQuantity] = useState(1);
   const [mainImage, setMainImage] = useState("");
 
+  useEffect(() => {
+    if (quantity >= quantityMax) alert("Sản phẩm trong kho đã hết");
+  }, [quantity]);
+
   // get id from url
   const { id } = useParams();
 
